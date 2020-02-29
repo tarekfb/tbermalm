@@ -125,4 +125,14 @@ a{
 	color: inherit;
 	text-decoration: none;
 }
+.mainLabel{
+	margin-top: 20px;
+	display: inline-block;
+}
+fieldset{
+	margin-bottom: 15px;
+}
+input{
+	margin-bottom: 5px;
+}
 /*https://colorhunt.co/palette/167893*/
