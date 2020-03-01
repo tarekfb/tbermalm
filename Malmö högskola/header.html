@@ -1,1 +1,0 @@
-<a href="http://www.google.com">click here for google</a>
