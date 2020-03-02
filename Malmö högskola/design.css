@@ -140,4 +140,43 @@ input{
   display: block;
 }
 
+.inlamning4 h1{
+	font-family: arial;
+
+}
+.inlamning4 h2{
+	border: 5px;
+	color: #a7ff83;
+	border-style: solid;
+	color: white;
+}
+.inlamning4 h3{
+	font-style: italic;
+}
+.inlamning4 h1,.inlamning4 h2,.inlamning4 h3, .inlamning4 h4{
+	text-align: center;
+	background: #a7ff83;
+	color: white;
+}
+.inlamning4 .textBody{
+	text-align: left;
+	float: left;
+}
+.inlamning4 img{
+	padding: 10px;
+	display: block;
+  	margin-left: auto;
+  	margin-right: auto;
+ 	max-width: 100%;
+ 	height: auto;
+}
+.inlamning4 #imgLabel{
+	font-size: 12px;
+	font-style: italic;
+	text-align: center;
+	display: block;
+	margin-right: auto;
+	margin-left: auto;
+}
+
 /*https://colorhunt.co/palette/167893*/
