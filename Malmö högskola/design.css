@@ -103,19 +103,26 @@ footer{
 	border-color: white;
 	border-width: 5px;
 	border-style: solid;
-	border-radius: 20px;
 	background-color: black;
 	color: white;
 	padding: 10px;
 
 }
 #mainInlamning4 > p:nth-child(4) {
-	
+	border-color: black;
+	border-width: 5px;
+	border-style: solid;
+	background-color: yellow;
+	color: black;
+	padding: 10px;
 }
 #mainInlamning4 > p:nth-child(7) {
 	font-weight: bold;
 	font-style: italic;
-
+}
+#mainInlamning4 table th{
+	background-color: blue;
+	font-weight: bold;
 }
 
 
