@@ -96,6 +96,9 @@ footer{
 #mainInlamning4 h1{
 	text-align: center;
 }
+#mainInlamning4 ul{
+	padding: 10px;
+}
 #mainInlamning4 ul li{
 	font-style: italic;
 }
@@ -106,7 +109,6 @@ footer{
 	background-color: black;
 	color: white;
 	padding: 10px;
-
 }
 #mainInlamning4 > p:nth-child(4) {
 	border-color: black;
@@ -119,6 +121,8 @@ footer{
 #mainInlamning4 > p:nth-child(7) {
 	font-weight: bold;
 	font-style: italic;
+	padding: 10px;
+
 }
 #mainInlamning4 table th{
 	background-color: blue;
