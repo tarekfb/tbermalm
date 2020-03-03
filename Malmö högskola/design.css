@@ -178,15 +178,14 @@ input{
 	margin-right: auto;
 	margin-left: auto;
 }
-
 .navbarSecondary {
 	background-color: #0a8f50;
 	font-family: 'Montserrat', sans-serif;
 }
 .navbarSecondary a {
-  	font-size: 20px;
+  	font-size: 16px;
   	color: white;
-  	padding: 12px 14px;
+  	padding: 10px 12px;
   	text-decoration: none;
 }
 .navbarSecondary {
@@ -197,7 +196,6 @@ input{
   	background-color: #a7ff83;
   	color: black;
 }
-
 
 
 
