@@ -1,4 +1,4 @@
-/* attempting to trigger commit*/ 
+/*styling for main elements*/
 html{
  	background: url('green-gradient.jpg') no-repeat center center fixed; 
   	-webkit-background-size: cover;
@@ -39,37 +39,67 @@ th, td{
 	padding: 5px;
 }
 footer{
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  background-color: black;
-  color: white;
-  text-align: center;
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	background-color: black;
+	color: white;
+	text-align: center;
 }
 #main{
 	padding: 20px;
 }
-#home{
-	margin:0 auto;
-	font-size: 30px;
-	position: absolute;
- 	width: 300px;
- 	height: 200px;
-  	z-index: 15;
-  	top: 50%;
-  	left: 50%;
-  	margin: -100px 0 0 -150px;
-  	white-space: nowrap;
-  	text-align: center;
+
+/*Styling for inlamning4*/
+.inlamning4 h1{
+	font-family: arial;
+
 }
-#homeh3{
-	letter-spacing: 15px;
-	font-family: 'Montserrat', sans-serif;
-	font-weight: 600;
-	font-size: 60px;
+.inlamning4 h2{
+	border: 5px;
+	color: #096c3d;
+	border-style: solid;
+	color: white;
+}
+.inlamning4 h3{
+	font-style: italic;
+}
+#main.inlamning4 h1,.inlamning4 h2,.inlamning4 h3, .inlamning4 h4{
+	text-align: center;
+	background: #096c3d;
+	color: white;
+}
+.inlamning4 .textBody{
+	text-align: left;
+	float: left;
+}
+.inlamning4 img{
+	padding: 10px;
+	display: block;
+  	margin-left: auto;
+  	margin-right: auto;
+ 	max-width: 100%;
+ 	height: auto;
+}
+.inlamning4 #imgLabel{
+	font-size: 12px;
+	font-style: italic;
+	text-align: center;
+	display: block;
+	margin-right: auto;
+	margin-left: auto;
+}
+#mainInlamning4 {
+	background: #119155;
+}
+#mainInlamning4 h1{
+	text-align: center;
+
 }
 
+
+/*styling for inlamning3*/
 .mainLabel{
 	margin-top: 20px;
 	display: inline-block;
@@ -81,6 +111,27 @@ input{
 	margin-bottom: 5px;
 }
 
+/*Secondary navigation bar, used for inlamning4*/
+.navbarSecondary {
+	background-color: #0a8f50;
+	font-family: 'Montserrat', sans-serif;
+}
+.navbarSecondary a {
+  	font-size: 16px;
+  	color: white;
+  	padding: 10px 12px;
+  	text-decoration: none;
+}
+.navbarSecondary {
+  display: flex;
+  justify-content: space-between;
+}
+.navbarSecondary a:hover{
+  	background-color: #a7ff83;
+  	color: black;
+}
+
+/*Navigation bar, present at every page*/
 .navbar {
 	overflow: hidden;
 	background-color: #096c3d;
@@ -140,66 +191,34 @@ input{
   display: block;
 }
 
-.inlamning4 h1{
-	font-family: arial;
-
+/*Misc*/
+#home{
+	margin:0 auto;
+	font-size: 30px;
+	position: absolute;
+ 	width: 300px;
+ 	height: 200px;
+  	z-index: 15;
+  	top: 50%;
+  	left: 50%;
+  	margin: -100px 0 0 -150px;
+  	white-space: nowrap;
+  	text-align: center;
 }
-.inlamning4 h2{
-	border: 5px;
-	color: #096c3d;
-	border-style: solid;
-	color: white;
-}
-.inlamning4 h3{
-	font-style: italic;
-}
-#main.inlamning4 h1,.inlamning4 h2,.inlamning4 h3, .inlamning4 h4{
-	text-align: center;
-	background: #096c3d;
-	color: white;
-}
-.inlamning4 .textBody{
-	text-align: left;
-	float: left;
-}
-.inlamning4 img{
-	padding: 10px;
-	display: block;
-  	margin-left: auto;
-  	margin-right: auto;
- 	max-width: 100%;
- 	height: auto;
-}
-.inlamning4 #imgLabel{
-	font-size: 12px;
-	font-style: italic;
-	text-align: center;
-	display: block;
-	margin-right: auto;
-	margin-left: auto;
-}
-.navbarSecondary {
-	background-color: #0a8f50;
+#homeh3{
+	letter-spacing: 15px;
 	font-family: 'Montserrat', sans-serif;
-}
-.navbarSecondary a {
-  	font-size: 16px;
-  	color: white;
-  	padding: 10px 12px;
-  	text-decoration: none;
-}
-.navbarSecondary {
-  display: flex;
-  justify-content: space-between;
-}
-.navbarSecondary a:hover{
-  	background-color: #a7ff83;
-  	color: black;
+	font-weight: 600;
+	font-size: 60px;
 }
 
 
-
-
-/*https://colorhunt.co/palette/167893 - black/blue/White
+/*
+*COLORS:
+*#a7ff83 - light green (hover)
+*#096c3d - dark green
+*#0a8f50 - second navbar bg color, lighter than dark green
+*color palettes
+*https://colorhunt.co/palette/167893 - black/blue/White
 *https://colorhunt.co/palette/171392 - dark blue / light
 */
