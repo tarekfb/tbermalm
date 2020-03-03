@@ -95,7 +95,23 @@ footer{
 }
 #mainInlamning4 h1{
 	text-align: center;
+	font-weight: bold;
+}
+#mainInlamning4 ul li{
+	font-style: italic;
+}
+#mainInlamning4 > p:nth-child(1) {
+	border-color: white;
+	background-color: black;
+	color: white;
+	padding: 10px;
 
+}
+#mainInlamning4 > p:nth-child(2) {
+	
+}
+#mainInlamning4 > p:nth-child(3) {
+	
 }
 
 
