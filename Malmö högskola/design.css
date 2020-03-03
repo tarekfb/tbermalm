@@ -103,6 +103,7 @@ footer{
 #mainInlamning4 table {
 	padding: 10px;
 	margin: 10px;
+	border-style: none;
 }
 #mainInlamning4 ul li{
 	font-style: italic;
