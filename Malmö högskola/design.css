@@ -146,16 +146,16 @@ input{
 }
 .inlamning4 h2{
 	border: 5px;
-	color: #a7ff83;
+	color: #096c3d;
 	border-style: solid;
 	color: white;
 }
 .inlamning4 h3{
 	font-style: italic;
 }
-.inlamning4 h1,.inlamning4 h2,.inlamning4 h3, .inlamning4 h4{
+#main.inlamning4 h1,.inlamning4 h2,.inlamning4 h3, .inlamning4 h4{
 	text-align: center;
-	background: #a7ff83;
+	background: #096c3d;
 	color: white;
 }
 .inlamning4 .textBody{
@@ -179,4 +179,29 @@ input{
 	margin-left: auto;
 }
 
-/*https://colorhunt.co/palette/167893*/
+.navbarSecondary {
+	background-color: #0a8f50;
+	font-family: 'Montserrat', sans-serif;
+}
+.navbarSecondary a {
+  	font-size: 20px;
+  	color: white;
+  	padding: 12px 14px;
+  	text-decoration: none;
+}
+.navbarSecondary {
+  display: flex;
+  justify-content: space-between;
+}
+.navbarSecondary a:hover{
+  	background-color: #a7ff83;
+  	color: black;
+}
+
+
+
+
+
+/*https://colorhunt.co/palette/167893 - black/blue/White
+*https://colorhunt.co/palette/171392 - dark blue / light
+*/
