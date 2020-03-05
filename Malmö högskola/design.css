@@ -168,9 +168,7 @@ input{
 	letter-spacing: 0px;
 }
 .inlamning5 nav a{
-  	float: left;
- 	margin: 0 1.5%;
-  	width: 63%;
+	float: left;
 }
 .inlamning5 aside{
 	float: right;
@@ -178,8 +176,10 @@ input{
   	width: 30%;
 }
 .inlamning5 section{
-	margin: 10px;
+	margin-left: 10px;
 	float: left;
+	width: 63%
+	margin-right: 0 1.5%;
 }
 .inlamning5 form fieldset{
 	border-width: 2px;
