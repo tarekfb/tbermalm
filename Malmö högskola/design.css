@@ -206,18 +206,18 @@ input{
 https://colorpalettes.net/color-palette-2093/
 #000c14 - black
 #f8002f - red
+
+notes for image gradient
+https://stackoverflow.com/questions/8049276/can-you-overlay-a-transparent-css3-gradient-over-a-background-image
+https://graphicdesign.stackexchange.com/questions/93149/how-to-create-a-fade-effect-with-css-on-background-with-an-image-on-top-of-it
 */
 .inlamning6{
 	background-color: white;
 	color: black;
 	background-image: none;
 	background: none;
-	background-size:100% 100%;
 }
-/*notes for image gradient
-https://stackoverflow.com/questions/8049276/can-you-overlay-a-transparent-css3-gradient-over-a-background-image
-https://graphicdesign.stackexchange.com/questions/93149/how-to-create-a-fade-effect-with-css-on-background-with-an-image-on-top-of-it
-*/
+
 
 /*Secondary navigation bar, used for inlamning4*/
 .navbarSecondary {
