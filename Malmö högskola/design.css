@@ -243,19 +243,19 @@ NOTES: do float left right for the two divs in container (sidebar maincontent)
 
 
 /*Secondary navigation bar, used for inlamning4*/
-.navbarSecondary {
+.inlämning4 .navbarSecondary {
 	background-color: #0a8f50;
 	font-family: 'Montserrat', sans-serif;
 	display: flex;
   	justify-content: space-between;
 }
-.navbarSecondary a {
+.inlämning4 .navbarSecondary a {
   	font-size: 16px;
   	color: white;
   	padding: 10px 12px;
   	text-decoration: none;
 }
-.navbarSecondary a:hover{
+.inlämning4 .navbarSecondary a:hover{
   	background-color: #a7ff83;
   	color: black;
 }
