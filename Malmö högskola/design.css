@@ -296,6 +296,8 @@ input{
     margin-left: -50px;
     width: 100px;
     height: 100px;
+    text-align: center;
+
 }
 .container h3{
 	letter-spacing: 15px;
