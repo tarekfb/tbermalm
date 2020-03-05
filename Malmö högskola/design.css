@@ -297,6 +297,11 @@ input{
     width: 100px;
     height: 100px;
     text-align: center;
+    letter-spacing: 15px;
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 600;
+	font-size: 60px;
+	    text-align: center;
 
 }
 .container h3{
