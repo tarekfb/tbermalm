@@ -137,8 +137,6 @@ footer{
 	background-color: blue;
 	font-weight: bold;
 }
-
-
 /*styling for inlamning3*/
 .mainLabel{
 	margin-top: 20px;
@@ -156,9 +154,8 @@ input{
 }
 .inlamning5 ul{
 	float: right;
+	text-align: left;
 }
-
-
 /*Secondary navigation bar, used for inlamning4*/
 .navbarSecondary {
 	background-color: #0a8f50;
