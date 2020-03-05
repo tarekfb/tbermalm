@@ -173,6 +173,12 @@ input{
 .inlamning5 .body h1{
 	float: left;
 }
+.inlamning5 .body aside{
+	float: right;
+	border-width: 10px;
+	border-style: solid;
+	border-color: black;
+}
 
 /*Secondary navigation bar, used for inlamning4*/
 .navbarSecondary {
