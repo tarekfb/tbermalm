@@ -177,11 +177,11 @@ input{
 }
 .inlamning5 section{
 	float: left;
-	width: 75%;
+	width: 80%;
 }
 .inlamning5 aside{
 	float: right;
-  	width: 25%;
+  	width: 20%;
 }
 .inlamning5 form fieldset{
 	border-width: 2px;
