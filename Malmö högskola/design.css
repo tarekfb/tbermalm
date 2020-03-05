@@ -173,11 +173,14 @@ input{
 .inlamning5 .body{
 	float: left;
 }
-.inlamning5 .body aside{
+.inlamning5 .body form fieldset{
 	float: right;
-	border-width: 10px;
+	border-width: 2px;
 	border-style: solid;
 	border-color: black;
+}
+.inlamning5 .body aside label{
+	padding-right: 3px;
 }
 
 /*Secondary navigation bar, used for inlamning4*/
