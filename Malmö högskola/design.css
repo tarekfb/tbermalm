@@ -227,7 +227,7 @@ NOTES: do float left right for the two divs in container (sidebar maincontent)
   	padding: 0;
   	width: 200px;
   	background-color: black;
-  	text-align: center;
+  	display: inline-block;
 }
 .inlamning6 .navbarSecondary li{
 	margin-bottom: 20px; 
