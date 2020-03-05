@@ -170,6 +170,9 @@ input{
 .inlamning5 nav a{
 	float: left;
 }
+.inlamning5 .body h1{
+	float: left;
+}
 
 /*Secondary navigation bar, used for inlamning4*/
 .navbarSecondary {
