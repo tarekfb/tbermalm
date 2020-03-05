@@ -220,6 +220,7 @@ https://graphicdesign.stackexchange.com/questions/93149/how-to-create-a-fade-eff
  	-o-background-size: cover;
  	background-size: cover;
 	color: black;
+	background-size: 100% 100%;
 }
 
 
