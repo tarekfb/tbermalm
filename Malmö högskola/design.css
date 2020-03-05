@@ -172,6 +172,7 @@ input{
 }
 .inlamning5 .body{
 	float: left;
+	margin: 10px;
 }
 .inlamning5 .body form fieldset{
 	float: right;
