@@ -203,7 +203,7 @@ input{
 }
 
 /*styling for inlamning6
-
+NOTES: do float left right for the two divs in container (sidebar maincontent)
 */
 .inlamning6{
 	background: url('plain-white-background.jpg'); 
@@ -215,6 +215,9 @@ input{
  	background-size: cover;
 	color: black;
 }
+.inlamning6 .sidebar{
+	background-color: black;
+}
 .inlamning6 .navbarSecondary ul{
 	list-style-type: none;
  	margin: 0;
@@ -223,7 +226,7 @@ input{
   	background-color: white;
 }
 .inlamning6 .navbarSecondary li{
-	margin-bottom: 10px; 
+	margin-bottom: 20px; 
 }
 .inlamning6 .navbarSecondary li a{
 	display: block;
