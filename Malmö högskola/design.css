@@ -289,19 +289,15 @@ input{
 
 /*Misc*/
 .container{
-	position: absolute;
+
+
+    position: absolute;
     top: 50%;
     left: 50%;
-    margin-top: -50px;
-    margin-left: -50px;
-    width: 100px;
-    height: 100px;
-    text-align: center;
-    letter-spacing: 15px;
-	font-family: 'Montserrat', sans-serif;
-	font-weight: 600;
-	font-size: 60px;
-	    text-align: center;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    	    text-align: center;
+
 
 }
 .container h3{
@@ -309,7 +305,6 @@ input{
 	font-family: 'Montserrat', sans-serif;
 	font-weight: 600;
 	font-size: 60px;
-	    text-align: center;
 
 }
 
