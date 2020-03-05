@@ -182,6 +182,11 @@ input{
 .inlamning5 label{
 	padding-right: 5px;
 }
+.inlamning5 input[type="submit"]{
+	margin-left: 50%;
+	margin-right: 50%;
+}
+
 
 /*Secondary navigation bar, used for inlamning4*/
 .navbarSecondary {
