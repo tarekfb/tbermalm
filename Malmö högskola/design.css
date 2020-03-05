@@ -205,15 +205,6 @@ input{
 /*styling for inlamning6
 NOTES: do float left right for the two divs in container (sidebar maincontent)
 */
-.inlamning6{
-	background: url('plain-white-background.jpg'); 
- 	background-repeat: no-repeat;
-	background-position: right top;
-  	-webkit-background-size: cover;
-  	-moz-background-size: cover;
- 	-o-background-size: cover;
- 	background-size: cover;
-	color: black;
 }
 .inlamning6 .sidebar{
 	float: left;
