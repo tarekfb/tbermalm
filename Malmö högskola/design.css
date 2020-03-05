@@ -170,8 +170,9 @@ input{
 .inlamning5 nav a{
 	float: left;
 }
-.inlamning5 .body{
+.inlamning5 section{
 	margin: 10px;
+	float: left;
 }
 .inlamning5 .body form fieldset{
 	border-width: 2px;
