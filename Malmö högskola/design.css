@@ -224,7 +224,7 @@ NOTES: do float left right for the two divs in container (sidebar maincontent)
 	list-style-type: none;
  	margin: 0;
   	padding: 0;
-  	width: auto;
+  	width: 25%;
 }
 .inlamning6 .navbarSecondary li{
 	margin-bottom: 20px; 
