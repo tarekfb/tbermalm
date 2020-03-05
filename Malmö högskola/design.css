@@ -220,16 +220,24 @@ https://graphicdesign.stackexchange.com/questions/93149/how-to-create-a-fade-eff
  	-o-background-size: cover;
  	background-size: cover;
 	color: black;
-	background-size: 100% 100%;
 }
 .inlamning6 .navbarSecondary ul{
 	list-style-type: none;
-  	margin: 0;
+ 	margin: 0;
   	padding: 0;
+  	width: 200px;
+  	background-color: #f1f1f1;
 }
 .inlamning6 .navbarSecondary li a{
 	display: block;
-  	width: 60px;
+  color: #000;
+  padding: 8px 16px;
+  text-decoration: none;
+}
+
+.inlamning6 .navbarSecondary li a:hover{
+  background-color: #555;
+  color: white;
 }
 
 
