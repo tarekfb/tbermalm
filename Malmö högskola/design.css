@@ -216,7 +216,15 @@ NOTES: do float left right for the two divs in container (sidebar maincontent)
 	color: black;
 }
 .inlamning6 .sidebar{
+	float: left;
+	width: 30%;
 	background-color: black;
+	background
+}
+.inlämning6 .mainContent{
+	float: right;
+	width: 70%;
+	background-image: none;
 }
 .inlamning6 .navbarSecondary ul{
 	list-style-type: none;
@@ -239,8 +247,6 @@ NOTES: do float left right for the two divs in container (sidebar maincontent)
   	background-color: #555;
   	color: white;
 }
-
-
 
 /*Secondary navigation bar, used for inlamning4*/
 .inlämning4 .navbarSecondary {
