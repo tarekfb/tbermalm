@@ -5,7 +5,7 @@ add i5 info from header
 
 /*general*/
 html{
- 	background-image: url('green-gradient.jpg') no-repeat center center fixed; 
+ 	background-image: url("green-gradient.jpg"); 
   	-webkit-background-size: cover;
   	-moz-background-size: cover;
  	-o-background-size: cover;
@@ -208,7 +208,7 @@ https://colorpalettes.net/color-palette-2093/
 .inlamning6{
 	background-color: white;
 	color: black;
-	background: none;
+	background-image: none;
 }
 
 /*Secondary navigation bar, used for inlamning4*/
