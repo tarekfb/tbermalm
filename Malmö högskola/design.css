@@ -213,6 +213,7 @@ NOTES: do float left right for the two divs in container (sidebar maincontent)
 	float: left;
 	width: 30%;
 	background-color: black;
+	text-align: center;
 }
 .inlämning6 .mainContent{
 	float: right;
