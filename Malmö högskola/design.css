@@ -137,6 +137,7 @@ footer{
 	background-color: blue;
 	font-weight: bold;
 }
+
 /*styling for inlamning3*/
 .mainLabel{
 	margin-top: 20px;
@@ -148,13 +149,22 @@ fieldset{
 input{
 	margin-bottom: 5px;
 }
+
 /*styling for inlamning5*/
+.inlamning5 nav{
+	display: inline-block;
+}
 .inlamning5 #headerh1{
 	float: left;
+	padding-left: 10px;
 }
 .inlamning5 ul{
 	display:inline
 }
+.inlamning5 li{
+	list-style-type: none;
+}
+
 /*Secondary navigation bar, used for inlamning4*/
 .navbarSecondary {
 	background-color: #0a8f50;
