@@ -200,27 +200,28 @@ input{
 	text-align: center;
 }
 
-/*styling for inlamning6*/
-.inlamning6 header{
-	display: flex;
-	justify-content: space-between;
-	overflow: hidden;
+/*styling for inlamning6
+https://colorpalettes.net/color-palette-2093/
+#000c14 - black
+#f8002f - red
+*/
+.inlamning6{
+	background-color: white;
+	color: black;
 }
 
 /*Secondary navigation bar, used for inlamning4*/
 .navbarSecondary {
 	background-color: #0a8f50;
 	font-family: 'Montserrat', sans-serif;
+	display: flex;
+  	justify-content: space-between;
 }
 .navbarSecondary a {
   	font-size: 16px;
   	color: white;
   	padding: 10px 12px;
   	text-decoration: none;
-}
-.navbarSecondary {
-  display: flex;
-  justify-content: space-between;
 }
 .navbarSecondary a:hover{
   	background-color: #a7ff83;
