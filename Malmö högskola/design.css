@@ -214,8 +214,8 @@ https://graphicdesign.stackexchange.com/questions/93149/how-to-create-a-fade-eff
 .inlamning6{
 	background-color: white;
 	color: black;
-	background-image: none;
-	background-size:100% 100%;
+	background-color: white;
+	/*background-size:100% 100%;*/
 }
 
 
