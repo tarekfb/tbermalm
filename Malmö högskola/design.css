@@ -206,11 +206,13 @@ input{
 NOTES: do float left right for the two divs in container (sidebar maincontent)
 */
 }
+.inlamning6 .container{
+	width: 100%;
+}
 .inlamning6 .sidebar{
 	float: left;
 	width: 30%;
 	background-color: black;
-	background
 }
 .inlämning6 .mainContent{
 	float: right;
