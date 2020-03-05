@@ -3,7 +3,7 @@ add container to every page
 add i5 info from header
 */
 
-/*styling for main elements*/
+/*general*/
 html{
  	background: url('green-gradient.jpg') no-repeat center center fixed; 
   	-webkit-background-size: cover;
@@ -32,6 +32,10 @@ header{
 	font-family: 'Fira Mono', sans-serif;
 	font-weight: 200;
 	letter-spacing: 3px;
+}
+.container{
+	width: 90%;
+	margin: auto;
 }
 table{
 	border-collapse: collapse;
@@ -175,10 +179,6 @@ input{
 .inlamning5 nav a{
 	float: left;
 }
-.inlamning5 .container{
-	width: 90%;
-	margin: auto;
-}
 .inlamning5 section{
 	float: left;
 	width: 80%;
@@ -288,24 +288,19 @@ input{
 }
 
 /*Misc*/
-.container{
-
-
+#homepage .container{
     position: absolute;
     top: 50%;
     left: 50%;
     margin-right: -50%;
     transform: translate(-50%, -50%);
-    	    text-align: center;
-
-
+   	text-align: center;
 }
-.container h3{
+#homepage .container h3{
 	letter-spacing: 15px;
 	font-family: 'Montserrat', sans-serif;
 	font-weight: 600;
 	font-size: 60px;
-
 }
 
 
