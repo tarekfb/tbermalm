@@ -5,7 +5,9 @@ add i5 info from header
 
 /*general*/
 html{
- 	background-image: url("green-gradient.jpg"); 
+ 	background: url('green-gradient.jpg'); 
+ 	background-repeat: no-repeat;
+	background-position: right top;
   	-webkit-background-size: cover;
   	-moz-background-size: cover;
  	-o-background-size: cover;
@@ -210,6 +212,10 @@ https://colorpalettes.net/color-palette-2093/
 	color: black;
 	background-image: none;
 }
+/*notes for image gradient
+https://stackoverflow.com/questions/8049276/can-you-overlay-a-transparent-css3-gradient-over-a-background-image
+https://graphicdesign.stackexchange.com/questions/93149/how-to-create-a-fade-effect-with-css-on-background-with-an-image-on-top-of-it
+*/
 
 /*Secondary navigation bar, used for inlamning4*/
 .navbarSecondary {
