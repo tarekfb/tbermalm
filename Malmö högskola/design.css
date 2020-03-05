@@ -208,6 +208,7 @@ NOTES: do float left right for the two divs in container (sidebar maincontent)
 }
 .inlamning6 .container{
 	width: 100%;
+	margin-left: 0px;
 }
 .inlamning6 .sidebar{
 	float: left;
