@@ -150,6 +150,14 @@ fieldset{
 input{
 	margin-bottom: 5px;
 }
+/*styling for inlamning5*/
+.inlamning5 #headerh1{
+	float: left;
+}
+.inlamning5 ul{
+	float: right;
+}
+
 
 /*Secondary navigation bar, used for inlamning4*/
 .navbarSecondary {
