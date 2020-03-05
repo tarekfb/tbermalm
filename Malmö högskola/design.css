@@ -225,7 +225,7 @@ NOTES: do float left right for the two divs in container (sidebar maincontent)
   	list-style-type: none;
   	margin: 0;
   	padding: 0;
-  	width: 200px;
+  	width: 180px;
   	background-color: black;
   	display: inline-block;
 }
@@ -233,6 +233,7 @@ NOTES: do float left right for the two divs in container (sidebar maincontent)
 	margin-bottom: 20px; 
 	background-color: white;
 	border-radius: 5%;
+	width: 165%;
 }
 .inlamning6 .navbarSecondary li a{
 	display: block;
