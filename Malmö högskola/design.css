@@ -180,7 +180,9 @@ input{
 }
 .inlamning5 .body aside [type=submit]{
 	padding-left: 5px;
-	color: red;
+	background-color: red;
+	align-content: center;
+	text-align: center;
 }
 .inlamning5 [submit]
 
