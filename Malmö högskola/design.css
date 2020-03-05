@@ -171,15 +171,13 @@ input{
 	float: left;
 }
 .inlamning5 .container{
-	width: 80%;
-  	height: 200px;
+	width: 90%;
 	margin: auto;
   	padding: 10px;
 }
 .inlamning5 section{
 	float: left;
 	width: 75%;
-  	float: left;
 }
 .inlamning5 aside{
 	float: right;
@@ -194,8 +192,8 @@ input{
 	padding-right: 5px;
 }
 .inlamning5 input[type="submit"]{
-	margin-left: 45%;
-	margin-right: 55%;
+	margin-left: 40%;
+	margin-right: 60%;
 }
 
 
