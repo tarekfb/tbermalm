@@ -192,8 +192,8 @@ input{
 	padding-right: 5px;
 }
 .inlamning5 input[type="submit"]{
-	margin-left: 40%;
-	margin-right: 60%;
+	display:block
+	margin: 0 auto;
 }
 
 
