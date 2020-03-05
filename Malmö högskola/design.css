@@ -179,14 +179,9 @@ input{
 	border-style: solid;
 	border-color: black;
 }
-.inlamning5 .body aside input[type=submit]{
+.inlamning5 label{
 	padding-left: 5px;
-	margin-top: 50px;
-	background-color: red;
-	align-content: center;
-	text-align: center;
 }
-.inlamning5 [submit]
 
 /*Secondary navigation bar, used for inlamning4*/
 .navbarSecondary {
