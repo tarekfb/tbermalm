@@ -24,7 +24,7 @@
 		<a href="/Inlamning4_sida2.html">Om CSS</a>
 		<a href="/contact.html">Övrigt</a>
 	</nav>
-	<section class="body">
+	<section class="body" style="float: left;">
 		<h1>“Inline” CSS i jämförelse med externa stilmallar</h1>
 		<p>
 			Man kan applicera CSS på HTML via inline CSS eller en extern stilmall. Inline CSS innebär att man lägger till "style" attributet (style="") direkt i HTML-koden, medan en användningen av en extern stilmall innebär att man har en seperat fil som hanterar all CSS-kod.
@@ -36,7 +36,7 @@
 			Om man använder sig av en extern stillmall så behöver man som sagt ange en selektor. Det ända du behöver för att denna selektor ska kunna vara aktuell för en HTML-fil är att ange en referens till CSS-filen. Då kommer automatiskt alla ändringar att tillämpas, ifall de angivna selektorerna finns i HTML-filen. Detta görs i en hierarki (därav namnet: 'Cascading' Style Sheet). En nackdel är dock att man faktiskt måste hämta denna CSS-fil innan ändringarna kan visas, till skillnad från inline CSS som redan finns inbakad i HTML-koden.
 		</p>
 	</section>
-	<aside style="float: left;">
+	<aside style="float: right;">
 			<h2>Nyhetsbrev</h2>
 			<form>
 				<fieldset>
@@ -46,8 +46,8 @@
 				<div>
 					<label for="email">Epost:</label><input id="email" name="email" placeholder="t.ex. anton@mah.se" type="text">
 				</div>
+				  <input type="submit" value="Skicka"> 
 				</fieldset>
-				
 			</form>
 	</aside>
 	<footer>
