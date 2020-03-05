@@ -288,12 +288,12 @@ input{
 }
 
 /*Misc*/
-#container{
+.container{
   	text-align: center;
 	width: 90%;
 	margin: auto;
 }
-#container h3{
+.container h3{
 	letter-spacing: 15px;
 	font-family: 'Montserrat', sans-serif;
 	font-weight: 600;
