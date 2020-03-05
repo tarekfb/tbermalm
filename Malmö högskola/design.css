@@ -168,7 +168,14 @@ input{
 	letter-spacing: 0px;
 }
 .inlamning5 nav a{
-	float: left;
+  	float: left;
+ 	margin: 0 1.5%;
+  	width: 63%;
+}
+.inlamning5 aside{
+	float: right;
+	margin: 0 1.5%;
+  	width: 30%;
 }
 .inlamning5 section{
 	margin: 10px;
