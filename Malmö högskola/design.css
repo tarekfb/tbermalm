@@ -170,16 +170,20 @@ input{
 .inlamning5 nav a{
 	float: left;
 }
-.inlamning5 aside{
-	float: right;
-	margin: 0 1.5%;
-  	width: 30%;
+.inlamning5 .container{
+	width: 80%;
+  	height: 200px;
+	margin: auto;
+  	padding: 10px;
 }
 .inlamning5 section{
-	margin-left: 10px;
 	float: left;
-	width: 63%
-	margin-right: 0 1.5%;
+	width: 75%;
+  	float: left;
+}
+.inlamning5 aside{
+	float: right;
+  	width: 25%;
 }
 .inlamning5 form fieldset{
 	border-width: 2px;
@@ -190,8 +194,8 @@ input{
 	padding-right: 5px;
 }
 .inlamning5 input[type="submit"]{
-	margin-left: 50%;
-	margin-right: 50%;
+	margin-left: 45%;
+	margin-right: 55%;
 }
 
 
