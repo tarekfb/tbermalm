@@ -171,11 +171,7 @@ input{
 	float: left;
 }
 .inlamning5 .body{
-	float: left;
 	margin: 10px;
-}
-.inlamning5 .body aside{
-	float: right;
 }
 .inlamning5 .body form fieldset{
 	border-width: 2px;
