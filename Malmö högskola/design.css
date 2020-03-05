@@ -221,10 +221,11 @@ NOTES: do float left right for the two divs in container (sidebar maincontent)
 	background-image: none;
 }
 .inlamning6 .navbarSecondary ul{
-	list-style-type: none;
- 	margin: 0;
-  	padding: 0;
-  	width: 170px;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  width: 200px;
+  background-color: #f1f1f1;
 }
 .inlamning6 .navbarSecondary li{
 	margin-bottom: 20px; 
