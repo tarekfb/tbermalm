@@ -211,6 +211,8 @@ https://colorpalettes.net/color-palette-2093/
 	background-color: white;
 	color: black;
 	background-image: none;
+	background: none;
+	background-size:100% 100%;
 }
 /*notes for image gradient
 https://stackoverflow.com/questions/8049276/can-you-overlay-a-transparent-css3-gradient-over-a-background-image
