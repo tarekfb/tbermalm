@@ -153,8 +153,7 @@ input{
 	float: left;
 }
 .inlamning5 ul{
-	float: right;
-	text-align: left;
+	display:inline
 }
 /*Secondary navigation bar, used for inlamning4*/
 .navbarSecondary {
