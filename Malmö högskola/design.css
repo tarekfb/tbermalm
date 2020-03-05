@@ -234,17 +234,19 @@ NOTES: do float left right for the two divs in container (sidebar maincontent)
 	background-color: white;
 	border-radius: 5%;
 	width: 165px;
+	  	padding: 8px 16px;
+
 }
 .inlamning6 .navbarSecondary li a{
 	display: block;
   	color: #000;
-  	padding: 8px 16px;
   	text-decoration: none;
 }
 
 .inlamning6 .navbarSecondary li a:hover{
   	background-color: #555;
   	color: white;
+  	border-radius: 5%;
 }
 
 /*Secondary navigation bar, used for inlamning4*/
