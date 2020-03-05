@@ -159,7 +159,7 @@ input{
 	padding-left: 10px;
 }
 .inlamning5 ul{
-	
+	display: inline;
 }
 .inlamning5 li{
 	list-style-type: none;
