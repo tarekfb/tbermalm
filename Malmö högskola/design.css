@@ -282,6 +282,9 @@ NOTES: do float left right for the two divs in container (sidebar maincontent)
   	padding: 14px 16px;
   	text-decoration: none;
 }
+.navbar span{
+	font-size: 15px;
+}
 .dropdown {
  	float: left;
  	overflow: hidden;
