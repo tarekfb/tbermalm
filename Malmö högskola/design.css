@@ -69,7 +69,7 @@ footer{
 }
 .inlamning4 h2{
 	border: 5px;
-	color: #096c3d;
+	border-color: #096c3d;
 	border-style: solid;
 	color: white;
 }
@@ -234,8 +234,7 @@ NOTES: do float left right for the two divs in container (sidebar maincontent)
 	background-color: white;
 	border-radius: 5%;
 	width: 165px;
-	  	padding: 8px 16px;
-
+	padding: 8px 16px;
 }
 .inlamning6 .navbarSecondary li a{
 	display: block;
