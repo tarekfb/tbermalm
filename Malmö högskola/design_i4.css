@@ -1,0 +1,271 @@
+/*TODO: 
+add container to every page
+add i5 info from header
+*/
+
+/*general*/
+html{
+ 	background: url('green-gradient.jpg'); 
+ 	background-repeat: no-repeat;
+	background-position: right top;
+  	-webkit-background-size: cover;
+  	-moz-background-size: cover;
+ 	-o-background-size: cover;
+ 	background-size: cover;
+	color: white;
+	font-family: 'Montserrat', sans-serif;
+}
+body{
+	margin: 0;
+	padding: 0;
+	min-height: 400px;
+	margin-bottom: 100px;
+	clear: both;
+}
+header{
+	padding-top: 10px;
+	padding-bottom: 10px;
+	text-align: center;
+	background: black;
+	color: white;
+	font-size: 15px;
+	height: auto;
+	width: 100%;
+	font-family: 'Fira Mono', sans-serif;
+	font-weight: 200;
+	letter-spacing: 3px;
+}
+.container{
+	width: 90%;
+	margin: auto;
+}
+table{
+	border-collapse: collapse;
+	white-space: nowrap;
+}
+table, th, td{
+	border: 1px solid white;
+}
+th, td{
+	padding: 5px;
+}
+footer{
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	background-color: black;
+	color: white;
+	text-align: center;
+}
+#main{
+	padding: 20px;
+}
+
+/*styling for inlamning3*/
+.mainLabel{
+	margin-top: 20px;
+	display: inline-block;
+}
+fieldset{
+	margin-bottom: 15px;
+}
+input{
+	margin-bottom: 5px;
+}
+
+/*styling for inlamning5*/
+.inlamning5 header{
+	display: flex;
+	justify-content: space-between;
+	overflow: hidden;
+}
+.inlamning5 header h1{
+	padding-left: 20px;
+}
+.inlamning5 ul{
+	padding-right: 20px;
+	text-align: left;
+}
+.inlamning5 li{
+	list-style-type: none;
+	letter-spacing: 0px;
+}
+.inlamning5 nav a{
+	float: left;
+}
+.inlamning5 section{
+	float: left;
+	width: 80%;
+}
+.inlamning5 aside{
+	float: right;
+  	width: 20%;
+  	margin-top: 5%;
+}
+.inlamning5 form fieldset{
+	border-width: 2px;
+	border-style: solid;
+	border-color: white;
+}
+.inlamning5 label{
+	padding-right: 5px;
+}
+.inlamning5 fieldset div:nth-child(4){
+	text-align: center;
+}
+
+/*styling for inlamning6
+NOTES: do float left right for the two divs in container (sidebar maincontent)
+*/
+}
+.inlamning6 .container{
+	width: 100%;
+	margin-left: 0px;
+}
+.inlamning6 .sidebar{
+	float: left;
+	width: 30%;
+	background-color: black;
+	text-align: center;
+}
+.inlämning6 .mainContent{
+	float: right;
+	width: 70%;
+	background-image: none;
+}
+.inlamning6 .navbarSecondary ul{
+  	list-style-type: none;
+  	margin: 0;
+  	padding: 0;
+  	width: 180px;
+  	background-color: black;
+  	display: inline-block;
+}
+.inlamning6 .navbarSecondary li{
+	margin-bottom: 20px; 
+	background-color: white;
+	border-radius: 5%;
+	width: 165px;
+	  	padding: 8px 16px;
+
+}
+.inlamning6 .navbarSecondary li a{
+	display: block;
+  	color: #000;
+  	text-decoration: none;
+}
+
+.inlamning6 .navbarSecondary li a:hover{
+  	background-color: #555;
+  	color: white;
+  	border-radius: 5%;
+}
+
+/*Secondary navigation bar, used for inlamning4*/
+.inlämning4 .navbarSecondary {
+	background-color: #0a8f50;
+	font-family: 'Montserrat', sans-serif;
+	display: flex;
+  	justify-content: space-between;
+}
+.inlämning4 .navbarSecondary a {
+  	font-size: 16px;
+  	color: white;
+  	padding: 10px 12px;
+  	text-decoration: none;
+}
+.inlämning4 .navbarSecondary a:hover{
+  	background-color: #a7ff83;
+  	color: black;
+}
+
+/*Navigation bar, present at every page*/
+.navbar {
+	overflow: hidden;
+	background-color: #096c3d;
+	font-family: 'Montserrat', sans-serif;
+	margin: 0;
+}
+.navbar a {
+  	float: right;
+  	font-size: 20px;
+  	color: white;
+  	text-align: center;
+  	padding: 14px 16px;
+  	text-decoration: none;
+}
+.navbar span{
+	font-size: 15px;
+}
+.dropdown {
+ 	float: left;
+ 	overflow: hidden;
+ 	margin-right: 25px;
+
+}
+.dropdown .dropbtn {
+	font-size: 20px;
+	font-weight: bold;
+	border: none;
+	outline: none;
+	color: white;
+	padding: 14px 16px;
+	background-color: inherit;
+	font-family: inherit; /* Important for vertical align on mobile phones */
+	margin: 0; /* Important for vertical align on mobile phones */
+}
+.navbar a:hover, .dropdown:hover .dropbtn {
+  	background-color: #a7ff83;
+  	color: black;
+}
+.dropdown-content {
+  	display: none;
+  	position: absolute;
+  	background-color: #096c3d;
+  	min-width: 160px;
+  	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  	z-index: 1;
+}
+.dropdown-content a {
+  float: none;
+  color: white;
+  font-size: 16px;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+.dropdown-content a:hover {
+  background-color: #a7ff83;
+}
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/*Misc*/
+#homepage .container{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+   	text-align: center;
+}
+#homepage .container h3{
+	letter-spacing: 15px;
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 600;
+	font-size: 60px;
+}
+
+
+/*
+*COLORS:
+*#a7ff83 - light green (hover)
+*#096c3d - dark green
+*#0a8f50 - second navbar bg color, lighter than dark green
+*color palettes
+*https://colorhunt.co/palette/167893 - black/blue/White
+*https://colorhunt.co/palette/171392 - dark blue / light
+*/
