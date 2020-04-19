@@ -149,6 +149,24 @@ footer{
 	font-weight: bold;
 }
 
+/*Secondary navigation bar, used for inlamning4*/
+.inlämning4 .navbarSecondary {
+	background-color: #0a8f50;
+	font-family: 'Montserrat', sans-serif;
+	display: flex;
+  	justify-content: space-between;
+}
+.inlämning4 .navbarSecondary a {
+  	font-size: 16px;
+  	color: white;
+  	padding: 10px 12px;
+  	text-decoration: none;
+}
+.inlämning4 .navbarSecondary a:hover{
+  	background-color: #a7ff83;
+  	color: black;
+}
+
 /*styling for inlamning3*/
 .mainLabel{
 	margin-top: 20px;
@@ -248,25 +266,12 @@ NOTES: do float left right for the two divs in container (sidebar maincontent)
   	border-radius: 5%;
 }
 
-/*Secondary navigation bar, used for inlamning4*/
-.inlämning4 .navbarSecondary {
-	background-color: #0a8f50;
-	font-family: 'Montserrat', sans-serif;
-	display: flex;
-  	justify-content: space-between;
-}
-.inlämning4 .navbarSecondary a {
-  	font-size: 16px;
-  	color: white;
-  	padding: 10px 12px;
-  	text-decoration: none;
-}
-.inlämning4 .navbarSecondary a:hover{
-  	background-color: #a7ff83;
-  	color: black;
-}
+/*
+Navigation bar, present at every page
+Implemented during assignment 1
+Didn't know about <nav>, <header> and such by then
+*/
 
-/*Navigation bar, present at every page*/
 .navbar {
 	overflow: hidden;
 	background-color: #096c3d;
