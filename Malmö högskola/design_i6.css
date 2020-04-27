@@ -1,0 +1,41 @@
+.inlamning6 .container{
+	width: 100%;
+	margin-left: 0px;
+}
+.inlamning6 .sidebar{
+	float: left;
+	width: 30%;
+	background-color: black;
+	text-align: center;
+}
+.inlämning6 .mainContent{
+	float: right;
+	width: 70%;
+	background-image: none;
+}
+.inlamning6 .navbarSecondary ul{
+  	list-style-type: none;
+  	margin: 0;
+  	padding: 0;
+  	width: 180px;
+  	background-color: black;
+  	display: inline-block;
+}
+.inlamning6 .navbarSecondary li{
+	margin-bottom: 20px; 
+	background-color: white;
+	border-radius: 5%;
+	width: 165px;
+	padding: 8px 16px;
+}
+.inlamning6 .navbarSecondary li a{
+	display: block;
+  	color: #000;
+  	text-decoration: none;
+}
+
+.inlamning6 .navbarSecondary li a:hover{
+  	background-color: #555;
+  	color: white;
+  	border-radius: 5%;
+}
