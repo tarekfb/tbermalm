@@ -1,6 +1,7 @@
 .container{
 	width: 100%;
-	margin-left: 0px;
+	height: 100%
+	/*margin-left: 0px;*/
 }
 .sidebar{
 	float: left;
@@ -12,6 +13,7 @@
 .mainContent{
 	float: right;
 	width: 70%;
+	height: 100%;
 }
 nav ul{
   	list-style-type: none;
