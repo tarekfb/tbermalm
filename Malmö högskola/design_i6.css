@@ -9,6 +9,11 @@
 	height: 100%;
 	background-color: black;
 	text-align: center;
+	z-index: 1; /* Stay on top */
+	top: 0; /* Stay at the top */
+	left: 0;
+	overflow-x: hidden; /* Disable horizontal scroll */
+	padding-top: 20px;
 }
 .mainContent{
 	float: right;
