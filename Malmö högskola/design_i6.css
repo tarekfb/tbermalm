@@ -117,7 +117,7 @@ footer{
 
 .container .main_section img{
 	flex-grow: 0.33; 
-	height: 300px;
+	height: auto;
 	background: black;
 	border-style: solid;
 	border: 5px;
