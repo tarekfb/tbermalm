@@ -85,6 +85,7 @@
 .container .flexbox .item p{
 	font-size: 12px;
 	text-align: center;
+	width: 200px;
 }
 
 /*RESPONSIVE
