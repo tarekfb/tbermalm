@@ -340,6 +340,7 @@ Didn't know about <nav>, <header> and such by then
 	color: white;
 }
 #homepage .container{
+	margin-top: 50px;
     position: absolute;
     left: 50%;
     margin-right: -50%;
@@ -347,7 +348,6 @@ Didn't know about <nav>, <header> and such by then
    	text-align: center;
 }
 #homepage .container h3{
-	margin-top: 50px;
 	letter-spacing: 5px;
 	font-weight: 600;
 	font-size: 60px;
