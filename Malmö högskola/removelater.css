@@ -90,6 +90,12 @@
   	margin-right: auto;
 }
 
+footer{
+	text-align: center;
+	font-style: italic;
+	line-height: 100px;
+}
+
 /*RESPONSIVE
 *https://www.w3schools.com/howto/howto_css_sidebar_responsive.asp
 *
@@ -98,46 +104,3 @@
 .sidebar a{
 	float: none;
 }}
-
-/*.container{
-
-}
-
-.sidebar{
-	left: 0
-	height: 100%;
-	width: 260px
-	background-color: black;
-	text-align: center;
-   	margin: 0 auto;
-}
-.mainContent{
-	background-color: yellow;
-	margin: 0 auto;
-}
-nav ul{
-  	list-style-type: none;
-  	margin: 0;
-  	padding: 0;
-  	width: 180px;
-  	background-color: black;
-  	display: inline-block;
-}
-nav li{
-	margin-bottom: 20px; 
-	background-color: white;
-	border-radius: 5%;
-	width: 165px;
-	padding-bottom: 6px;
-}
-nav li a{
-	display: block;
-  	color: #000;
-  	text-decoration: none;
-}
-
-nav li a:hover{
-  	background-color: #555;
-  	color: white;
-  	border-radius: 5%;
-}^*/
