@@ -122,6 +122,8 @@ footer{
 	height: 300px;
 	background: black;
 	border:10px solid red;
+	border-style: double;
+	
 	/*border-style: solid;
 	border: 5px;
 	border-color: #267bba;*/
