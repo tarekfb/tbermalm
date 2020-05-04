@@ -60,7 +60,7 @@
 	font-size: 35px;
 	font-weight: bold;
 	font-family: Bahnschrift;
-	margin-left: 5px;
+	/*margin-left: 5px;*/
 }
 
 .container .flexbox{
@@ -69,22 +69,25 @@
 
 .container .flexbox .item{
 	flex-grow: 1;
-	width: 200px;
 }
 
 .container .flexbox .item img{
-	margin: 10px;
+  	margin: 10px;
  	display: block;
  	margin-left: auto;
   	margin-right: auto;
-  	/*width: 200px;*/
+  	width: 200px;
   	height: 200px;
   	background: black;
   	border-radius: 5px;
 }
 
-.container .flexbox .item text{
+.container .flexbox .item p{
 	font-size: 12px;
+	text-align: center;
+	width: 200px;
+	margin-left: auto;
+  	margin-right: auto;
 }
 
 /*RESPONSIVE
