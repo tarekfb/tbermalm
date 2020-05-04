@@ -8,8 +8,10 @@
     background: transparent;
  } 
  .sidebar img {
- 	width: 100px;
- 	height: 100px;
+ 	display: block;
+ 	margin-left: auto;
+  	margin-right: auto;
+  	width: 50%;
  }
 
  .sidebar a{
