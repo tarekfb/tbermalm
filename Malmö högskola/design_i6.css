@@ -51,11 +51,19 @@
  	text-decoration: none;
 }
 
+.container .flexbox{
+	display: flex;
+}
+
+.container .flexbox .item{
+	flex-grow: 1;
+}
+
 /*RESPONSIVE*/
 @media screen and (max-width: 700px) {
-  .sidebar a{
-    float: none;
-  }
+.sidebar a{
+	float: none;
+}
 
 /*.container{
 
