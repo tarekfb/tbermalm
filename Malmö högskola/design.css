@@ -377,9 +377,7 @@ Didn't know about <nav>, <header> and such by then
 #homepage .container a { 
   position:relative;
  }
-#homepage .container a{
-  position:absolute; left:-9999px; top:-9999px; z-index:9999;
- }
+
 #homepage .container a:hover{ 
   top: 20px; 
   left:0;
