@@ -81,7 +81,7 @@
   	border-radius: 5px;
 }
 
-.container .flexbox .item text{
+.container .flexbox .item label{
 	font-size: 12px;
 	width: 80%;
 }
