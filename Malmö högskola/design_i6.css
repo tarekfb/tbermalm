@@ -67,7 +67,6 @@
 
 .container .flexbox{
 	display: flex;
-	width: 80px;
 }
 
 .container .flexbox .item{
