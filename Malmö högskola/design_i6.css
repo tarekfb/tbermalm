@@ -107,6 +107,7 @@ footer{
 	font-style: italic;
 	bottom: 0;
 	width: 100%;
+	line-height: 50px;
 }
 footer p{
 	text-align: center;
