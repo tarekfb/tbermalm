@@ -100,7 +100,7 @@
 	margin: 20px 0px 0px 20px;
 }
 
-footer {
+footer{
 	text-align: center;
 	font-style: italic;
 	line-height: 70px;
@@ -116,7 +116,11 @@ footer {
 
 .container .main_section img{
 	flex-grow: 0.33; 
-	height: 300px;
+	height: 200px;
+	background: black;
+	border-style: solid;
+	border: 5px;
+	border-color: #267bba;
 }
 
 /*RESPONSIVE
