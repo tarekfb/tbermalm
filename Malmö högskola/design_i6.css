@@ -76,12 +76,13 @@
  	display: block;
  	margin-left: auto;
   	margin-right: auto;
-  	width: 80%;
+  	width: 250px;
+  	height: 250px;
   	background: black;
   	border-radius: 5px;
 }
 
-.container .flexbox .item label{
+.container .flexbox .item text{
 	font-size: 12px;
 	width: 80%;
 }
