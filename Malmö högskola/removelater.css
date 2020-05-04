@@ -60,9 +60,7 @@
 	font-size: 35px;
 	font-weight: bold;
 	font-family: Bahnschrift;
-	margin-left: 5px;
-	margin-top: 15px;
-	margin-bottom: 15px;
+	/*margin-left: 5px;*/
 }
 
 .container .flexbox{
@@ -71,11 +69,11 @@
 
 .container .flexbox .item{
 	flex-grow: 1;
-	width: 200px;
 }
 
 .container .flexbox .item img{
-	margin: 10px;
+  	margin: 10px;
+ 	display: block;
  	margin-left: auto;
   	margin-right: auto;
   	width: 200px;
@@ -86,7 +84,10 @@
 
 .container .flexbox .item p{
 	font-size: 12px;
+	text-align: center;
 	width: 200px;
+	margin-left: auto;
+  	margin-right: auto;
 }
 
 /*RESPONSIVE
@@ -140,53 +141,3 @@ nav li a:hover{
   	color: white;
   	border-radius: 5%;
 }^*/
-__________________________________________________________________________________________________________________________________________________________________
-
-__________________________________________________________________________________________________________________________________________________________________
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Tarek Bermalm - Devstuff</title>
-	<link href="design_i6.css" rel="stylesheet" type="p/css">
-	<link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css?family=Fira+Mono:100,200,300,400,500,600" rel="stylesheet">
-</head>
-<body>
-	<div class="sidebar">
-		 <img src="logo-1913689_1280.png" alt="flame logo">
-		<header>
-			Meny
-		</header>
-		<ul>
-		  	<li><a href="/inlamning1.html">Inlämning 1</a></li>
-			<li><a href="/Inlamning1_Del2.html">Inlämning 1 - Del 2</a></li>
-			<li><a href="/inlamning2.html">Inlämning 2</a></li>
-			<li><a href="/inlamning3.html">Inlämning 3</a></li>
-			<li><a href="/inlamning4.html">Inlämning 4</a></li>
-			<li><a href="/inlamning5.html">Inlämning 5</a></li>
-			<li><a href="/inlamning6.html">Inlämning 6</a></li>
-		</ul> 
-	</div>
-	<div class="container">
-		<header>
-			Innehåll
-		</header>
-		<div class="flexbox">
-			<div class="item">
-				<img src="logo-1913689_1280.png" alt="flame, logo">
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-			</div>
-			<div class="item">
-				<img src="logo-1913689_1280.png" alt="flame, logo">
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-			</div>
-			<div class="item">
-				<img src="logo-1913689_1280.png" alt="flame, logo">
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-			</div>
-		</div>
-	</div>
-</body>
-</html>
