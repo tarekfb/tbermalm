@@ -342,11 +342,11 @@ Didn't know about <nav>, <header> and such by then
 	font-size: 25px;
 }
 
-#homepage a:hover {
+/*#homepage .container a:hover {
     position: relative;
 }
 
-#homepage a:hover:after{
+#homepage .container a:hover:after{
     content: url(logo-1913689_1280.png);
     display: block;
     position: absolute;
@@ -354,7 +354,7 @@ Didn't know about <nav>, <header> and such by then
     top: 50%;
     width: 200px;
     height: 200px;
-}
+}*/
 
 #homepage .container{
 	margin-top: 150px;
@@ -371,6 +371,19 @@ Didn't know about <nav>, <header> and such by then
 	font-size: 60px;
 	display: block;
 }
+
+
+
+#homepage .container a { 
+  position:relative;
+ }
+#homepage .container a{
+  position:absolute; left:-9999px; top:-9999px; z-index:9999;
+ }
+#homepage .container a:hover{ 
+  top: 20px; 
+  left:0;
+ }
 
 
 /*
