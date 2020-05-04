@@ -102,11 +102,11 @@
 }
 
 footer{
-	position: fixed;
 	text-align: center;
 	font-style: italic;
 	line-height: 70px;
 	bottom: 0;
+	width: 100%;
 }
 footer p{
 	text-align: center;
