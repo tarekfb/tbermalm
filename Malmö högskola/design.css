@@ -357,7 +357,7 @@ Didn't know about <nav>, <header> and such by then
 }*/
 
 #homepage .container{
-	margin-top: 150px;
+	margin-top: 60px;
     position: absolute;
     left: 50%;
     margin-right: -50%;
@@ -366,7 +366,7 @@ Didn't know about <nav>, <header> and such by then
 }
 
 #homepage .container h3{
-	letter-spacing: 5px;
+	letter-spacing: 2px;
 	font-weight: 600;
 	font-size: 60px;
 	display: block;
@@ -379,15 +379,14 @@ Didn't know about <nav>, <header> and such by then
 .hover_img a span {
 	position:absolute; 
 	display:none;
-	margin-left: auto;
-	margin-right: auto;	
+	left: -100%;
+
 
 }
 
 .hover_img a:hover span {
 	display:block;
-	margin-left: auto;
-	margin-right: auto;	
+	margin-top: 15px;
 }
 
 /*
