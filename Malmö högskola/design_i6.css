@@ -50,7 +50,7 @@
 	line-height: 40px;
  	text-decoration: none;
 }
-/*
+
 .container{
 	margin-left: 250px;
 	font-family: 'Verdana';
@@ -87,13 +87,13 @@
 .container .flexbox .item p{
 	font-size: 12px;
 	width: 200px;
-}*/
+}
 
 /*RESPONSIVE
 *https://www.w3schools.com/howto/howto_css_sidebar_responsive.asp
 *
 */
-@media screen and (max-width: 700px) {
+@media screen (max-width: 700px) {
 .sidebar a{
 	float: none;
 }
