@@ -50,6 +50,7 @@
 	line-height: 40px;
  	text-decoration: none;
 }
+/*
 .container{
 	margin-left: 250px;
 	font-family: 'Verdana';
@@ -63,7 +64,7 @@
 	margin-top: 15px;
 	margin-bottom: 15px;
 }
-/*
+
 .container .flexbox{
 	display: flex;
 }
