@@ -30,6 +30,17 @@ header{
 	font-weight: 200;
 	letter-spacing: 3px;
 }
+
+footer{
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	background-color: black;
+	color: white;
+	text-align: center;
+}
+
 .container{
 	width: 90%;
 	margin: auto;
@@ -44,15 +55,7 @@ table, th, td{
 th, td{
 	padding: 5px;
 }
-footer{
-	position: fixed;
-	left: 0;
-	bottom: 0;
-	width: 100%;
-	background-color: black;
-	color: white;
-	text-align: center;
-}
+
 #main{
 	padding: 20px;
 }

@@ -102,11 +102,11 @@
 }
 
 footer{
+	position: fixed;
 	text-align: center;
 	font-style: italic;
 	line-height: 70px;
-	margin-top: auto;
-	margin-bottom: auto;
+	bottom: 0;
 }
 
 .container .main_section{
