@@ -105,6 +105,8 @@ footer{
 	text-align: center;
 	font-style: italic;
 	line-height: 70px;
+	margin-top: auto;
+	margin-bottom: auto;
 }
 
 .container .main_section{
