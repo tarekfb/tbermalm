@@ -71,14 +71,13 @@
 
 .container .flexbox .item{
 	flex-grow: 1;
-	width: 200px;
 }
 
 .container .flexbox .item img{
 	/*margin: 10px;
  	margin-left: auto;
   	margin-right: auto;*/
-  	display: block;
+  	display: block
   	width: 200px;
   	height: 200px;
   	background: black;
