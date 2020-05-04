@@ -332,21 +332,23 @@ Didn't know about <nav>, <header> and such by then
 }
 
 /*styling for landing page*/
+#homepage {
+	font-family: 'Montserrat', sans-serif;
+}
 #homepage a{
 	text-decoration: none;
 	color: white;
 }
 #homepage .container{
     position: absolute;
-    margin-top: 50px;
     left: 50%;
     margin-right: -50%;
     transform: translate(-50%, -50%);
    	text-align: center;
 }
 #homepage .container h3{
+	margin-top: 50px;
 	letter-spacing: 15px;
-	font-family: 'Montserrat', sans-serif;
 	font-weight: 600;
 	font-size: 60px;
 	display: block;
