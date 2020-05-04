@@ -335,11 +335,25 @@ Didn't know about <nav>, <header> and such by then
 #homepage {
 	font-family: 'Montserrat', sans-serif;
 }
+
 #homepage a{
 	text-decoration: none;
 	color: white;
 	font-size: 25px;
 }
+
+#homepage a:hover {
+    position: relative;
+}
+
+#homepage a:hover:after{
+    content: url(logo-1913689_1280.png);
+    display: block;
+    position: absolute;
+    left: 123px;
+    top: 56px;
+}
+
 #homepage .container{
 	margin-top: 150px;
     position: absolute;
@@ -348,6 +362,7 @@ Didn't know about <nav>, <header> and such by then
     transform: translate(-50%, -50%);
    	text-align: center;
 }
+
 #homepage .container h3{
 	letter-spacing: 5px;
 	font-weight: 600;
