@@ -52,6 +52,11 @@
 }
 .container{
 	margin-left: 250px;
+	font-family: 'Verdana';
+}
+
+.container header{
+	bluye
 }
 
 .container .flexbox{
@@ -72,7 +77,14 @@
   	border-radius: 5px;
 }
 
-/*RESPONSIVE*/
+.container .flexbox .item text{
+	font-size: 12px;
+}
+
+/*RESPONSIVE
+*https://www.w3schools.com/howto/howto_css_sidebar_responsive.asp
+*
+*/
 @media screen and (max-width: 700px) {
 .sidebar a{
 	float: none;
