@@ -76,15 +76,15 @@
  	display: block;
  	margin-left: auto;
   	margin-right: auto;
-  	width: 250px;
-  	height: 250px;
+  	width: 200px;
+  	height: 200px;
   	background: black;
   	border-radius: 5px;
 }
 
 .container .flexbox .item text{
 	font-size: 12px;
-	width: 80%;
+	width: 200px;
 }
 
 /*RESPONSIVE
