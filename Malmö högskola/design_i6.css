@@ -48,9 +48,14 @@
 	border-radius: 5px;
 	margin: 20px;
 	line-height: 40px;
-	list-style: none;
  	text-decoration: none;
 }
+
+/*RESPONSIVE*/
+@media screen and (max-width: 700px) {
+  .sidebar a{
+    float: none;
+  }
 
 /*.container{
 
