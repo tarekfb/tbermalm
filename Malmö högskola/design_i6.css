@@ -8,7 +8,28 @@
     background: transparent;
  }
 
-.container{
+ li {
+ 	list-style: none;
+ 	text-decoration-style: none;
+ }
+
+ .sidebar{
+ 	position: fixed;
+ 	left: 0;
+ 	width: 250px;
+ 	height: 100%;
+ 	background: black;
+ }
+
+ .sidebar header{
+	font-size: 22px;
+	color: white;
+	text-align: center;
+	background: #063146;
+	
+
+}
+/*.container{
 
 }
 
@@ -49,4 +70,4 @@ nav li a:hover{
   	background-color: #555;
   	color: white;
   	border-radius: 5%;
-}
+}^*/
