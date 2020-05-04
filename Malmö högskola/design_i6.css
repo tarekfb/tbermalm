@@ -95,9 +95,9 @@
 
 .container hr{
 	border-top: 1px solid #b9bfbc;
-	width: 99%;
-	margin-left: auto;
-	margin-right: auto;
+	width: 95%;
+	margin-left: 0;
+	margin-right: 0;
 	margin: 20px 0px 0px 20px;
 }
 
