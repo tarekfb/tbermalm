@@ -25,6 +25,7 @@
  	margin-left: auto;
   	margin-right: auto;
   	width: 50%;
+  	box-shadow: 5px 10px;
  }
 .sidebar header{
 	font-size: 35px;
