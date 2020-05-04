@@ -114,6 +114,7 @@ footer{
 .container .main_section p{
 	flex-grow: 0.66;
 	height: auto;
+	margin-right: 10px;
 }
 
 .container .main_section img{
