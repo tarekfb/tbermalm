@@ -109,6 +109,13 @@ footer {
 .container .main_section{
 	display: flex;
 }
+.container .main_section p{
+	flex-grow: 0.66;
+}
+
+.container .main_section img{
+	flex-grow: 0.33; 
+}
 
 /*RESPONSIVE
 *https://www.w3schools.com/howto/howto_css_sidebar_responsive.asp
@@ -118,3 +125,24 @@ footer {
 .sidebar a{
 	float: none;
 }}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
