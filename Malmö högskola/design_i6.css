@@ -8,7 +8,7 @@
     background: transparent;
  }
 
- li {
+ .sidebar a{
  	list-style: none;
  	text-decoration-style: none;
  }
