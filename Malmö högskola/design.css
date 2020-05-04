@@ -338,9 +338,10 @@ Didn't know about <nav>, <header> and such by then
 #homepage a{
 	text-decoration: none;
 	color: white;
+	font-size: 25px;
 }
 #homepage .container{
-	margin-top: 50px;
+	margin-top: 150px;
     position: absolute;
     left: 50%;
     margin-right: -50%;
