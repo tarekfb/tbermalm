@@ -61,8 +61,6 @@
 	font-weight: bold;
 	font-family: Bahnschrift;
 	margin-left: 5px;
-	/*margin-top: 15px;
-	margin-bottom: 15px;*/ 
 }
 
 .container .flexbox{
@@ -86,7 +84,7 @@
 
 .container .flexbox .item p{
 	font-size: 12px;
-	width: 200px;
+	text-align: center;
 }
 
 /*RESPONSIVE
