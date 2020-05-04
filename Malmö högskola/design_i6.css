@@ -36,6 +36,10 @@
 	line-height: 60px;
 	font-size: 20px;
 	color: black;
+	background: white;
+	box-sizing: border-box;
+	border: 0px;
+	border-radius: 5px;
 
 }
 
