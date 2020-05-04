@@ -90,6 +90,10 @@
   	margin-right: auto;
 }
 
+.container hr{
+	border-top: 3px solid #bbb;
+}
+
 /*RESPONSIVE
 *https://www.w3schools.com/howto/howto_css_sidebar_responsive.asp
 *
