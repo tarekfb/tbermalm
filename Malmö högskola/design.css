@@ -386,6 +386,8 @@ Didn't know about <nav>, <header> and such by then
 
 .hover_img a:hover span {
 	display:block;
+	margin-left: auto;
+	margin-right: auto;	
 }
 
 /*
