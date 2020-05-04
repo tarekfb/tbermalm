@@ -333,7 +333,8 @@ Didn't know about <nav>, <header> and such by then
 
 /*styling for landing page*/
 #homepage a{
-	text-decoration: none;	
+	text-decoration: none;
+	color: white;
 }
 #homepage .container{
     position: absolute;
@@ -348,6 +349,7 @@ Didn't know about <nav>, <header> and such by then
 	font-family: 'Montserrat', sans-serif;
 	font-weight: 600;
 	font-size: 60px;
+	display: block;
 }
 
 
