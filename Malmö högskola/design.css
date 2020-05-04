@@ -379,7 +379,7 @@ Didn't know about <nav>, <header> and such by then
 .hover_img a span {
 	position:absolute; 
 	display:none;
-	left: 100%;
+	left: -160%;
 
 
 }
