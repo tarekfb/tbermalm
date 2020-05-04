@@ -121,9 +121,10 @@ footer{
 	flex-grow: 0.33; 
 	height: 300px;
 	background: black;
-	border-style: solid;
+	border:10px solid #021a40;
+	/*border-style: solid;
 	border: 5px;
-	border-color: #267bba;
+	border-color: #267bba;*/
 }
 
 /*RESPONSIVE
