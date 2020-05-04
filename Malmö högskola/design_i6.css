@@ -68,7 +68,7 @@
 
 .container .flexbox .item{
 	flex-grow: 1;
-	width: 80%;
+	width: 200px;
 }
 
 .container .flexbox .item img{
@@ -76,7 +76,7 @@
  	display: block;
  	margin-left: auto;
   	margin-right: auto;
-  	width: 200px;
+  	/*width: 200px;*/
   	height: 200px;
   	background: black;
   	border-radius: 5px;
@@ -84,7 +84,6 @@
 
 .container .flexbox .item text{
 	font-size: 12px;
-	width: 200px;
 }
 
 /*RESPONSIVE
