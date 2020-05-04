@@ -26,9 +26,10 @@
   	width: 50%;
  }
 .sidebar header{
-	font-size: 30px;
+	font-size: 35px;
 	color: white;
 	text-align: center;
+	font-weight: bold;
 }
 
 .sidebar ul{
@@ -40,7 +41,7 @@
 	height: 100%
 	width: 100%;
 	line-height: 60px;
-	font-size: 15px;
+	font-size: 20px;
 	color: black;
 	background: white;
 	border: 0px;
