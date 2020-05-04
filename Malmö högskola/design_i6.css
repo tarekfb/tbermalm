@@ -25,10 +25,21 @@
 	font-size: 22px;
 	color: white;
 	text-align: center;
-	background: #063146;
-	line-height: 70px;
+}
+.sidebar ul{
+	text-align: center;
+}
+.sidebar ul a{
+	display: block;
+	height: 100%
+	width: 100%;
+	line-height: 60px;
+	font-size: 20px;
+	color: black;
 
 }
+
+
 /*.container{
 
 }
