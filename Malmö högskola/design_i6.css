@@ -16,7 +16,7 @@
   	width: 50%;
  }
 
- .sidebar a{
+ .sidebar li a{
  	list-style: none;
  	text-decoration-style: none;
  }
