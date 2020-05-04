@@ -106,6 +106,10 @@ footer {
 	line-height: 70px;
 }
 
+.container .main_section{
+	display: flex;
+}
+
 /*RESPONSIVE
 *https://www.w3schools.com/howto/howto_css_sidebar_responsive.asp
 *
