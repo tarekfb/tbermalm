@@ -379,7 +379,9 @@ Didn't know about <nav>, <header> and such by then
 .hover_img a span {
 	position:absolute; 
 	display:none;
-	
+	margin-left: auto;
+	margin-right: auto;	
+
 }
 
 .hover_img a:hover span {
