@@ -108,6 +108,7 @@ footer {
 
 .container .main_section{
 	display: flex;
+	margin: 20px 10px 10px 20px;
 }
 .container .main_section p{
 	flex-grow: 0.66;
@@ -115,6 +116,7 @@ footer {
 
 .container .main_section img{
 	flex-grow: 0.33; 
+	height: 300px;
 }
 
 /*RESPONSIVE
