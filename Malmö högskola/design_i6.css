@@ -50,6 +50,9 @@
 	line-height: 40px;
  	text-decoration: none;
 }
+.container{
+	margin-left: 250px;
+}
 
 .container .flexbox{
 	display: flex;
