@@ -93,7 +93,7 @@
   	margin-right: auto;
 }
 
-.container hr, footer hr {
+.container hr{
 	border-top: 1px solid #b9bfbc;
 	width: 95%;
 	margin-left: 0;
