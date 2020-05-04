@@ -73,17 +73,17 @@
 
 .container .flexbox .item img{
 	margin: 10px;
- 	display: block;
  	margin-left: auto;
   	margin-right: auto;
-  	/*width: 200px;*/
+  	width: 200px;
   	height: 200px;
   	background: black;
   	border-radius: 5px;
 }
 
-.container .flexbox .item text{
+.container .flexbox .item p{
 	font-size: 12px;
+	width: 200px;
 }
 
 /*RESPONSIVE
