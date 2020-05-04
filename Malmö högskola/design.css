@@ -336,7 +336,7 @@ Didn't know about <nav>, <header> and such by then
 	font-family: 'Montserrat', sans-serif;
 }
 
-#homepage a{
+#homepage .container a{
 	text-decoration: none;
 	color: white;
 	font-size: 25px;
