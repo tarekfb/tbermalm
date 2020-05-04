@@ -338,7 +338,7 @@ Didn't know about <nav>, <header> and such by then
 }
 #homepage .container{
     position: absolute;
-    top: 25%;
+    margin-top: 50px;
     left: 50%;
     margin-right: -50%;
     transform: translate(-50%, -50%);
