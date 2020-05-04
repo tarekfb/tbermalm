@@ -331,7 +331,10 @@ Didn't know about <nav>, <header> and such by then
   display: block;
 }
 
-/*Misc*/
+/*styling for landing page*/
+#homepage a{
+	text-decoration: none;	
+}
 #homepage .container{
     position: absolute;
     top: 25%;
