@@ -7,7 +7,17 @@
     vertical-align: baseline;
     background: transparent;
  } 
- .sidebar img {
+
+.sidebar{
+ 	position: fixed;
+ 	left: 0;
+ 	width: 250px;
+ 	height: 100%;
+ 	background: black;
+ 	font-family: 'Roboto';
+ }
+
+.sidebar img {
  	margin-top: 20px;
  	margin-bottom: 20px;
  	display: block;
@@ -16,27 +26,21 @@
   	width: 50%;
  }
 
- .sidebar ul li a{
+.sidebar ul li a{
  	list-style: none;
  	text-decoration-style: none;
  }
 
- .sidebar{
- 	position: fixed;
- 	left: 0;
- 	width: 250px;
- 	height: 100%;
- 	background: black;
- }
-
- .sidebar header{
+.sidebar header{
 	font-size: 22px;
 	color: white;
 	text-align: center;
 }
+
 .sidebar ul{
 	text-align: center;
 }
+
 .sidebar ul a{
 	display: block;
 	height: 100%
@@ -50,11 +54,6 @@
 	margin: 20px;
 	line-height: 40px;
 }
-.sidebar ul li{
-
-
-}
-
 
 /*.container{
 
