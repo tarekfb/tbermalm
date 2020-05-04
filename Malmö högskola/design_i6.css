@@ -108,6 +108,9 @@ footer{
 	line-height: 70px;
 	bottom: 0;
 }
+footer p{
+	text-align: center;
+}
 
 .container .main_section{
 	display: flex;
@@ -124,10 +127,6 @@ footer{
 	height: 300px;
 	background: black;
 	border:10px solid #267bba;
-
-	/*border-style: solid;
-	border: 5px;
-	border-color: #267bba;*/
 }
 
 /*RESPONSIVE
