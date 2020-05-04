@@ -36,6 +36,8 @@
 	line-height: 60px;
 	font-size: 20px;
 	color: black;
+}
+.sidebar ul li{
 	background: white;
 	box-sizing: border-box;
 	border: 0px;
