@@ -6,6 +6,10 @@
     font-size: 100%;
     vertical-align: baseline;
     background: transparent;
+ } 
+ .sidebar img {
+ 	width: 100px;
+ 	height: 100px;
  }
 
  .sidebar a{
