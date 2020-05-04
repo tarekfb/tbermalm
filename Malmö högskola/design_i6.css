@@ -100,6 +100,12 @@
 	margin: 20px 0px 0px 20px;
 }
 
+footer {
+	text-align: center;
+	font-style: italic;
+	line-height: 100px;
+}
+
 /*RESPONSIVE
 *https://www.w3schools.com/howto/howto_css_sidebar_responsive.asp
 *
