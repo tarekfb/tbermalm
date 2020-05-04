@@ -112,12 +112,12 @@ footer{
 }
 .container .main_section p{
 	flex-grow: 0.66;
-	height: 300px;
+	height: auto;
 }
 
 .container .main_section img{
 	flex-grow: 0.33; 
-	height: auto;
+	height: 300px;
 	background: black;
 	border-style: solid;
 	border: 5px;
