@@ -352,6 +352,8 @@ Didn't know about <nav>, <header> and such by then
     position: absolute;
     left: 123px;
     top: 56px;
+    width: 200px;
+    height: 200px;
 }
 
 #homepage .container{
