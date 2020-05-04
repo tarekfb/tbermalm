@@ -59,6 +59,14 @@
 	flex-grow: 1;
 }
 
+.container .flexbox .item img{
+	margin: 10px;
+ 	display: block;
+ 	margin-left: auto;
+  	margin-right: auto;
+  	width: 80%;
+}
+
 /*RESPONSIVE*/
 @media screen and (max-width: 700px) {
 .sidebar a{
