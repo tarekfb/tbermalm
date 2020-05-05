@@ -149,6 +149,8 @@ footer p{
 	height: 100px;
 	}
 	.container {
+		margin-left: 250px;
+		min-width: 100vh;
 		
 	}
 }
