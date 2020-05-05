@@ -135,6 +135,7 @@ th, td{
 	padding: 10px;
 	margin: 10px;
 }
+
 #mainInlamning4 > p:nth-child(7) {
 	font-weight: bold;
 	font-style: italic;
@@ -142,6 +143,7 @@ th, td{
 	margin: 10px;
 
 }
+
 #mainInlamning4 table th{
 	background-color: blue;
 	font-weight: bold;
@@ -154,12 +156,14 @@ th, td{
 	display: flex;
   	justify-content: space-between;
 }
+
 .inlämning4 .navbarSecondary a {
   	font-size: 16px;
   	color: white;
   	padding: 10px 12px;
   	text-decoration: none;
 }
+
 .inlämning4 .navbarSecondary a:hover{
   	background-color: #a7ff83;
   	color: black;

@@ -161,7 +161,7 @@ footer p{
 		margin-top: 15px;
 	}
 	.container .section_flexbox, .container .main_section{{
-		align-items: center;
+		flex-direction: column;
 	}
 }
 
