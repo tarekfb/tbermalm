@@ -148,14 +148,16 @@ footer p{
 	width: 100%;
 	height: 100px;
 	}
-	.container {
-		margin-left: 250px;
-		min-width: 100vh;
-		
+	p{
+		color: red;
 	}
 }
 
-
+@media screen and (max-width: 700px) {
+	.container {
+		margin-left: 250px;
+		min-width: 100vh;
+}}
 
 
 
