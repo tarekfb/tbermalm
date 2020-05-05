@@ -156,6 +156,8 @@ footer p{
 		width: 100%;
 		/*height: calc(100% - 545px);*/
 		/*bottom: 0;*/
+		margin-left: 0;
+		
 	}
 	.sidebar img {
 		display: none;
