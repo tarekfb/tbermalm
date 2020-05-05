@@ -148,7 +148,7 @@ footer p{
 		top: 0;
 		width: 100%;
 		height: 545px;
-		position: relative;
+		/*position: relative;*/
 	}
 	.container {
 		margin-top: 545px;
