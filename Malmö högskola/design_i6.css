@@ -166,17 +166,17 @@ footer p{
 		margin-top: 15px;
 	}
 
-	.container .section_flexbox, .container .main_section{
+	.container .section_flexbox, .container .main_section {
 		flex-direction: column;
 	}
 
-	.container .section_flexbox .item img{
+	.container .section_flexbox .item img {
 		margin-top: 10px;
 		width: 200px;
-		height: 200px;
+		height: 2px;
 	}
 
-	.container .section_flexbox .item{
+	.container .section_flexbox .item {
 		margin-top: 25px;
 	}
 }
