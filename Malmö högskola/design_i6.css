@@ -160,7 +160,7 @@ footer p{
 		line-height: 45px;
 		margin-top: 15px;
 	}
-	.container .section_flexbox, .container .main_section{{
+	.container .section_flexbox, .container .main_section{
 		flex-direction: column;
 	}
 }
