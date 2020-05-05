@@ -147,11 +147,12 @@ footer p{
 	.sidebar {
 		top: 0;
 		width: 100%;
-		height: 525px;
+		height: 515px;
 	}
 	.container {
-		margin-top: 525px;
-		min-width: 100vh;
+		margin-top: 515px;
+		width: 100%;
+		height: calc(100% - 515px);
 	}
 	.sidebar img {
 		display: none;
