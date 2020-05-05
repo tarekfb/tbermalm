@@ -82,7 +82,7 @@
 }
 
 .container .section_flexbox .item img{
-  	margin: 0px 10px 10px 10px;
+  	margin: 10px 10px 10px 10px;
  	display: block;
  	margin-left: auto;
   	margin-right: auto;
@@ -157,7 +157,7 @@ footer p{
 		/*height: calc(100% - 545px);*/
 		/*bottom: 0;*/
 		margin-left: 0;
-		
+
 	}
 	.sidebar img {
 		display: none;
