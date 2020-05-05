@@ -170,7 +170,7 @@ footer p{
 		flex-direction: column;
 	}
 
-	.container .section_flexbox .item img {
+	.container .main_section img {
 		margin-top: 10px;
 		width: 200px;
 		height: 200px;
