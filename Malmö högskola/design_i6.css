@@ -149,15 +149,12 @@ footer p{
 		top: 0;
 		width: 100%;
 		height: 545px;
-		/*position: relative;*/
 	}
+
 	.container {
 		margin-top: 545px;
 		width: 100%;
-		/*height: calc(100% - 545px);*/
-		/*bottom: 0;*/
 		margin-left: 0;
-
 	}
 
 	.sidebar img {
@@ -182,12 +179,8 @@ footer p{
 	.container .section_flexbox .item{
 		margin-top: 25px;
 	}
-
-
 }
 
-
-}
 
 
 
