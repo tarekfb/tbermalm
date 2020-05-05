@@ -52,6 +52,11 @@
  	text-decoration: none;
 }
 
+.sidebar ul a:hover {
+	background: #267bba;
+	color: white;
+}
+
 .container{
 	margin-left: 250px;
 	  position: relative;
