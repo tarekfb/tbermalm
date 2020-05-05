@@ -151,7 +151,7 @@ footer p{
 	.container {
 		margin-top: 400px;
 		min-width: 100vh;
-		height: 100%;
+		height: auto;
 	}
 	.sidebar img {
 		display: none;
