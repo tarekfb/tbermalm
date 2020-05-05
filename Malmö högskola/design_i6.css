@@ -147,20 +147,21 @@ footer p{
 	.sidebar {
 		top: 0;
 		width: 100%;
-		
-		/* Firefox */
-		height: -moz-calc(100% - 18px);
-		/* WebKit */
-		height: -webkit-calc(100% - 18px);
-		/* Opera */
-		height: -o-calc(100% - 18px);
-		/* Standard */
-		height: calc(100% - 18px);
+		height: 515px;
 	}
 	.container {
 		margin-top: 515px;
 		width: 100%;
+
+		/* Firefox */
+		height: -moz-calc(100% - 515px);
+		/* WebKit */
+		height: -webkit-calc(100% - 515px);
+		/* Opera */
+		height: -o-calc(100% - 515px);
+		/* Standard */
 		height: calc(100% - 515px);
+		
 	}
 	.sidebar img {
 		display: none;
