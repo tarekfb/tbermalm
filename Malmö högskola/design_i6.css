@@ -154,7 +154,6 @@ footer p{
 	.container {
 		margin-top: 545px;
 		width: 100%;
-		height: 100%;
 		/*height: calc(100% - 545px);*/
 		/*bottom: 0;*/
 	}
