@@ -15,4 +15,4 @@
  * =========
  */
 
-Lycka till!
+consol.log("test");
