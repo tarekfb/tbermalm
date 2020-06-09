@@ -95,7 +95,7 @@ Didn't know about <nav>, <header> and such by then
 	border: none;
 	outline: none;
 	color: white;
-	padding: 14px 16px;
+	padding: 14px 0px;
 	background-color: inherit;
 	font-family: inherit; /* Important for vertical align on mobile phones */
 	margin: 0; /* Important for vertical align on mobile phones */
@@ -126,10 +126,6 @@ Didn't know about <nav>, <header> and such by then
 }
 .dropdown:hover .dropdown-content {
   display: block;
-}
-.navbar button {
-	padding-left: 0px;
-	padding-right: 0px;
 }
 
 /*Styling for inlamning4*/
