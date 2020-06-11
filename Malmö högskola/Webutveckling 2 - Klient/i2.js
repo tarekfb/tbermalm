@@ -106,10 +106,36 @@ console.log(palindrome("asd"));
 console.log(palindrome("sirap i paris"));
 
 /**
+ * Uppgift ´6
+ * =========
+ */
+
+function PersonConstr(first, last, age, family) {
+	this.firstName = first;
+	this.lastName = last;
+	this.age = age;
+	this.familyMembers = family;
+}
+let person = new PersonConstr("Tarek", "Ipsum", "50", ["Mamma", "Pappa"]);
+
+console.log(person);
+
+ /**
  * Uppgift 7
  * =========
  */
 
+function printPerson(object) {
+	let familyMembersString = "";
+	object.familyMembers.forEach(function(entry) {
+  		familyMembersString += entry + ", ";
+	});
+	familyMembersString = familyMembersString.substring(0, familyMembersString.length - 2);
+	console.log("Fullname and age: " + object.firstName + " " + object.lastName + ", " + person.age);
+	console.log("Family: " + familyMembersString);
+}
+
+printPerson(person);
 
 
  /**
@@ -117,15 +143,18 @@ console.log(palindrome("sirap i paris"));
  * =========
  */
 
+function createBox(height, width) {
+	function (argument) {
+		
+	}
+}
+
  /**
  * Uppgift 9
  * =========
  */
 
-
-
  /**
  * Uppgift 10
  * =========
  */
-
