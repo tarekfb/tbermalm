@@ -1,20 +1,22 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-    <head>
-        <title>Inlämningsuppgift 3</title>
-        <meta charset="utf-8">
-        <link href="i3.css" rel="stylesheet" type="text/css">
-    </head>
-    <body>
-        <script src="i3.js"></script>
-
-        <div id="message-box">
-        <p>This is a very important message box!</p>
-        </div>
-
-        <button type="button" onClick="changeClass(this.id)" id="success">Success</button>
-        <button type="button" onClick="changeClass(this.id)" id="error">Error</button>
-        <button type="button" onClick="changeClass(this.id)" id="info">Info</button>
-
-    </body>
+<head>
+  <title>Inlämningsuppgift 3</title>
+  <meta charset="utf-8">
+  <link href="i3.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+  <script src="i3.js">
+  </script>
+  <div id="message-box">
+    <p>This is a very important message box!</p>
+  </div>
+  <button id="success" onclick="changeClass(this.id)" type="button">Success</button>
+  <button id="error" onclick="changeClass(this.id)" type="button">Error</button>
+  <button id="info" onclick="changeClass(this.id)" type="button">Info</button>
+  <ul id="items">
+    <li>The first item is free!</li>
+  </ul>
+  <button id="add-item" onclick="addItem()" type="button">Add item</button>
+</body>
 </html>
