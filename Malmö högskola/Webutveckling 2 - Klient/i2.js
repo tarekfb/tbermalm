@@ -144,15 +144,39 @@ printPerson(person);
  */
 
 function createBox(height, width) {
-	function (argument) {
-		
+	function BoxConstr(height, width) {
+		this.height = height;
+		this.width = width;
 	}
+	return new BoxConstr(height, width);
 }
+var box = createBox(15, 20);
+console.log(box.height); 
+console.log(box.width);
 
  /**
  * Uppgift 9
  * =========
  */
+
+function triangle(height, width) {
+ 	function TriangleConstr(height, width) {
+		this.height = height;
+		this.width = width;
+		this.area = function(){
+			return this.height * this.width / 2;
+		}
+	}
+	return new TriangleConstr(height, width);
+
+}
+var tri = triangle(12, 14);
+
+console.log(tri.height); // skickar tillbaka 12
+console.log(tri.width); // skickar tillbaka 14
+tri.area();
+// Observera att vi anropar "area()"
+console.log(tri.area()); // skickar tillbaka 84
 
  /**
  * Uppgift 10
