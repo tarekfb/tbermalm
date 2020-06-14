@@ -15,10 +15,10 @@ function changeClass(id){
  */
 
 function addItem() {
-	var liValue = prompt("Please enter some text");
-	var li = document.createElement("li");
+	let liValue = prompt("Please enter some text");
+	let li = document.createElement("li");
 	li.appendChild(document.createTextNode(liValue));
-	var ul = document.getElementById("items");
+	let ul = document.getElementById("items");
 	ul.appendChild(li);
 }
 
@@ -27,14 +27,24 @@ function addItem() {
  * =========
  */
 
-Uppgift 3
-
-I den tredje uppgiften ska ni komplettera Uppgift 2 med en extra knapp. Ni väljer själv id och text. Denna knapp ska, när en användare klickar på den, radera det sista elementet i listan <ul id="items">.
-
-Tips: använd er av .lastElementChild i kombination med .removeChild.
+function removeItem() {
+	let list = document.getElementById("items");
+	let lastLi = list.lastElementChild;
+	console.log(list.lastElementChild);
+	list.removeChild(list.lastElementChild);
+}
 
 /**
  * Uppgift 4
  * =========
  */
 
+function removeElement() {
+	let target = event.target || event.srcElement;
+	let liBeingRemoved = target.parentElement;
+
+	let response = confirm("Do you want to delete the item?");
+	if (response){
+		liBeingRemoved.parentElement.removeChild(liBeingRemoved);
+	}
+}
