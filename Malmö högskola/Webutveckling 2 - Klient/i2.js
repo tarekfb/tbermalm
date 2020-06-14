@@ -165,7 +165,7 @@ function triangle(height, width) {
 		this.width = width;
 		this.area = function(){
 			return this.height * this.width / 2;
-		}
+		};
 	}
 	return new TriangleConstr(height, width);
 
@@ -182,3 +182,22 @@ console.log(tri.area()); // skickar tillbaka 84
  * Uppgift 10
  * =========
  */
+
+function attributes(object) {
+	//tar emot ett objekt som parater
+	//returnerar en array inneehållande alla nmanen på objektets attribut
+
+	let arrayFromAttributes = [];
+
+	for (let x in object){
+  		arrayFromAttributes.push(x);
+  	}
+  	return arrayFromAttributes;
+}
+
+var testObject1 = {
+    width: 15,
+    height: 20
+};
+
+console.log(attributes(testObject1));

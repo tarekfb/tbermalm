@@ -1,0 +1,17 @@
+#message-box {
+    border: 1px solid black;
+    padding: 15px;
+    font-size: 20px;
+}
+.success {
+    background-color: #dff0d8;
+    border-color: #98B98B;
+}
+.error {
+    background-color: #f2dede;
+    border-color: #BE9090;
+}
+.info {
+    background-color: #d9edf7;
+    border-color: #7294A5;
+}
