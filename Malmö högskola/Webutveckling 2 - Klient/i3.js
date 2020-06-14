@@ -48,3 +48,17 @@ function removeElement() {
 		liBeingRemoved.parentElement.removeChild(liBeingRemoved);
 	}
 }
+
+/**
+ * Uppgift 5
+ * =========
+ */
+
+let form = document.getElementsById("apply-for-pet");
+console.log(form);
+form.addEventListener("submit", function(event) {
+	event.preventDefault();
+	//if sats -->  event.target.submit();
+});
+
+console.log(this.elements.firstname.value);
