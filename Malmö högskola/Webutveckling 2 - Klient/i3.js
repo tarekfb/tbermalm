@@ -54,11 +54,42 @@ function removeElement() {
  * =========
  */
 
-let form = document.getElementsById("apply-for-pet");
-console.log(form);
-form.addEventListener("submit", function(event) {
-	event.preventDefault();
-	//if sats -->  event.target.submit();
-});
+ /*
+ *Wrapping this assignment in a function
+ *the script does not seem to wait for the DOM to load before executing
+ *the script now runs when body is loaded
+ *effectively forces script to wait
+ *
+ *if this is programmed outside of the function, form is undefined
+ *https://stackoverflow.com/questions/38428797/document-getelementbyid-is-not-working-for-a-form
+ */
 
-console.log(this.elements.firstname.value);
+function delayScript() {
+	let form = document.getElementById("apply-for-pet");
+	form.addEventListener("submit", function(event) {
+		//let target = event.target || event.srcElement;
+
+		console.log(this.elements.firstname.value);
+		console.log(this.elements.lastname.value);
+		console.log(this.elements.age.value);
+		console.log(this.elements.email.value);
+		console.log(this.elements.pet.value);
+/*
+		if (this.elements.firstname.value.length > 0 && this.elements.firstname.value <= 50){
+			console.log("första");
+		} else if (true){
+			console.log("amdra");
+		} else{
+		event.preventDefault();
+		console.log("tredje");
+
+		//if sats (t.ex. när vi validerat alla fältens innehåll){
+		//	event.target.submit();
+		//}
+		}*/
+		
+	});
+}
+
+
+
