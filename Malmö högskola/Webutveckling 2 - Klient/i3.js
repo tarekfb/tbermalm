@@ -64,32 +64,35 @@ function removeElement() {
  *https://stackoverflow.com/questions/38428797/document-getelementbyid-is-not-working-for-a-form
  */
 
+
 function delayScript() {
 	let form = document.getElementById("apply-for-pet");
 	form.addEventListener("submit", function(event) {
-		//let target = event.target || event.srcElement;
 
+		//let target = event.target || event.srcElement;
+		let firstnameValue = this.elements.firstname.value;
 		console.log(this.elements.firstname.value);
 		console.log(this.elements.lastname.value);
 		console.log(this.elements.age.value);
 		console.log(this.elements.email.value);
 		console.log(this.elements.pet.value);
-/*
-		if (this.elements.firstname.value.length > 0 && this.elements.firstname.value <= 50){
+
+		if (firstnameValue.length < )3{
 			console.log("första");
-		} else if (true){
+			event.preventDefault();
+
+		} else if (this.elements.firstname.value.length = 3){
 			console.log("amdra");
+			event.preventDefault();
+
 		} else{
-		event.preventDefault();
-		console.log("tredje");
+			console.log("tredje");
+			event.preventDefault();
 
 		//if sats (t.ex. när vi validerat alla fältens innehåll){
 		//	event.target.submit();
 		//}
-		}*/
+		}
 		
 	});
 }
-
-
-
