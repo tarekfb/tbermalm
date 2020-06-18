@@ -81,7 +81,10 @@ function delayScript() {
 		String(firstnameValue, lastnameValue, ageValue, emailValue, petValue);
 		console.log(firstnameValue, lastnameValue, ageValue, emailValue, petValue);
 
-
+		//if (x or y); permit
+		//if (a or b); permit
+		//else dont permit
+		//for each condition
 		if (firstnameValue.length <= 0 || 5 == 5){
 			console.log("första");
 			console.log(firstnameValue.length);
