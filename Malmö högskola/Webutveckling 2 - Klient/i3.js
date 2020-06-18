@@ -69,22 +69,27 @@ function delayScript() {
 	let form = document.getElementById("apply-for-pet");
 	form.addEventListener("submit", function(event) {
 
-		//let target = event.target || event.srcElement;
-		let firstnameValue = this.elements.firstname.value;
-		console.log(this.elements.firstname.value);
-		console.log(this.elements.lastname.value);
-		console.log(this.elements.age.value);
-		console.log(this.elements.email.value);
-		console.log(this.elements.pet.value);
+		let target = event.target || event.srcElement;
 
-		if (firstnameValue.length < )3{
+		//this is neccessary because can't use .length if not convert to string
+		let firstnameValue = this.elements.firstname.value;
+		let lastnameValue = this.elements.lastname.value;
+		let ageValue = this.elements.age.value;
+		let emailValue = this.elements.email.value;
+		let petValue = 	this.elements.pet.value;
+
+		String(firstnameValue, lastnameValue, ageValue, emailValue, petValue);
+		console.log(firstnameValue, lastnameValue, ageValue, emailValue, petValue);
+
+
+		if (firstnameValue.length <= 0 || 5 == 5){
 			console.log("första");
+			console.log(firstnameValue.length);
 			event.preventDefault();
 
-		} else if (this.elements.firstname.value.length = 3){
+		} else if (firstnameValue.length > 50){
 			console.log("amdra");
 			event.preventDefault();
-
 		} else{
 			console.log("tredje");
 			event.preventDefault();
