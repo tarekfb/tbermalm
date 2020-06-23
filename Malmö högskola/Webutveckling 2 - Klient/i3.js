@@ -68,39 +68,32 @@ function removeElement() {
 function delayScript() {
 	let form = document.getElementById("apply-for-pet");
 	form.addEventListener("submit", function(event) {
-
 		let target = event.target || event.srcElement;
 
 		//this is neccessary because can't use .length if not convert to string
 		let firstnameValue = this.elements.firstname.value;
 		let lastnameValue = this.elements.lastname.value;
-		let ageValue = this.elements.age.value;
+		let ageValue = (this.elements.age.value);
 		let emailValue = this.elements.email.value;
 		let petValue = 	this.elements.pet.value;
 
-		String(firstnameValue, lastnameValue, ageValue, emailValue, petValue);
+		String(firstnameValue, lastnameValue, emailValue, petValue);
 		console.log(firstnameValue, lastnameValue, ageValue, emailValue, petValue);
 
-		//if (x or y); permit
-		//if (a or b); permit
-		//else dont permit
-		//for each condition
-		if (firstnameValue.length <= 0 || 5 == 5){
-			console.log("första");
-			console.log(firstnameValue.length);
+		if (firstnameValue.length > 50){
+			alert("Förnamnet måste vara kortare än 50 bokstäver.")
 			event.preventDefault();
-
-		} else if (firstnameValue.length > 50){
-			console.log("amdra");
+		} else if (lastnameValue.length > 50){
+			alert("Efternamnet måste vara kortare än 50 bokstäver.")
+			event.preventDefault();
+		} else if (ageValue <= 0 || isNaN(ageValue)){
+			alert("Åldern måste vara en siffra och högre än 0.")
+			event.preventDefault();
+		}else if (emailValue.length > 50){
+			alert("Epostadressen måste vara kortare än 50 bokstäver.")
 			event.preventDefault();
 		} else{
-			console.log("tredje");
-			event.preventDefault();
-
-		//if sats (t.ex. när vi validerat alla fältens innehåll){
-		//	event.target.submit();
-		//}
+			event.target.submit();
 		}
-		
 	});
 }
