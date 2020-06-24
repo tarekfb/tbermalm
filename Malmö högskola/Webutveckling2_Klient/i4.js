@@ -62,6 +62,21 @@ function removeallChildNodes(parent) {
 }
 
 function sortListByRating(resultList) {
+//For each li;
+// Get imdbid
+// Api call for imdbid //returns a movie
+// Get imdbrating for movie
+// Parseint(imdbrating
+// Let rating //Save in variable?
+ 
+//Compare rating with something
+//Sort resultList according to this
+
+	resultList.Search.forEach(function(entry) {
+  				let imdbId = entry.imdbID;
+  				console.log(imdbID);
+			});
+
 	let omdbAPI = new XMLHttpRequest();
 	let omdbURL = "https://www.omdbapi.com/?&apikey=5e65d4a0&s=&i=tt0120338";
 
@@ -71,6 +86,4 @@ function sortListByRating(resultList) {
 
 	omdbAPI.open("get", omdbURL, true);
 	omdbAPI.send();
-
-	result
 }
