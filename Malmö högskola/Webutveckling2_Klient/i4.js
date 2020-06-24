@@ -60,11 +60,11 @@ function removeallChildNodes(parent) {
 
 function determineIfEmpty(element) {
 	console.log(element);
-	if (element.value == null){
+	if (!element.value.match(/\S/)){
     	addListItem("Please enter something.");
     	getElementById("ul").style.display = "block";
     	return true;
-	} else if (element.value != null) {
+	} else {
 		return false;
 	}
 }
