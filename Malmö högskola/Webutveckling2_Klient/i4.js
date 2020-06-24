@@ -6,6 +6,7 @@ form.addEventListener("submit", function(event) {
 	removeallChildNodes(document.getElementById("items"));
 	let target = event.target || event.srcElement;
 
+	console.log(determineIfEmpty(form.getElementsByTagName("UL")[0]));
 	determineIfEmpty(form.getElementsByTagName("UL")[0]);
 	console.log(determineIfEmpty(form.getElementsByTagName("UL")[0]));
 	
