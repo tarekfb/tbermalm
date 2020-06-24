@@ -6,9 +6,14 @@ form.addEventListener("submit", function(event) {
 	removeallChildNodes(document.getElementById("items"));
 	let target = event.target || event.srcElement;
 
-	console.log(determineIfEmpty(form.getElementsByTagName("UL")[0]));
-	determineIfEmpty(form.getElementsByTagName("UL")[0]);
-	console.log(determineIfEmpty(form.getElementsByTagName("UL")[0]));
+	if (determineIfEmpty(document.getElementById("textBox"))){
+		console.log("true, tdligen");
+	} else {
+		console.log("false, tdligen");
+
+	}
+
+
 	
 	let queryText = form.elements.query.value;
 	apiHandler(encodeURI(queryText));
@@ -53,7 +58,7 @@ function removeallChildNodes(parent) {
 }
 
 function determineIfEmpty(element) {
-	if (element.value === ""){
+	if (document.getElementById(element).value === ""){
     	addListItem("Please enter something.");
     	getElementById("ul").style.display = "block";
     	return true;
