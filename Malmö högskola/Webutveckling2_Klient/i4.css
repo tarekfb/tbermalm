@@ -33,6 +33,11 @@ ul{
 	display: inline-block;
 }
 
+ul a{
+	text-decoration: none;
+	color: inherit;
+}
+
 li{
 	text-align: left;
     vertical-align: middle;
@@ -48,5 +53,5 @@ li{
 li:hover,
 li:focus,
 li:active {
-	transform: scale(1.9);
+	transform: scale(1.1);
 }
