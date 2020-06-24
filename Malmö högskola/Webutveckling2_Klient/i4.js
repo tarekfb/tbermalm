@@ -43,14 +43,10 @@ function apiHandler(title) {
   				addListItem(entry.Title + " (" + String(entry.Year) + ")");
 			});
 			moveToLink("items");
-
 	    }
-		
 	});
 
-	// Ange vilken metod (get) samt URL vi ska skicka med
 	omdbAPI.open("get", omdbURL, true);
-	// Skicka förfrågan
 	omdbAPI.send();
 }
 
