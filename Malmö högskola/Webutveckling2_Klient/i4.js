@@ -37,7 +37,6 @@ function apiHandler(title) {
 	    if (!result.Response){
 	    	document.getElementById("items").style.listStyle = "none";
 	    	addListItem(result.Error);
-	    	break;
 	    } else {
 	    	document.getElementById("items").style.listStyle = "circle";
 	    	result.Search.forEach(function(entry) {
