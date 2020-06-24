@@ -42,6 +42,7 @@ function apiHandler(title) {
 function addListItem(string, imdbID) {
 	let url = "https://www.imdb.com/title/" + imdbID + "/";
 	string.link(url)
+	console.log(string + " och " + url)
 
 	let li = document.createElement("li");
 	li.appendChild(document.createTextNode(string));
