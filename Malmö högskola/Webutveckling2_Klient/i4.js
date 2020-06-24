@@ -14,7 +14,7 @@ form.addEventListener("submit", function(event) {
 
 function apiHandler(title) {
 	var omdbAPI = new XMLHttpRequest();
-	var omdbURL = "http://www.omdbapi.com/?&apikey=5e65d4a0&s=" + title + "&type=movie";
+	var omdbURL = "https://www.omdbapi.com/?&apikey=5e65d4a0&s=" + title + "&type=movie";
 
 	omdbAPI.addEventListener("load", function() {
 	    var result = JSON.parse(this.responseText);
