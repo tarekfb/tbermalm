@@ -7,6 +7,7 @@ form.addEventListener("submit", function(event) {
 	let target = event.target || event.srcElement;
 
 	determineIfEmpty(form.getElementsByTagName("UL")[0]);
+	console.log(determineIfEmpty(form.getElementsByTagName("UL")[0]));
 	
 	let queryText = form.elements.query.value;
 	apiHandler(encodeURI(queryText));
