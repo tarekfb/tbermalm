@@ -68,8 +68,9 @@ function sortListByRating(resultList) {
 	let omdbURL = "https://www.omdbapi.com/?&apikey=5e65d4a0&s=&i=tt0120338";
 
 	omdbAPI.addEventListener("load", function() {
-	let result = JSON.parse(this.responseText);
-	console.log(result);
+		let result = JSON.parse(this.responseText);
+		console.log(result);
+	}
 
 	omdbAPI.open("get", omdbURL, true);
 	omdbAPI.send();
