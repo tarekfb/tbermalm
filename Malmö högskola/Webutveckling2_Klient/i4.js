@@ -28,6 +28,7 @@ function apiHandler(title) {
 	    console.log(result);
 
 	    console.log(Object.getOwnPropertyNames(result));
+	    console.log(result.Response);
 	    if (!result.Response){
 	    	addListItem("Try again.");
     		document.getElementById("items").style.listStyle = "none";
