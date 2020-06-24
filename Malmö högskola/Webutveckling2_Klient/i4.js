@@ -4,7 +4,7 @@
 let form = document.getElementById("search-form");
 form.addEventListener("submit", function(event) {
 	removeallChildNodes(document.getElementById("items"));
-	
+
 	let target = event.target || event.srcElement;
 	
 	let queryText = form.elements.query.value;
@@ -47,4 +47,11 @@ function removeallChildNodes(parent) {
 		parent.removeChild(parent.firstChild);
 	}
 
+}
+
+function determineIfEmpty(element) {
+	if (document.getElementById(element).value === ""){
+    	addListItem("Please enter something.");
+    	getElementById("ul").style.display = "block";
+	}
 }
