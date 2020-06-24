@@ -24,9 +24,14 @@ button{
 	border-radius: 4px;
 	padding: 5px 12px;
 }
+
 ul{
 	display: inline-block;
 }
 li{
 	text-align: left;
+}
+
+input{
+	font-size: 14px;
 }
