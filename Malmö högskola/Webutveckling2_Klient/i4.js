@@ -4,8 +4,9 @@
 let form = document.getElementById("search-form");
 form.addEventListener("submit", function(event) {
 	removeallChildNodes(document.getElementById("items"));
-
 	let target = event.target || event.srcElement;
+
+	determineIfEmpty(form.getElementsByTagName("UL")[0]);
 	
 	let queryText = form.elements.query.value;
 	apiHandler(encodeURI(queryText));
@@ -53,5 +54,8 @@ function determineIfEmpty(element) {
 	if (document.getElementById(element).value === ""){
     	addListItem("Please enter something.");
     	getElementById("ul").style.display = "block";
+    	return true;
+	} else if (document.getElementById(element).value !== "") {
+		return false;
 	}
 }
