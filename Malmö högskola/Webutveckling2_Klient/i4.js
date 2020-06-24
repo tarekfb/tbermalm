@@ -72,6 +72,9 @@ function sortListByRating(resultList) {
 //Compare rating with something
 //Sort resultList according to this
 
+//need to read and understand sorting
+//then use imdbRating for sorting
+
 	resultList.Search.forEach(function(entry) {
   		let omdbAPI = new XMLHttpRequest();
 		let omdbURL = "https://www.omdbapi.com/?&apikey=5e65d4a0&s=&i=" + entry.imdbID;
