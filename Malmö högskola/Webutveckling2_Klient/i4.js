@@ -42,9 +42,9 @@ function apiHandler(title) {
 	    	result.Search.forEach(function(entry) {
   				addListItem(entry.Title + " (" + String(entry.Year) + ")");
 			});
+			moveToLink("items");
 
 	    }
-
 		
 	});
 
@@ -78,4 +78,3 @@ function moveToLink(elementId){
     div.parentNode.insertBefore(link, div);
     div.remove();
 }
-moveToLink("items");
