@@ -74,7 +74,7 @@ function sortListByRating(resultList) {
 
 	resultList.Search.forEach(function(entry) {
   				let imdbId = entry.imdbID;
-  				console.log(imdbID);
+  				console.log(imdbId);
 			});
 
 	let omdbAPI = new XMLHttpRequest();
