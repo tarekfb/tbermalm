@@ -34,12 +34,10 @@ function apiHandler(title) {
 	    //should rewrite into:
 	    //if result.Response; proceed
 	    //else if !result.Response; print error text
-	    if (result.Response == false){
-	    	console.log(result.Response + 1);
+	    if (result.Response == "False"){
 	    	document.getElementById("items").style.listStyle = "none";
 	    	addListItem(result.Error);
-	    } else if (result.Response) {
-	    	console.log(result.Response + 2 + typeof result.Response);
+	    } else if (result.Response == "True") {
 	    	document.getElementById("items").style.listStyle = "circle";
 	    	result.Search.forEach(function(entry) {
   				addListItem(entry.Title + " (" + String(entry.Year) + ")");
