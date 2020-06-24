@@ -31,8 +31,6 @@ function apiHandler(title) {
 	    var result = JSON.parse(this.responseText);
 	    console.log(result);
 
-	    console.log(Object.getOwnPropertyNames(result.Error));
-	    console.log(result.Error);
 	    //should rewrite into:
 	    //if result.Response; proceed
 	    //else if !result.Response; print error text
