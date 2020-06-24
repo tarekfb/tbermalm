@@ -28,10 +28,10 @@ function apiHandler(title) {
 	    } else if (result.Response == "True") {
 	    	document.getElementById("items").style.listStyle = "disc";
 	    	result.Search.forEach(function(entry) {
-  				addListItem(entry.Title + " (" + String(entry.Year) + ")");
+  				addListItem(entry.Title + " (" + String(entry.Year) + ")", entry.imdbID);
 			});
 
-			moveToLink("items", result);
+			//moveToLink("items", result);
 	    }
 	});
 
@@ -39,7 +39,10 @@ function apiHandler(title) {
 	omdbAPI.send();
 }
 
-function addListItem(string) {
+function addListItem(string, imdbID) {
+	let url = "https://www.imdb.com/title/" + imdbID + "/";
+	string.link(url)
+
 	let li = document.createElement("li");
 	li.appendChild(document.createTextNode(string));
 	let ul = document.getElementById("items");
