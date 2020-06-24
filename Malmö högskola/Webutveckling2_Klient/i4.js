@@ -5,13 +5,13 @@ let form = document.getElementById("search-form");
 form.addEventListener("submit", function(event) {
 	removeallChildNodes(document.getElementById("items"));
 	let target = event.target || event.srcElement;
-
-	console.log(document.getElementById("text-box"));
-	console.log(determineIfEmpty(document.getElementById("text-box")));
-	if (determineIfEmpty(document.getElementById("text-box"))){
-		console.log("true, tdligen");
+	
+	if (!document.getElementById("text-box").value.match(/\S/)){
+    	addListItem("Please enter something.");
+    	document.getElementById("items").style.display = "block";
+    	return true;
 	} else {
-		console.log("false, tdligen");
+		return false;
 	}
 
 
