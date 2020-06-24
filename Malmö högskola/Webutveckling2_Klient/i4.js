@@ -54,9 +54,11 @@ function removeallChildNodes(parent) {
 }
 
 function moveToLink(elementId, resultList){
+	let url = "https://www.imdb.com/title/"
 
 	resultList.Search.forEach(function(entry) {
-		console.log(entry.imdbID);		
+		url += entry.imdbID + "/";
+		console.log(url);		
 	});
 
    	let div = document.getElementById(elementId);
