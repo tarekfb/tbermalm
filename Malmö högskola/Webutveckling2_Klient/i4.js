@@ -62,5 +62,5 @@ function removeallChildNodes(parent) {
 }
 
 function sortListByRating(resultList) {
-	console.log(resultList.Search[0].imdbRating);
+	console.log(resultList.Search[0].imdbRating.value);
 }
