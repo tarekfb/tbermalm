@@ -35,3 +35,6 @@ ul{
 li{
 	text-align: left;
 }
+li:hover{
+	background-color: #f38363;
+}
