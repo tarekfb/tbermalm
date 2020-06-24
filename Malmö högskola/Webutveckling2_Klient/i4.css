@@ -33,9 +33,10 @@ ul{
 	display: inline-block;
 }
 
-ul a{
+ul a:visited{
 	text-decoration: none;
 	color: black;
+	outline: none;
 }
 
 li{
