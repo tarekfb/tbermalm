@@ -78,7 +78,7 @@ function sortListByRating(resultList) {
 
 		omdbAPI.addEventListener("load", function() {
 			let result = JSON.parse(this.responseText);
-			let imdbRating = result.imdbRating;
+			let imdbRating = parseInt(result.imdbRating);
 			console.log(imdbRating);
 		});
 		omdbAPI.open("get", omdbURL, true);
