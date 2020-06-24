@@ -7,6 +7,7 @@ form.addEventListener("submit", function(event) {
 	let target = event.target || event.srcElement;
 
 	console.log(document.getElementById("text-box"));
+	console.log(determineIfEmpty(document.getElementById("text-box")));
 	if (determineIfEmpty(document.getElementById("text-box"))){
 		console.log("true, tdligen");
 	} else {
