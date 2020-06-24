@@ -32,6 +32,7 @@ button{
 ul{ 
 	display: inline-block;
 }
+
 li{
 	text-align: left;
     vertical-align: middle;
@@ -43,8 +44,9 @@ li{
     transition-property: transform;
     cursor: pointer;
 }
+
 li:hover,
 li:focus,
 li:active {
-	transform: scale(1.1);
+	transform: scale(1.9);
 }
