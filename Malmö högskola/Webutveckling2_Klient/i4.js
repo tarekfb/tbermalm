@@ -39,5 +39,5 @@ function addListItem(string) {
 	let ul = document.getElementById("items");
 	ul.appendChild(li);
 }
-var str = new String("asd");
-alert(str.fontcolor("blue"));
+let test = document.getElementById("test");
+test.fontcolor("blue");
