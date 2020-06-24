@@ -73,17 +73,15 @@ function sortListByRating(resultList) {
 //Sort resultList according to this
 
 	resultList.Search.forEach(function(entry) {
-  				let imdbId = entry.imdbID;
-  				console.log(imdbId);
-			});
+  		let omdbAPI = new XMLHttpRequest();
+		let omdbURL = "https://www.omdbapi.com/?&apikey=5e65d4a0&s=&i=" + entry.imdbID;
 
-	let omdbAPI = new XMLHttpRequest();
-	let omdbURL = "https://www.omdbapi.com/?&apikey=5e65d4a0&s=&i=tt0120338";
-
-	omdbAPI.addEventListener("load", function() {
-		let result = JSON.parse(this.responseText);
+		omdbAPI.addEventListener("load", function() {
+			let result = JSON.parse(this.responseText);
+			console.log(result);
+		});
+		omdbAPI.open("get", omdbURL, true);
+		omdbAPI.send();
 	});
-
-	omdbAPI.open("get", omdbURL, true);
-	omdbAPI.send();
+	
 }
