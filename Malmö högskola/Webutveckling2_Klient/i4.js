@@ -39,7 +39,7 @@ function apiHandler(title) {
 	    	document.getElementById("items").style.listStyle = "none";
 	    	addListItem(result.Error);
 	    } else if (result.Response) {
-	    	console.log(result.Response + 2);
+	    	console.log(result.Response + 2 + typeof result.Response);
 	    	document.getElementById("items").style.listStyle = "circle";
 	    	result.Search.forEach(function(entry) {
   				addListItem(entry.Title + " (" + String(entry.Year) + ")");
