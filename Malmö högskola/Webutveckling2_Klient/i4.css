@@ -41,6 +41,7 @@ li{
     -moz-osx-font-smoothing: grayscale;
     transition-duration: 0.3s;
     transition-property: transform;
+    cursor: pointer;
 }
 li:hover,
 li:focus,
