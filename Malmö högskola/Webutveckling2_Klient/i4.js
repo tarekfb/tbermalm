@@ -3,7 +3,7 @@
 
 let form = document.getElementById("search-form");
 form.addEventListener("submit", function(event) {
-	clearList(document.getElementById("items"));
+	removeallChildNodes(document.getElementById("items"));
 	
 	let target = event.target || event.srcElement;
 	
