@@ -56,10 +56,8 @@ function removeallChildNodes(parent) {
 function moveToLink(elementId, resultList){
 
 	resultList.Search.forEach(function(entry) {
-
-		console.log(entry.imdbID);
-  				
-			});
+		console.log(entry.imdbID);		
+	});
 
    	let div = document.getElementById(elementId);
     
