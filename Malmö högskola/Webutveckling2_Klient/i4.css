@@ -16,3 +16,12 @@ img{
 	width: 200px;
 	height: 200px;
 }
+
+button{
+	background-color: #f38363;
+	color: white;
+}
+
+ul{
+	text-align: left;
+}
