@@ -40,12 +40,16 @@ function apiHandler(title) {
 }
 
 function addListItem(string, imdbID) {
-	let url = "https://www.imdb.com/title/" + imdbID + "/";
-	string.link(url)
-	console.log(string + " och " + url);
+    let a = document.createElement('a');  
+    let link = document.createTextNode(string);
+    a.appendChild(link);
+
+    let url = "https://www.imdb.com/title/" + imdbID + "/";
+    a.href = url;
 
 	let li = document.createElement("li");
-	li.appendChild(document.createTextNode(string));
+	li.appendChild(a);
+
 	let ul = document.getElementById("items");
 	ul.appendChild(li);
 }
