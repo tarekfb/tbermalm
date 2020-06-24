@@ -34,7 +34,7 @@ function apiHandler(title) {
 	    //should rewrite into:
 	    //if result.Response; proceed
 	    //else if !result.Response; print error text
-	    if (!result.Response){
+	    if (result.Response == false){
 	    	console.log(result.Response);
 	    	document.getElementById("items").style.listStyle = "none";
 	    	addListItem(result.Error);
