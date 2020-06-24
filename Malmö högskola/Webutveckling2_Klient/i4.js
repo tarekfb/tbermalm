@@ -38,7 +38,7 @@ function apiHandler(title) {
 	    	document.getElementById("items").style.listStyle = "none";
 	    	addListItem(result.Error);
 	    } else if (result.Response == "True") {
-	    	document.getElementById("items").style.listStyle = "defaultValue";
+	    	document.getElementById("items").style.listStyle = "disc";
 	    	result.Search.forEach(function(entry) {
   				addListItem(entry.Title + " (" + String(entry.Year) + ")");
 			});
