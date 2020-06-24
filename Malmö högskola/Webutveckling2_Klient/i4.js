@@ -62,7 +62,7 @@ function determineIfEmpty(element) {
 	console.log(element);
 	if (!element.value.match(/\S/)){
     	addListItem("Please enter something.");
-    	getElementById("items").style.display = "block";
+    	document.getElementById("items").style.display = "block";
     	return true;
 	} else {
 		return false;
