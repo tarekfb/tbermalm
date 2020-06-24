@@ -21,6 +21,8 @@ button{
 	background-color: #f38363;
 	color: black;
 	font-size: 16px;
+	border-radius: 4px;
+	padding: 10px 24px;
 }
 ul{
 	display: inline-block;
