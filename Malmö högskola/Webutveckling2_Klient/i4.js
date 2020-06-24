@@ -5,6 +5,7 @@ let form = document.getElementById("search-form");
 form.addEventListener("submit", function(event) {
 	let target = event.target || event.srcElement;
 
+	
 	let queryText = form.elements.query.value;
 	apiHandler(encodeURI(queryText));
 
