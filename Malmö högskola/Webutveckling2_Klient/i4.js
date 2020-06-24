@@ -62,16 +62,15 @@ function removeallChildNodes(parent) {
 }
 
 function sortListByRating(resultList) {
-	//console.log(resultList.Search[0].imdbRating.value);
-
 	let omdbAPI = new XMLHttpRequest();
 	let omdbURL = "https://www.omdbapi.com/?&apikey=5e65d4a0&s=&i=tt0120338";
 
 	omdbAPI.addEventListener("load", function() {
 		let result = JSON.parse(this.responseText);
-		console.log(result);
 	});
 
 	omdbAPI.open("get", omdbURL, true);
 	omdbAPI.send();
+
+	result
 }
