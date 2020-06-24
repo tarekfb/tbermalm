@@ -26,7 +26,7 @@ function apiHandler(title) {
 	    var result = JSON.parse(this.responseText);
 	    console.log(result);
 
-	    //console.log(Object.getOwnPropertyNames(result));
+	    console.log(Object.getOwnPropertyNames(result));
 
 		result.Search.forEach(function(entry) {
   			addListItem(entry.Title + " (" + String(entry.Year) + ")");
