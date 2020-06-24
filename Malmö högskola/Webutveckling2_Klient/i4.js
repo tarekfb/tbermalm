@@ -39,4 +39,3 @@ function addListItem(string) {
 	let ul = document.getElementById("items");
 	ul.appendChild(li);
 }
-document.getElementById("test").style.color = "blue";
