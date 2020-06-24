@@ -59,7 +59,7 @@ function removeallChildNodes(parent) {
 }
 
 function determineIfEmpty(element) {
-	if (document.getElementById(element).value == null){
+	if (element.value == null){
     	addListItem("Please enter something.");
     	getElementById("ul").style.display = "block";
     	return true;
