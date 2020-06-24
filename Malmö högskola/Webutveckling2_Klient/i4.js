@@ -3,8 +3,9 @@
 
 let form = document.getElementById("search-form");
 form.addEventListener("submit", function(event) {
+	clearList(document.getElementById("items"));
+	
 	let target = event.target || event.srcElement;
-
 	
 	let queryText = form.elements.query.value;
 	apiHandler(encodeURI(queryText));
@@ -39,4 +40,11 @@ function addListItem(string) {
 	li.appendChild(document.createTextNode(string));
 	let ul = document.getElementById("items");
 	ul.appendChild(li);
+}
+
+function removeallChildNodes(parent) {
+	while (parent.firstChild) {
+		parent.removeChild(parent.firstChild);
+	}
+
 }
