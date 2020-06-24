@@ -31,7 +31,7 @@ function apiHandler(title) {
   				addListItem(entry.Title + " (" + String(entry.Year) + ")", entry.imdbID);
 			});
 
-			//moveToLink("items", result);
+			sortListByRating(result);
 	    }
 	});
 
@@ -61,20 +61,6 @@ function removeallChildNodes(parent) {
 
 }
 
-function moveToLink(elementId, resultList){
-	let url = "https://www.imdb.com/title/"
-
-	resultList.Search.forEach(function(entry) {
-		url += entry.imdbID + "/";
-		console.log(url);		
-	});
-
-   	let div = document.getElementById(elementId);
-    
-    let link = document.createElement('a');
-    link.innerHTML = div.outerHTML;
-    link.setAttribute('href', 'https://www.imdb.com/title/tt0120338/');
-    
-    div.parentNode.insertBefore(link, div);
-    div.remove();
+function sortListByRating(resultList) {
+	console.log(resultList.Search[0].imdbRating);
 }
