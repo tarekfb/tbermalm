@@ -35,11 +35,11 @@ function apiHandler(title) {
 	    //if result.Response; proceed
 	    //else if !result.Response; print error text
 	    if (result.Response == false){
-	    	console.log(result.Response);
+	    	console.log(result.Response + 1);
 	    	document.getElementById("items").style.listStyle = "none";
 	    	addListItem(result.Error);
 	    } else {
-	    	console.log(result.Response);
+	    	console.log(result.Response + 2);
 	    	document.getElementById("items").style.listStyle = "circle";
 	    	result.Search.forEach(function(entry) {
   				addListItem(entry.Title + " (" + String(entry.Year) + ")");
