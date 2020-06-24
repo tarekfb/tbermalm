@@ -55,7 +55,7 @@ function removeallChildNodes(parent) {
 
 function moveToLink(elementId, resultList){
 
-	result.Search.forEach(function(entry) {
+	resultList.Search.forEach(function(entry) {
 
 		console.log(entry.imdbID);
   				
