@@ -11,7 +11,6 @@ form.addEventListener("submit", function(event) {
     	document.getElementById("items").style.listStyle = "none";
 	} else {
 		document.getElementById("items").style.listStyle = "circle";
-
 		let queryText = form.elements.query.value;
 		apiHandler(encodeURI(queryText));
 	}
@@ -29,10 +28,17 @@ function apiHandler(title) {
 	    console.log(result);
 
 	    console.log(Object.getOwnPropertyNames(result));
+	    if (!result.Response){
+	    	addListItem("Try again.");
+    		document.getElementById("items").style.listStyle = "none";
+	    } else {
+	    	document.getElementById("items").style.listStyle = "circle";
+	    	result.Search.forEach(function(entry) {
+  				addListItem(entry.Title + " (" + String(entry.Year) + ")");
+			});
+	    }
 
-		result.Search.forEach(function(entry) {
-  			addListItem(entry.Title + " (" + String(entry.Year) + ")");
-		});
+		
 	});
 
 	// Ange vilken metod (get) samt URL vi ska skicka med
