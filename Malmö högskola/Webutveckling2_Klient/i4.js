@@ -4,18 +4,9 @@
 let form = document.getElementById("search-form");
 form.addEventListener("submit", function(event) {
 	removeallChildNodes(document.getElementById("items"));
+
 	let target = event.target || event.srcElement;
 	
-	/*
-	if (!document.getElementById("text-box").value.match(/\S/)){
-    	addListItem("Please enter something.");
-    	document.getElementById("items").style.listStyle = "none";
-	} else {
-		document.getElementById("items").style.listStyle = "circle";
-		let queryText = form.elements.query.value;
-		apiHandler(encodeURI(queryText));
-	}
-	*/
 	let queryText = form.elements.query.value;
 	apiHandler(encodeURI(queryText));
 
@@ -31,9 +22,6 @@ function apiHandler(title) {
 	    var result = JSON.parse(this.responseText);
 	    console.log(result);
 
-	    //should rewrite into:
-	    //if result.Response; proceed
-	    //else if !result.Response; print error text
 	    if (result.Response == "False"){
 	    	document.getElementById("items").style.listStyle = "none";
 	    	addListItem(result.Error);
@@ -42,7 +30,8 @@ function apiHandler(title) {
 	    	result.Search.forEach(function(entry) {
   				addListItem(entry.Title + " (" + String(entry.Year) + ")");
 			});
-			moveToLink("items");
+
+			moveToLink("items", result);
 	    }
 	});
 
@@ -64,7 +53,14 @@ function removeallChildNodes(parent) {
 
 }
 
-function moveToLink(elementId){
+function moveToLink(elementId, resultList){
+
+	result.Search.forEach(function(entry) {
+
+		console.log(entry.imdbID);
+  				
+			});
+
    	let div = document.getElementById(elementId);
     
     let link = document.createElement('a');
