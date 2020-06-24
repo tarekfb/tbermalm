@@ -42,6 +42,7 @@ function apiHandler(title) {
 	    	result.Search.forEach(function(entry) {
   				addListItem(entry.Title + " (" + String(entry.Year) + ")");
 			});
+
 	    }
 
 		
@@ -66,3 +67,15 @@ function removeallChildNodes(parent) {
 	}
 
 }
+
+function moveToLink(elementId){
+   	let div = document.getElementById(elementId);
+    
+    let link = document.createElement('a');
+    link.innerHTML = div.outerHTML;
+    link.setAttribute('href', 'https://www.imdb.com/title/tt0120338/');
+    
+    div.parentNode.insertBefore(link, div);
+    div.remove();
+}
+moveToLink("items");
