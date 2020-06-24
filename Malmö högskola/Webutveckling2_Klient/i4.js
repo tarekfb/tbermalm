@@ -27,10 +27,10 @@ function apiHandler(title) {
 	    var result = JSON.parse(this.responseText);
 	    console.log(result);
 
-	    console.log(Object.getOwnPropertyNames(result));
+	    console.log(Object.getOwnPropertyNames(result.Error));
 	    console.log(result.Response.value);
-	    if (!result.Response){
-	    	addListItem("Try again.");
+	    if (result.Response == "Too many results."){
+	    	addListItem(".");
     		document.getElementById("items").style.listStyle = "none";
 	    } else {
 	    	document.getElementById("items").style.listStyle = "circle";
