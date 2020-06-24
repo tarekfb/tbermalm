@@ -9,15 +9,10 @@ form.addEventListener("submit", function(event) {
 	if (!document.getElementById("text-box").value.match(/\S/)){
     	addListItem("Please enter something.");
     	document.getElementById("items").style.display = "block";
-    	return true;
 	} else {
-		return false;
+		let queryText = form.elements.query.value;
+		apiHandler(encodeURI(queryText));
 	}
-
-
-	
-	let queryText = form.elements.query.value;
-	apiHandler(encodeURI(queryText));
 
 	event.preventDefault();
 		
@@ -56,15 +51,4 @@ function removeallChildNodes(parent) {
 		parent.removeChild(parent.firstChild);
 	}
 
-}
-
-function determineIfEmpty(element) {
-	console.log(element);
-	if (!element.value.match(/\S/)){
-    	addListItem("Please enter something.");
-    	document.getElementById("items").style.display = "block";
-    	return true;
-	} else {
-		return false;
-	}
 }
