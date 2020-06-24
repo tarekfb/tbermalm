@@ -29,12 +29,11 @@ button{
 	padding: 5px 12px;
 }
 
-ul{
+ul{ 
 	display: inline-block;
 }
 li{
 	text-align: left;
-	display: inline-block;
     vertical-align: middle;
     transform: translateZ(0);
     box-shadow: 0 0 1px rgba(0, 0, 0, 0);
