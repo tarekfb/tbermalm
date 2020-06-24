@@ -64,7 +64,7 @@ function determineIfEmpty(element) {
     	addListItem("Please enter something.");
     	getElementById("ul").style.display = "block";
     	return true;
-	} else if (document.getElementById(element).value !== "") {
+	} else if (element.value != null) {
 		return false;
 	}
 }
