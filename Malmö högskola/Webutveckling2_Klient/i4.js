@@ -6,6 +6,7 @@ form.addEventListener("submit", function(event) {
 	removeallChildNodes(document.getElementById("items"));
 	let target = event.target || event.srcElement;
 	
+	/*
 	if (!document.getElementById("text-box").value.match(/\S/)){
     	addListItem("Please enter something.");
     	document.getElementById("items").style.listStyle = "none";
@@ -14,6 +15,9 @@ form.addEventListener("submit", function(event) {
 		let queryText = form.elements.query.value;
 		apiHandler(encodeURI(queryText));
 	}
+	*/
+	let queryText = form.elements.query.value;
+	apiHandler(encodeURI(queryText));
 
 	event.preventDefault();
 		
@@ -28,8 +32,14 @@ function apiHandler(title) {
 	    console.log(result);
 
 	    console.log(Object.getOwnPropertyNames(result.Error));
-	    console.log(result.Response.value);
-	    if (result.Response == "Too many results."){
+	    console.log(result.Error);
+	    //should rewrite into:
+	    //if result.Response; proceed
+	    //else if !result.Response; print error text
+	    if (!result.Response){
+	    	console.log(result.Error);
+	    }
+	    else if (result.Response == "Too many results."){
 	    	addListItem(".");
     		document.getElementById("items").style.listStyle = "none";
 	    } else {
