@@ -34,7 +34,17 @@ ul{
 }
 li{
 	text-align: left;
+	display: inline-block;
+    vertical-align: middle;
+    transform: translateZ(0);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+    backface-visibility: hidden;
+    -moz-osx-font-smoothing: grayscale;
+    transition-duration: 0.3s;
+    transition-property: transform;
 }
-li:hover{
-	background-color: #f38363;
+li:hover,
+li:focus,
+li:active {
+	transform: scale(1.1);
 }
