@@ -10,7 +10,7 @@ form.addEventListener("submit", function(event) {
     	addListItem("Please enter something.");
     	document.getElementById("items").style.listStyle = "none";
 	} else {
-		document.getElementById("items").style.listStyle = "default";
+		document.getElementById("items").style.listStyle = "circle";
 
 		let queryText = form.elements.query.value;
 		apiHandler(encodeURI(queryText));
