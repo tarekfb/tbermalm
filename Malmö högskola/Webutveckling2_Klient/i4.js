@@ -38,7 +38,7 @@ function apiHandler(title) {
 	    	console.log(result.Response + 1);
 	    	document.getElementById("items").style.listStyle = "none";
 	    	addListItem(result.Error);
-	    } else {
+	    } else if (result.Response) {
 	    	console.log(result.Response + 2);
 	    	document.getElementById("items").style.listStyle = "circle";
 	    	result.Search.forEach(function(entry) {
