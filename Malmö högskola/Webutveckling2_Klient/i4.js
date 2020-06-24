@@ -37,11 +37,8 @@ function apiHandler(title) {
 	    //if result.Response; proceed
 	    //else if !result.Response; print error text
 	    if (!result.Response){
-	    	console.log(result.Error);
-	    }
-	    else if (result.Response == "Too many results."){
-	    	addListItem(".");
-    		document.getElementById("items").style.listStyle = "none";
+	    	document.getElementById("items").style.listStyle = "none";
+	    	addListItem(result.Error);
 	    } else {
 	    	document.getElementById("items").style.listStyle = "circle";
 	    	result.Search.forEach(function(entry) {
