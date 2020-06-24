@@ -8,7 +8,7 @@ form.addEventListener("submit", function(event) {
 	
 	if (!document.getElementById("text-box").value.match(/\S/)){
     	addListItem("Please enter something.");
-    	document.getElementById("items").style.display = "block";
+    	//document.getElementById("items").style.display = "block";
 	} else {
 		let queryText = form.elements.query.value;
 		apiHandler(encodeURI(queryText));
