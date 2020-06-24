@@ -22,7 +22,9 @@ button{
 	color: black;
 	font-size: 16px;
 }
-
+ul{
+	display: inline-block;
+}
 li{
-	text-align: left;
+	/*text-align: left;*/
 }
