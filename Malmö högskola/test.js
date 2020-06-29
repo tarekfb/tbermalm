@@ -1,1 +1,0 @@
- document.getElementById("jstest").style.color = "blue";
