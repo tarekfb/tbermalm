@@ -1,22 +1,31 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Inlämningsuppgift 4</title>
-  <meta charset="utf-8">
-  <link href="i4.css" rel="stylesheet" type="text/css">
-  <script type="text/javascript" src="i4.js" async></script>
+	<title>Inlämningsuppgift 4</title>
+	<meta charset="utf-8">
+	<link href="i4.css" rel="stylesheet" type="text/css">
+	<script async src="i4.js" type="text/javascript">
+	</script>
 </head>
 <body>
-<div id="container">
-<a href="/index.html"><img src="popcorn-1614707.png"></a>
-<h1>Search IMDB by title</h1>
-<form action="" method="get" id="search-form">
-    Movie title: <input type="text" name="query" id="text-box">
-    <button type="submit">Search</button>
-</form>
-<div id="result">
-	<ul id="items"></ul>
-</div>
-</div>
+	<div id="container">
+		<a href="/index.html"><img src="popcorn-1614707.png"></a>
+		<h1>Search IMDB by title</h1>
+		<form action="" id="search-form" method="get" name="search-form">
+			Movie title: <input id="text-box" name="query" type="text"> <button type="submit">Search</button>
+		</form>
+		<div id="result">
+			<ul id="items"></ul>
+		</div>
+	</div>
+	<div id="like_button_container"></div>
+	<!-- Load React. -->
+	<!-- Note: when deploying, replace "development.js" with "production.min.js". -->
+	<script src="https://unpkg.com/react@16/umd/react.development.js">
+	</script> 
+	<script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js">
+	</script> <!-- Load our React component. -->
+	<script src="like_button.js">
+	</script>
 </body>
 </html>
