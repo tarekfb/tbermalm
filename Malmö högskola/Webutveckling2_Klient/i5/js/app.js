@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import 'i5/css/styles.css';
 
 function App() {
