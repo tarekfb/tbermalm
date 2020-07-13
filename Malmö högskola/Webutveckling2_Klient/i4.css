@@ -66,10 +66,8 @@ li:active {
 		font-size: 32px;
 		padding: 7.5px 18px;
 	}
-	img, h1 {
-		display: flex;
-		align-items: center;
-		justify-content: center;
+	img, h1, button, form, input{
+		line-height: 200px;
 	}
 
 }
