@@ -77,14 +77,8 @@ li:active {
 		display: inline;
 	}
 	#title-container{
-    	line-height: 200px;
+  		text-align: center;
 	}
-
-	#title-container h1{
-
-    vertical-align: middle;
-
-}
 
 }
 /*https://www.canva.com/colors/color-palette-generator/*/
