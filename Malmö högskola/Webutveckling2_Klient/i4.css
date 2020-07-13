@@ -71,6 +71,9 @@ li:active {
 	h1, form{
 		line-height: 200px;
 	}
+	img, h1{
+		display: inline;
+	}
 
 }
 /*https://www.canva.com/colors/color-palette-generator/*/
