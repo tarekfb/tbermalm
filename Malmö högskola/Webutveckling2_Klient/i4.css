@@ -44,7 +44,6 @@ li{
     vertical-align: middle;
     transform: translateZ(0);
     box-shadow: 0 0 1px rgba(0, 0, 0, 0);
-    backface-visibility: hidden;
     transition-duration: 0.3s;
     transition-property: transform;
     cursor: pointer;
@@ -61,7 +60,10 @@ li:active {
 		height: 50px;
 	}
 	form{
-		width: 75%;
+		
+	}
+	button{
+		font-size: 50px;
 	}
 }
 /*https://www.canva.com/colors/color-palette-generator/*/
