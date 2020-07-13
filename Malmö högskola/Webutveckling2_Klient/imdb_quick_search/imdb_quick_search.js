@@ -75,7 +75,7 @@ function screen_resize() {
         	console.log("mer än 600x800");
         	console.log(h, w);
         }
-    }
+}
 
 function sortListByRating(resultList) {
 
