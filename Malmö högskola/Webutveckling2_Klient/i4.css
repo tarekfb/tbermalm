@@ -67,7 +67,10 @@ li:active {
 		padding: 7.5px 18px;
 	}
 	#container{
-		vertical-align: middle;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
 	}
 
 }
