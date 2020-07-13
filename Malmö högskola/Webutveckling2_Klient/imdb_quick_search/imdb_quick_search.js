@@ -61,7 +61,24 @@ function removeallChildNodes(parent) {
 
 }
 
+//responsive
+function screen_resize() {
+       	var h = parseInt(window.innerHeight);
+        var w = parseInt(window.innerWidth);
+
+        var divs = document.getElementsByTagName("div");   // order: first, second, third
+		divs[2].parentNode.insertBefore(divs[2], divs[0]); // order: third, first, second
+		divs[2].parentNode.insertBefore(divs[2], divs[1]); // order: third, second, first
+
+
+        if(w < 600 && h < 800) {
+        	console.log("mer än 600x800");
+        	console.log(h, w);
+        }
+    }
+
 function sortListByRating(resultList) {
+
 //For each li;
 // Get imdbid
 // Api call for imdbid //returns a movie

@@ -60,6 +60,7 @@ li:active {
 	img{
 		width: 100px;
 		height: 100px;
+		margin-right: 10px; 
 	}
 	form text, input{
 		font-size: 32px;
