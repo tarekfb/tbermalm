@@ -66,16 +66,13 @@ function rearrangeElementsForResponsiveDesign() {
 	let referenceNode = document.getElementById("title");
 	let targetNode = document.getElementById("logo");
 	console.log(logo);
-	referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
+	console.log(title);
+	referenceNode.parentNode.insertBefore(targetNode, referenceNode.nextSibling);
 
-	var divs = document.getElementsByTagName("div");   // order: first, second, third
+	/*var divs = document.getElementsByTagName("div");   // order: first, second, third
 	divs[2].parentNode.insertBefore(divs[2], divs[0]); // order: third, first, second
-	divs[2].parentNode.insertBefore(divs[2], divs[1]); // order: third, second, first
+	divs[2].parentNode.insertBefore(divs[2], divs[1]); // order: third, second, first*/
 
-		NU:
-		1234
-		SEN:
-		1423
 	var h = parseInt(window.innerHeight);
 	var w = parseInt(window.innerWidth);
 
