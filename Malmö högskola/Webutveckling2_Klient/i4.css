@@ -77,7 +77,7 @@ li:active {
 		display: inline;
 	}
 	#title-container{
-  		text-align: center;
+  		/*text-align: center;*/
 	}
 
 }
