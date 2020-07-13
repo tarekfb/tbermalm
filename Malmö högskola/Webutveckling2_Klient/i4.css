@@ -56,6 +56,11 @@ li:focus,
 li:active {
 	transform: scale(1.1);
 }
+
+h1{
+	vertical-align: center;
+}
+
 @media screen and (max-width: 1300px) {
 	img{
 		width: 100px;
