@@ -56,14 +56,14 @@ li:active {
 }
 @media screen and (max-width: 1100px) {
 	img{
-		width: 75px;
-		height: 75px;
+		width: 100px;
+		height: 100px;
 	}
-	form{
-		
+	form text, input{
+		font-size: 32px;
 	}
 	button{
-		font-size: 50px;
+		font-size: 32px;
 		padding: 7.5px 18px;
 	}
 	#container{
