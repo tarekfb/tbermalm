@@ -54,16 +54,18 @@ li:focus,
 li:active {
 	transform: scale(1.1);
 }
-@media screen and (max-width: 1559px) {
+@media screen and (max-width: 959px) {
 	img{
-		width: 50px;
-		height: 50px;
+		width: 75px;
+		height: 75px;
 	}
 	form{
 		
 	}
 	button{
 		font-size: 50px;
+		padding: 7.5px 18px;
 	}
+
 }
 /*https://www.canva.com/colors/color-palette-generator/*/
