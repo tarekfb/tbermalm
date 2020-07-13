@@ -61,13 +61,6 @@ function removeallChildNodes(parent) {
 
 }
 function rearrangeElementsForResponsiveDesign() {
-       	
-
-	let referenceNode = document.getElementById("title");
-	let targetNode = document.getElementById("logo");
-	console.log(logo);
-	console.log(title);
-	referenceNode.parentNode.insertBefore(targetNode, referenceNode.nextSibling);
 
 	/*var divs = document.getElementsByTagName("div");   // order: first, second, third
 	divs[2].parentNode.insertBefore(divs[2], divs[0]); // order: third, first, second
@@ -76,9 +69,11 @@ function rearrangeElementsForResponsiveDesign() {
 	var h = parseInt(window.innerHeight);
 	var w = parseInt(window.innerWidth);
 
-    if(w < 1600 && h < 1800) {
-    	console.log("mer än 600x800");
+    if(w < 900 && h < 1300) {
         console.log(h, w);
+        let referenceNode = document.getElementById("title");
+		let targetNode = document.getElementById("logo");
+		referenceNode.parentNode.insertBefore(targetNode, referenceNode.nextSibling);
     }
 }
 
