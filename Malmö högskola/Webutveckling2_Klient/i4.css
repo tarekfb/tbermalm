@@ -58,7 +58,7 @@ li:active {
 }
 
 h1{
-	vertical-align: center;
+	line-height: 200px;
 }
 
 @media screen and (max-width: 1300px) {
