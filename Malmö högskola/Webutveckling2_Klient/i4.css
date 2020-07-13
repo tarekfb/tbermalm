@@ -66,7 +66,7 @@ li:active {
 		font-size: 32px;
 		padding: 7.5px 18px;
 	}
-	img, h1, button, form, input{
+	h1, form{
 		line-height: 200px;
 	}
 
