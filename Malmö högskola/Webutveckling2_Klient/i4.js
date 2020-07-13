@@ -76,7 +76,7 @@ function rearrangeElementsForResponsiveDesign() {
 	var h = parseInt(window.innerHeight);
 	var w = parseInt(window.innerWidth);
 
-    if(w < 600 && h < 800) {
+    if(w < 1600 && h < 1800) {
     	console.log("mer än 600x800");
         console.log(h, w);
     }
