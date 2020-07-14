@@ -24,7 +24,7 @@ function apiHandler(title) {
 
 	    if (result.Response == "False"){
 	    	document.getElementById("items").style.listStyle = "none";
-	    	addListItem(result.Error);
+	    	addListItem(result.Error, null);
 	    } else if (result.Response == "True") {
 	    	document.getElementById("items").style.listStyle = "disc";
 	    	result.Search.forEach(function(entry) {
