@@ -1,19 +1,14 @@
 html{
- 	/*background: url('curtain-1275200.png'); 
  	background-repeat: no-repeat;
 	background-position: right top;
   	-webkit-background-size: cover;
   	-moz-background-size: cover;
  	-o-background-size: cover;
- 	background-size: cover;*/
+ 	background-size: cover;
 	color: black;
 	font-family: 'Montserrat', sans-serif;
 	background-color: #f4cb84;
 	text-align: center;
-}
-
-form text, input{
-	font-size: 16px;
 }
 
 img{
@@ -27,22 +22,23 @@ button{
 	background: #f38363;
 	color: black;
 	font-size: 16px;
-	border-radius: 6px;
+	border-radius: 0px 5px 5px 0px;
 	padding: 5px 12px;
 	cursor: pointer;
 
-
 	margin-left: -50px;
-    border: 0;
-    -webkit-appearance: none;
-    height: 25px;
-
-
+  	border: 0;
+ 	-webkit-appearance: none;
+  	height: 25px;
+	width: 50px;
+	
 }
 
 input{
 	padding-right: 50px;
 	height: 20px;
+	width: 200px;
+	font-size: 16px;
 }
 
 ul{ 
