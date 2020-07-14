@@ -61,7 +61,7 @@ li:active {
 	img{
 		width: 100px;
 		height: 100px;
-		margin-right: 10px; 
+		display: inline;
 	}
 	form text, input{
 		font-size: 32px;
@@ -69,15 +69,6 @@ li:active {
 	button{
 		font-size: 32px;
 		padding: 7.5px 18px;
-	}
-	form{
-		line-height: 200px;
-	}
-	img, h1{
-		display: inline;
-	}
-	#title-container{
-  		/*text-align: center;*/
 	}
 
 }

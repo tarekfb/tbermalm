@@ -71,7 +71,7 @@ function rearrangeElementsForResponsiveDesign() {
 
     if(w < 900 && h < 1300) {
         console.log(h, w);
-        let referenceNode = document.getElementById("title-container");
+        let referenceNode = document.getElementById("title");
 		let targetNode = document.getElementById("logo");
 		referenceNode.parentNode.insertBefore(targetNode, referenceNode.nextSibling);
     }
