@@ -40,15 +40,20 @@ function apiHandler(title) {
 }
 
 function addListItem(string, imdbID) {
-    let a = document.createElement('a');  
-    let link = document.createTextNode(string);
-    a.appendChild(link);
-
-    let url = "https://www.imdb.com/title/" + imdbID + "/";
-    a.href = url;
-
 	let li = document.createElement("li");
-	li.appendChild(a);
+
+	if (imdbID == null){
+		li.appendChild(document.createTextNode(string));
+	} else if (imddID != null){
+	    let a = document.createElement('a');  
+	    let link = document.createTextNode(string);
+	    a.appendChild(link);
+
+	    let url = "https://www.imdb.com/title/" + imdbID + "/";
+	    a.href = url;
+
+		li.appendChild(a);
+	}
 
 	let ul = document.getElementById("items");
 	ul.appendChild(li);
@@ -96,7 +101,7 @@ function sortListByRating(resultList) {
 		omdbAPI.addEventListener("load", function() {
 			let result = JSON.parse(this.responseText);
 			let imdbRating = parseInt(result.imdbRating);
-			console.log(imdbRating);
+			console.log("ImdbRating is: " + imdbRating);
 		});
 		omdbAPI.open("get", omdbURL, true);
 		omdbAPI.send();
