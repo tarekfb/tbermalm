@@ -59,16 +59,14 @@ li:active {
 
 @media screen and (max-width: 1300px) {
 	img{
-		width: 100px;
-		height: 100px;
+		width: 75px;
+		height: 75px;
 		display: inline;
 	}
 	form text, input{
-		font-size: 32px;
+
 	}
 	button{
-		font-size: 32px;
-		padding: 7.5px 18px;
 	}
 
 }
