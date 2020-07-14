@@ -24,7 +24,7 @@ function apiHandler(title) {
 
 	    if (result.Response == "False"){
 	    	document.getElementById("items").style.listStyle = "none";
-	    	addListItem(result.Error);
+	    	addListItem(result.Error, null);
 	    } else if (result.Response == "True") {
 	    	document.getElementById("items").style.listStyle = "disc";
 	    	result.Search.forEach(function(entry) {
@@ -40,19 +40,25 @@ function apiHandler(title) {
 }
 
 function addListItem(string, imdbID) {
-    let a = document.createElement('a');  
-    let link = document.createTextNode(string);
-    a.appendChild(link);
-
-    let url = "https://www.imdb.com/title/" + imdbID + "/";
-    a.href = url;
-
 	let li = document.createElement("li");
-	li.appendChild(a);
+
+	if (imdbID == null){
+		li.appendChild(document.createTextNode(string));
+	} else if (imdbID != null){
+	    let a = document.createElement('a');  
+	    let link = document.createTextNode(string);
+	    a.appendChild(link);
+
+	    let url = "https://www.imdb.com/title/" + imdbID + "/";
+	    a.href = url;
+
+		li.appendChild(a);
+	}
 
 	let ul = document.getElementById("items");
 	ul.appendChild(li);
-}
+}//this is designed to avoid creating link if Result yielded error. 
+//But best design would be to not create UL LI at all, if error.
 
 function removeallChildNodes(parent) {
 	while (parent.firstChild) {
@@ -60,25 +66,22 @@ function removeallChildNodes(parent) {
 	}
 
 }
+function rearrangeElementsForResponsiveDesign() {
 
-//responsive
-function screen_resize() {
-       	var h = parseInt(window.innerHeight);
-        var w = parseInt(window.innerWidth);
+	/*var h = parseInt(window.innerHeight);
+	var w = parseInt(window.innerWidth);
 
-        var divs = document.getElementsByTagName("div");   // order: first, second, third
-		divs[2].parentNode.insertBefore(divs[2], divs[0]); // order: third, first, second
-		divs[2].parentNode.insertBefore(divs[2], divs[1]); // order: third, second, first
+    if(w < 900 && h < 1300) {
+        console.log(h, w);
+        let referenceNode = document.getElementById("title");
+		let targetNode = document.getElementById("logo");
+		referenceNode.parentNode.insertBefore(targetNode, referenceNode.nextSibling);
+    }*/
+} //dont need this function anymore, but leaving up as it was educational
 
-
-        if(w < 600 && h < 800) {
-        	console.log("mer än 600x800");
-        	console.log(h, w);
-        }
-}
+rearrangeElementsForResponsiveDesign();
 
 function sortListByRating(resultList) {
-
 //For each li;
 // Get imdbid
 // Api call for imdbid //returns a movie
@@ -99,7 +102,7 @@ function sortListByRating(resultList) {
 		omdbAPI.addEventListener("load", function() {
 			let result = JSON.parse(this.responseText);
 			let imdbRating = parseInt(result.imdbRating);
-			console.log(imdbRating);
+			console.log("ImdbRating is: " + imdbRating);
 		});
 		omdbAPI.open("get", omdbURL, true);
 		omdbAPI.send();
