@@ -62,11 +62,7 @@ function removeallChildNodes(parent) {
 }
 function rearrangeElementsForResponsiveDesign() {
 
-	/*var divs = document.getElementsByTagName("div");   // order: first, second, third
-	divs[2].parentNode.insertBefore(divs[2], divs[0]); // order: third, first, second
-	divs[2].parentNode.insertBefore(divs[2], divs[1]); // order: third, second, first*/
-
-	var h = parseInt(window.innerHeight);
+	/*var h = parseInt(window.innerHeight);
 	var w = parseInt(window.innerWidth);
 
     if(w < 900 && h < 1300) {
@@ -74,8 +70,8 @@ function rearrangeElementsForResponsiveDesign() {
         let referenceNode = document.getElementById("title");
 		let targetNode = document.getElementById("logo");
 		referenceNode.parentNode.insertBefore(targetNode, referenceNode.nextSibling);
-    }
-}
+    }*/
+} //dont need this function anymore, but leaving up as it was educational
 
 rearrangeElementsForResponsiveDesign();
 
