@@ -15,6 +15,10 @@ html{
 form text, input{
 	font-size: 16px;
 }
+input{
+	cursor: hand;
+	cursor: pointer;
+}
 
 img{
 	width: 200px;
