@@ -16,11 +16,6 @@ form text, input{
 	font-size: 16px;
 }
 
-input{
-	cursor: hand;
-	
-}
-
 img{
 	width: 200px;
 	height: 200px;
@@ -35,6 +30,20 @@ button{
 	border-radius: 6px;
 	padding: 5px 12px;
 	cursor: pointer;
+
+
+	margin-left: -50px;
+    height: 25px;
+    width: 50px;
+    background: blue;
+    border: 0;
+    -webkit-appearance: none;
+
+
+}
+
+input{
+	padding-right: 50px;
 }
 
 ul{ 

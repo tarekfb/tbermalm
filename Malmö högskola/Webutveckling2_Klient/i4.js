@@ -57,7 +57,8 @@ function addListItem(string, imdbID) {
 
 	let ul = document.getElementById("items");
 	ul.appendChild(li);
-}
+}//this is designed to avoid creating link if Result yielded error. 
+//But best design would be to not create UL LI at all, if error.
 
 function removeallChildNodes(parent) {
 	while (parent.firstChild) {
