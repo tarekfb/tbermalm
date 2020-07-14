@@ -44,7 +44,7 @@ function addListItem(string, imdbID) {
 
 	if (imdbID == null){
 		li.appendChild(document.createTextNode(string));
-	} else if (imddID != null){
+	} else if (imdbID != null){
 	    let a = document.createElement('a');  
 	    let link = document.createTextNode(string);
 	    a.appendChild(link);
