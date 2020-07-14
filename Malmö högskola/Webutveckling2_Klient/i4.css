@@ -30,8 +30,7 @@ button{
  	-webkit-appearance: none;
   	height: 25px;
 	width: 50px;
-	  padding: 10px;
-
+	
 	
 }
 
@@ -39,8 +38,6 @@ input{
 	padding-right: 50px;
 	height: 20px;
 	width: 200px;
-	  padding: 10px;
-
 }
 
 ul{ 
