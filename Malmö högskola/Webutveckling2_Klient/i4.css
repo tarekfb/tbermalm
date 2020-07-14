@@ -19,31 +19,25 @@ img{
 }
 
 button{
- width: ;
-  padding: 10px;
-background: #f38363;  color: white;
-  font-size: 17px;
-  border: 1px solid grey;
-  border-left: none;
-  cursor: pointer;
-  border-radius: 0px 5px 5px 0px;
+ 	width: 3%;
+  	padding: 10px;
+	background: #f38363;  color: white;
+  	font-size: 17px;
+  	border: 1px solid grey;
+  	border-left: none;
+  	cursor: pointer;
+  	border-radius: 0px 5px 5px 0px;
   	color: black;
 	margin-left: -0.5%;
-
-
- 	-webkit-appearance: none;
-
-	
+ 	-webkit-appearance: none;	
 }
 
 input{
 	padding: 10px;
-	
-  font-size: 17px;
-  border: 1px solid grey;
-  width: 40%;
-  background: #f1f1f1;
-
+  	font-size: 17px;
+  	border: 1px solid grey;
+  	width: 40%;
+  	background: #f1f1f1;
 }
 
 ul{ 
@@ -64,6 +58,7 @@ li{
     transition-duration: 0.3s;
     transition-property: transform;
     cursor: pointer;
+    font-size: 20px;
 }
 
 li:hover,
