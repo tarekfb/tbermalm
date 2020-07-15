@@ -40,10 +40,12 @@ function apiHandler(title) {
 }
 
 function addListItem(string, imdbID) {
-	let li = document.createElement("li");
-
 	if (imdbID == null){
-		li.appendChild(document.createTextNode(string));
+		let p = document.createElement("p");
+		p.appendChild(document.createTextNode(string));
+
+		let containerDiv = document.getElementById("result")
+		containerDiv.appendChild(p);
 	} else if (imdbID != null){
 	    let a = document.createElement('a');  
 	    let link = document.createTextNode(string);
@@ -52,13 +54,13 @@ function addListItem(string, imdbID) {
 	    let url = "https://www.imdb.com/title/" + imdbID + "/";
 	    a.href = url;
 
+		let li = document.createElement("li");
 		li.appendChild(a);
-	}
 
-	let ul = document.getElementById("items");
-	ul.appendChild(li);
-}//this is designed to avoid creating link if Result yielded error. 
-//But best design would be to not create UL LI at all, if error.
+		let ul = document.getElementById("items");
+		ul.appendChild(li);
+	}
+}
 
 function removeallChildNodes(parent) {
 	while (parent.firstChild) {
@@ -112,30 +114,3 @@ function sortListByRating(resultList) {
 
 document.getElementById('text-box').scrollIntoView();
 console.log(document.getElementById('text-box'));
-
-function addListItem(string, imdbID) {
-
-	if (imdbID == null){
-		let p = document.createElement("p");
-		p.appendChild(document.createTextNode(string));
-
-		let containerDiv = document.getElementById("result")
-		containerDiv.appendChild(p);
-	} else if (imdbID != null){
-	    let a = document.createElement('a');  
-	    let link = document.createTextNode(string);
-	    a.appendChild(link);
-
-	    let url = "https://www.imdb.com/title/" + imdbID + "/";
-	    a.href = url;
-
-		let li = document.createElement("li");
-		li.appendChild(a);
-
-		let ul = document.getElementById("items");
-		ul.appendChild(li);
-	}
-
-	
-}//this is designed to avoid creating link if Result yielded error. 
-//But best design would be to not create UL LI at all, if error.
