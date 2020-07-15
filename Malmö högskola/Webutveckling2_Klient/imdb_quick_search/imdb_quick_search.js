@@ -40,13 +40,18 @@ function apiHandler(title) {
 }
 
 function addListItem(string, imdbID) {
+	let containerDiv = document.getElementById("result");
+	while (node.firstChild) {
+		containerDiv.removeChild(containerDiv.firstChild);
+	}
+
 	if (imdbID == null){
 		if (string == "Too many results."){
 			string = "DEt VAR EXAKT SÅ";
 		}
 		let p = document.createElement("p");
 		p.appendChild(document.createTextNode(string));
-
+		console.log(containerDiv + "ta bort denna");
 		let containerDiv = document.getElementById("result")
 		containerDiv.appendChild(p);
 	} else if (imdbID != null){
