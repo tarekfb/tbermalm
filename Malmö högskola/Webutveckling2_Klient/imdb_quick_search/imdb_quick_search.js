@@ -5,7 +5,7 @@ let form = document.getElementById("search-form");
 form.addEventListener("submit", function(event) {
 	let containerDiv = document.getElementById("result");
 	containerDiv.querySelectorAll('*').forEach(n => n.remove());
-	
+
 	let target = event.target || event.srcElement;
 	
 	let queryText = form.elements.query.value;
@@ -71,8 +71,6 @@ function addListItem(string, imdbID) {
 	}
 
 }
-
-rearrangeElementsForResponsiveDesign();
 
 function sortListByRating(resultList) {
 //For each li;
