@@ -3,8 +3,6 @@
 
 let form = document.getElementById("search-form");
 form.addEventListener("submit", function(event) {
-	removeallChildNodes(document.getElementById("items"));
-
 	let target = event.target || event.srcElement;
 	
 	let queryText = form.elements.query.value;
@@ -71,12 +69,6 @@ function addListItem(string, imdbID) {
 
 }
 
-function removeallChildNodes(parent) {
-	while (parent.firstChild) {
-		parent.removeChild(parent.firstChild);
-	}
-
-}
 function rearrangeElementsForResponsiveDesign() {
 
 	/*var h = parseInt(window.innerHeight);
