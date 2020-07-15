@@ -55,6 +55,7 @@ li{
     transition-property: transform;
     cursor: pointer;
     list-style: disc;
+    display: inline-block;
 }
 
 li:hover,
