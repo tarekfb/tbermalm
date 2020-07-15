@@ -33,7 +33,7 @@ function apiHandler(title) {
 	    	//also wrap it in a link to IMDB page
 	    	result.Search.forEach(function(entry) {
   				addListItem(entry.Title + " (" + String(entry.Year) + ")" + ", " + parseInt(entry.imdbRating), entry.imdbID);
-  				console.log(parseInt(entry.imdbRating) + String(result.imdbRating) + "THIS IS RATING" + " " + entry.Year);
+  				//trying to add imdbrating but failing for some reason
 			});
 	    	//currently does nothing, becuase function isnt fleshed out
 			sortListByRating(result);
@@ -102,11 +102,6 @@ function sortListByRating(resultList) {
 			let result = JSON.parse(this.responseText);
 			let imdbRating = parseInt(result.imdbRating);
 			console.log("ImdbRating is: " + imdbRating);
-
-			result.Search.forEach(function(entry) {
-				let testingType = result.imdbRating;
-				console.log(typeOf(testingType));
-			});
 
 		});
 		omdbAPI.open("get", omdbURL, true);
