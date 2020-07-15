@@ -20,8 +20,7 @@ function apiHandler(title) {
 	var omdbURL = "https://www.omdbapi.com/?&apikey=5e65d4a0&s=" + title + "&type=movie";
 
 	omdbAPI.addEventListener("load", function() {
-	    var result = JSON.parse(this.responseText);
-	    console.log(result);
+	    let result = JSON.parse(this.responseText);
 
 	    if (result.Response == "False"){
 	    	addListItem(result.Error, null);
