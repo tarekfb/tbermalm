@@ -119,5 +119,13 @@ function sortListByRating(resultList) {
 }
 
 document.getElementById('text-box').scrollIntoView();
-console.log(document.getElementById('text-box'));
 document.getElementById('text-box').focus();
+
+
+
+		let li = document.createElement("li");
+		li.appendChild(createTextNode"123test");
+
+		let ul = document.createElement("ul");
+		ul.id = "items";
+		ul.appendChild(li);
