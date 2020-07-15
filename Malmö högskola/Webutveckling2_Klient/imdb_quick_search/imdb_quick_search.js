@@ -122,10 +122,12 @@ document.getElementById('text-box').scrollIntoView();
 document.getElementById('text-box').focus();
 
 
-
-		let li = document.createElement("li");
+function test() {
+	let li = document.createElement("li");
 		li.appendChild(createTextNode"123test");
 
 		let ul = document.createElement("ul");
 		ul.id = "items";
 		ul.appendChild(li);
+}
+test();
