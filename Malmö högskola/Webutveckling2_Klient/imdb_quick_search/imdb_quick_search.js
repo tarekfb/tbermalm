@@ -41,7 +41,7 @@ function addListItem(string, imdbID) {
 
 	if (imdbID == null){
 		if (string == "Too many results."){
-			string = "DEt VAR EXAKT SÅ";
+			string += " Try to be more specific."
 		}
 		let p = document.createElement("p");
 		p.appendChild(document.createTextNode(string));
@@ -61,7 +61,6 @@ function addListItem(string, imdbID) {
 
 		let ul = document.createElement("ul");
 		ul.id = "items";
-		console.log(ul.id);
 		ul.appendChild(li);
 	}
 
