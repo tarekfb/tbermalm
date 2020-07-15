@@ -44,10 +44,12 @@ input{
 
 ul{ 
 	display: inline-block;
+	text-align: center;
+	margin-left: 0px;
+	margin-right: 0px;
 }
 
 li{
-	width: 100%;
 	text-align: center;
     vertical-align: middle;
     transform: translateZ(0);
