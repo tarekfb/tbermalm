@@ -41,9 +41,7 @@ function apiHandler(title) {
 
 function addListItem(string, imdbID) {
 	let containerDiv = document.getElementById("result");
-	while (containerDiv.firstChild != null) {
-		containerDiv.removeChild(containerDiv.firstChild);
-	}
+	containerDiv.querySelectorAll('*').forEach(n => n.remove());
 
 	if (imdbID == null){
 		if (string == "Too many results."){
