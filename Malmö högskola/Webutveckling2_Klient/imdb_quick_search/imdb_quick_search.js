@@ -111,3 +111,4 @@ function sortListByRating(resultList) {
 }
 
 document.getElementById('text-box').scrollIntoView();
+console.log(document.getElementById('text-box'));
