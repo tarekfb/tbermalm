@@ -41,7 +41,7 @@ function apiHandler(title) {
 
 function addListItem(string, imdbID) {
 	let containerDiv = document.getElementById("result");
-	while (node.firstChild) {
+	while (containerDiv.firstChild) {
 		containerDiv.removeChild(containerDiv.firstChild);
 	}
 
