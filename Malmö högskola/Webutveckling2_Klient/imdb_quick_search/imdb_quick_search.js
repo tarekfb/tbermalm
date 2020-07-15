@@ -102,6 +102,12 @@ function sortListByRating(resultList) {
 			let result = JSON.parse(this.responseText);
 			let imdbRating = parseInt(result.imdbRating);
 			console.log("ImdbRating is: " + imdbRating);
+
+			result.Search.forEach(function(entry) {
+				let testingType = result.imdbRating;
+				console.log(typeOf(testingType));
+			});
+
 		});
 		omdbAPI.open("get", omdbURL, true);
 		omdbAPI.send();
