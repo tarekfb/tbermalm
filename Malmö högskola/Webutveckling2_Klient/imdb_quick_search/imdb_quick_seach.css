@@ -38,14 +38,12 @@ input{
   	background: #f1f1f1;
 }
 
-ul{ 
-	display: inline-block;
+#result{
+	font-size: 20px;
 }
 
-a{
-	text-decoration: none;
-	color: inherit;
-	outline: none;
+ul{ 
+	display: inline-block;
 }
 
 li{
@@ -56,13 +54,18 @@ li{
     transition-duration: 0.3s;
     transition-property: transform;
     cursor: pointer;
-    font-size: 20px;
 }
 
 li:hover,
 li:focus,
 li:active {
 	transform: scale(1.1);
+}
+
+a{
+	text-decoration: none;
+	color: inherit;
+	outline: none;
 }
 
 @media screen and (max-width: 1300px) {
