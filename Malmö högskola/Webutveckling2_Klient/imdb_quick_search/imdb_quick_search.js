@@ -41,6 +41,9 @@ function apiHandler(title) {
 
 function addListItem(string, imdbID) {
 	if (imdbID == null){
+		if (string == "Too many results."){
+			string = "DEt VAR EXAKT SÅ";
+		}
 		let p = document.createElement("p");
 		p.appendChild(document.createTextNode(string));
 
@@ -60,6 +63,7 @@ function addListItem(string, imdbID) {
 		let ul = document.getElementById("items");
 		ul.appendChild(li);
 	}
+
 }
 
 function removeallChildNodes(parent) {
