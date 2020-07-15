@@ -3,6 +3,9 @@
 
 let form = document.getElementById("search-form");
 form.addEventListener("submit", function(event) {
+	let containerDiv = document.getElementById("result");
+	containerDiv.querySelectorAll('*').forEach(n => n.remove());
+	
 	let target = event.target || event.srcElement;
 	
 	let queryText = form.elements.query.value;
@@ -36,9 +39,6 @@ function apiHandler(title) {
 }
 
 function addListItem(string, imdbID) {
-	let containerDiv = document.getElementById("result");
-	containerDiv.querySelectorAll('*').forEach(n => n.remove());
-
 	if (imdbID == null){
 		if (string == "Too many results."){
 			string += " Try to be more specific."
@@ -50,6 +50,7 @@ function addListItem(string, imdbID) {
 
 		let containerDiv = document.getElementById("result")
 		containerDiv.appendChild(p);
+
 	} else if (imdbID != null){
 	    let a = document.createElement('a');  
 	    let link = document.createTextNode(string);
@@ -70,19 +71,6 @@ function addListItem(string, imdbID) {
 	}
 
 }
-
-function rearrangeElementsForResponsiveDesign() {
-
-	/*var h = parseInt(window.innerHeight);
-	var w = parseInt(window.innerWidth);
-
-    if(w < 900 && h < 1300) {
-        console.log(h, w);
-        let referenceNode = document.getElementById("title");
-		let targetNode = document.getElementById("logo");
-		referenceNode.parentNode.insertBefore(targetNode, referenceNode.nextSibling);
-    }*/
-} //dont need this function anymore, but leaving up as it was educational
 
 rearrangeElementsForResponsiveDesign();
 
