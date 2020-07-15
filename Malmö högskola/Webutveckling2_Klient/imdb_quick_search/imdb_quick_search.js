@@ -100,6 +100,3 @@ function sortListByRating(resultList) {
 	});
 	
 }
-
-document.getElementById('text-box').scrollIntoView();
-document.getElementById('text-box').focus();
