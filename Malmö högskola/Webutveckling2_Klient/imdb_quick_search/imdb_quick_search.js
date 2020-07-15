@@ -109,3 +109,5 @@ function sortListByRating(resultList) {
 	});
 	
 }
+
+document.getElementById('text-box').scrollIntoView();
