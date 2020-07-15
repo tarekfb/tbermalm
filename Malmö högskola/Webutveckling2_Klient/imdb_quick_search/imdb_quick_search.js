@@ -65,7 +65,9 @@ function addListItem(string, imdbID) {
 		let li = document.createElement("li");
 		li.appendChild(a);
 
-		let ul = document.getElementById("items");
+		let ul = document.create("ul");
+		ul.id = "items";
+		console.log(ul.id);
 		ul.appendChild(li);
 	}
 
