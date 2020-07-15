@@ -3,6 +3,7 @@
 
 let form = document.getElementById("search-form");
 form.addEventListener("submit", function(event) {
+	//clear containerDiv so previous results dont stick around
 	let containerDiv = document.getElementById("result");
 	containerDiv.querySelectorAll('*').forEach(n => n.remove());
 
@@ -16,29 +17,35 @@ form.addEventListener("submit", function(event) {
 });
 
 function apiHandler(title) {
+	//define api request variables
 	var omdbAPI = new XMLHttpRequest();
 	var omdbURL = "https://www.omdbapi.com/?&apikey=5e65d4a0&s=" + title + "&type=movie";
 
+	//adding listener to request
 	omdbAPI.addEventListener("load", function() {
 	    let result = JSON.parse(this.responseText);
 
 	    if (result.Response == "False"){
+	    	//in this case something went wrong with the search, details are logged through result.Error
 	    	addListItem(result.Error, null);
 	    } else if (result.Response == "True") {
+	    	//in this case the search came through, and we display Title, year, imdbrating
+	    	//also wrap it in a link to IMDB page
 	    	result.Search.forEach(function(entry) {
   				addListItem(entry.Title + " (" + String(entry.Year) + ")" + ", " + entry.imdbRating, entry.imdbID);
-  				addListItem(entry.Title)
 			});
-
+	    	//currently does nothing, becuase function isnt fleshed out
 			sortListByRating(result);
 	    }
 	});
 
+	//executing api request
 	omdbAPI.open("get", omdbURL, true);
 	omdbAPI.send();
 }
 
 function addListItem(string, imdbID) {
+	//just generating nodes as neccessary, to display results
 	if (imdbID == null){
 		if (string == "Too many results."){
 			string += " Try to be more specific."
