@@ -33,7 +33,7 @@ function apiHandler(title) {
 	    	//also wrap it in a link to IMDB page
 	    	result.Search.forEach(function(entry) {
   				addListItem(entry.Title + " (" + String(entry.Year) + ")" + ", " + String(entry.imdbRating), entry.imdbID);
-  				console.log(String(entry.imdbRating) + String(result.imdbRating) + "THIS IS RATING");
+  				console.log(String(entry.imdbRating) + String(result.imdbRating) + "THIS IS RATING" + " " + entry.Year);
 			});
 	    	//currently does nothing, becuase function isnt fleshed out
 			sortListByRating(result);
