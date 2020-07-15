@@ -26,7 +26,8 @@ function apiHandler(title) {
 	    	addListItem(result.Error, null);
 	    } else if (result.Response == "True") {
 	    	result.Search.forEach(function(entry) {
-  				addListItem(entry.Title + " (" + String(entry.Year) + ")", entry.imdbID + ", " + entry.imdbRating);
+  				addListItem(entry.Title + " (" + String(entry.Year) + ")" + ", " + entry.imdbRating, entry.imdbID);
+  				addListItem(entry.Title)
 			});
 
 			sortListByRating(result);
