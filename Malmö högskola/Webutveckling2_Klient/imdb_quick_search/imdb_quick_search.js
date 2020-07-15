@@ -65,11 +65,8 @@ function addListItem(string, imdbID) {
 		ul.id = "items";
 		ul.appendChild(li);
 
-		console.log(a);
-		console.log(link);
-		console.log(url);
-		console.log(li);
-		console.log(ul);
+		let containerDiv = document.getElementById("result");
+		containerDiv.appendChild(ul);
 	}
 
 }
@@ -120,14 +117,3 @@ function sortListByRating(resultList) {
 
 document.getElementById('text-box').scrollIntoView();
 document.getElementById('text-box').focus();
-
-
-function test() {
-	let li = document.createElement("li");
-		li.appendChild(createTextNode"123test");
-
-		let ul = document.createElement("ul");
-		ul.id = "items";
-		ul.appendChild(li);
-}
-test();
