@@ -54,6 +54,7 @@ li{
     transition-duration: 0.3s;
     transition-property: transform;
     cursor: pointer;
+    list-style: disc;
 }
 
 li:hover,
