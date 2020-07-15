@@ -32,8 +32,8 @@ function apiHandler(title) {
 	    	//in this case the search came through, and we display Title, year, imdbrating
 	    	//also wrap it in a link to IMDB page
 	    	result.Search.forEach(function(entry) {
-  				addListItem(entry.Title + " (" + String(entry.Year) + ")" + ", " + String(entry.imdbRating), entry.imdbID);
-  				console.log(String(entry.imdbRating) + String(result.imdbRating) + "THIS IS RATING" + " " + entry.Year);
+  				addListItem(entry.Title + " (" + String(entry.Year) + ")" + ", " + parseInt(entry.imdbRating), entry.imdbID);
+  				console.log(parseInt(entry.imdbRating) + String(result.imdbRating) + "THIS IS RATING" + " " + entry.Year);
 			});
 	    	//currently does nothing, becuase function isnt fleshed out
 			sortListByRating(result);
