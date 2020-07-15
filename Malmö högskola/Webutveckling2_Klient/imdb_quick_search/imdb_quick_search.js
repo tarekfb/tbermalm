@@ -42,6 +42,8 @@ function addListItem(string, imdbID) {
 	if (imdbID == null){
 		if (string == "Too many results."){
 			string += " Try to be more specific."
+		} else if (string == "Movie not found!"){
+			string += " Did you misspell something?";
 		}
 		let p = document.createElement("p");
 		p.appendChild(document.createTextNode(string));
