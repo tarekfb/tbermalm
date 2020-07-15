@@ -64,6 +64,12 @@ function addListItem(string, imdbID) {
 		let ul = document.createElement("ul");
 		ul.id = "items";
 		ul.appendChild(li);
+
+		console.log(a);
+		console.log(link);
+		console.log(url);
+		console.log(li);
+		console.log(ul);
 	}
 
 }
