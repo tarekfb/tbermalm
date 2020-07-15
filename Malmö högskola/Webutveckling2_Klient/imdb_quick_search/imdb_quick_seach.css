@@ -43,7 +43,7 @@ input{
 }
 
 ul{ 
-	display: inline-block;
+	display: block;
 }
 
 li{
@@ -55,7 +55,6 @@ li{
     transition-property: transform;
     cursor: pointer;
     list-style: disc;
-    display: inline-block;
 }
 
 li:hover,
