@@ -51,7 +51,7 @@ function addListItem(string, imdbID) {
 		}
 		let p = document.createElement("p");
 		p.appendChild(document.createTextNode(string));
-		console.log(containerDiv + "ta bort denna");
+
 		let containerDiv = document.getElementById("result")
 		containerDiv.appendChild(p);
 	} else if (imdbID != null){
