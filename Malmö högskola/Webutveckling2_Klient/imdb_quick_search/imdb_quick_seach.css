@@ -43,7 +43,7 @@ input{
 }
 
 ul{ 
-	display: block;
+	display: inline-block;
 }
 
 li{
