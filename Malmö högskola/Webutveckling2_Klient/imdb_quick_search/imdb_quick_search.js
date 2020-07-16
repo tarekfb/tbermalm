@@ -100,18 +100,24 @@ function displayResult(result) {
 }
 
 function getImdbRating(imdbID) {
+	let imdbRating;
 	let omdbAPI = new XMLHttpRequest();
 	let omdbURL = "https://www.omdbapi.com/?&apikey=5e65d4a0&s=&i=" + imdbID;
 
 	omdbAPI.addEventListener("load", function() {
 		let result = JSON.parse(this.responseText);
-		let imdbRating = parseInt(result.imdbRating);
+		imdbRating = parseFloat(result.imdbRating);
 		console.log("ImdbRating is: " + imdbRating);
+
+
+
 	});
 	omdbAPI.open("get", omdbURL, true);
 	omdbAPI.send();
 }
-
+function testFunction(imdbRating) {
+	console.log(imdbRating);
+}
 
 //what i want to do is call this function from the main flow handler
 //then retur the IMDBRATING
