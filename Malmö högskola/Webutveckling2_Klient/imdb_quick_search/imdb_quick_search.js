@@ -177,6 +177,6 @@ function getImdbRating(imdbID) {
 	//Dont forget to change the string in addListItem(), i.e change it to call this method
 	//and implement return command here
 
-function testFunctionargument() {
+function testFunction() {
 	console.log("HALLÅPROMISE");
 }
