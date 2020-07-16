@@ -59,20 +59,7 @@ function displayResult(result) {
 		let ul = document.createElement("ul");
 		ul.id = "items";
 		/*ul.style.listStyle = "disc"; //for some reason css doesnt do the job
-		console.log(ul.style.listStyle);
-		console.log(result.Search[1].imdbrating);
-	console.log(result.Search[1].imdbRating);
-	console.log(result.Search[1].Imdbrating);
-	console.log(result.Search[1].ImdbRating);
-	console.log(result.Search[1].properties);
-	console.log(result.Search[1].Year);
-		console.log(result.properties);
-//console.log(result.Search[1].Ratings.Source.imdbRating.value);
-		let testRating = result.Search[1].imdbRating;
-		console.log(typeof(testRating));
-
-//console.log(result.Search[1].Ratings.imdbRating);
-*/
+		console.log(ul.style.listStyle);*/
 
 		/*
 		{"Title":"Test","Year":"2013","Rated":"TV-MA",
@@ -86,7 +73,8 @@ function displayResult(result) {
 		{"Source":"Metacritic","Value":"70/100"}],"Metascore":"70",
 		"imdbRating":"6.5","imdbVotes":"1,407","imdbID":"tt2407380",
 		"Type":"movie","DVD":"17 Jun 2014","BoxOffice":"N/A","Production":
-		"Variance Films","Website":"N/A","Response":"True"}*/
+		"Variance Films","Website":"N/A","Response":"True"}
+		*/
 
 		let resultContainer = document.getElementById("result");
 		resultContainer.appendChild(ul);
@@ -103,7 +91,6 @@ function displayResult(result) {
 
 			let li = document.createElement("li");
 			li.appendChild(a);
-
 			ul.appendChild(li);
 
 		});
@@ -114,7 +101,7 @@ function displayResult(result) {
 function getImdbRating(imdbID) {
 	let omdbAPI = new XMLHttpRequest();
 	let omdbURL = "https://www.omdbapi.com/?&apikey=5e65d4a0&s=&i=" + imdbID;
-	
+
 	omdbAPI.addEventListener("load", function() {
 		let result = JSON.parse(this.responseText);
 		let imdbRating = parseInt(result.imdbRating);
