@@ -165,5 +165,13 @@ function getImdbRating(imdbID) {
 	omdbAPI.open("get", omdbURL, true);
 	omdbAPI.send();
 
+//what i want to do is call this function from the main flow handler
+//then retur the IMDBRATING
+	//but the imdbrating is only fetched inside the event listener
+	//which presumably sends after the .send() function.
+	//What this means is that i have to save it somewhere, and access it after the send() function is executed?
+
+	//Dont forget to change the string in addListItem(), i.e change it to call this method
+	//and implement return command here
 
 }
