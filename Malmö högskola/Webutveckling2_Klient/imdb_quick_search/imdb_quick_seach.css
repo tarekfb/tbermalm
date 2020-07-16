@@ -43,14 +43,12 @@ input{
 }
 
 ul{ 
-	display: inline-block;
-	text-align: center;
 	margin-left: 0px;
 	margin-right: 0px;
 }
 
 li{
-	text-align: center;
+	text-align: left;
     vertical-align: middle;
     transform: translateZ(0);
     box-shadow: 0 0 1px rgba(0, 0, 0, 0);
@@ -58,6 +56,8 @@ li{
     transition-property: transform;
     cursor: pointer;
     list-style: disc;
+    display: inline-block;
+
 }
 
 li:hover,
