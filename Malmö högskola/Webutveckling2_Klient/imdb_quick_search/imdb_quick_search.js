@@ -122,7 +122,8 @@ function getImdbRating(imdbID) {
 		testPromise.then((testVar) => {
 			return testVar;
 		});
-	consone.log(testFunction());	
+	}
+	console.log(testFunction());	
 	
 }
 
