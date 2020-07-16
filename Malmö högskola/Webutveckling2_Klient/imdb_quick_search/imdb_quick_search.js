@@ -71,7 +71,7 @@ function displayResult(result) {
 		let testRating = result.Search[1].imdbRating;
 		console.log(typeOf(testRating));
 
-console.log(result.Search[1].Ratings.imdbRating);
+//console.log(result.Search[1].Ratings.imdbRating);
 
 		/*
 		{"Title":"Test","Year":"2013","Rated":"TV-MA",
