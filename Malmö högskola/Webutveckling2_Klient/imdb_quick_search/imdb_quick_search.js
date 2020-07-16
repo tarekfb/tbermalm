@@ -110,7 +110,7 @@ function getImdbRating(imdbID) {
 			omdbAPI.addEventListener("load", function() {
 				let result = JSON.parse(this.responseText);
 				imdbRating = parseFloat(result.imdbRating);
-				console.log("ImdbRating is: " + imdbRating);
+				//console.log("ImdbRating is: " + imdbRating);
 				resolve(imdbRating);
 			});
 
@@ -121,14 +121,12 @@ function getImdbRating(imdbID) {
 
 	async function f1() {
 	  let rating = await apiRequestPromise();
-	  console.log(rating + "async function");
+	  //console.log(rating + " async function");
 	  return rating;
 	}
 
-	console.log(f1());
 	return f1();
-	
-	
+	consone.log("efter f1 call");	
 }
 
 /*
