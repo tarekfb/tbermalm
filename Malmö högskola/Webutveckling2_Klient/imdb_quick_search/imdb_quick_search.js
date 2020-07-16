@@ -108,9 +108,6 @@ function getImdbRating(imdbID) {
 		let result = JSON.parse(this.responseText);
 		imdbRating = parseFloat(result.imdbRating);
 		console.log("ImdbRating is: " + imdbRating);
-
-		testFunction(imdbRating).then(otherFunction(testFunction(imdbRating)));
-
 	});
 	omdbAPI.open("get", omdbURL, true);
 	omdbAPI.send();
