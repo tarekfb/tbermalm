@@ -99,8 +99,13 @@ function displayResult(result) {
 
 }
 
-function getImdbRating(imdbID) {
-	let imdbRating;
+async function getImdbRating(imdbID) {
+    let result = await nestedFunction(imdbID);
+    console.log(result);
+    return result;
+
+
+	/*let imdbRating;
 	
 	let apiRequestPromise = new Promise((resolve, reject) => {
 		let omdbAPI = new XMLHttpRequest();
@@ -121,9 +126,26 @@ function getImdbRating(imdbID) {
 
 	apiRequestPromise.then((imdbRating) => {
   		console.log(imdbRating + "from promise .then");
-	});
+	});*/
 
 
+}
+function nestedFunction(imdbRating) {
+
+		let imdbRating;
+	
+	
+		let omdbAPI = new XMLHttpRequest();
+		let omdbURL = "https://www.omdbapi.com/?&apikey=5e65d4a0&s=&i=" + imdbID;
+
+		omdbAPI.addEventListener("load", function() {
+			let result = JSON.parse(this.responseText);
+			imdbRating = parseFloat(result.imdbRating);
+		});
+
+		omdbAPI.open("get", omdbURL, true);
+		omdbAPI.send();
+	
 }
 
 //what i want to do is call this function from the main flow handler
