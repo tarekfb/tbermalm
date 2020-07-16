@@ -56,7 +56,7 @@ li{
     transition-duration: 0.3s;
     transition-property: transform;
     cursor: pointer;
-    list-style: disc;
+    list-style-type: disc;
     display: block;
 }
 
