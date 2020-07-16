@@ -43,7 +43,7 @@ function addListItem(result) {
 	
 	
 	let p = document.createElement("p");
-	p.appendChild(document.createTextNode(string));
+	p.appendChild(document.createTextNode(resultString));
 
 	let containerDiv = document.getElementById("result")
 	containerDiv.appendChild(p);
