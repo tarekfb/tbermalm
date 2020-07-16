@@ -23,8 +23,11 @@ function apiHandler(title) {
 
 	//adding listener to request
 	omdbAPI.addEventListener("load", function() {
+		//saving result
 	    let result = JSON.parse(this.responseText);
-	    addListItem(result);
+
+	    //passing result to function that displays result
+	    displayResult(result);
 	});
 
 	//executing api request
@@ -32,7 +35,9 @@ function apiHandler(title) {
 	omdbAPI.send();
 }
 
-function addListItem(result) {
+function displayResult(result) {
+	//in this case something went wrong with the search
+	//this is communicated through div outputting string result.Error
 	if (result.Response == "False"){
 		let resultString = String(result.Error);
 
@@ -48,14 +53,18 @@ function addListItem(result) {
 		let resultContainer = document.getElementById("result")
 		resultContainer.appendChild(p);
 	} else if (result.Response == "True"){
+		//in this case the search came through
+		//we display result properties in list items
+	    //also wrap it in a link to IMDB page
 		let ul = document.createElement("ul");
 		ul.id = "items";
 
 		let resultContainer = document.getElementById("result");
 		resultContainer.appendChild(ul);
 
+		//this code needs to be executed for every item in array: Result.Search
 		result.Search.forEach(function(entry) {
-			let entryString = entry.Title + " (" + String(entry.Year) + ")";
+			let entryString = entry.Title + " (" + String(entry.Year) + ")" + ", " + String(entry.imdbRating);
 	  		let a = document.createElement('a');  
 		    let link = document.createTextNode(entryString); //string goes in ()
 		    a.appendChild(link);
