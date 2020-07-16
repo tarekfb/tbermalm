@@ -99,7 +99,7 @@ function displayResult(result) {
 
 }
 
-function getImdbRating(imdbID) {
+async function getImdbRating(imdbID) {
 	let imdbRating;
 	
 
@@ -112,7 +112,7 @@ function getImdbRating(imdbID) {
     return result;
 }
 
-
+/*
 	let omdbAPI = new XMLHttpRequest();
 	let omdbURL = "https://www.omdbapi.com/?&apikey=5e65d4a0&s=&i=" + imdbID;
 
@@ -125,7 +125,8 @@ function getImdbRating(imdbID) {
 	omdbAPI.open("get", omdbURL, true);
 	omdbAPI.send();
 
-}
+}*/
+//throw this stuff away, right? ^^^^^^
 
 /*
 	let imdbRating;
