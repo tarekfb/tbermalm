@@ -115,7 +115,7 @@ function getImdbRating(imdbID) {
 	omdbAPI.send();
 
 	function testFunction() {
-		let testPromise = new Promise((resolve) => {
+		return new Promise((resolve) => {
 			let testVar = 1;
 			resolve(testVar);
 		});
