@@ -96,6 +96,7 @@ function displayResult(result) {
 
 		});
 	}
+	console.log(String(getImdbRating(10059518)));
 
 }
 
