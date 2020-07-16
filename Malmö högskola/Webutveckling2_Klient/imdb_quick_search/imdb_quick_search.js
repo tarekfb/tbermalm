@@ -32,7 +32,9 @@ function apiHandler(title) {
 	    	//in this case the search came through, and we display Title, year, imdbrating
 	    	//also wrap it in a link to IMDB page
 	    	result.Search.forEach(function(entry) {
-  				addListItem(entry.Title + " (" + String(entry.Year) + ")" + ", " + parseInt(entry.imdbRating), entry.imdbID);
+  				addListItem(
+  					entry.Title + " (" + String(entry.Year) + ")" + ", " + parseInt(entry.imdbRating) + "\n", entry.imdbID
+  				);
   				//trying to add imdbrating but failing for some reason
 			});
 	    	//currently does nothing, becuase function isnt fleshed out
