@@ -100,7 +100,7 @@ function displayResult(result) {
 
 			getImdbRating();
 
-			let entryString = entry.Title + " (" + String(entry.Year) + ")" + ", " + String(imdbRating);
+			let entryString = entry.Title + " (" + String(entry.Year) + ")" + ", " + String("x");
 	  		let a = document.createElement('a');  
 		    let link = document.createTextNode(entryString); //string goes in ()
 		    a.appendChild(link);
@@ -157,6 +157,7 @@ function getImdbRating(imdbID) {
 		let result = JSON.parse(this.responseText);
 		imdbRating = parseInt(result.imdbRating);
 		console.log("ImdbRating is: " + imdbRating);	
+		function_name(imdbRating);
 	});
 
 	omdbAPI.open("get", omdbURL, true);
