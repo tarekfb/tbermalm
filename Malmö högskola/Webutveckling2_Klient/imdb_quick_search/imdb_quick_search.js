@@ -96,7 +96,7 @@ function displayResult(result) {
 
 		});
 	}
-	console.log(String(getImdbRating(10059518)));
+	console.log(String(getImdbRating(10059518)) + "testfunktion helt ensam");
 
 }
 
