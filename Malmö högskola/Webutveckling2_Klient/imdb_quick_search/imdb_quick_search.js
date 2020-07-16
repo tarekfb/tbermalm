@@ -109,14 +109,19 @@ function getImdbRating(imdbID) {
 		imdbRating = parseFloat(result.imdbRating);
 		console.log("ImdbRating is: " + imdbRating);
 
-
+		testFunction(imdbRating).then(otherFunction(testFunction(imdbRating)));
 
 	});
 	omdbAPI.open("get", omdbURL, true);
 	omdbAPI.send();
 }
+
 function testFunction(imdbRating) {
 	console.log(imdbRating);
+	return imdbRating;
+}
+function otherFunction(argument) {
+	console.log("this doesnt work, right?");
 }
 
 //what i want to do is call this function from the main flow handler
