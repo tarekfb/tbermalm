@@ -60,11 +60,11 @@ function displayResult(result) {
 		ul.id = "items";
 		ul.style.listStyle = "disc"; //for some reason css doesnt do the job
 		console.log(ul.style.listStyle);
-		console.log(Result.Search[1].imdbrating);
-			console.log(Result.Search[1].imdbRating);
-					console.log(Result.Search[1].Imdbrating);
-							console.log(Result.Search[1].ImdbRating);
-									console.log(Result.Search[1].properties);
+		console.log(result.Search[1].imdbrating);
+			console.log(result.Search[1].imdbRating);
+					console.log(result.Search[1].Imdbrating);
+							console.log(result.Search[1].ImdbRating);
+									console.log(result.Search[1].properties);
 
 
 
