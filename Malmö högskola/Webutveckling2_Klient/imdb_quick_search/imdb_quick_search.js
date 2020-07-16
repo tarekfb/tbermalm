@@ -33,22 +33,49 @@ function apiHandler(title) {
 }
 
 function addListItem(result) {
-	let resultString = String(result.Error);
 	if (result.Response == "False"){
+		let resultString = String(result.Error);
+
 		if (resultString == "Too many results."){
 			resultString += " Try to be more specific."
 		} else if (resultString == "Movie not found!"){
 			resultString += " Did you misspell something?";
 		}
 	
-	
 	let p = document.createElement("p");
 	p.appendChild(document.createTextNode(resultString));
 
-	let containerDiv = document.getElementById("result")
-	containerDiv.appendChild(p);
+	let resultContainer = document.getElementById("result")
+	resultContainer.appendChild(p);
 
-	} else if (imdbID != null){
+	} else if (result.Response == "True"){
+	let ul = document.createElement("ul");
+	ul.id = "items";
+
+	let resultContainer = document.getElementById("result");
+	resultContainer.appendChild(ul);
+
+	result.Search.forEach(function(entry) {
+		let entryString = entry.Title + " (" + String(entry.Year) + ")";
+  		let a = document.createElement('a');  
+	    let link = document.createTextNode(); //string goes in ()
+	    a.appendChild(link);
+
+	    let url = "https://www.imdb.com/title/" + entry.imdbID + "/";
+	    a.href = url;
+
+		let li = document.createElement("li");
+		li.appendChild(a);
+
+		ul.appendChild(li);
+
+
+
+
+  			
+  		//trying to add imdbrating but failing for some reason
+	});
+
 	    let a = document.createElement('a');  
 	    let link = document.createTextNode(string);
 	    a.appendChild(link);
