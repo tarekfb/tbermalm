@@ -33,12 +33,12 @@ function apiHandler(title) {
 }
 
 function addListItem(result) {
-	console.log(result.Error == "Too many results.");
+	let resultString = String(result.Response);
 	if (result.Response == "False"){
-		if (result.Error == "Too many results."){
-			string += " Try to be more specific."
-		} else if (result.Error == "Movie not found!"){
-			string += " Did you misspell something?";
+		if (resultString == "Too many results."){
+			resultString += " Try to be more specific."
+		} else if (resultString == "Movie not found!"){
+			resultString += " Did you misspell something?";
 		}
 	
 	let p = document.createElement("p");
