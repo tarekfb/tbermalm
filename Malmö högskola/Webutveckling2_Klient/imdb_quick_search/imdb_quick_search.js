@@ -24,22 +24,7 @@ function apiHandler(title) {
 	//adding listener to request
 	omdbAPI.addEventListener("load", function() {
 	    let result = JSON.parse(this.responseText);
-
-	    if (result.Response == "False"){
-	    	//in this case something went wrong with the search, details are logged through result.Error
-	    	addListItem(result.Error, null);
-	    } else if (result.Response == "True") {
-	    	//in this case the search came through, and we display Title, year, imdbrating
-	    	//also wrap it in a link to IMDB page
-	    	result.Search.forEach(function(entry) {
-  				addListItem(
-  					entry.Title + " (" + String(entry.Year) + ")" + ", " + parseInt(entry.imdbRating) + "\n", entry.imdbID
-  				);
-  				//trying to add imdbrating but failing for some reason
-			});
-	    	//currently does nothing, becuase function isnt fleshed out
-			sortListByRating(result);
-	    }
+	    addListItem(result);
 	});
 
 	//executing api request
@@ -47,19 +32,20 @@ function apiHandler(title) {
 	omdbAPI.send();
 }
 
-function addListItem(string, imdbID) {
-	//just generating nodes as neccessary, to display results
-	if (imdbID == null){
-		if (string == "Too many results."){
+function addListItem(result) {
+	console.log(result.Error == "Too many results.");
+	if (result.Response == "False"){
+		if (result.Error == "Too many results."){
 			string += " Try to be more specific."
-		} else if (string == "Movie not found!"){
+		} else if (result.Error == "Movie not found!"){
 			string += " Did you misspell something?";
 		}
-		let p = document.createElement("p");
-		p.appendChild(document.createTextNode(string));
+	
+	let p = document.createElement("p");
+	p.appendChild(document.createTextNode(string));
 
-		let containerDiv = document.getElementById("result")
-		containerDiv.appendChild(p);
+	let containerDiv = document.getElementById("result")
+	containerDiv.appendChild(p);
 
 	} else if (imdbID != null){
 	    let a = document.createElement('a');  

@@ -37,7 +37,7 @@ function addListItem(result) {
 	if (result.Response == "False"){
 		if (result.Error == "Too many results."){
 			string += " Try to be more specific."
-		} else if (string == "Movie not found!"){
+		} else if (result.Error == "Movie not found!"){
 			string += " Did you misspell something?";
 		}
 	
