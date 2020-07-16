@@ -117,7 +117,7 @@ function getImdbRating(imdbID) {
 
 		omdbAPI.open("get", omdbURL, true);
 		omdbAPI.send();
-	}
+	}) 
 
 	apiRequestPromise.then((imdbRating) => {
   		console.log(imdbRating + "from promise .then");
