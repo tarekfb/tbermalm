@@ -99,7 +99,7 @@ function displayResult(result) {
 
 }
 
-async function getImdbRating(imdbID) {
+function getImdbRating(imdbID) {
 	let imdbRating;
 	let omdbAPI = new XMLHttpRequest();
 	let omdbURL = "https://www.omdbapi.com/?&apikey=5e65d4a0&s=&i=" + imdbID;
