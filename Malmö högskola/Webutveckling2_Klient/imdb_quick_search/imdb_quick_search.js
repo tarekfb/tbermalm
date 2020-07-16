@@ -67,7 +67,23 @@ function displayResult(result) {
 	console.log(result.Search[1].properties);
 	console.log(result.Search[1].Year);
 		console.log(result.properties);
+console.log(result.Search[1].Ratings.Source.imdbRating);
 
+console.log(result.Search[1].Ratings.imdbRating);
+
+		/*
+		{"Title":"Test","Year":"2013","Rated":"TV-MA",
+		"Released":"04 Apr 2014","Runtime":"89 min",
+		"Genre":"Drama","Director":"Chris Mason Johnson",
+		"Writer":"Chris Mason Johnson (screenplay)",
+		"Actors":"Scott Marlowe, Matthew Risch, Evan Boomer, Kevin Clarke",
+		"Plot":"In 1985, a gay dance understudy hopes for his on-stage chance while fearing the growing AIDS epidemic.","Language":"English, Portuguese, French","Country":"USA","Awards":"3 wins & 3 nominations.","Poster":"https://m.media-amazon.com/images/M/MV5BMTQwMDU5NDkxNF5BMl5BanBnXkFtZTcwMjk5OTk4OQ@@._V1_SX300.jpg",
+		"Ratings":[{"Source":"Internet Movie Database","Value":"6.5/10"},
+		{"Source":"Rotten Tomatoes","Value":"81%"},
+		{"Source":"Metacritic","Value":"70/100"}],"Metascore":"70",
+		"imdbRating":"6.5","imdbVotes":"1,407","imdbID":"tt2407380",
+		"Type":"movie","DVD":"17 Jun 2014","BoxOffice":"N/A","Production":
+		"Variance Films","Website":"N/A","Response":"True"}*/
 
 
 
