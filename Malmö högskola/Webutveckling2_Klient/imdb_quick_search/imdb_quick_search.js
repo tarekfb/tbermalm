@@ -37,7 +37,7 @@ function apiHandler(title) {
   				);
   				//trying to add imdbrating but failing for some reason
 			});
-	    	//currently does nothing, becuase function isnt fleshed out
+	    	//currently does nothing, becuase function isn't fleshed out
 			sortListByRating(result);
 	    }
 	});
