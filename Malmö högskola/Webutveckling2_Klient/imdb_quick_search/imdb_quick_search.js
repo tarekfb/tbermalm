@@ -42,56 +42,32 @@ function addListItem(result) {
 			resultString += " Did you misspell something?";
 		}
 	
-	let p = document.createElement("p");
-	p.appendChild(document.createTextNode(resultString));
+		let p = document.createElement("p");
+		p.appendChild(document.createTextNode(resultString));
 
-	let resultContainer = document.getElementById("result")
-	resultContainer.appendChild(p);
-
+		let resultContainer = document.getElementById("result")
+		resultContainer.appendChild(p);
 	} else if (result.Response == "True"){
-	let ul = document.createElement("ul");
-	ul.id = "items";
-
-	let resultContainer = document.getElementById("result");
-	resultContainer.appendChild(ul);
-
-	result.Search.forEach(function(entry) {
-		let entryString = entry.Title + " (" + String(entry.Year) + ")";
-  		let a = document.createElement('a');  
-	    let link = document.createTextNode(); //string goes in ()
-	    a.appendChild(link);
-
-	    let url = "https://www.imdb.com/title/" + entry.imdbID + "/";
-	    a.href = url;
-
-		let li = document.createElement("li");
-		li.appendChild(a);
-
-		ul.appendChild(li);
-
-
-
-
-  			
-  		//trying to add imdbrating but failing for some reason
-	});
-
-	    let a = document.createElement('a');  
-	    let link = document.createTextNode(string);
-	    a.appendChild(link);
-
-	    let url = "https://www.imdb.com/title/" + imdbID + "/";
-	    a.href = url;
-
-		let li = document.createElement("li");
-		li.appendChild(a);
-
 		let ul = document.createElement("ul");
 		ul.id = "items";
-		ul.appendChild(li);
 
-		let containerDiv = document.getElementById("result");
-		containerDiv.appendChild(ul);
+		let resultContainer = document.getElementById("result");
+		resultContainer.appendChild(ul);
+
+		result.Search.forEach(function(entry) {
+			let entryString = entry.Title + " (" + String(entry.Year) + ")";
+	  		let a = document.createElement('a');  
+		    let link = document.createTextNode(); //string goes in ()
+		    a.appendChild(link);
+
+		    let url = "https://www.imdb.com/title/" + entry.imdbID + "/";
+		    a.href = url;
+
+			let li = document.createElement("li");
+			li.appendChild(a);
+
+			ul.appendChild(li);
+		});
 	}
 
 }
