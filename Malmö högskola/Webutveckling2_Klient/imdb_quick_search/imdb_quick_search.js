@@ -87,18 +87,14 @@ function displayResult(result) {
 		"Type":"movie","DVD":"17 Jun 2014","BoxOffice":"N/A","Production":
 		"Variance Films","Website":"N/A","Response":"True"}*/
 
-
-
-
-
-
 		let resultContainer = document.getElementById("result");
 		resultContainer.appendChild(ul);
 
 		//this code needs to be executed for every item in array: Result.Search
 		result.Search.forEach(function(entry) {
 
-			sortListByRating(result);
+			getImdbRating(entry.imdbID);
+
 
 			let entryString = entry.Title + " (" + String(entry.Year) + ")" + ", " + String(getImdbRating(result.imdbRating));
 	  		let a = document.createElement('a');  
@@ -116,6 +112,36 @@ function displayResult(result) {
 		});
 	}
 
+}
+
+function getImdbRating(imdbID) {
+	let omdbAPI = new XMLHttpRequest();
+	let omdbURL = "https://www.omdbapi.com/?&apikey=5e65d4a0&s=&i=" + imdbID;
+	console.log("imdbID is: " + imdbID);
+
+	omdbAPI.addEventListener("load", function() {
+		let result = JSON.parse(this.responseText);
+		let imdbRating = parseInt(result.imdbRating);
+		console.log("ImdbRating is: " + imdbRating);
+	});
+	omdbAPI.open("get", omdbURL, true);
+	omdbAPI.send();
+
+	return imdbRating;
+	//this will return 0, because the line executes BEFORE the eventlistener executes
+
+}
+//what i want to do is call this function from the main flow handler
+//then retur the IMDBRATING
+	//but the imdbrating is only fetched inside the event listener
+	//which presumably sends after the .send() function.
+	//What this means is that i have to save it somewhere, and access it after the send() function is executed?
+
+	//Dont forget to change the string in addListItem(), i.e change it to call this method
+	//and implement return command here
+
+function testFunction() {
+	console.log("HALLÅPROMISE");
 }
 
 function sortListByRating(resultList) {
@@ -146,36 +172,4 @@ function sortListByRating(resultList) {
 		omdbAPI.send();
 	});
 	
-}
-
-function getImdbRating(imdbID) {
-	let imdbRating = 0;
-	let omdbAPI = new XMLHttpRequest();
-	let omdbURL = "https://www.omdbapi.com/?&apikey=5e65d4a0&s=&i=" + imdbID;
-
-	omdbAPI.addEventListener("load", function() {
-		let result = JSON.parse(this.responseText);
-		imdbRating = parseInt(result.imdbRating);
-		console.log("ImdbRating is: " + imdbRating);
-		console.log("result is: " + result);	
-	}.then(testFunction()));
-
-	omdbAPI.open("get", omdbURL, true);
-	omdbAPI.send();
-
-	return imdbRating;
-	//this will return 0, because the line executes BEFORE the eventlistener executes
-
-}
-//what i want to do is call this function from the main flow handler
-//then retur the IMDBRATING
-	//but the imdbrating is only fetched inside the event listener
-	//which presumably sends after the .send() function.
-	//What this means is that i have to save it somewhere, and access it after the send() function is executed?
-
-	//Dont forget to change the string in addListItem(), i.e change it to call this method
-	//and implement return command here
-
-function testFunction() {
-	console.log("HALLÅPROMISE");
 }
