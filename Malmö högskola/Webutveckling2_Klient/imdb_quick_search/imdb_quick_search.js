@@ -99,13 +99,36 @@ function displayResult(result) {
 
 }
 
-async function getImdbRating(imdbID) {
-    let result = await nestedFunction(imdbID);
-    console.log(result);
+function getImdbRating(imdbID) {
+	let imdbRating;
+	
+
+    let result = await function(){
+    	setTimeout( function() {
+    		imdbRating = 5.33;
+    		return imdbRating;
+  		}, 250) 
+    };
     return result;
+}
 
 
-	/*let imdbRating;
+	let omdbAPI = new XMLHttpRequest();
+	let omdbURL = "https://www.omdbapi.com/?&apikey=5e65d4a0&s=&i=" + imdbID;
+
+	omdbAPI.addEventListener("load", function() {
+		let result = JSON.parse(this.responseText);
+		imdbRating = parseFloat(result.imdbRating);
+		console.log("ImdbRating is: " + imdbRating);
+	});
+
+	omdbAPI.open("get", omdbURL, true);
+	omdbAPI.send();
+
+}
+
+/*
+	let imdbRating;
 	
 	let apiRequestPromise = new Promise((resolve, reject) => {
 		let omdbAPI = new XMLHttpRequest();
@@ -126,27 +149,8 @@ async function getImdbRating(imdbID) {
 
 	apiRequestPromise.then((imdbRating) => {
   		console.log(imdbRating + "from promise .then");
-	});*/
-
-
-}
-function nestedFunction(imdbRating) {
-
-		let imdbRating;
-	
-	
-		let omdbAPI = new XMLHttpRequest();
-		let omdbURL = "https://www.omdbapi.com/?&apikey=5e65d4a0&s=&i=" + imdbID;
-
-		omdbAPI.addEventListener("load", function() {
-			let result = JSON.parse(this.responseText);
-			imdbRating = parseFloat(result.imdbRating);
-		});
-
-		omdbAPI.open("get", omdbURL, true);
-		omdbAPI.send();
-	
-}
+	});
+*/
 
 //what i want to do is call this function from the main flow handler
 //then retur the IMDBRATING
@@ -156,18 +160,3 @@ function nestedFunction(imdbRating) {
 
 	//Dont forget to change the string in addListItem(), i.e change it to call this method
 	//and implement return command here
-
-let myFirstPromise = new Promise((resolve, reject) => {
-  // We call resolve(...) when what we were doing asynchronously was successful, and reject(...) when it failed.
-  // In this example, we use setTimeout(...) to simulate async code. 
-  // In reality, you will probably be using something like XHR or an HTML5 API.
-  setTimeout( function() {
-    resolve("Success!")  // Yay! Everything went well!
-  }, 250) 
-}) 
-
-myFirstPromise.then((successMessage) => {
-  // successMessage is whatever we passed in the resolve(...) function above.
-  // It doesn't have to be a string, but if it is only a succeed message, it probably will be.
-  console.log("Yay! " + successMessage) 
-});
