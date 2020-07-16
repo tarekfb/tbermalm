@@ -82,9 +82,7 @@ function displayResult(result) {
 		//this code needs to be executed for every item in array: Result.Search
 		result.Search.forEach(function(entry) {
 
-			getImdbRating(entry.imdbRating);
-
-			let entryString = entry.Title + " (" + String(entry.Year) + ")" + ", " + String(getImdbRating(entry.imdbRating));
+			let entryString = entry.Title + " (" + String(entry.Year) + ")" + ", " + String(getImdbRating(entry.imdbID));
 	  		let a = document.createElement('a');  
 		    let link = document.createTextNode(entryString); //string goes in ()
 		    a.appendChild(link);
