@@ -66,6 +66,8 @@ function displayResult(result) {
 	console.log(result.Search[1].ImdbRating);
 	console.log(result.Search[1].properties);
 	console.log(result.Search[1].Year);
+		console.log(result.properties);
+
 
 
 
