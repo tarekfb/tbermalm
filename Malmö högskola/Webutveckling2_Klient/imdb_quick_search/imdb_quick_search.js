@@ -156,8 +156,8 @@ function getImdbRating(imdbID) {
 	omdbAPI.addEventListener("load", function() {
 		let result = JSON.parse(this.responseText);
 		imdbRating = parseInt(result.imdbRating);
-		console.log("ImdbRating is: " + imdbRating);
-		console.log(result);	
+		//console.log("ImdbRating is: " + imdbRating);
+		//console.log(result);	
 		//createAudioFileAsync(audioSettings).then(successCallback, failureCallback);
 	}.then(testFunction()));
 
@@ -177,6 +177,6 @@ function getImdbRating(imdbID) {
 	//Dont forget to change the string in addListItem(), i.e change it to call this method
 	//and implement return command here
 
-function testFunctionargument) {
+function testFunctionargument() {
 	console.log("HALLÅPROMISE");
 }
