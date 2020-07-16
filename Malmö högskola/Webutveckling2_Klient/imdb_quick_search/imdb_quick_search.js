@@ -156,9 +156,8 @@ function getImdbRating(imdbID) {
 	omdbAPI.addEventListener("load", function() {
 		let result = JSON.parse(this.responseText);
 		imdbRating = parseInt(result.imdbRating);
-		//console.log("ImdbRating is: " + imdbRating);
-		//console.log(result);	
-		//createAudioFileAsync(audioSettings).then(successCallback, failureCallback);
+		console.log("ImdbRating is: " + imdbRating);
+		console.log("result is: " + result);	
 	}.then(testFunction()));
 
 	omdbAPI.open("get", omdbURL, true);
