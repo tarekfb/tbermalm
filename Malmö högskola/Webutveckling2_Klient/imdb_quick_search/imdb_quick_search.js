@@ -98,7 +98,7 @@ function displayResult(result) {
 		//this code needs to be executed for every item in array: Result.Search
 		result.Search.forEach(function(entry) {
 
-			getImdbRating(result.imdbRating);
+			sortListByRating(result.Search);
 
 			let entryString = entry.Title + " (" + String(entry.Year) + ")" + ", " + String(getImdbRating(result.imdbRating));
 	  		let a = document.createElement('a');  
