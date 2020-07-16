@@ -98,7 +98,7 @@ function displayResult(result) {
 		//this code needs to be executed for every item in array: Result.Search
 		result.Search.forEach(function(entry) {
 
-
+			getImdbRating();
 
 			let entryString = entry.Title + " (" + String(entry.Year) + ")" + ", " + String(getImdbRating(entry.imdbID));
 	  		let a = document.createElement('a');  
@@ -149,22 +149,20 @@ function sortListByRating(resultList) {
 }
 
 function getImdbRating(imdbID) {
-	let imdbRating = 0;
+	//let imdbRating = 0;
 	let omdbAPI = new XMLHttpRequest();
 	let omdbURL = "https://www.omdbapi.com/?&apikey=5e65d4a0&s=&i=" + imdbID;
 
 	omdbAPI.addEventListener("load", function() {
 		let result = JSON.parse(this.responseText);
 		imdbRating = parseInt(result.imdbRating);
-		console.log("ImdbRating is: " + imdbRating);
+		console.log("ImdbRating is: " + imdbRating);		
 		
-		function returnImdbRating(imdbRating) {
-			return imdbRating;
-		}
 	});
 
 	omdbAPI.open("get", omdbURL, true);
 	omdbAPI.send();
 
-	return returnImdbRating();
+
 }
+let imdbRating = 0.5;
