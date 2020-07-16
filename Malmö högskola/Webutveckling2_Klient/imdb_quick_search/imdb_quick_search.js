@@ -103,21 +103,15 @@ async function getImdbRating(imdbID) {
 	let imdbRating;
 	let omdbAPI = new XMLHttpRequest();
 	let omdbURL = "https://www.omdbapi.com/?&apikey=5e65d4a0&s=&i=" + imdbID;
-	
 
-    let result = await function(){
-	    omdbAPI.addEventListener("load", function() {
-			let result = JSON.parse(this.responseText);
-			imdbRating = parseFloat(result.imdbRating);
-			console.log("ImdbRating is: " + imdbRating);
-			return imdbRating;
-		});
+	omdbAPI.addEventListener("load", function() {
+		let result = JSON.parse(this.responseText);
+		imdbRating = parseFloat(result.imdbRating);
+		console.log("ImdbRating is: " + imdbRating);
+	});
 
-		omdbAPI.open("get", omdbURL, true);
-		omdbAPI.send();
-		return imdbRating;
-    };
-    return result;
+	omdbAPI.open("get", omdbURL, true);
+	omdbAPI.send();
 }
 
 /*
@@ -134,7 +128,8 @@ async function getImdbRating(imdbID) {
 	omdbAPI.send();
 
 }*/
-//throw this stuff away, right? ^^^^^^
+//this is the original content
+
 
 /*
 	let imdbRating;
@@ -160,6 +155,7 @@ async function getImdbRating(imdbID) {
   		console.log(imdbRating + "from promise .then");
 	});
 */
+//this isthe attempt at promise content
 
 //what i want to do is call this function from the main flow handler
 //then retur the IMDBRATING
