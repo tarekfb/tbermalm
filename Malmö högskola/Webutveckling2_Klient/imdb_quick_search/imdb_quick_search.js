@@ -69,7 +69,7 @@ function displayResult(result) {
 		console.log(result.properties);
 //console.log(result.Search[1].Ratings.Source.imdbRating.value);
 		let testRating = result.Search[1].imdbRating;
-		console.log(typeOf(testRating));
+		console.log(typeof(testRating));
 
 //console.log(result.Search[1].Ratings.imdbRating);
 
