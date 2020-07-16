@@ -121,7 +121,7 @@ function getImdbRating(imdbID) {
 
 	async function f1() {
 	  let rating = await apiRequestPromise();
-	  consone.log(rating + "från f1");
+	  console.log(rating + "från f1");
 	  imdbRating = rating;
 	}
 
