@@ -46,7 +46,7 @@ ul{
 	margin-left: 0px;
 	margin-right: 0px;
 	display: inline-block;
-	list-style-type: disc;
+	list-style: disc;
 }
 
 li{

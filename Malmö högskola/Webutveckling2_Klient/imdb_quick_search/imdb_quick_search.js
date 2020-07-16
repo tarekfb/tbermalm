@@ -58,7 +58,8 @@ function displayResult(result) {
 	    //also wrap it in a link to IMDB page
 		let ul = document.createElement("ul");
 		ul.id = "items";
-		ul.style.listStyle = "disc"; 
+		ul.style.listStyle = "disc"; //for some reason css doesnt do the job
+		console.log(ul.style.listStyle);
 
 		let resultContainer = document.getElementById("result");
 		resultContainer.appendChild(ul);
