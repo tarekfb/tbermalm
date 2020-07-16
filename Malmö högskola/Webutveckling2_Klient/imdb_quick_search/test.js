@@ -27,17 +27,18 @@ function apiHandler(title) {
 
 	    if (result.Response == "False"){
 	    	//in this case something went wrong with the search, details are logged through result.Error
-	    	addListItem(result.Error, null);
+	    	addListItem(result);
 	    } else if (result.Response == "True") {
 	    	//in this case the search came through, and we display Title, year, imdbrating
 	    	//also wrap it in a link to IMDB page
 	    	result.Search.forEach(function(entry) {
-  				addListItem(
-  					entry.Title + " (" + String(entry.Year) + ")" + ", " + parseInt(entry.imdbRating) + "\n", entry.imdbID
-  				);
+  				addListItem(entry);
+  					//addListItem(
+  					//entry.Title + " (" + String(entry.Year) + ")" + ", " + parseInt(entry.imdbRating) + "\n", entry.imdbID
+  				//);
   				//trying to add imdbrating but failing for some reason
 			});
-	    	//currently does nothing, becuase function isnt fleshed out
+	    	//currently does nothing, becuase function isn't fleshed out
 			sortListByRating(result);
 	    }
 	});
@@ -47,9 +48,9 @@ function apiHandler(title) {
 	omdbAPI.send();
 }
 
-function addListItem(string, imdbID) {
+function addListItem(result) {
 	//just generating nodes as neccessary, to display results
-	if (imdbID == null){
+	if (imdbSearchEntry.imdbID == null){
 		if (string == "Too many results."){
 			string += " Try to be more specific."
 		} else if (string == "Movie not found!"){
