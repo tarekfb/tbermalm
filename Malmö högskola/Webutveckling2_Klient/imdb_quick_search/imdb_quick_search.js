@@ -157,7 +157,6 @@ function getImdbRating(imdbID) {
 		let imdbRating = parseInt(result.imdbRating);
 		console.log("ImdbRating is: " + imdbRating);	
 		function_name(imdbRating);
-		return imdbRating;
 	});
 
 	omdbAPI.open("get", omdbURL, true);
