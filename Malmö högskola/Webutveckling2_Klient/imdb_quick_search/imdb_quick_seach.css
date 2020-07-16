@@ -67,15 +67,15 @@ li:active {
 }
 
 a{
-	/*text-decoration: none;
+	text-decoration: none;
 	color: inherit;
-	outline: none;*/
+	outline: none;
 }
 
 @media screen and (max-width: 1300px) {
 	img{
-		width: 75px;
-		height: 75px;
+		width: 100px;
+		height: 100px;
 	}
 }
 /*https://www.canva.com/colors/color-palette-generator/*/
