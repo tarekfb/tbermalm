@@ -101,13 +101,21 @@ function displayResult(result) {
 
 async function getImdbRating(imdbID) {
 	let imdbRating;
+	let omdbAPI = new XMLHttpRequest();
+	let omdbURL = "https://www.omdbapi.com/?&apikey=5e65d4a0&s=&i=" + imdbID;
 	
 
     let result = await function(){
-    	setTimeout( function() {
-    		imdbRating = 5.33;
-    		return imdbRating;
-  		}, 250) 
+	    omdbAPI.addEventListener("load", function() {
+			let result = JSON.parse(this.responseText);
+			imdbRating = parseFloat(result.imdbRating);
+			console.log("ImdbRating is: " + imdbRating);
+			return imdbRating;
+		});
+
+		omdbAPI.open("get", omdbURL, true);
+		omdbAPI.send();
+		return imdbRating;
     };
     return result;
 }
