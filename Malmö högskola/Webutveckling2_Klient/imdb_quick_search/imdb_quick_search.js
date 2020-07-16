@@ -101,19 +101,29 @@ function displayResult(result) {
 
 function getImdbRating(imdbID) {
 	let imdbRating;
-	let omdbAPI = new XMLHttpRequest();
-	let omdbURL = "https://www.omdbapi.com/?&apikey=5e65d4a0&s=&i=" + imdbID;
+	
+	let apiRequestPromise = new Promise((resolve, reject) => {
+		let omdbAPI = new XMLHttpRequest();
+		let omdbURL = "https://www.omdbapi.com/?&apikey=5e65d4a0&s=&i=" + imdbID;
 
-	omdbAPI.addEventListener("load", function() {
-		let result = JSON.parse(this.responseText);
-		imdbRating = parseFloat(result.imdbRating);
-		console.log("ImdbRating is: " + imdbRating);
+		omdbAPI.addEventListener("load", function() {
+			let result = JSON.parse(this.responseText);
+			imdbRating = parseFloat(result.imdbRating);
+			console.log("ImdbRating is: " + imdbRating);
+
+			resolve(imdbRating);
+
+		});
+
+		omdbAPI.open("get", omdbURL, true);
+		omdbAPI.send();
+	}
+
+	apiRequestPromise.then((imdbRating) => {
+  		console.log(imdbRating + "from promise .then");
 	});
-	omdbAPI.open("get", omdbURL, true);
-	omdbAPI.send();
 
-	console.log(omdbAPI.event);
-	console.log(omdbAPI.eventListener);
+
 }
 
 //what i want to do is call this function from the main flow handler
