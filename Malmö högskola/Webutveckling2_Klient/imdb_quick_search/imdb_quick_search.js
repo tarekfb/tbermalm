@@ -148,6 +148,8 @@ function sortListByRating(resultList) {
 	
 }
 
+let imdbRating = 0.5;
+
 function getImdbRating(imdbID) {
 	//let imdbRating = 0;
 	let omdbAPI = new XMLHttpRequest();
@@ -165,4 +167,3 @@ function getImdbRating(imdbID) {
 
 
 }
-let imdbRating = 0.5;
