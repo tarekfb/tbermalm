@@ -114,8 +114,7 @@ function displayResult(result) {
 function getImdbRating(imdbID) {
 	let omdbAPI = new XMLHttpRequest();
 	let omdbURL = "https://www.omdbapi.com/?&apikey=5e65d4a0&s=&i=" + imdbID;
-	console.log("imdbID is: " + imdbID);
-
+	
 	omdbAPI.addEventListener("load", function() {
 		let result = JSON.parse(this.responseText);
 		let imdbRating = parseInt(result.imdbRating);
