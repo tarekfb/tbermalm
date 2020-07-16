@@ -155,15 +155,13 @@ function getImdbRating(imdbID) {
 	omdbAPI.addEventListener("load", function() {
 		let result = JSON.parse(this.responseText);
 		let imdbRating = parseInt(result.imdbRating);
-		console.log("ImdbRating is: " + imdbRating);	
-		console.log("intui");
-			});
+		console.log("ImdbRating is: " + imdbRating);
+		console.log(result);	
+		
+	});
 
 	omdbAPI.open("get", omdbURL, true);
-	console.log("mellan");
 	omdbAPI.send();
-
-	console.log("utanför");
 
 //what i want to do is call this function from the main flow handler
 //then retur the IMDBRATING
