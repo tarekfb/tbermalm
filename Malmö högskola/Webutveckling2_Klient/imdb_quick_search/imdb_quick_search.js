@@ -128,7 +128,7 @@ function getImdbRating(imdbID) {
 	omdbAPI.open("get", omdbURL, true);
 	omdbAPI.send();
 
-	return imdbRating;
+	//return imdbRating;
 	//this will return 0, because the line executes BEFORE the eventlistener executes
 
 }
