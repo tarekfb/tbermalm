@@ -33,7 +33,7 @@ function apiHandler(title) {
 }
 
 function addListItem(result) {
-	let resultString = String(result.Response);
+	let resultString = String(result.Error);
 	if (result.Response == "False"){
 		if (resultString == "Too many results."){
 			resultString += " Try to be more specific."
