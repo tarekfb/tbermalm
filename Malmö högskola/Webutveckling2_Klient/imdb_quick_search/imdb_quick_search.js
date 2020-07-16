@@ -57,7 +57,7 @@ function addListItem(result) {
 		result.Search.forEach(function(entry) {
 			let entryString = entry.Title + " (" + String(entry.Year) + ")";
 	  		let a = document.createElement('a');  
-		    let link = document.createTextNode(); //string goes in ()
+		    let link = document.createTextNode(entryString); //string goes in ()
 		    a.appendChild(link);
 
 		    let url = "https://www.imdb.com/title/" + entry.imdbID + "/";
