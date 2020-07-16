@@ -156,10 +156,11 @@ function getImdbRating(imdbID) {
 		let result = JSON.parse(this.responseText);
 		let imdbRating = parseInt(result.imdbRating);
 		console.log("ImdbRating is: " + imdbRating);	
-		function_name(imdbRating);
-	});
+		console.log("intui");
+			});
 
 	omdbAPI.open("get", omdbURL, true);
+	console.log("mellan");
 	omdbAPI.send();
 
 	console.log("utanför");
