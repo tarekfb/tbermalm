@@ -93,11 +93,7 @@ function displayResult(result) {
 
 		//this code needs to be executed for every item in array: Result.Search
 		result.Search.forEach(function(entry) {
-
-			getImdbRating(entry.imdbID);
-
-
-			let entryString = entry.Title + " (" + String(entry.Year) + ")" + ", " + String(getImdbRating(result.imdbRating));
+			let entryString = entry.Title + " (" + String(entry.Year) + ")" + ", " + String(getImdbRating(entry.imdbRating));
 	  		let a = document.createElement('a');  
 		    let link = document.createTextNode(entryString); //string goes in ()
 		    a.appendChild(link);
@@ -127,11 +123,9 @@ function getImdbRating(imdbID) {
 	});
 	omdbAPI.open("get", omdbURL, true);
 	omdbAPI.send();
-
-	//return imdbRating;
-	//this will return 0, because the line executes BEFORE the eventlistener executes
-
 }
+
+
 //what i want to do is call this function from the main flow handler
 //then retur the IMDBRATING
 	//but the imdbrating is only fetched inside the event listener
@@ -140,10 +134,6 @@ function getImdbRating(imdbID) {
 
 	//Dont forget to change the string in addListItem(), i.e change it to call this method
 	//and implement return command here
-
-function testFunction() {
-	console.log("HALLÅPROMISE");
-}
 
 function sortListByRating(resultList) {
 //For each li;
