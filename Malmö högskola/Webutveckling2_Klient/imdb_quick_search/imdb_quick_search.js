@@ -148,10 +148,8 @@ function sortListByRating(resultList) {
 	
 }
 
-let imdbRating = 0.5;
-
 function getImdbRating(imdbID) {
-	//let imdbRating = 0;
+	let imdbRating = 0;
 	let omdbAPI = new XMLHttpRequest();
 	let omdbURL = "https://www.omdbapi.com/?&apikey=5e65d4a0&s=&i=" + imdbID;
 
@@ -159,8 +157,6 @@ function getImdbRating(imdbID) {
 		let result = JSON.parse(this.responseText);
 		imdbRating = parseInt(result.imdbRating);
 		console.log("ImdbRating is: " + imdbRating);	
-		console.log("inuti2");
-		
 	});
 
 	omdbAPI.open("get", omdbURL, true);
@@ -177,4 +173,8 @@ function getImdbRating(imdbID) {
 	//Dont forget to change the string in addListItem(), i.e change it to call this method
 	//and implement return command here
 
+}
+
+function function_name(argument) {
+	// body...
 }
