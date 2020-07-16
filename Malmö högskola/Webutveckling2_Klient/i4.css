@@ -57,6 +57,8 @@ li{
     transition-property: transform;
     cursor: pointer;
     font-size: 20px;
+    padding: 5px 0px 0px 5px;
+
 }
 
 li:hover,
