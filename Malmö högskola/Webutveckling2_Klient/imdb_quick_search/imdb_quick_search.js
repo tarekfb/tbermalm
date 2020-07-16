@@ -149,15 +149,15 @@ function sortListByRating(resultList) {
 }
 
 function getImdbRating(imdbID) {
-	let imdbRating = 0;
 	let omdbAPI = new XMLHttpRequest();
 	let omdbURL = "https://www.omdbapi.com/?&apikey=5e65d4a0&s=&i=" + imdbID;
 
 	omdbAPI.addEventListener("load", function() {
 		let result = JSON.parse(this.responseText);
-		imdbRating = parseInt(result.imdbRating);
+		let imdbRating = parseInt(result.imdbRating);
 		console.log("ImdbRating is: " + imdbRating);	
 		function_name(imdbRating);
+		return imdbRating;
 	});
 
 	omdbAPI.open("get", omdbURL, true);
