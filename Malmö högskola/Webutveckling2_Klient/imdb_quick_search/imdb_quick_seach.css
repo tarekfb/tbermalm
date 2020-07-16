@@ -67,9 +67,9 @@ li:active {
 }
 
 a{
-	text-decoration: none;
+	/*text-decoration: none;
 	color: inherit;
-	outline: none;
+	outline: none;*/
 }
 
 @media screen and (max-width: 1300px) {
