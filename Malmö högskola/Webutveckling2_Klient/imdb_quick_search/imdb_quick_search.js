@@ -149,20 +149,25 @@ function sortListByRating(resultList) {
 }
 
 function getImdbRating(imdbID) {
+	let imdbRating = 0;
 	let omdbAPI = new XMLHttpRequest();
 	let omdbURL = "https://www.omdbapi.com/?&apikey=5e65d4a0&s=&i=" + imdbID;
 
 	omdbAPI.addEventListener("load", function() {
 		let result = JSON.parse(this.responseText);
-		let imdbRating = parseInt(result.imdbRating);
+		imdbRating = parseInt(result.imdbRating);
 		console.log("ImdbRating is: " + imdbRating);
 		console.log(result);	
-		
-	});
+		//createAudioFileAsync(audioSettings).then(successCallback, failureCallback);
+	}.then(testFunction()));
 
 	omdbAPI.open("get", omdbURL, true);
 	omdbAPI.send();
 
+	return imdbRating;
+	//this will return 0, because the line executes BEFORE the eventlistener executes
+
+}
 //what i want to do is call this function from the main flow handler
 //then retur the IMDBRATING
 	//but the imdbrating is only fetched inside the event listener
@@ -172,4 +177,6 @@ function getImdbRating(imdbID) {
 	//Dont forget to change the string in addListItem(), i.e change it to call this method
 	//and implement return command here
 
+function testFunctionargument) {
+	console.log("HALLÅPROMISE");
 }
