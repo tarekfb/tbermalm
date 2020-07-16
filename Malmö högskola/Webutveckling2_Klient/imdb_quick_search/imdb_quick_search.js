@@ -104,26 +104,29 @@ function getImdbRating(imdbID) {
 	let omdbAPI = new XMLHttpRequest();
 	let omdbURL = "https://www.omdbapi.com/?&apikey=5e65d4a0&s=&i=" + imdbID;
 
+	function apiRequestPromise() {
+		return new Promise(resolve => {
+			omdbAPI.addEventListener("load", function() {
+				let result = JSON.parse(this.responseText);
+				imdbRating = parseFloat(result.imdbRating);
+				console.log("ImdbRating is: " + imdbRating);
+				resolve(imdbRating);
+			});
 
-	omdbAPI.addEventListener("load", function() {
-		let result = JSON.parse(this.responseText);
-		imdbRating = parseFloat(result.imdbRating);
-		console.log("ImdbRating is: " + imdbRating);
-	});
-
-	omdbAPI.open("get", omdbURL, true);
-	omdbAPI.send();
-
-	function testFunction() {
-		return new Promise((resolve) => {
-			let testVar = 1;
-			resolve(testVar);
-		});
-		testPromise.then((testVar) => {
-			return testVar;
+			omdbAPI.open("get", omdbURL, true);
+			omdbAPI.send();
 		});
 	}
-	console.log(testFunction());	
+
+	async function f1() {
+	  let rating = await apiRequestPromise();
+	  console.log(rating + "async function");
+	  return rating;
+	}
+
+	console.log(f1());
+	return f1();
+	
 	
 }
 
