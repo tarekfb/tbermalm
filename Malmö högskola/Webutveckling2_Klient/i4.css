@@ -50,15 +50,14 @@ a{
 
 li{
 	text-align: left;
-    vertical-align: middle;
-    transform: translateZ(0);
-    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
-    transition-duration: 0.3s;
-    transition-property: transform;
-    cursor: pointer;
-    font-size: 20px;
-    padding: 5px 0px 0px 5px;
-
+  vertical-align: middle;
+  transform: translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  transition-duration: 0.3s;
+  transition-property: transform;
+  cursor: pointer;
+  font-size: 20px;
+  padding: 5px 0px 0px 5px;
 }
 
 li:hover,
