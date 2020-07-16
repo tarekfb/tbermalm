@@ -121,12 +121,12 @@ function getImdbRating(imdbID) {
 
 	async function f1() {
 	  let rating = await apiRequestPromise();
-	  //console.log(rating + " async function");
-	  return rating;
+	  imdbRating = rating;
 	}
 
-	return f1();
-	consone.log("efter f1 call");	
+	f1();
+	console.log(imdbRating + "nästan sist");
+	return imdbRating;
 }
 
 /*
