@@ -58,7 +58,7 @@ function displayResult(result) {
 	    //also wrap it in a link to IMDB page
 		let ul = document.createElement("ul");
 		ul.id = "items";
-		ul.style.listStyle = "disc"; //for some reason css doesnt do the job
+		/*ul.style.listStyle = "disc"; //for some reason css doesnt do the job
 		console.log(ul.style.listStyle);
 		console.log(result.Search[1].imdbrating);
 	console.log(result.Search[1].imdbRating);
@@ -72,6 +72,7 @@ function displayResult(result) {
 		console.log(typeof(testRating));
 
 //console.log(result.Search[1].Ratings.imdbRating);
+*/
 
 		/*
 		{"Title":"Test","Year":"2013","Rated":"TV-MA",
