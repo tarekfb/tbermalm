@@ -114,14 +114,9 @@ function getImdbRating(imdbID) {
 	});
 	omdbAPI.open("get", omdbURL, true);
 	omdbAPI.send();
-}
 
-function testFunction(imdbRating) {
-	console.log(imdbRating);
-	return imdbRating;
-}
-function otherFunction(argument) {
-	console.log("this doesnt work, right?");
+	console.log(omdbAPI.event);
+	console.log(omdbAPI.eventListener);
 }
 
 //what i want to do is call this function from the main flow handler
@@ -132,39 +127,6 @@ function otherFunction(argument) {
 
 	//Dont forget to change the string in addListItem(), i.e change it to call this method
 	//and implement return command here
-
-function sortListByRating(resultList) {
-//For each li;
-// Get imdbid
-// Api call for imdbid //returns a movie
-// Get imdbrating for movie
-// Parseint(imdbrating
-// Let rating //Save in variable?
- 
-//Compare rating with something
-//Sort resultList according to this
-
-//need to read and understand sorting
-//then use imdbRating for sorting
-
-	resultList.Search.forEach(function(entry) {
-  		let omdbAPI = new XMLHttpRequest();
-		let omdbURL = "https://www.omdbapi.com/?&apikey=5e65d4a0&s=&i=" + entry.imdbID;
-
-		omdbAPI.addEventListener("load", function() {
-			let result = JSON.parse(this.responseText);
-			let imdbRating = parseInt(result.imdbRating);
-			console.log("ImdbRating is: " + imdbRating);
-
-		});
-		omdbAPI.open("get", omdbURL, true);
-		omdbAPI.send();
-	});
-
-	console.log(omdbAPI.event);
-	console.log(omdbAPI.eventListener);
-	
-}
 
 let myFirstPromise = new Promise((resolve, reject) => {
   // We call resolve(...) when what we were doing asynchronously was successful, and reject(...) when it failed.
