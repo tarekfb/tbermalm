@@ -97,7 +97,6 @@ function displayResult(result) {
 			    a.appendChild(link);
 
 			    liDiv.appendChild(a);
-			    li.appendChild(liDiv);
 
 
 			    let url = "https://www.imdb.com/title/" + entry.imdbID + "/";
@@ -105,6 +104,8 @@ function displayResult(result) {
 
 				let li = document.createElement("li");
 				//li.appendChild(a);
+							    li.appendChild(liDiv);
+
 				ul.appendChild(li);
 			}	
 		});
