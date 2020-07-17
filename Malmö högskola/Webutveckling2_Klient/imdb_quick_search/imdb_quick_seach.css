@@ -42,7 +42,7 @@ ul {
 	display: inline-block;
 	/*list-style-position: inside;*/
 	margin-top: 10px;
-	padding-left: 0px;
+	padding: 0px;
 }
 li {
 	text-align: left ;
