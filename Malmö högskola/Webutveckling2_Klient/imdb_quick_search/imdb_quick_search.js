@@ -83,8 +83,11 @@ function displayResult(result) {
 
 		//this code needs to be executed for every item in array: Result.Search
 		result.Search.forEach(function(entry) {
+			let imdbRating = 0;
+			fetchImdbRating(entry.imdbID).then(rating => console.log(imdbRating = rating));
 
-			let entryString = entry.Title + " (" + String(entry.Year) + ")" + ", " + String(getImdbRating(entry.imdbID));
+
+			let entryString = entry.Title + " (" + String(entry.Year) + ")" + ", " + String(imdbRating);
 	  		let a = document.createElement('a');  
 		    let link = document.createTextNode(entryString); //string goes in ()
 		    a.appendChild(link);
@@ -101,18 +104,12 @@ function displayResult(result) {
 
 }
 
-function getImdbRating(imdbID) {
-	async function fetchImdbRating(id) {
-	    const res = await fetch(`https://www.omdbapi.com/?&apikey=${API_KEY}&s=&i=${id}`);
-	    const { imdbRating } = await res.json();
-	    return imdbRating;
-	}
-
-fetchImdbRating(imdbID).then(rating => return(rating));
-//fetchImdbRating(imdbID).then(rating => console.log('ImdbRating is: ' + rating));
-
-
+async function fetchImdbRating(id) {
+	const res = await fetch(`https://www.omdbapi.com/?&apikey=${API_KEY}&s=&i=${id}`);
+	const { imdbRating } = await res.json();
+	return imdbRating;
 }
+
 	/*
 	let imdbRating;
 		let omdbAPI = new XMLHttpRequest();
