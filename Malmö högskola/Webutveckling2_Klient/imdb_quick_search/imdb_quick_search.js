@@ -84,10 +84,10 @@ function displayResult(result) {
 		//this code needs to be executed for every item in array: Result.Search
 		result.Search.forEach(function(entry) {
 			let imdbRating = 0;
-			fetchImdbRating(entry.imdbID).then(rating => console.log(imdbRating = rating));
+			fetchImdbRating(entry.imdbID).then(rating => generateNodes(rating));
 
-
-			let entryString = entry.Title + " (" + String(entry.Year) + ")" + ", " + String(imdbRating);
+			function generateNodes(rating) {
+			let entryString = entry.Title + " (" + String(entry.Year) + ")" + ", " + String(rating);
 	  		let a = document.createElement('a');  
 		    let link = document.createTextNode(entryString); //string goes in ()
 		    a.appendChild(link);
@@ -97,7 +97,10 @@ function displayResult(result) {
 
 			let li = document.createElement("li");
 			li.appendChild(a);
-			ul.appendChild(li);
+			ul.appendChild(li);.
+			}
+
+			
 
 		});
 	}
