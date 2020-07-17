@@ -89,7 +89,7 @@ function displayResult(result) {
 			function generateNodes(rating) {
 				let liDiv = document.createElement('div');
 				liDiv.id = 'testDiv';
-				liDiv.style.border = "solid thick #0000FF";
+				//liDiv.style.border = "solid thick #0000FF";
 
 				let entryString = entry.Title + " (" + String(entry.Year) + ")" + ", " + String(rating);
 		  		let a = document.createElement('a');  
