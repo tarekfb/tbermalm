@@ -70,7 +70,7 @@ function displayResult(result) {
 
 		//this code needs to be executed for every item in array: Result.Search
 		result.Search.forEach(function(entry) {
-			
+
 			//fetching the imdbRating is awkwardly designed
 			//first usage of promise and async
 			//found some fetch magic online
@@ -87,16 +87,24 @@ function displayResult(result) {
 			fetchImdbRating(entry.imdbID).then(rating => generateNodes(rating));
 
 			function generateNodes(rating) {
+				let liDiv = document.createElement('div');
+				liDiv.id = 'testDiv';
+				liDiv.style.border = "solid thick #0000FF";
+
 				let entryString = entry.Title + " (" + String(entry.Year) + ")" + ", " + String(rating);
 		  		let a = document.createElement('a');  
 			    let link = document.createTextNode(entryString); //string goes in ()
 			    a.appendChild(link);
 
+			    liDiv.appendChild(a);
+			    li.appendChild(liDiv);
+
+
 			    let url = "https://www.imdb.com/title/" + entry.imdbID + "/";
 			    a.href = url;
 
 				let li = document.createElement("li");
-				li.appendChild(a);
+				//li.appendChild(a);
 				ul.appendChild(li);
 			}	
 		});
