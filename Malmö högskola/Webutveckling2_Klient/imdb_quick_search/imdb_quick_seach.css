@@ -37,12 +37,11 @@ input {
 }
 #result {
 	font-size: 25px;
+	text-align: center;
 }
 ul {
-	display: list-item;
-	list-style: disc;
-	width: 70%;
-	margin: auto;
+	display: inline-block;
+
 }
 li {
 	text-align: left;
