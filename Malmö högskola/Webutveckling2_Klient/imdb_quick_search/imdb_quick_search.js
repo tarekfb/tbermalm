@@ -108,7 +108,7 @@ function getImdbRating(imdbID) {
 	    return imdbRating;
 	}
 
-fetchImdbRating('imdbID').then(rating => console.log('ImdbRating is: ' + rating));
+fetchImdbRating(imdbID).then(rating => console.log('ImdbRating is: ' + rating));
 
 }
 	/*
