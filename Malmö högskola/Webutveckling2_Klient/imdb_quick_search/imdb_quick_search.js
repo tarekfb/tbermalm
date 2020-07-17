@@ -97,7 +97,7 @@ function displayResult(result) {
 
 			let li = document.createElement("li");
 			li.appendChild(a);
-			ul.appendChild(li);.
+			ul.appendChild(li);
 			}
 
 			
