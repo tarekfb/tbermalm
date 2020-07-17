@@ -44,14 +44,14 @@ ul {
 
 }
 li {
-	text-align: left;
+	text-align: left ;
 	vertical-align: middle;
 	transform: translateZ(0);
 	box-shadow: 0 0 1px rgba(0, 0, 0, 0);
 	transition-duration: 0.3s;
 	transition-property: transform;
 	cursor: pointer;
-	padding: 10px 0px 0px 0px;
+	padding-top: 10px;
 }
 li:hover, li:focus, li:active {
 	transform: scale(1.1);
