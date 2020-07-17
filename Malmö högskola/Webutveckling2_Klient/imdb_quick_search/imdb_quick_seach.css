@@ -45,7 +45,7 @@ input{
 ul{ 
 	margin-left: 0px;
 	margin-right: 0px;
-	display: ;
+	display: list-item;
 	list-style: disc;
 }
 
