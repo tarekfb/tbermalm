@@ -1,81 +1,69 @@
-html{
- 	background-repeat: no-repeat;
+html {
+	background-repeat: no-repeat;
 	background-position: right top;
-  	-webkit-background-size: cover;
-  	-moz-background-size: cover;
- 	-o-background-size: cover;
- 	background-size: cover;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
 	color: black;
 	font-family: 'Montserrat', sans-serif;
 	background-color: #f4cb84;
 	text-align: center;
 }
-
-img{
+img {
 	width: 200px;
 	height: 200px;
 }
-
-button{
- 	width: 45px;
-  	padding: 10px;
-	background: #f38363;  color: white;
-  	font-size: 17px;
-  	border: 1px solid grey;
-  	border-left: none;
-  	cursor: pointer;
-  	border-radius: 0px 5px 5px 0px;
-  	color: black;
-	margin-left: -0.5%;
- 	-webkit-appearance: none;	
-}
-
-input{
+button {
+	width: 45px;
 	padding: 10px;
-  	font-size: 17px;
-  	border: 1px solid grey;
-  	width: 40%;
-  	background: #f1f1f1;
+	background: #f38363;
+	color: white;
+	font-size: 17px;
+	border: 1px solid grey;
+	border-left: none;
+	cursor: pointer;
+	border-radius: 0px 5px 5px 0px;
+	color: black;
+	margin-left: -0.5%;
+	-webkit-appearance: none;
 }
-
-#result{
+input {
+	padding: 10px;
+	font-size: 17px;
+	border: 1px solid grey;
+	width: 40%;
+	background: #f1f1f1;
+}
+#result {
 	font-size: 25px;
 }
-
-ul{ 
-	margin-left: 0px;
-	margin-right: 0px;
+ul {
 	display: list-item;
 	list-style: disc;
+	width: 70%;
+	margin: auto;
 }
-
-li{
+li {
 	text-align: left;
-    vertical-align: middle;
-    transform: translateZ(0);
-    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
-    transition-duration: 0.3s;
-    transition-property: transform;
-    cursor: pointer;
-    display: block;
-    padding: 0px 10px 10px 0px;
-    list-style: disc;
+	vertical-align: middle;
+	transform: translateZ(0);
+	box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+	transition-duration: 0.3s;
+	transition-property: transform;
+	cursor: pointer;
+	padding: 10px 0px 0px 0px;
 }
-
-li:hover,
-li:focus,
-li:active {
+li:hover, li:focus, li:active {
 	transform: scale(1.1);
 }
-
-a{
+a {
 	text-decoration: none;
 	color: inherit;
 	outline: none;
 }
-
 @media screen and (max-width: 1300px) {
-	img{
+	img {
 		width: 100px;
 		height: 100px;
 	}
