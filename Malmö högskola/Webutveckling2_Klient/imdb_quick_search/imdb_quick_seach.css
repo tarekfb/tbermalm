@@ -59,6 +59,7 @@ li{
     cursor: pointer;
     display: block;
     padding: 0px 10px 10px 0px;
+    list-style: disc;
 }
 
 li:hover,
