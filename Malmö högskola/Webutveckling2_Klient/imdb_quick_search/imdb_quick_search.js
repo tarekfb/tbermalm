@@ -38,6 +38,7 @@ function apiHandler(title) {
 }
 
 function displayResult(result) {
+
 	//in this case something went wrong with the search
 	//this is communicated through div outputting string result.Error
 	if (result.Response == "False"){
@@ -55,6 +56,7 @@ function displayResult(result) {
 		let resultContainer = document.getElementById("result")
 		resultContainer.appendChild(p);
 	} else if (result.Response == "True"){
+
 		//in this case the search came through
 		//we display result properties in list items
 	    //also wrap it in a link to IMDB page
@@ -63,27 +65,25 @@ function displayResult(result) {
 		/*ul.style.listStyle = "disc"; //for some reason css doesnt do the job
 		console.log(ul.style.listStyle);*/
 
-		/*
-		{"Title":"Test","Year":"2013","Rated":"TV-MA",
-		"Released":"04 Apr 2014","Runtime":"89 min",
-		"Genre":"Drama","Director":"Chris Mason Johnson",
-		"Writer":"Chris Mason Johnson (screenplay)",
-		"Actors":"Scott Marlowe, Matthew Risch, Evan Boomer, Kevin Clarke",
-		"Plot":"In 1985, a gay dance understudy hopes for his on-stage chance while fearing the growing AIDS epidemic.","Language":"English, Portuguese, French","Country":"USA","Awards":"3 wins & 3 nominations.","Poster":"https://m.media-amazon.com/images/M/MV5BMTQwMDU5NDkxNF5BMl5BanBnXkFtZTcwMjk5OTk4OQ@@._V1_SX300.jpg",
-		"Ratings":[{"Source":"Internet Movie Database","Value":"6.5/10"},
-		{"Source":"Rotten Tomatoes","Value":"81%"},
-		{"Source":"Metacritic","Value":"70/100"}],"Metascore":"70",
-		"imdbRating":"6.5","imdbVotes":"1,407","imdbID":"tt2407380",
-		"Type":"movie","DVD":"17 Jun 2014","BoxOffice":"N/A","Production":
-		"Variance Films","Website":"N/A","Response":"True"}
-		*/
-
 		let resultContainer = document.getElementById("result");
 		resultContainer.appendChild(ul);
 
 		//this code needs to be executed for every item in array: Result.Search
 		result.Search.forEach(function(entry) {
+			
+			//fetching the imdbRating is awkwardly designed
+			//first usage of promise and async
+			//found some fetch magic online
+			//will try to document for my own sake, i suppose
+
 			let imdbRating = 0;
+			//im running the async fun fetchImdbRating (a thenable promise)
+			//which returns a rating after the request comes through
+			//when the fetch has been resolved it moves to .then
+			//.then has a callback (function, object) attached to it
+			//generateNodes creates the appriopriate nodes
+			//the items are displayed and task is complete
+
 			fetchImdbRating(entry.imdbID).then(rating => generateNodes(rating));
 
 			function generateNodes(rating) {
@@ -98,88 +98,35 @@ function displayResult(result) {
 				let li = document.createElement("li");
 				li.appendChild(a);
 				ul.appendChild(li);
-			}
-
-			
-
+			}	
 		});
 	}
 
 }
 
+//this is an async function (A promise, right?)
+//allowing us to use await
+//await forces the compiler to wait for the given task to be completed before proceeding
+//(only stops locally, not the entire program)
+//when the fetch as been resolved, the compiler tries to declare an object and give it the return value of res.json();
+//it then returns the imdbRating and the program proceeds as normally
+
+//however, I have no clue how we circument the otherwise needed "open(), send() with the arguments get, omdbURL, true"
+//my guess is that fetch has no need for these arguments, but only the appriopriate url
 async function fetchImdbRating(id) {
 	const res = await fetch(`https://www.omdbapi.com/?&apikey=${API_KEY}&s=&i=${id}`);
 	const { imdbRating } = await res.json();
 	return imdbRating;
 }
+/*leaving some notes from programming diary
 
-	/*
-	let imdbRating;
-		let omdbAPI = new XMLHttpRequest();
-	let omdbURL = "https://www.omdbapi.com/?&apikey=5e65d4a0&s=&i=" + imdbID;
+Event-driven languages, and callbacks
+Imdb ratings lookup tool
+16/06/2020
 
-	omdbAPI.addEventListener("load", function() {
-		let result = JSON.parse(this.responseText);
-		imdbRating = parseFloat(result.imdbRating);
-		//console.log("ImdbRating is: " + imdbRating);
-	});
-
-	omdbAPI.open("get", omdbURL, true);
-	omdbAPI.send();
-
-	return imdbRating;
-	//this will return undefined
-	//because the statement is executed before the api request is finished
-}*/
-
-/*
-	let omdbAPI = new XMLHttpRequest();
-	let omdbURL = "https://www.omdbapi.com/?&apikey=5e65d4a0&s=&i=" + imdbID;
-
-	omdbAPI.addEventListener("load", function() {
-		let result = JSON.parse(this.responseText);
-		imdbRating = parseFloat(result.imdbRating);
-		console.log("ImdbRating is: " + imdbRating);
-	});
-
-	omdbAPI.open("get", omdbURL, true);
-	omdbAPI.send();
-
-}*/
-//this is the original content
-
-
-/*
-	let imdbRating;
-	
-	let apiRequestPromise = new Promise((resolve, reject) => {
-		let omdbAPI = new XMLHttpRequest();
-		let omdbURL = "https://www.omdbapi.com/?&apikey=5e65d4a0&s=&i=" + imdbID;
-
-		omdbAPI.addEventListener("load", function() {
-			let result = JSON.parse(this.responseText);
-			imdbRating = parseFloat(result.imdbRating);
-			console.log("ImdbRating is: " + imdbRating);
-
-			resolve(imdbRating);
-
-		});
-
-		omdbAPI.open("get", omdbURL, true);
-		omdbAPI.send();
-	}) 
-
-	apiRequestPromise.then((imdbRating) => {
-  		console.log(imdbRating + "from promise .then");
-	});
+Bumped into an issue when creating my imdb rating lookup tool. 
+Javascript is apparently an event-driven language, which means the compiler doesn’t wait for responses when executing code, but instead continues with the next operation. 
+This can be tricky, when you want to wait for a function to finish executing, for example in-order to update a variable value. 
+In my case my return statement returns the initial variable declaration, 0, instead of the updated value. 
+Because the value, updated by an event listener, has been updated after the return statement is executed.
 */
-//this isthe attempt at promise content
-
-//what i want to do is call this function from the main flow handler
-//then retur the IMDBRATING
-	//but the imdbrating is only fetched inside the event listener
-	//which presumably sends after the .send() function.
-	//What this means is that i have to save it somewhere, and access it after the send() function is executed?
-
-	//Dont forget to change the string in addListItem(), i.e change it to call this method
-	//and implement return command here
