@@ -41,6 +41,7 @@ input {
 }
 ul {
 	display: inline-block;
+	list-style-position: inside;
 
 }
 li {
@@ -51,7 +52,8 @@ li {
 	transition-duration: 0.3s;
 	transition-property: transform;
 	cursor: pointer;
-	padding-top: 10px;
+	margin-top: 10px;
+	padding:l
 }
 li:hover, li:focus, li:active {
 	transform: scale(1.1);
