@@ -1,6 +1,8 @@
 /* Tarek Bermalm - AK6336. */
 "use strict";
 
+const API_KEY = '5e65d4a0&s';
+
 let form = document.getElementById("search-form");
 form.addEventListener("submit", function(event) {
 	//clear containerDiv so previous results dont stick around
@@ -96,43 +98,37 @@ function displayResult(result) {
 
 		});
 	}
-	console.log(String(getImdbRating(10059518)) + "testfunktion helt ensam");
 
 }
 
 function getImdbRating(imdbID) {
+	async function fetchImdbRating(id) {
+	    const res = await fetch(`https://www.omdbapi.com/?&apikey=${API_KEY}&s=&i=${id}`);
+	    const { imdbRating } = await res.json();
+	    return imdbRating;
+	}
+
+fetchImdbRating('tt0113375').then(rating => console.log('ImdbRating is: ' + rating));
+
+}
+	/*
 	let imdbRating;
-	let omdbAPI = new XMLHttpRequest();
+		let omdbAPI = new XMLHttpRequest();
 	let omdbURL = "https://www.omdbapi.com/?&apikey=5e65d4a0&s=&i=" + imdbID;
 
-	function apiRequestPromise() {
-		return new Promise(resolve => {
-			omdbAPI.addEventListener("load", function() {
-				let result = JSON.parse(this.responseText);
-				imdbRating = parseFloat(result.imdbRating);
-				//console.log("ImdbRating is: " + imdbRating);
-				resolve(imdbRating);
-			});
+	omdbAPI.addEventListener("load", function() {
+		let result = JSON.parse(this.responseText);
+		imdbRating = parseFloat(result.imdbRating);
+		//console.log("ImdbRating is: " + imdbRating);
+	});
 
-			omdbAPI.open("get", omdbURL, true);
-			omdbAPI.send();
-		});
-	}
+	omdbAPI.open("get", omdbURL, true);
+	omdbAPI.send();
 
-	async function f1() {
-	  let rating = await apiRequestPromise();
-	  console.log(rating + "från f1");
-	  imdbRating = rating;
-	}
-	function f3() {
-		f1();
-		return imdbRating;
-	}
-
-	
-	console.log(imdbRating + "nästan sist");
-	return f3();
-}
+	return imdbRating;
+	//this will return undefined
+	//because the statement is executed before the api request is finished
+}*/
 
 /*
 	let omdbAPI = new XMLHttpRequest();
