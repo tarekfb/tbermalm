@@ -37,12 +37,11 @@ input {
 }
 #result {
 	font-size: 25px;
-	text-align: center;
 }
 ul {
 	display: inline-block;
 	list-style-position: inside;
-
+	margin-top: 10px;
 }
 li {
 	text-align: left ;
@@ -52,8 +51,7 @@ li {
 	transition-duration: 0.3s;
 	transition-property: transform;
 	cursor: pointer;
-	margin-top: 10px;
-	padding:l
+	padding-bottom: 10px;
 }
 li:hover, li:focus, li:active {
 	transform: scale(1.1);
