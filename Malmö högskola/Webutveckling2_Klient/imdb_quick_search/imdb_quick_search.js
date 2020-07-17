@@ -87,17 +87,17 @@ function displayResult(result) {
 			fetchImdbRating(entry.imdbID).then(rating => generateNodes(rating));
 
 			function generateNodes(rating) {
-			let entryString = entry.Title + " (" + String(entry.Year) + ")" + ", " + String(rating);
-	  		let a = document.createElement('a');  
-		    let link = document.createTextNode(entryString); //string goes in ()
-		    a.appendChild(link);
+				let entryString = entry.Title + " (" + String(entry.Year) + ")" + ", " + String(rating);
+		  		let a = document.createElement('a');  
+			    let link = document.createTextNode(entryString); //string goes in ()
+			    a.appendChild(link);
 
-		    let url = "https://www.imdb.com/title/" + entry.imdbID + "/";
-		    a.href = url;
+			    let url = "https://www.imdb.com/title/" + entry.imdbID + "/";
+			    a.href = url;
 
-			let li = document.createElement("li");
-			li.appendChild(a);
-			ul.appendChild(li);
+				let li = document.createElement("li");
+				li.appendChild(a);
+				ul.appendChild(li);
 			}
 
 			
