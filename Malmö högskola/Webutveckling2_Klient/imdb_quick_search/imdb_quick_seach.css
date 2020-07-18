@@ -98,7 +98,6 @@ a {
 #test-div #title-year{
 	font-size: 32px;
 	vertical-align: top;
-	display: block;
 	margin-bottom: 10px;
 }
 #test-div #cast{
@@ -111,7 +110,13 @@ a {
 	font-size: 26px;
 	line-height: 145px;
 }
+#test-div #rating i{
+	font-size: 18px;
+	color: 	#FFD700;
+	     text-shadow: 0 0 3px #000;
+ position: relative;
 
+}
 
 #test-div:hover, test-div:focus, test-div:active{
 		transform: scale(1.06);
