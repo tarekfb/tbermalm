@@ -63,7 +63,7 @@ a {
 
 
 #test-div{
-	width: 35%;
+
 		box-shadow: 0 0 1px rgba(0, 0, 0, 0);
 	transition-duration: 0.3s;
 	transition-property: transform;
@@ -71,6 +71,8 @@ a {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-around;
+		margin: 0 auto;
+	width: 35%;
 	background: #e7d2cc;
 	border-radius: 5px;
 	border: 2px black;
@@ -84,21 +86,21 @@ a {
 #test-div img{
 	width: 105px;
 	height: 100%;
-	flex-grow: 0.8;
+	flex-grow: 0.3;
 }
 #test-div #title-year{
 	font-size: 32px;
 	margin-left: 10px;
 	vertical-align: top;
+	flex-grow: 0.5;
 	
 }
 #test-div #rating{
 	text-align: center;
 	background: #f38363;
-	0.2
+	flex-grow: 0.2;
 }
 #test-div #cast{
-
 }
 
 #test-div:hover, test-div:focus, test-div:active{
