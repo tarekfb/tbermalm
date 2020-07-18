@@ -101,17 +101,17 @@ a {
 #test-div #title-year{
 	font-size: 32px;
 	vertical-align: top;
-	margin-bottom: 10px;
 }
 #test-div #cast{
-	
+		margin-top: 10px;
+
 }
 #test-div #rating{
 	text-align: center;
 	background: #f38363;
 	flex-grow: 0.3;
 	font-size: 26px;
-	line-height: 145px;
+	line-height: 145px; /*this should probably be exchanged for something else than a bandaid-solution...*/
 }
 #test-div #rating i{
 	font-size: 18px;
