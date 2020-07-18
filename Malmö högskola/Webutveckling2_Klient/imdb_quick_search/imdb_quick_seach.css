@@ -43,7 +43,7 @@ form input {
 	margin-top: 20px;
 }
 #result ul li {
-	text-align: left ;
+	text-align: left;
 	vertical-align: middle;
 	transform: translateZ(0);
 	box-shadow: 0 0 1px rgba(0, 0, 0, 0);
@@ -52,11 +52,18 @@ form input {
 	cursor: pointer;
 	padding-bottom: 10px;
 }
-
+li:hover, li:focus, li:active {
+	transform: scale(1.1);
+}
+a {
+	text-decoration: none;
+	color: inherit;
+	outline: none;
+}
 
 
 #test-div{
-	background: #f38363;
+	background: #e7d2cc;
 	border-radius: 5px;
 	border: 2px black;
 	display: inline-block;
@@ -65,7 +72,10 @@ form input {
 	height: 155px;
 	position: relative;
 	text-align: left;
-	width: 30%;
+	width: 35%;
+		box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+	transition-duration: 0.3s;
+	transition-property: transform;
 }
 #test-div #title-year{
 	font-size: 32px;
@@ -75,32 +85,24 @@ form input {
 #test-div #rating{
 	position: absolute;
 	text-align: center;
-	vertical-align: center;
 	right: 0px;
-	top: 0px;
-	margin-top: 10px;
+
 	width: 75px;
-	background: grey;
-	height: 100%;
+	background: #f38363;
+	height: 90%;
+	
 }
 #test-div img{
 	width: 105px;
 	height: 155px;
 }
 #test-div:hover, test-div:focus, test-div:active{
-	background: #f4cb84;
+		transform: scale(1.06);
 }
 
 
 
-li:hover, li:focus, li:active {
-	transform: scale(1.1);
-}
-a {
-	text-decoration: none;
-	color: inherit;
-	outline: none;
-}
+
 @media screen and (max-width: 1300px) {
 	img {
 		width: 100px;
