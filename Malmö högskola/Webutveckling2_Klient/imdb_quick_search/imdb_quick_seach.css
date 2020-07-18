@@ -70,7 +70,7 @@ a {
 	
 	display: flex;
 	flex-direction: row;
-	justify-content: space-around;
+	justify-content: space-between;
 		margin: 0 auto;
 	width: 35%;
 	background: #e7d2cc;
@@ -81,18 +81,23 @@ a {
 	height: 155px;
 	position: relative;
 	text-align: left;
-
 }
 #test-div img{
 	width: 105px;
 	height: 100%;
-	flex-grow: 0.3;
+}
+#test-div #item-text{
+		flex-grow: 1;
+		margin-left: 10px;
+
 }
 #test-div #title-year{
 	font-size: 32px;
-	margin-left: 10px;
 	vertical-align: top;
-	flex-grow: 0.5;
+	display: block;
+	margin-bottom: 10px;
+}
+#test-div #cast{
 	
 }
 #test-div #rating{
@@ -100,8 +105,7 @@ a {
 	background: #f38363;
 	flex-grow: 0.2;
 }
-#test-div #cast{
-}
+
 
 #test-div:hover, test-div:focus, test-div:active{
 		transform: scale(1.06);
