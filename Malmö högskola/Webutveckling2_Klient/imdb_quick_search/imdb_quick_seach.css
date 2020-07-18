@@ -63,39 +63,44 @@ a {
 
 
 #test-div{
+	width: 35%;
+		box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+	transition-duration: 0.3s;
+	transition-property: transform;
+	
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
 	background: #e7d2cc;
 	border-radius: 5px;
 	border: 2px black;
-	display: inline-block;
 	padding: 10px;
 	margin-top: 15px;
 	height: 155px;
 	position: relative;
 	text-align: left;
-	width: 35%;
-		box-shadow: 0 0 1px rgba(0, 0, 0, 0);
-	transition-duration: 0.3s;
-	transition-property: transform;
+
+}
+#test-div img{
+	width: 105px;
+	height: 100%;
+	flex-grow: 0.8;
 }
 #test-div #title-year{
 	font-size: 32px;
 	margin-left: 10px;
 	vertical-align: top;
-}
-#test-div #rating{
-	position: absolute;
-	text-align: center;
-	right: 0px;
-
-	width: 75px;
-	background: #f38363;
-	height: 90%;
 	
 }
-#test-div img{
-	width: 105px;
-	height: 155px;
+#test-div #rating{
+	text-align: center;
+	background: #f38363;
+	0.2
 }
+#test-div #cast{
+
+}
+
 #test-div:hover, test-div:focus, test-div:active{
 		transform: scale(1.06);
 }
