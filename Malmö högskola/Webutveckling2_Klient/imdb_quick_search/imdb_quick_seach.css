@@ -14,7 +14,7 @@ img {
 	width: 200px;
 	height: 200px;
 }
-button {
+form button {
 	width: 45px;
 	padding: 10px;
 	background: #f38363;
@@ -28,7 +28,7 @@ button {
 	margin-left: -0.5%;
 	-webkit-appearance: none;
 }
-input {
+form input {
 	padding: 10px;
 	font-size: 17px;
 	border: 1px solid grey;
@@ -38,11 +38,11 @@ input {
 #result {
 	font-size: 25px;
 }
-ul {
+#result ul {
 	display: inline-block;
 	margin-top: 20px;
 }
-li {
+#result ul li {
 	text-align: left ;
 	vertical-align: middle;
 	transform: translateZ(0);
