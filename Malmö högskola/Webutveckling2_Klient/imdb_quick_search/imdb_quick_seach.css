@@ -10,6 +10,9 @@ html {
 	background-color: #f4cb84;
 	text-align: center;
 }
+#container i{
+  vertical-align: middle;
+}
 img {
 	width: 200px;
 	height: 200px;
