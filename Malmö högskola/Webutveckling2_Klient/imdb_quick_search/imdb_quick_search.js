@@ -87,16 +87,15 @@ function displayResult(result) {
 			fetchImdbRating(entry.imdbID).then(rating => generateNodes(rating));
 
 			function generateNodes(rating) {
-				let liDiv = document.createElement('div');
-				liDiv.id = 'testDiv';
-				//liDiv.style.border = "solid thick #0000FF";
+				let div = document.createElement('div');
+				div.id = 'li-container';
 
 				let entryString = entry.Title + " (" + String(entry.Year) + ")" + ", " + String(rating);
 		  		let a = document.createElement('a');  
 			    let link = document.createTextNode(entryString);
 			    a.appendChild(link);
 
-			    liDiv.appendChild(a);
+			    div.appendChild(a);
 
 
 			    let url = "https://www.imdb.com/title/" + entry.imdbID + "/";
@@ -104,7 +103,7 @@ function displayResult(result) {
 
 				let li = document.createElement("li");
 				//li.appendChild(a);
-							    li.appendChild(liDiv);
+							    li.appendChild(div);
 
 				ul.appendChild(li);
 			}	
