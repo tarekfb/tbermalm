@@ -76,7 +76,7 @@ a {
 	background: #e7d2cc;
 	border-radius: 5px;
 	border: 2px black;
-	padding: 10px;
+
 	margin-top: 15px;
 	height: 155px;
 	position: relative;
@@ -85,10 +85,14 @@ a {
 #test-div img{
 	width: 105px;
 	height: 100%;
+	padding: 10px 0px 10px 10px;
+	box-sizing: border-box;
 }
 #test-div #item-text{
 		flex-grow: 1;
 		margin-left: 10px;
+		padding-top: 10px;
+	box-sizing: border-box;
 
 }
 #test-div #title-year{
@@ -103,7 +107,9 @@ a {
 #test-div #rating{
 	text-align: center;
 	background: #f38363;
-	flex-grow: 0.2;
+	flex-grow: 0.3;
+	font-size: 26px;
+	line-height: 145px;
 }
 
 
