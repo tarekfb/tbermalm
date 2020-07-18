@@ -54,16 +54,43 @@ form input {
 }
 
 
+
 #test-div{
 	background: #f38363;
-	border-style: solid;
 	border-radius: 5px;
 	border: 2px black;
 	display: inline-block;
+	padding: 10px;
+	margin-top: 15px;
+	height: 155px;
+	position: relative;
+	text-align: left;
+	width: 30%;
+}
+#test-div #title-year{
+	font-size: 32px;
+	margin-left: 10px;
+	vertical-align: top;
+}
+#test-div #rating{
+	position: absolute;
+	text-align: center;
+	vertical-align: center;
+	right: 0px;
+	top: 0px;
+	margin-top: 10px;
+	width: 75px;
+	background: grey;
+	height: 100%;
+}
+#test-div img{
+	width: 105px;
+	height: 155px;
 }
 #test-div:hover, test-div:focus, test-div:active{
 	background: #f4cb84;
 }
+
 
 
 li:hover, li:focus, li:active {
