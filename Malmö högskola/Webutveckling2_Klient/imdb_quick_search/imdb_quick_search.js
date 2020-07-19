@@ -101,7 +101,7 @@ function displayResult(result) {
 				a.appendChild(movieContainer);
 				
 				let img = document.createElement('img');
-				img.src = 'test.jpg';
+				img.src = entry.Poster;
 				movieContainer.appendChild(img);
 
 				let text = document.createElement('div');
