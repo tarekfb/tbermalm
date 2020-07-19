@@ -45,21 +45,6 @@ a {
 	text-decoration: none;
 	color: inherit;
 }
-
-/*#result ul li {
-	text-align: left;
-	vertical-align: middle;
-	transform: translateZ(0);
-	box-shadow: 0 0 1px rgba(0, 0, 0, 0);
-	transition-duration: 0.3s;
-	transition-property: transform;
-	cursor: pointer;
-	padding-bottom: 10px;
-}
-li:hover, li:focus, li:active {
-	transform: scale(1.1);
-}*/
-
 #movie-container {
 	box-shadow: 0 0 1px rgba(0, 0, 0, 0);
 	transition-duration: 0.3s;
@@ -143,7 +128,7 @@ li:hover, li:focus, li:active {
 		height: 30%;
 	}
 	#movie-container img {
-		width: 100%;
+		width: 80%;
 	}
 	#movie-container #text {
 		margin-top: 4px;
