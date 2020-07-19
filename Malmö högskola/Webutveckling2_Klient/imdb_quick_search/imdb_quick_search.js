@@ -91,14 +91,9 @@ function displayResult(result) {
 				let li = document.createElement("li");
 				ul.appendChild(li);
 
-				let a = document.createElement("a");  
-			    let url = "https://www.imdb.com/title/" + entry.imdbID + "/";
-			    a.href = url;
-				li.appendChild(a);
-
 				let movieContainer = document.createElement('div');
 				movieContainer.id = 'movie-container';
-				a.appendChild(movieContainer);
+				li.appendChild(movieContainer);
 				
 				let img = document.createElement('img');
 				img.src = entry.Poster;
