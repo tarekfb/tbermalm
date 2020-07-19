@@ -143,7 +143,7 @@ li:hover, li:focus, li:active {
 		height: 30%;
 	}
 	#movie-container img {
-		width: 15%;
+		width: 100%;
 	}
 	#movie-container #text {
 		margin-top: 4px;
