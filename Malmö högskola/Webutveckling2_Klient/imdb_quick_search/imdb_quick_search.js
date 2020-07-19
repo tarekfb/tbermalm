@@ -132,7 +132,7 @@ function displayResult(result) {
 
 				let ratingScore = document.createElement("span");
 				ratingScore.id = "rating-score";
-				ratingScore.appendChild(document.createTextNode(rating)));
+				ratingScore.appendChild(document.createTextNode(rating));
 				ratingDiv.appendChild(ratingScore);
 
 				let ratingMax = document.createElement("span");
