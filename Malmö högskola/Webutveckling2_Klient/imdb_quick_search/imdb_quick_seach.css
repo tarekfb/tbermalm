@@ -38,14 +38,16 @@ form input {
 	width: 40%;
 	background: #f1f1f1;
 }
-#result {
+/*#result {
 	font-size: 25px;
 }
+*/
 #result ul {
 	display: inline-block;
 	margin-top: 20px;
+	list-style: none;
 }
-#result ul li {
+/*#result ul li {
 	text-align: left;
 	vertical-align: middle;
 	transform: translateZ(0);
@@ -57,7 +59,7 @@ form input {
 }
 li:hover, li:focus, li:active {
 	transform: scale(1.1);
-}
+}*/
 a {
 	text-decoration: none;
 	color: inherit;
