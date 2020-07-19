@@ -67,6 +67,7 @@ li:hover, li:focus, li:active {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
+	flex-shrink: 0px;
 	margin: 0 auto;
 	width: 35%;
 	height: 20%;
@@ -109,7 +110,8 @@ li:hover, li:focus, li:active {
 	/* align horizontal */
 	align-items: center;
 	/* align vertical */
-	padding: 0 5px 0 5px;
+	padding: 0 0px 0 0px;
+	min-width: 18%
 
 }
 #movie-container #rating i {
