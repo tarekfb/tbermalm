@@ -97,10 +97,12 @@ function displayResult(result) {
 
 				let text = document.createElement('div');
 				text.id = "text";
+				movieContainer.appendChild(text);
 
 				let titleYear = document.createElement("span");
 				titleYear.id = "title-year";
 				titleYear.appendChild(document.createTextNode(entry.Title + " (" + String(entry.Year) + ")"));
+				text.appendChild(titleYear);
 
 
 
