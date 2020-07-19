@@ -112,13 +112,14 @@ function displayResult(result) {
 				titleYear.id = "title-year";
 				titleYear.appendChild(document.createTextNode(entry.Title + " (" + String(entry.Year) + ")")); // + "<br />"
 				text.appendChild(titleYear);
-				//need a line break
-				text.insertBefore(document.createElement("br"), text.firstElementChild.nextSibling);
-
+				
 				let actors = document.createElement("span");
 				actors.id = "actors";
 				titleYear.appendChild(document.createTextNode("Jennyfar AniStån, Mak Valburg, Brady P")); //TO-DO: fix
 				text.appendChild(actors);
+				//need to insert linebreak after titleYear
+				text.insertBefore(document.createElement("br"), actors);
+
 
 				let ratingDiv = document.createElement('div');
 				ratingDiv.id = "rating";
@@ -131,6 +132,7 @@ function displayResult(result) {
 
 				let ratingScore = document.createElement("span");
 				ratingScore.id = "rating-score";
+
 
 
 
