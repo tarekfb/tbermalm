@@ -125,10 +125,12 @@ function displayResult(result) {
 				ratingDiv.id = "rating";
 				movieContainer.appendChild(ratingDiv);
 
-				let i = document.createElement("i");
+				/*let i = document.createElement("i");
 				i.class = "fa fa-star";
 				i.setAttribute('aria-hidden', 'true');
-				ratingDiv.appendChild(i);
+				ratingDiv.appendChild(i);*/
+
+				ratingDiv.appendChild('<i class="fa fa-star" aria-hidden="true"></i>');
 
 				let ratingScore = document.createElement("span");
 				ratingScore.id = "rating-score";
