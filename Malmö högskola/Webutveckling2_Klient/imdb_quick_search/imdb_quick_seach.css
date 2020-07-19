@@ -142,10 +142,16 @@ a {
 	}
 	#movie-container{
 		height: 110px;
-		width: 85%;
+		width: 90%;
 	}
 	#movie-container img{
 	   width: 12%;
+	}
+	#movie-container #text{
+		font-size: 28px; 
+	}
+	#movie-container #rating{
+		padding: 0 15px 0 15px;
 	}
 }
 /*https://www.canva.com/colors/color-palette-generator/*/
