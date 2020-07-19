@@ -140,7 +140,7 @@ function displayResult(result) {
 				console.log(entry.Actors);
 				console.log(entry.Awards);
 				console.log(entry.properties);
-				console.log(entry.getOwnPropertyNames());
+				//console.log(entry.getOwnPropertyNames());
 			}	
 		});
 	}
