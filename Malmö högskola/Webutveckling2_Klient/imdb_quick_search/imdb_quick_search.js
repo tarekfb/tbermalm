@@ -130,7 +130,7 @@ function displayResult(result) {
 				i.setAttribute('aria-hidden', 'true');
 				ratingDiv.appendChild(i);*/
 
-				ratingDiv.innerHTML = '<i class="fa fa-trash-o" aria-hidden="true"></i>';
+				ratingDiv.innerHTML = '<i class="fa fa-star" aria-hidden="true"></i>';
 
 				let ratingScore = document.createElement("span");
 				ratingScore.id = "rating-score";
