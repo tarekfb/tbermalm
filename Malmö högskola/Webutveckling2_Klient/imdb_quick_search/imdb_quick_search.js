@@ -121,7 +121,10 @@ function displayResult(result) {
 
 				let ratingDiv = document.createElement('div');
 				ratingDiv.id = "rating";
-				movieContainer.appendChild(rating);
+				movieContainer.appendChild(ratingDiv);
+
+				let i = document.createElement("i");
+				i.class = "";
 
 
 
