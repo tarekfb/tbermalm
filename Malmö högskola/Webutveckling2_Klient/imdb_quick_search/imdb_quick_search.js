@@ -89,11 +89,16 @@ function displayResult(result) {
 
 			function generateNodes(rating) {
 				let movieContainer = document.createElement('div');
-				div.id = 'movie-container';
+				movieContainer.id = 'movie-container';
 
 				let img = document.createElement('img');
 				img.src = 'test.jpg';
 				movieContainer.appendChild(img);
+
+				let text = document.createElement('div');
+				text.id = "text";
+
+
 
 
 
