@@ -35,6 +35,9 @@ form input {
 	width: 40%;
 	background: #f1f1f1;
 }
+#result{
+	font-size: 25px;
+}
 #result ul {
 	list-style: none;
 }
