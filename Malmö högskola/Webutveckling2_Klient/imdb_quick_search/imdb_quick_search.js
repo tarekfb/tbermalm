@@ -115,7 +115,7 @@ function displayResult(result) {
 				
 				let actors = document.createElement("span");
 				actors.id = "actors";
-				titleYear.appendChild(document.createTextNode("Jennyfar AniStån, Mak Valburg, Brady P")); //TO-DO: fix
+				actors.appendChild(document.createTextNode("Jennyfar AniStån, Mak Valburg, Brady P")); //TO-DO: fix
 				text.appendChild(actors);
 				//need to insert linebreak after titleYear, before actors
 				text.insertBefore(document.createElement("br"), actors);
