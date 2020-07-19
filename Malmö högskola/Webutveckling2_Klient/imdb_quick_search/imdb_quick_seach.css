@@ -147,7 +147,7 @@ a {
 	#movie-container img{
 	   width: 12%;
 	}
-	#movie-container #text{
+	#movie-container #text #title-year{
 		font-size: 28px; 
 	}
 	#movie-container #rating{
