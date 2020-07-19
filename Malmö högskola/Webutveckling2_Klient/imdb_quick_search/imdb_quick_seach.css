@@ -110,11 +110,14 @@ li:hover, li:focus, li:active {
 	align-items: center;
 	/* align vertical */
 	padding: 0 10px 0 10px;
+
 }
 #movie-container #rating i {
 	font-size: 18px;
 	color: #FFD700;
 	text-shadow: 0 0 3px #000;
+		margin-right: 5px;
+
 }
 #movie-container #rating #rating-score {
 	font-size: 26px;
