@@ -124,7 +124,12 @@ function displayResult(result) {
 				movieContainer.appendChild(ratingDiv);
 
 				let i = document.createElement("i");
-				i.class = "";
+				i.class = "fa fa-star";
+				//i.aria-hidden = "true"; //currently not included, should be fine
+				ratingDiv.appendChild(i);
+
+				let ratingScore = document.createElement("span");
+				ratingScore.id = "rating-score";
 
 
 
