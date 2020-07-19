@@ -110,9 +110,9 @@ function displayResult(result) {
 
 				let titleYear = document.createElement("span");
 				titleYear.id = "title-year";
-				titleYear.appendChild(document.createTextNode(entry.Title + " (" + String(entry.Year) + ")" + "<br />"));
+				titleYear.appendChild(document.createTextNode(entry.Title + " (" + String(entry.Year) + ")")); // + "<br />"
 				text.appendChild(titleYear);
-				//titleYear.insertAfter(createElement("br"));
+				titleYear.insertAfter(document.createElement("br"));
 
 				let actors = document.createElement("span");
 				actors.id = "actors";
