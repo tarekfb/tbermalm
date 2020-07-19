@@ -140,5 +140,12 @@ a {
 		width: 100px;
 		height: 100px;
 	}
+	#movie-container{
+		height: 110px;
+		width: 60%;
+	}
+	#movie-container img{
+	   width: 75px;
+	}
 }
 /*https://www.canva.com/colors/color-palette-generator/*/
