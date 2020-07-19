@@ -125,11 +125,6 @@ function displayResult(result) {
 				ratingDiv.id = "rating";
 				movieContainer.appendChild(ratingDiv);
 
-				/*let i = document.createElement("i");
-				i.class = "fa fa-star";
-				i.setAttribute('aria-hidden', 'true');
-				ratingDiv.appendChild(i);*/
-
 				ratingDiv.innerHTML = '<i class="fa fa-star" aria-hidden="true"></i>';
 
 				let ratingScore = document.createElement("span");
@@ -141,45 +136,8 @@ function displayResult(result) {
 				ratingMax.id = "rating-max";
 				ratingMax.appendChild(document.createTextNode("/10"));
 				ratingDiv.appendChild(ratingMax);
-
-
-
-
-
-
-
-				/*__________________________________________
-
-				let img = document.createElement('img');
-				img.src = 'test.jpg';
-
-				let titleYear = document.createElement("span");
-				titleYear.id = "title-year";
-				titleYear.appendChild(document.createTextNode(entry.Title + " (" + String(entry.Year) + ")"));
-
-
-				let movieContainer = document.createElement('div');
-				movieContainer.id = 'movie-container';
-
-				let img = document.createElement('img');
-				img.src = 'test.jpg';
-				movieContainer.appendChild(img);
-
-				let text = document.createElement('div');
-				text.id = "text";
-				movieContainer.appendChild(text);
-
-				let titleYear = document.createElement("span");
-				titleYear.id = "title-year";
-				titleYear.appendChild(document.createTextNode(entry.Title + " (" + String(entry.Year) + ")"));
-				text.appendChild(titleYear);
-				*/
-
-
-
-
-
 				
+				console.log(entry.Actors);	
 			}	
 			//TO-DO: creating new function, renaming to 1 temporariliy
 			function generateNodes1(rating) {
