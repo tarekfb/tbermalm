@@ -104,6 +104,21 @@ function displayResult(result) {
 				img.src = 'test.jpg';
 				movieContainer.appendChild(img);
 
+				let text = document.createElement('div');
+				text.id = "text";
+				movieContainer.appendChild(text);
+
+				let titleYear = document.createElement("span");
+				titleYear.id = "title-year";
+				titleYear.appendChild(document.createTextNode(entry.Title + " (" + String(entry.Year) + ")"));
+				text.appendChild(titleYear);
+
+				let cast = document.createElement("span");
+				cast.id = "cast";
+				titleYear.appendChild(document.createTextNode(entry.cast));
+				movieContainer.appendChild(cast);
+
+
 
 				/*__________________________________________
 
