@@ -132,10 +132,9 @@ a {
 	}
 	#movie-container #text {
 		margin: 4px 0 0 4px;
-
 	}
 	#movie-container #text #title-year {
-		font-size: 28px;
+		font-size: 24px;
 	}
 	#movie-container #text #actors {
 		margin-top: 4px;
