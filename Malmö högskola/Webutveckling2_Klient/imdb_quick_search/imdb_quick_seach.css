@@ -134,12 +134,20 @@ a {
 	}
 	#movie-container {
 		width: 95%;
+		height: 30%;
 	}
 	#movie-container img {
 		width: 15%;
 	}
+	#movie-container #text {
+		margin-top: 4px;
+	}
 	#movie-container #text #title-year {
 		font-size: 28px;
+	}
+	#movie-container #text #cast {
+		margin-top: 4px;
+		font-size: 14px;
 	}
 	#movie-container #rating {
 		padding: 0 9px 0 9px;
