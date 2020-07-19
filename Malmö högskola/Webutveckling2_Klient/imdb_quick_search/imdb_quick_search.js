@@ -137,7 +137,9 @@ function displayResult(result) {
 				ratingMax.appendChild(document.createTextNode("/10"));
 				ratingDiv.appendChild(ratingMax);
 				
-				console.log(entry.Actors);	
+				console.log(entry.Actors);
+				console.log(entry.Awards);
+				console.log(entry.properties);
 			}	
 		});
 	}
