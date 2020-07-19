@@ -117,7 +117,7 @@ function displayResult(result) {
 				actors.id = "actors";
 				titleYear.appendChild(document.createTextNode("Jennyfar AniStån, Mak Valburg, Brady P")); //TO-DO: fix
 				text.appendChild(actors);
-				//need to insert linebreak after titleYear
+				//need to insert linebreak after titleYear, before actors
 				text.insertBefore(document.createElement("br"), actors);
 
 
@@ -132,6 +132,13 @@ function displayResult(result) {
 
 				let ratingScore = document.createElement("span");
 				ratingScore.id = "rating-score";
+				ratingScore.appendChild(document.createTextNode(" 6.5"));
+				ratingDiv.appendChild(ratingScore);
+
+				let ratingMax = document.createElement("span");
+				ratingMax.id = "rating-max";
+				ratingMax.appendChild(document.createTextNode("/10"));
+				ratingDiv.appendChild(ratingMax);
 
 
 
