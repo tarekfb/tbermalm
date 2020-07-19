@@ -142,7 +142,16 @@ a {
 		font-size: 28px;
 	}
 	#movie-container #rating {
-		padding: 0 15px 0 15px;
+		padding: 0 9px 0 9px;
+	}
+	#movie-container #rating i {
+		font-size: 15px;
+	}
+	#movie-container #rating #rating-score {
+		font-size: 22px;
+	}
+	#movie-container #rating #rating-max {
+		font-size: 15px;
 	}
 }
 /*https://www.canva.com/colors/color-palette-generator/*/
