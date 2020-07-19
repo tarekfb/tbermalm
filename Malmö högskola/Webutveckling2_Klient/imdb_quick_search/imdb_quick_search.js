@@ -91,10 +91,12 @@ function displayResult(result) {
 				let movieContainer = document.createElement('div');
 				div.id = 'movie-container';
 
-				let img = document.createElement('img'):
+				let img = document.createElement('img');
 				img.src = 'test.jpg';
 				movieContainer.appendChild(img);
-				
+
+
+
 				
 			}	
 			//TO-DO: creating new function, renaming to 1 temporariliy
