@@ -139,27 +139,6 @@ function displayResult(result) {
 				
 				console.log(entry.Actors);	
 			}	
-			//TO-DO: creating new function, renaming to 1 temporariliy
-			function generateNodes1(rating) {
-				let div = document.createElement('div');
-				div.id = 'li-container';
-
-				let entryString = entry.Title + " (" + String(entry.Year) + ")" + ", " + String(rating);
-		  		let a = document.createElement('a');  
-			    let link = document.createTextNode(entryString);
-			    a.appendChild(link);
-
-			    div.appendChild(a);
-
-			    let url = "https://www.imdb.com/title/" + entry.imdbID + "/";
-			    a.href = url;
-
-				let li = document.createElement("li");
-				//li.appendChild(a);
-				li.appendChild(div);
-
-				ul.appendChild(li);
-			}	
 		});
 	}
 
