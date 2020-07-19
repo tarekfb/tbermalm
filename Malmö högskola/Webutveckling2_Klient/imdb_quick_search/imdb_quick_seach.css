@@ -109,15 +109,19 @@ a {
 	text-align: center;
 	background: #f38363;
 	flex-grow: 0.3;
-	font-size: 26px;
-	line-height: 145px; /*this should probably be exchanged for something else than a bandaid-solution...*/
-}
+	}
 #test-div #rating i{
 	font-size: 18px;
 	color: 	#FFD700;
 	     text-shadow: 0 0 3px #000;
  position: relative;
-
+}
+#test-div #rating #rating-score{
+	font-size: 26px;
+}
+#test-div #rating #rating-max{
+	font-size: 18px;
+	color: grey;
 }
 
 #test-div:hover, test-div:focus, test-div:active{
