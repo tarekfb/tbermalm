@@ -58,15 +58,9 @@ function displayResult(result) {
 	} else if (result.Response == "True"){
 
 		//in this case the search came through
-		//we display result properties in list items
-	    //also wrap it in a link to IMDB page
-		let ul = document.createElement("ul");
-		ul.id = "items";
-		/*ul.style.listStyle = "disc"; //for some reason css doesnt do the job
-		console.log(ul.style.listStyle);*/
+		//we display result properties
 
 		let resultContainer = document.getElementById("result");
-		resultContainer.appendChild(ul);
 
 		//this code needs to be executed for every item in array: Result.Search
 		result.Search.forEach(function(entry) {
@@ -87,13 +81,9 @@ function displayResult(result) {
 			fetchImdbRating(entry.imdbID).then(rating => generateNodesForLi(rating));
 
 			function generateNodesForLi(rating) {
-
-				let li = document.createElement("li");
-				ul.appendChild(li);
-
 				let movieContainer = document.createElement('div');
 				movieContainer.id = 'movie-container';
-				li.appendChild(movieContainer);
+				resultContainer.appendChild(movieContainer);
 				
 				let a = document.createElement("a");  
 			    let url = "https://www.imdb.com/title/" + entry.imdbID + "/";
