@@ -84,10 +84,37 @@ function displayResult(result) {
 			//generateNodes creates the appriopriate nodes
 			//the items are displayed and task is complete
 
-			fetchImdbRating(entry.imdbID).then(rating => generateNodes(rating));
+			fetchImdbRating(entry.imdbID).then(rating => generateNodesForLi(rating));
+
+			function generateNodesForLi(rating) {
+
+				let li = document.createElement("li");
+				ul.appendChild(li);
+
+				let a = document.createElement("a");  
+			    let url = "https://www.imdb.com/title/" + entry.imdbID + "/";
+			    a.href = url;
+				li.appendChild(a);
+
+				let movieContainer = document.createElement('div');
+				movieContainer.id = 'movie-container';
+				a.appendChild(movieContainer);
+				
+				let img = document.createElement('img');
+				img.src = 'test.jpg';
+				movieContainer.appendChild(img);
 
 
-			function generateNodes(rating) {
+				/*__________________________________________
+
+				let img = document.createElement('img');
+				img.src = 'test.jpg';
+
+				let titleYear = document.createElement("span");
+				titleYear.id = "title-year";
+				titleYear.appendChild(document.createTextNode(entry.Title + " (" + String(entry.Year) + ")"));
+
+
 				let movieContainer = document.createElement('div');
 				movieContainer.id = 'movie-container';
 
@@ -103,7 +130,7 @@ function displayResult(result) {
 				titleYear.id = "title-year";
 				titleYear.appendChild(document.createTextNode(entry.Title + " (" + String(entry.Year) + ")"));
 				text.appendChild(titleYear);
-
+				*/
 
 
 
@@ -123,13 +150,12 @@ function displayResult(result) {
 
 			    div.appendChild(a);
 
-
 			    let url = "https://www.imdb.com/title/" + entry.imdbID + "/";
 			    a.href = url;
 
 				let li = document.createElement("li");
 				//li.appendChild(a);
-							    li.appendChild(div);
+				li.appendChild(div);
 
 				ul.appendChild(li);
 			}	
