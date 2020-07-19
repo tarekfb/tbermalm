@@ -86,7 +86,19 @@ function displayResult(result) {
 
 			fetchImdbRating(entry.imdbID).then(rating => generateNodes(rating));
 
+
 			function generateNodes(rating) {
+				let movieContainer = document.createElement('div');
+				div.id = 'movie-container';
+
+				let img = document.createElement('img'):
+				img.src = 'test.jpg';
+				movieContainer.appendChild(img);
+				
+				
+			}	
+			//TO-DO: creating new function, renaming to 1 temporariliy
+			function generateNodes1(rating) {
 				let div = document.createElement('div');
 				div.id = 'li-container';
 
