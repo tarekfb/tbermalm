@@ -109,7 +109,7 @@ li:hover, li:focus, li:active {
 	/* align horizontal */
 	align-items: center;
 	/* align vertical */
-	padding: 0 10px 0 10px;
+	padding: 0 5px 0 5px;
 
 }
 #movie-container #rating i {
@@ -121,6 +121,8 @@ li:hover, li:focus, li:active {
 }
 #movie-container #rating #rating-score {
 	font-size: 26px;
+			margin-right: 5px;
+
 }
 #movie-container #rating #rating-max {
 	font-size: 18px;
