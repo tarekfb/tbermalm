@@ -113,10 +113,10 @@ function displayResult(result) {
 				titleYear.appendChild(document.createTextNode(entry.Title + " (" + String(entry.Year) + ")"));
 				text.appendChild(titleYear);
 
-				let cast = document.createElement("span");
-				cast.id = "cast";
-				titleYear.appendChild(document.createTextNode(entry.cast));
-				movieContainer.appendChild(cast);
+				let actors = document.createElement("span");
+				actors.id = "actors";
+				titleYear.appendChild(document.createTextNode(entry.Actors));
+				movieContainer.appendChild(actors);
 
 
 

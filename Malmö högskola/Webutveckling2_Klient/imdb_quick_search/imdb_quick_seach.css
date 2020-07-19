@@ -97,7 +97,7 @@ a {
 	font-size: 32px;
 	vertical-align: top;
 }
-#movie-container #cast {
+#movie-container #actors {
 	display: inline-block;
 	margin-top: 10px;
 }
@@ -147,7 +147,7 @@ a {
 	#movie-container #text #title-year {
 		font-size: 28px;
 	}
-	#movie-container #text #cast {
+	#movie-container #text #actors {
 		margin-top: 4px;
 		font-size: 14px;
 	}
