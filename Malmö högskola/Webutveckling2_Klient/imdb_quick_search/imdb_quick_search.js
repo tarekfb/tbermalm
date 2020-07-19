@@ -127,7 +127,7 @@ function displayResult(result) {
 
 				let i = document.createElement("i");
 				i.class = "fa fa-star";
-				//i.aria-hidden = "true"; //currently not included, should be fine
+				i.setAttribute('aria-hidden', 'true');
 				ratingDiv.appendChild(i);
 
 				let ratingScore = document.createElement("span");
