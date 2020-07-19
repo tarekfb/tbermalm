@@ -92,7 +92,7 @@ li:hover, li:focus, li:active {
 #movie-container #actors {
 	display: inline-block;
 	margin-top: 10px;
-	font-size: 5px;
+	font-size: 18px;
 }
 #movie-container #rating {
 	text-align: center;
