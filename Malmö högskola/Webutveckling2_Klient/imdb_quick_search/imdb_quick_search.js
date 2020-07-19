@@ -110,13 +110,13 @@ function displayResult(result) {
 
 				let titleYear = document.createElement("span");
 				titleYear.id = "title-year";
-				titleYear.appendChild(document.createTextNode(entry.Title + " (" + String(entry.Year) + ")"));
+				titleYear.appendChild(document.createTextNode(entry.Title + " (" + String(entry.Year) + ")" + "<br />"));
 				text.appendChild(titleYear);
 				//titleYear.insertAfter(createElement("br"));
 
 				let actors = document.createElement("span");
 				actors.id = "actors";
-				titleYear.appendChild(document.createTextNode("Jennyfar AniStån, Mak Valburg, Brady P" + "<br />")); //TO-DO: fix
+				titleYear.appendChild(document.createTextNode("Jennyfar AniStån, Mak Valburg, Brady P")); //TO-DO: fix
 				text.appendChild(actors);
 
 				let ratingDiv = document.createElement('div');
