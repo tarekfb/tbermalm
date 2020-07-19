@@ -78,9 +78,8 @@ a {
 	width: 35%;
 	background: #e7d2cc;
 	border-radius: 5px;
-	border: 2px black;
-
-	margin-top: 15px;
+	border: 1px solid grey;
+	margin-top: 20px;
 	height: 155px;
 	position: relative;
 	text-align: left;
@@ -93,8 +92,7 @@ a {
 }
 #test-div #item-text{
 		flex-grow: 1;
-		margin-left: 10px;
-		padding-top: 10px;
+	margin: 10px 0 0 15px;
 	box-sizing: border-box;
 
 }
@@ -103,7 +101,8 @@ a {
 	vertical-align: top;
 }
 #test-div #cast{
-		padding-top: 10px;
+	display: inline-block;
+	margin-top: 10px;
 
 }
 #test-div #rating{
