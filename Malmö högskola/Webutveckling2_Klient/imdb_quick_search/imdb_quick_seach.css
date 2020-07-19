@@ -129,6 +129,7 @@ a {
 	}
 	#movie-container img {
 		width: 85px;
+		height: 100%;
 	}
 	#movie-container #text {
 		margin: 5px 0 0 5px;
