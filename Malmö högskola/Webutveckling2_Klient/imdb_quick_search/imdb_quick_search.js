@@ -119,8 +119,8 @@ function displayResult(result) {
 				titleYear.appendChild(document.createTextNode("Jennyfar AniStån, Mak Valburg, Brady P")); //TO-DO: fix
 				text.appendChild(actors);
 
-				let rating = document.createElement('div');
-				rating.id = "rating";
+				let ratingDiv = document.createElement('div');
+				ratingDiv.id = "rating";
 				movieContainer.appendChild(rating);
 
 
