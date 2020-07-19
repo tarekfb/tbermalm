@@ -65,7 +65,7 @@ a {
 }
 
 
-#test-div{
+#movie-container{
 
 		box-shadow: 0 0 1px rgba(0, 0, 0, 0);
 	transition-duration: 0.3s;
@@ -84,28 +84,28 @@ a {
 	position: relative;
 	text-align: left;
 }
-#test-div img{
+#movie-container img{
 	width: 105px;
 	height: 100%;
 	padding: 10px 0px 10px 10px;
 	box-sizing: border-box;
 }
-#test-div #item-text{
+#movie-container #text{
 		flex-grow: 1;
 	margin: 10px 0 0 15px;
 	box-sizing: border-box;
 
 }
-#test-div #title-year{
+#movie-container #title-year{
 	font-size: 32px;
 	vertical-align: top;
 }
-#test-div #cast{
+#movie-container #cast{
 	display: inline-block;
 	margin-top: 10px;
 
 }
-#test-div #rating{
+#movie-container #rating{
 	text-align: center;
 	background: #f38363;
 	flex-grow: 0.3;
@@ -115,20 +115,20 @@ a {
 	justify-content: center; /* align horizontal */
   align-items: center; /* align vertical */
 	}
-#test-div #rating i{
+#movie-container #rating i{
 	font-size: 18px;
 	color: 	#FFD700;
 	text-shadow: 0 0 3px #000;
 }
-#test-div #rating #rating-score{
+#movie-container #rating #rating-score{
 	font-size: 26px;
 }
-#test-div #rating #rating-max{
+#movie-container #rating #rating-max{
 	font-size: 18px;
 	color: #696969;
 }
 
-#test-div:hover, test-div:focus, test-div:active{
+#movie-container:hover, movie-container:focus, movie-container:active{
 		transform: scale(1.03);
 }
 
