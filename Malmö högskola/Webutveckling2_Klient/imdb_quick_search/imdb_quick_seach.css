@@ -10,9 +10,6 @@ html {
 	background-color: #f4cb84;
 	text-align: center;
 }
-#container i {
-	vertical-align: middle;
-}
 img {
 	width: 200px;
 	height: 200px;
@@ -38,15 +35,14 @@ form input {
 	width: 40%;
 	background: #f1f1f1;
 }
-/*#result {
-	font-size: 25px;
-}
-*/
 #result ul {
-	display: inline-block;
-	margin-top: 20px;
 	list-style: none;
 }
+a {
+	text-decoration: none;
+	color: inherit;
+}
+
 /*#result ul li {
 	text-align: left;
 	vertical-align: middle;
@@ -60,11 +56,7 @@ form input {
 li:hover, li:focus, li:active {
 	transform: scale(1.1);
 }*/
-a {
-	text-decoration: none;
-	color: inherit;
-	outline: none;
-}
+
 #movie-container {
 	box-shadow: 0 0 1px rgba(0, 0, 0, 0);
 	transition-duration: 0.3s;
@@ -84,7 +76,7 @@ a {
 }
 #movie-container img {
 	width: 105px;
-	height: 100%;
+	height: 145px;
 	padding: 10px 0px 10px 10px;
 	box-sizing: border-box;
 }
@@ -100,6 +92,7 @@ a {
 #movie-container #actors {
 	display: inline-block;
 	margin-top: 10px;
+	font-size: 5px;
 }
 #movie-container #rating {
 	text-align: center;
@@ -113,6 +106,7 @@ a {
 	/* align horizontal */
 	align-items: center;
 	/* align vertical */
+	padding: 0 15px 0 15px;
 }
 #movie-container #rating i {
 	font-size: 18px;
