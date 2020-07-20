@@ -9,6 +9,7 @@ html {
 	font-family: 'Montserrat', sans-serif;
 	background-color: #f4cb84;
 	text-align: center;
+	height: 100%;
 }
 img {
 	width: 200px;
@@ -54,7 +55,7 @@ a {
 	justify-content: space-between;
 	margin: 0 auto;
 	width: 35%;
-	height: 20vh;
+	height: 20%;
 	background: #e7d2cc;
 	border-radius: 5px;
 	border: 1px solid grey;
@@ -124,7 +125,7 @@ a {
 	}
 	#movie-container {
 		width: 95%;
-		height: 30vh;
+		height: 30%;
 
 	}
 	#movie-container img {
