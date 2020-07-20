@@ -11,6 +11,9 @@ html {
 	text-align: center;
 	height: 100%;
 }
+body{
+	height:100%
+}
 img {
 	width: 200px;
 	height: 200px;
