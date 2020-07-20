@@ -9,10 +9,9 @@ html {
 	font-family: 'Montserrat', sans-serif;
 	background-color: #f4cb84;
 	text-align: center;
-	height: 100vh;
 	margin: 0; 
 }
-body{
+html, body, #container, #result{
 	height: 100%;
 }
 a {
@@ -46,7 +45,6 @@ form input {
 }
 #result{
 	font-size: 25px;
-	height: 100%;
 }
 #movie-container {
 	box-shadow: 0 0 1px rgba(0, 0, 0, 0);
@@ -57,7 +55,7 @@ form input {
 	justify-content: space-between;
 	margin: 0 auto;
 	width: 35%;
-	height: 20%;
+	height: 23%;
 	background: #e7d2cc;
 	border-radius: 5px;
 	border: 1px solid grey;
@@ -67,7 +65,7 @@ form input {
 }
 #movie-container img {
 	width: 105px;
-	height: 145px;
+	height: 100%;
 	padding: 10px 0px 10px 10px;
 	box-sizing: border-box;
 }
