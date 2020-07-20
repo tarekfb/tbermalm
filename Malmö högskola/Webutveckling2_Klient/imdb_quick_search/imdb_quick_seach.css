@@ -124,7 +124,7 @@ a {
 	}
 	#movie-container {
 		width: 95%;
-		min-height: 30%;
+		height: 138px;
 	}
 	#movie-container img {
 		width: 85px;
