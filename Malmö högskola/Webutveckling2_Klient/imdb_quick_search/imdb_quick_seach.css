@@ -15,6 +15,10 @@ html {
 body{
 	height: 100%;
 }
+a {
+	text-decoration: none;
+	color: inherit;
+}
 img {
 	width: 200px;
 	height: 200px;
@@ -42,13 +46,7 @@ form input {
 }
 #result{
 	font-size: 25px;
-}
-#result ul {
-	list-style: none;
-}
-a {
-	text-decoration: none;
-	color: inherit;
+	height: 100%;
 }
 #movie-container {
 	box-shadow: 0 0 1px rgba(0, 0, 0, 0);
