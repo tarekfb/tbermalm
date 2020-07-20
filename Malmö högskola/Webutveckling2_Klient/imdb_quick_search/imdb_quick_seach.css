@@ -54,7 +54,7 @@ a {
 	justify-content: space-between;
 	margin: 0 auto;
 	width: 35%;
-	height: 20%;
+	height: 20vh;
 	background: #e7d2cc;
 	border-radius: 5px;
 	border: 1px solid grey;
@@ -124,7 +124,8 @@ a {
 	}
 	#movie-container {
 		width: 95%;
-		height: 138px;
+		height: 30vh;
+
 	}
 	#movie-container img {
 		width: 85px;
