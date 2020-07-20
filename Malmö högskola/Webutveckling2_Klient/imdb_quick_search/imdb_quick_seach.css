@@ -52,7 +52,6 @@ a {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
-	flex-shrink: 0px;
 	margin: 0 auto;
 	width: 35%;
 	height: 20%;
