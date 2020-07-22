@@ -66,6 +66,15 @@ function displayResult(result) {
 
 		let resultContainer = document.getElementById("result");
 
+
+				console.log("Actors " + result.Search[1].Actors);
+				console.log("Cast " + result.Search[1].Cast);
+				console.log("Plot " + result.Search[1].Plot);
+				console.log("Country " + result.Search[1].Country);
+				console.log("Awards " + result.Search[1].Awards);
+				console.log("properties " + result.Search[1].properties);
+				//console.log(entry.getOwnPropertyNames());
+
 		//this code needs to be executed for every item in array: Result.Search
 		result.Search.forEach(function(entry) {
 
@@ -130,14 +139,6 @@ function displayResult(result) {
 				ratingMax.id = "rating-max";
 				ratingMax.appendChild(document.createTextNode("/10"));
 				ratingDiv.appendChild(ratingMax);
-				
-				console.log("Actors " + entry.Actors);
-				console.log("Cast " + entry.Cast);
-				console.log("Plot " + entry.Plot);
-				console.log("Country " + entry.Country);
-				console.log("Awards " + entry.Awards);
-				console.log("properties " + entry.properties);
-				//console.log(entry.getOwnPropertyNames());
 			}	
 		});
 	}
