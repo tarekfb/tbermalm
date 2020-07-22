@@ -121,7 +121,9 @@ form input {
 		height: 100px;
 	}
 	#movie-container {
-		width: 98%;
+		width: 99%;
+		height: 158px;
+		margin-top: 20px;
 	}
 	#movie-container img {
 		width: 85px;
