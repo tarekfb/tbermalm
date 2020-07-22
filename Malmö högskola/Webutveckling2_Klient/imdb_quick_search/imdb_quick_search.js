@@ -101,8 +101,10 @@ function displayResult(result) {
 			fetchImdbRating(entry.imdbID).then(rating => generateNodesForLi(rating));
 
 			function generateNodesForLi(rating) {
-				console.log(rating);
-				console.log(rating[1]);
+				console.log("rating " + rating);
+				console.log("rating.json " + rating.json);
+				console.log("rating.json() " + rating.json());
+
 
 					for (var key in rating) {
 					  console.log(key);
