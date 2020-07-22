@@ -78,7 +78,7 @@ form input {
 	font-size: 32px;
 	vertical-align: top;
 }
-#movie-container #actors {
+#movie-container #actors, #movie-container #awards {
 	display: inline-block;
 	margin-top: 10px;
 	font-size: 18px;

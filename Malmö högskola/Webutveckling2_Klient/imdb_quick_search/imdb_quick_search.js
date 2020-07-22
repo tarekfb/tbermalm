@@ -111,8 +111,14 @@ function displayResult(result) {
 				actors.id = "actors";
 				actors.appendChild(document.createTextNode(info.actors)); //TO-DO: fix
 				text.appendChild(actors);
-				//need to insert linebreak after titleYear, before actors
+				//need to insert linebreak for styling
 				text.insertBefore(document.createElement("br"), actors);
+
+				let awards = document.createElement("span");
+				awards.id = "awards";
+				awards.appendChild(document.createTextNode(info.awards));
+				//need to insert linebreak for styling
+				text.insertBefore(document.createElement("br"), awards);
 
 				let ratingDiv = document.createElement('div');
 				ratingDiv.id = "rating";
