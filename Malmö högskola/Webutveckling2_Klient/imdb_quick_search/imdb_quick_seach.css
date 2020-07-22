@@ -133,6 +133,7 @@ form input {
 	}
 	#movie-container #text #title-year {
 		font-size: 22px;
+		line-height: 22px;
 	}
 	#movie-container #text #actors, #movie-container #text #awards {
 		margin-top: 3px;
@@ -140,6 +141,8 @@ form input {
 	}
 	#movie-container #rating {
 		padding: 0 9px 0 9px;
+		flex-grow: 0.15;
+
 	}
 	#movie-container #rating i {
 		font-size: 15px;
