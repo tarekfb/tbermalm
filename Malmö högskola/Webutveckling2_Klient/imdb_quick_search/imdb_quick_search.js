@@ -65,7 +65,7 @@ function displayResult(result) {
 		//we display result properties
 
 		let resultContainer = document.getElementById("result");
-
+/*
 				console.log("result.Search " + result.Search);
 				console.log("result.Search[1] " + result.Search[1]);
 				console.log("Title " + result.Search[1].Title);
@@ -80,8 +80,8 @@ function displayResult(result) {
 
 				for (var key in result.Search[1]) {
 					  console.log(key);
-				}
-
+				}//title year imdbid poster
+*/
 		//this code needs to be executed for every item in array: Result.Search
 		result.Search.forEach(function(entry) {
 
@@ -101,6 +101,13 @@ function displayResult(result) {
 			fetchImdbRating(entry.imdbID).then(rating => generateNodesForLi(rating));
 
 			function generateNodesForLi(rating) {
+				console.log(rating);
+				console.log(rating[1]);
+
+					for (var key in rating) {
+					  console.log(key);
+				}
+
 				let movieContainer = document.createElement('div');
 				movieContainer.id = 'movie-container';
 				resultContainer.appendChild(movieContainer);
@@ -164,7 +171,7 @@ function displayResult(result) {
 async function fetchImdbRating(id) {
 	const res = await fetch(`https://www.omdbapi.com/?&apikey=${API_KEY}&s=&i=${id}`);
 	const { imdbRating } = await res.json();
-	return imdbRating;
+	return res;
 }
 /*leaving some notes from programming diary
 
