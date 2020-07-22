@@ -21,8 +21,11 @@ form.addEventListener("submit", function(event) {
 function apiHandler(title) {
 	//define api request variables
 	var omdbAPI = new XMLHttpRequest();
-	//var omdbURL = "https://www.omdbapi.com/?&apikey=5e65d4a0&s=" + title + "&type=movie"; 
-	var omdbURL = "https://www.omdbapi.com/?&apikey=5e65d4a0&s=&?t=" + title;
+	var omdbURL = "https://www.omdbapi.com/?&apikey=5e65d4a0&s=" + title; 
+		//var omdbURL = "https://www.omdbapi.com/?&apikey=5e65d4a0&s=" + title + "&type=movie"; 
+
+	//var omdbURL = "https://www.omdbapi.com/?apikey=5e65d4a0&
+	//var omdbURL = "https://www.omdbapi.com/t=" + title;
 
 	//adding listener to request
 	omdbAPI.addEventListener("load", function() {
