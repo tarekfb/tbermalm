@@ -132,6 +132,7 @@ function displayResult(result) {
 
 				if (info.rating == "N/A"){
 					ratingDiv.styling.flexGrow = 0;
+					ratingDiv.styling.display = "none";
 				} else {
 					let ratingScore = document.createElement("span");
 					ratingScore.id = "rating-score";
