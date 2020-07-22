@@ -123,7 +123,7 @@ function displayResult(result) {
 				if (info.awards == "N/A"){
 					info.awards = "No awards ಠ╭╮ಠ.";
 				} else if (info.awards.length > 25){
-					if (screen && screen.width > 1300) {
+					if (screen && screen.width < 1300) {
 						info.awards = "Has won awards."
 					}//not enough space
 					//TO-DO: change to dropdown on touch (jquery?) 
