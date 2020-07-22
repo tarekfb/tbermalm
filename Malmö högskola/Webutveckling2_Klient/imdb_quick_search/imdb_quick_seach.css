@@ -63,6 +63,9 @@ form input {
 	position: relative;
 	text-align: left;
 }
+#movie-container:hover, movie-container:focus, movie-container:active {
+	transform: scale(1.03);
+}
 #movie-container img {
 	width: 105px;
 	height: 100%;
@@ -111,9 +114,6 @@ form input {
 	font-size: 18px;
 	color: #696969;
 }
-#movie-container:hover, movie-container:focus, movie-container:active {
-	transform: scale(1.03);
-}
 @media screen and (max-width: 1300px) {
 	img {
 		width: 100px;
@@ -153,6 +153,9 @@ form input {
 	#movie-container #rating #rating-max {
 		font-size: 15px;
 		display: none;
+	}
+	#movie-container:hover, movie-container:focus, movie-container:active {
+	transform: scale(1.00);
 	}
 }
 /*https://www.canva.com/colors/color-palette-generator/*/
