@@ -104,6 +104,11 @@ function displayResult(result) {
 				console.log("rating " + rating);
 				console.log("rating.json " + rating.json);
 				console.log("rating.json() " + rating.json());
+				const { imdbRating } = rating.json();
+				const { Cast } = rating.json();
+				console.log(imdbRating);
+				console.log(Cast);
+
 
 
 					for (var key in rating) {
