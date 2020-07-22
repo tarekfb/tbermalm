@@ -114,6 +114,9 @@ function displayResult(result) {
 				//need to insert linebreak for styling
 				text.insertBefore(document.createElement("br"), actors);
 
+				if (info.awards == "N/A"){
+					info.awards == "No awards ಠ╭╮ಠ.";
+				}
 				let awards = document.createElement("span");
 				awards.id = "awards";
 				awards.appendChild(document.createTextNode(info.awards));
