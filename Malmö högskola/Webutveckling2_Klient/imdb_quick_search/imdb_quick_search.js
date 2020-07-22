@@ -122,7 +122,7 @@ function displayResult(result) {
 					info.awards = "No awards ಠ╭╮ಠ.";
 				} else if (info.awards.length > 25){
 					if (screen && screen.width < 1300) {
-						info.awards = "Has won awards."
+						info.awards = "Has won awards and/or nominations."
 					}//not enough space
 					//TO-DO: change to dropdown on touch (jquery?) 
 					//https://coderwall.com/p/3uwgga/make-css-dropdown-menus-work-on-touch-devices
