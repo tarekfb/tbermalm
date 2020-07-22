@@ -65,7 +65,7 @@ function displayResult(result) {
 		//we display result properties
 
 		let resultContainer = document.getElementById("result");
-/*
+
 				console.log("result.Search " + result.Search);
 				console.log("result.Search[1] " + result.Search[1]);
 				console.log("Title " + result.Search[1].Title);
@@ -75,13 +75,11 @@ function displayResult(result) {
 				console.log("Country " + result.Search[1].Country);
 				console.log("Awards " + result.Search[1].Awards);
 				console.log("properties " + result.Search[1].properties);
-				//console.log(entry.getOwnPropertyNames());
-
 
 				for (var key in result.Search[1]) {
 					  console.log(key);
-				}//title year imdbid poster
-*/
+				}
+
 		//this code needs to be executed for every item in array: Result.Search
 		result.Search.forEach(function(entry) {
 
@@ -101,20 +99,6 @@ function displayResult(result) {
 			fetchImdbRating(entry.imdbID).then(rating => generateNodesForLi(rating));
 
 			function generateNodesForLi(rating) {
-				console.log("rating " + rating);
-				console.log("rating.json " + rating.json);
-				console.log("rating.json() " + rating.json());
-				const { imdbRating } = rating.json();
-				const { Cast } = rating.json();
-				console.log(imdbRating);
-				console.log(Cast);
-
-
-
-					for (var key in rating) {
-					  console.log(key);
-				}
-
 				let movieContainer = document.createElement('div');
 				movieContainer.id = 'movie-container';
 				resultContainer.appendChild(movieContainer);
@@ -177,8 +161,15 @@ function displayResult(result) {
 //my guess is that fetch has no need for these arguments, but only the appriopriate url
 async function fetchImdbRating(id) {
 	const res = await fetch(`https://www.omdbapi.com/?&apikey=${API_KEY}&s=&i=${id}`);
-	const { imdbRating } = await res.json();
-	return res;
+	const { imdbRating, Cast, Awards } = await res.json();
+	const keys{
+		imdbRating = imdbRating;
+		Cast = Cast;
+		Awards = Awards;
+	}
+	console.log(keys);
+	console.log(keys.Cast);
+	return keys;
 }
 /*leaving some notes from programming diary
 
