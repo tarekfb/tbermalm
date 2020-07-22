@@ -141,13 +141,12 @@ function displayResult(result) {
 				ratingDiv.id = "rating";
 				movieContainer.appendChild(ratingDiv);
 
-				ratingDiv.innerHTML = '<i class="fa fa-star" aria-hidden="true"></i>';
 
 				if (info.rating == "N/A"){
 					ratingDiv.styling.flexGrow = 0;
-					ratingDiv.innerHTML = "";
 					ratingDiv.styling.display = "none";
 				} else {
+					ratingDiv.innerHTML = '<i class="fa fa-star" aria-hidden="true"></i>';
 					let ratingScore = document.createElement("span");
 					ratingScore.id = "rating-score";
 					ratingScore.appendChild(document.createTextNode(info.rating));
