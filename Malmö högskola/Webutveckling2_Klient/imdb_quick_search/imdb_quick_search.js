@@ -68,6 +68,7 @@ function displayResult(result) {
 
 				console.log("result.Search " + result.Search);
 				console.log("result.Search[1] " + result.Search[1]);
+				console.log("Title " + result.Search[1].Title);
 				console.log("Actors " + result.Search[1].Actors);
 				console.log("Cast " + result.Search[1].Cast);
 				console.log("Plot " + result.Search[1].Plot);
