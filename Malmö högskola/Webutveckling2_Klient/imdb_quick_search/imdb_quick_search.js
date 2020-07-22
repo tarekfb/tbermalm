@@ -95,7 +95,11 @@ function displayResult(result) {
 				movieContainer.appendChild(a);
 
 				let img = document.createElement('img');
-				img.src = entry.Poster;
+				if (entry.Poster == "N/A"){
+					img.src = "https://www.sunnxt.com/images/placeholders/placeholder_vertical.gif";
+				} else {
+					img.src = entry.Poster;
+				}
 				a.appendChild(img);
 
 				let text = document.createElement('div');
