@@ -135,7 +135,6 @@ form input {
 		font-size: 22px;
 	}
 	#movie-container #text #actors, #movie-container #text #awards {
-		margin-top: 3px;
 		font-size: 14px;
 	}
 	#movie-container #rating {
