@@ -131,11 +131,11 @@ form input {
 		margin: 5px 0 0 5px;
 	}
 	#movie-container #text #title-year {
-		font-size: 24px;
+		font-size: 22px;
 	}
 	#movie-container #text #actors, #movie-container #text #awards {
 		margin-top: 4px;
-		font-size: 16px;
+		font-size: 14px;
 	}
 	#movie-container #rating {
 		padding: 0 9px 0 9px;
