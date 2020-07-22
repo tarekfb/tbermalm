@@ -154,7 +154,7 @@ form input {
 		display: none;
 	}
 	#movie-container:hover, movie-container:focus, movie-container:active {
-	transform: scale(1.00);
+		transform: scale(1.00);
 	}
 }
 /*https://www.canva.com/colors/color-palette-generator/*/
