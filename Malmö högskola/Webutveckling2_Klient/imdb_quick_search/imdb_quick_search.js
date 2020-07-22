@@ -117,6 +117,7 @@ function displayResult(result) {
 				let awards = document.createElement("span");
 				awards.id = "awards";
 				awards.appendChild(document.createTextNode(info.awards));
+				text.appendChild(awards);
 				//need to insert linebreak for styling
 				text.insertBefore(document.createElement("br"), awards);
 
