@@ -142,9 +142,7 @@ form input {
 	#movie-container #rating {
 		padding: 0 9px 0 9px;
 		flex-grow: 0.1;
-	 min-width: 13%
-
-
+		min-width: 13%
 	}
 	#movie-container #rating i {
 		font-size: 15px;
