@@ -140,6 +140,7 @@ function displayResult(result) {
 
 
 				if (info.rating == "N/A"){
+					console.log(info.rating);
 					ratingDiv.styling.flexGrow = 0;
 					ratingDiv.styling.display = "none";
 					ratingDiv.styling.minWidth = 0;
