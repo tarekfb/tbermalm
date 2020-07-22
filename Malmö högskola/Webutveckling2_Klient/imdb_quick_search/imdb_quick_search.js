@@ -132,7 +132,7 @@ function displayResult(result) {
 
 				if (info.rating == "N/A"){
 					ratingDiv.styling.flexGrow = 0;
-				} else if {
+				} else {
 					let ratingScore = document.createElement("span");
 					ratingScore.id = "rating-score";
 					ratingScore.appendChild(document.createTextNode(info.rating));
