@@ -109,11 +109,10 @@ function displayResult(result) {
 				
 				let actors = document.createElement("span");
 				actors.id = "actors";
-				actors.appendChild(document.createTextNode("Jennyfar AniStån, Mak Valburg, Brady P")); //TO-DO: fix
+				actors.appendChild(document.createTextNode(info.actors)); //TO-DO: fix
 				text.appendChild(actors);
 				//need to insert linebreak after titleYear, before actors
 				text.insertBefore(document.createElement("br"), actors);
-
 
 				let ratingDiv = document.createElement('div');
 				ratingDiv.id = "rating";
