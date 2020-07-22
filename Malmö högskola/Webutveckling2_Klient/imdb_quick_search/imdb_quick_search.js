@@ -101,7 +101,6 @@ function displayResult(result) {
 			fetchImdbRating(entry.imdbID).then(rating => generateNodesForLi(rating));
 
 			function generateNodesForLi(rating) {
-				console.log(rating);
 				let movieContainer = document.createElement('div');
 				movieContainer.id = 'movie-container';
 				resultContainer.appendChild(movieContainer);
@@ -164,8 +163,8 @@ function displayResult(result) {
 //my guess is that fetch has no need for these arguments, but only the appriopriate url
 async function fetchImdbRating(id) {
 	const res = await fetch(`https://www.omdbapi.com/?&apikey=${API_KEY}&s=&i=${id}`);
-	//const { imdbRating } = await res.json();
-	return res;
+	const { Cast } = await res.json();
+	return Cast;
 }
 /*leaving some notes from programming diary
 
