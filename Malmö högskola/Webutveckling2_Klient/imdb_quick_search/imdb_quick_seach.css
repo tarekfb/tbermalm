@@ -40,7 +40,7 @@ form input {
 	padding: 10px;
 	font-size: 17px;
 	border: 1px solid grey;
-	width: 40%;
+	width: 35%;
 	background: #f1f1f1;
 }
 #result{
@@ -54,8 +54,8 @@ form input {
 	flex-direction: row;
 	justify-content: space-between;
 	margin: 0 auto;
-	width: 35%;
-	height: 145px;
+	width: 45%;
+	height: 165px;
 	background: #e7d2cc;
 	border-radius: 5px;
 	border: 1px solid grey;
@@ -100,19 +100,19 @@ form input {
 
 }
 #movie-container #rating i {
-	font-size: 18px;
+	font-size: 22px;
 	color: #FFD700;
 	text-shadow: 0 0 3px #000;
 		margin-right: 5px;
 
 }
 #movie-container #rating #rating-score {
-	font-size: 26px;
+	font-size: 35px;
 			margin-right: 5px;
 
 }
 #movie-container #rating #rating-max {
-	font-size: 18px;
+	font-size: 20px;
 	color: #696969;
 }
 #movie-container:hover, movie-container:focus, movie-container:active {
@@ -136,9 +136,8 @@ form input {
 	#movie-container #text #title-year {
 		font-size: 24px;
 	}
-	#movie-container #text #actors {
+	#movie-container #text #actors, #movie-container #text #awards  {
 		margin-top: 4px;
-		font-size: 14px;
 	}
 	#movie-container #rating {
 		padding: 0 9px 0 9px;
