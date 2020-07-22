@@ -131,9 +131,12 @@ function displayResult(result) {
 				ratingMax.appendChild(document.createTextNode("/10"));
 				ratingDiv.appendChild(ratingMax);
 				
-				console.log(entry.Actors);
-				console.log(entry.Awards);
-				console.log(entry.properties);
+				console.log("Actors " + entry.Actors);
+				console.log("Cast " + entry.Cast);
+				console.log("Plot " + entry.Plot);
+				console.log("Country " + entry.Country);
+				console.log("Awards " + entry.Awards);
+				console.log("properties " + entry.properties);
 				//console.log(entry.getOwnPropertyNames());
 			}	
 		});
