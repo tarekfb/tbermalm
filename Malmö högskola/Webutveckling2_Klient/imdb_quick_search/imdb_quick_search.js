@@ -118,6 +118,8 @@ function displayResult(result) {
 				//need to insert linebreak for styling
 				text.insertBefore(document.createElement("br"), actors);
 
+								console.log(info.awards.length);
+
 				if (info.awards == "N/A"){
 					info.awards = "No awards ಠ╭╮ಠ.";
 				} else if (info.awards.length > 25){
@@ -127,7 +129,7 @@ function displayResult(result) {
 					//TO-DO: change to dropdown on touch (jquery?) 
 					//https://coderwall.com/p/3uwgga/make-css-dropdown-menus-work-on-touch-devices
 				} 
-
+				console.log(info.awards.length);
 				let awards = document.createElement("span");
 				awards.id = "awards";
 				awards.appendChild(document.createTextNode(info.awards));
