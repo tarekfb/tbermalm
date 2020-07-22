@@ -77,6 +77,14 @@ function displayResult(result) {
 				console.log("properties " + result.Search[1].properties);
 				//console.log(entry.getOwnPropertyNames());
 
+
+				for (var key in result.Search[1]) {
+					  console.log(key);
+				}
+				for (var key in result.Search) {
+					  console.log(key);
+				}
+
 		//this code needs to be executed for every item in array: Result.Search
 		result.Search.forEach(function(entry) {
 
