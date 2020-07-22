@@ -162,14 +162,10 @@ function displayResult(result) {
 async function fetchImdbRating(id) {
 	const res = await fetch(`https://www.omdbapi.com/?&apikey=${API_KEY}&s=&i=${id}`);
 	const { imdbRating, Cast, Awards } = await res.json();
-	const keys = {
-		imdbRating = imdbRating;
-		Cast = Cast;
-		Awards = Awards;
-	}
-	console.log(keys);
-	console.log(keys.Cast);
-	return keys;
+	const info = {rating:imdbRating, cast:Cast, awards:Awards}; 
+	console.log(info);
+	console.log(info.cast);
+	return info;
 }
 /*leaving some notes from programming diary
 
