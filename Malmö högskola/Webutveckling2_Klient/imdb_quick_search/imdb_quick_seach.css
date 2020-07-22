@@ -86,7 +86,7 @@ form input {
 #movie-container #rating {
 	text-align: center;
 	background: #f38363;
-	flex-grow: 0.3;
+	flex-grow: 0.2;
 	margin-bottom: 0 auto;
 	margin-top: 0 auto;
 	display: flex;
@@ -99,17 +99,17 @@ form input {
 	min-width: 18%
 }
 #movie-container #rating i {
-	font-size: 22px;
+	font-size: 20px;
 	color: #FFD700;
 	text-shadow: 0 0 3px #000;
 	margin-right: 5px;
 }
 #movie-container #rating #rating-score {
-	font-size: 35px;
+	font-size: 30px;
 	margin-right: 5px;
 }
 #movie-container #rating #rating-max {
-	font-size: 20px;
+	font-size: 18px;
 	color: #696969;
 }
 #movie-container:hover, movie-container:focus, movie-container:active {
