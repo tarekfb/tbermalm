@@ -81,9 +81,6 @@ function displayResult(result) {
 				for (var key in result.Search[1]) {
 					  console.log(key);
 				}
-				for (var key in result.Search) {
-					  console.log(key);
-				}
 
 		//this code needs to be executed for every item in array: Result.Search
 		result.Search.forEach(function(entry) {
@@ -104,6 +101,7 @@ function displayResult(result) {
 			fetchImdbRating(entry.imdbID).then(rating => generateNodesForLi(rating));
 
 			function generateNodesForLi(rating) {
+				console.log(rating);
 				let movieContainer = document.createElement('div');
 				movieContainer.id = 'movie-container';
 				resultContainer.appendChild(movieContainer);
@@ -166,8 +164,8 @@ function displayResult(result) {
 //my guess is that fetch has no need for these arguments, but only the appriopriate url
 async function fetchImdbRating(id) {
 	const res = await fetch(`https://www.omdbapi.com/?&apikey=${API_KEY}&s=&i=${id}`);
-	const { imdbRating } = await res.json();
-	return imdbRating;
+	//const { imdbRating } = await res.json();
+	return res;
 }
 /*leaving some notes from programming diary
 
