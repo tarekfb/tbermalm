@@ -101,7 +101,7 @@ function displayResult(result) {
 			fetchImdbRating(entry.imdbID).then(rating => generateNodesForLi(rating));
 
 			function generateNodesForLi(rating) {
-				console.log(Cast);
+				console.log(rating);
 				let movieContainer = document.createElement('div');
 				movieContainer.id = 'movie-container';
 				resultContainer.appendChild(movieContainer);
