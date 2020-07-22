@@ -66,20 +66,6 @@ function displayResult(result) {
 
 		let resultContainer = document.getElementById("result");
 
-				console.log("result.Search " + result.Search);
-				console.log("result.Search[1] " + result.Search[1]);
-				console.log("Title " + result.Search[1].Title);
-				console.log("Actors " + result.Search[1].Actors);
-				console.log("Cast " + result.Search[1].Cast);
-				console.log("Plot " + result.Search[1].Plot);
-				console.log("Country " + result.Search[1].Country);
-				console.log("Awards " + result.Search[1].Awards);
-				console.log("properties " + result.Search[1].properties);
-
-				for (var key in result.Search[1]) {
-					  console.log(key);
-				}
-
 		//this code needs to be executed for every item in array: Result.Search
 		result.Search.forEach(function(entry) {
 
@@ -96,9 +82,9 @@ function displayResult(result) {
 			//generateNodes creates the appriopriate nodes
 			//the items are displayed and task is complete
 
-			fetchImdbRating(entry.imdbID).then(rating => generateNodesForLi(rating));
+			fetchImdbRating(entry.imdbID).then(info => generateNodesForLi(info));
 
-			function generateNodesForLi(rating) {
+			function generateNodesForLi(info) {
 				let movieContainer = document.createElement('div');
 				movieContainer.id = 'movie-container';
 				resultContainer.appendChild(movieContainer);
@@ -137,7 +123,7 @@ function displayResult(result) {
 
 				let ratingScore = document.createElement("span");
 				ratingScore.id = "rating-score";
-				ratingScore.appendChild(document.createTextNode(rating));
+				ratingScore.appendChild(document.createTextNode(info.rating));
 				ratingDiv.appendChild(ratingScore);
 
 				let ratingMax = document.createElement("span");
@@ -161,10 +147,8 @@ function displayResult(result) {
 //my guess is that fetch has no need for these arguments, but only the appriopriate url
 async function fetchImdbRating(id) {
 	const res = await fetch(`https://www.omdbapi.com/?&apikey=${API_KEY}&s=&i=${id}`);
-	const { imdbRating, Cast, Awards } = await res.json();
-	const info = {rating:imdbRating, cast:Cast, awards:Awards}; 
-	console.log(info);
-	console.log(info.cast);
+	const { imdbRating, Actors, Awards } = await res.json();
+	const info = {rating:imdbRating, actors:Actors, awards:Awards}; 
 	return info;
 }
 /*leaving some notes from programming diary
