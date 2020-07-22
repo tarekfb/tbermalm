@@ -122,7 +122,7 @@ form input {
 	}
 	#movie-container {
 		width: 99%;
-		height: 158px;
+		height: 160px;
 		margin-top: 10px;
 	}
 	#movie-container img {
@@ -136,7 +136,7 @@ form input {
 		font-size: 22px;
 	}
 	#movie-container #text #actors, #movie-container #text #awards {
-		margin-top: 4px;
+		margin-top: 3px;
 		font-size: 14px;
 	}
 	#movie-container #rating {
