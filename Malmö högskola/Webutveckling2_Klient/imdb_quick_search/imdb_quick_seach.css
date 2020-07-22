@@ -9,9 +9,9 @@ html {
 	font-family: 'Montserrat', sans-serif;
 	background-color: #f4cb84;
 	text-align: center;
-	margin: 0; 
+	margin: 0;
 }
-html, body, #container, #result{
+html, body, #container, #result {
 	height: 100%;
 }
 a {
@@ -43,7 +43,7 @@ form input {
 	width: 35%;
 	background: #f1f1f1;
 }
-#result{
+#result {
 	font-size: 25px;
 }
 #movie-container {
@@ -97,19 +97,16 @@ form input {
 	/* align vertical */
 	padding: 0 0px 0 0px;
 	min-width: 18%
-
 }
 #movie-container #rating i {
 	font-size: 22px;
 	color: #FFD700;
 	text-shadow: 0 0 3px #000;
-		margin-right: 5px;
-
+	margin-right: 5px;
 }
 #movie-container #rating #rating-score {
 	font-size: 35px;
-			margin-right: 5px;
-
+	margin-right: 5px;
 }
 #movie-container #rating #rating-max {
 	font-size: 20px;
@@ -136,7 +133,7 @@ form input {
 	#movie-container #text #title-year {
 		font-size: 24px;
 	}
-	#movie-container #text #actors, #movie-container #text #awards  {
+	#movie-container #text #actors, #movie-container #text #awards {
 		margin-top: 4px;
 	}
 	#movie-container #rating {
