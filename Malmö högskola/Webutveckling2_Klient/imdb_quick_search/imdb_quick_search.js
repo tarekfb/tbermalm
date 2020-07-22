@@ -130,11 +130,15 @@ function displayResult(result) {
 
 				ratingDiv.innerHTML = '<i class="fa fa-star" aria-hidden="true"></i>';
 
-				let ratingScore = document.createElement("span");
-				ratingScore.id = "rating-score";
-				ratingScore.appendChild(document.createTextNode(info.rating));
-				ratingDiv.appendChild(ratingScore);
-
+				if (info.rating == "N/A"){
+					ratingDiv.styling.flexGrow = 0;
+				} else if {
+					let ratingScore = document.createElement("span");
+					ratingScore.id = "rating-score";
+					ratingScore.appendChild(document.createTextNode(info.rating));
+					ratingDiv.appendChild(ratingScore);
+				}
+				
 				let ratingMax = document.createElement("span");
 				ratingMax.id = "rating-max";
 				ratingMax.appendChild(document.createTextNode("/10"));
