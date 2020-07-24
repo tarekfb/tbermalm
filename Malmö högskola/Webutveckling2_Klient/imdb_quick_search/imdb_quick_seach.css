@@ -76,6 +76,9 @@ form input {
 	flex-grow: 1;
 	margin: 10px 0 0 10px;
 	box-sizing: border-box;
+		overflow-y: hidden;
+	margin-bottom: 10px;
+
 }
 #movie-container #title-year {
 	font-size: 32px;
@@ -83,7 +86,7 @@ form input {
 }
 #movie-container #actors, #movie-container #awards {
 	display: inline-block;
-	margin-top: 10px;
+	margin-top: 0px;
 	font-size: 18px;
 }
 #movie-container #rating {
