@@ -304,20 +304,6 @@ input{
 	font-size: 25px;
 }
 
-/*#homepage .container a:hover {
-    position: relative;
-}
-
-#homepage .container a:hover:after{
-    content: url(logo-1913689_1280.png);
-    display: block;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    width: 200px;
-    height: 200px;
-}*/
-
 #homepage .container{
 	margin-top: 60px;
     position: absolute;
