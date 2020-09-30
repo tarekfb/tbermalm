@@ -174,30 +174,11 @@ textarea {
  * header
  */
 
-/*
-<div class="header">
-    <div class="logo_container">
-      <img src="img/coffee-307147.png" alt="logo">
-      <h1><span id="mugs">Mugs</span><span id="coffee">Coffee</span></h1>
-    </div>
-    <ul class="navigation">
-      <a><li>Home</li></a>
-      <a><li>Menu</li></a>
-      <a><li>About us</li></a>
-      <a><li>Contact</li></a>
-    </ul>
-  </div>
-</div>
-<div id="landing_container">
-  <p>Hello world!.</p>
-</div>
- */
-
 .header{
   width: 100%;
   height: 100px;
   display: block;
-  background-color: lightgray;
+  background-color: white;
   color: black;
   position: fixed;
 }
@@ -214,7 +195,7 @@ textarea {
   position: relative;
   top: 50%;
   transform: translateY(-50%);
-  margin: 0 5px;
+  margin: 0 15px;
 }
 
 .logo_container h1{
@@ -258,10 +239,28 @@ textarea {
   vertical-align: middle;
 }
 
-#container{
-  background-color: black;
+#homepage_container{
+  background-color: white;
   height: 100%;
+  width: 100%;
+  margin: auto 0;
 }
+
+#background_image_container{
+  /*
+http://stoneysbreadcompany.com/oakville-menu/
+  https://stackoverflow.com/questions/6894419/css-displaying-only-center-part-of-image
+  https://stackoverflow.com/questions/493296/css-display-an-image-resized-and-cropped
+  https://stackoverflow.com/questions/7926540/css-center-content-inside-div
+  */
+
+}
+
+#background_image_container img{
+  width: 100%;
+  height: 400px;
+}
+
 
 /* ==========================================================================
    EXAMPLE Media Queries for Responsive Design.
