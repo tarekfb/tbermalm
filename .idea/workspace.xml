@@ -23,17 +23,6 @@
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RunManager">
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="index.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/webdesign/Restaurant/index.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
@@ -52,6 +41,7 @@
       <option name="presentableId" value="Default" />
       <updated>1601480885350</updated>
       <workItem from="1601480886436" duration="11907000" />
+      <workItem from="1601580438906" duration="2557000" />
     </task>
     <servers />
   </component>

@@ -187,6 +187,7 @@ textarea {
   height: 100%;
   display: table;
   float: left;
+  margin-left: 8%;
 }
 
 .logo_container img {
@@ -195,7 +196,7 @@ textarea {
   position: relative;
   top: 50%;
   transform: translateY(-50%);
-  margin: 0 15px;
+  margin-right: 15px;
 }
 
 .logo_container h1{
@@ -209,20 +210,20 @@ textarea {
 }
 
 .logo_container h1 #coffee{
-  font-weight: bold;
   padding-left: 15px;
 }
 
 .navigation {
   float: right;
   height: 100%;
+
+  /*this properly centers the content of div*/
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
 .navigation ul {
-
 }
 
 .navigation a {
@@ -239,26 +240,40 @@ textarea {
   vertical-align: middle;
 }
 
-#homepage_container{
+.homepage_container{
   background-color: white;
-  height: 100%;
   width: 100%;
-  margin: auto 0;
+
+  /*hopefully this centers all content of div*/
+  text-align: center;
+}
+
+.menu_image_text{
 }
 
 #background_image_container{
-  /*
-http://stoneysbreadcompany.com/oakville-menu/
-  https://stackoverflow.com/questions/6894419/css-displaying-only-center-part-of-image
-  https://stackoverflow.com/questions/493296/css-display-an-image-resized-and-cropped
-  https://stackoverflow.com/questions/7926540/css-center-content-inside-div
-  */
-
+  /*shows only center of image*/
+  background-image: url('../img/coffee-917613.jpg');
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+  height: 600px;
 }
 
-#background_image_container img{
-  width: 100%;
-  height: 400px;
+.image_text {
+  color: white;
+  font-size: 80px;
+  font-weight: bold;
+  letter-spacing: 0.24em;
+  font-family: 'Secular One', sans-serif;
+  text-shadow: 4px 4px 6px black;
+
+  /*centering*/
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 
