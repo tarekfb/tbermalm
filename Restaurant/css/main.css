@@ -15,6 +15,7 @@ html {
   color: #222;
   font-size: 1em;
   line-height: 1.4;
+  font-family: 'Piazzolla', serif;
 }
 
 /*
@@ -169,6 +170,113 @@ textarea {
   clear: both;
 }
 
+/*
+ * header
+ */
+
+.header{
+  width: 100%;
+  height: 100px;
+  display: block;
+  background-color: white;
+  color: black;
+  position: fixed;
+}
+
+.logo_container{
+  height: 100%;
+  display: table;
+  float: left;
+  margin-left: 8%;
+}
+
+.logo_container img {
+  width: 75px;
+  height: 75px;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  margin-right: 15px;
+}
+
+.logo_container h1{
+  height: 100%;
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.logo_container h1 #mugs{
+  font-weight: lighter;
+}
+
+.logo_container h1 #coffee{
+  padding-left: 15px;
+}
+
+.navigation {
+  float: right;
+  height: 100%;
+
+  /*this properly centers the content of div*/
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.navigation ul {
+}
+
+.navigation a {
+  height: 100%;
+  float: left;
+  padding: 0px 20px;
+  display: table;
+}
+
+.navigation a li{
+  height: 100%;
+  font-size: 20px;
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.homepage_container{
+  background-color: white;
+  width: 100%;
+
+  /*hopefully this centers all content of div*/
+  text-align: center;
+}
+
+.menu_image_text{
+}
+
+#background_image_container{
+  /*shows only center of image*/
+  background-image: url('../img/coffee-917613.jpg');
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+  height: 600px;
+}
+
+.image_text {
+  color: white;
+  font-size: 80px;
+  font-weight: bold;
+  letter-spacing: 0.24em;
+  font-family: 'Secular One', sans-serif;
+  text-shadow: 4px 4px 6px black;
+
+  /*centering*/
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+
 /* ==========================================================================
    EXAMPLE Media Queries for Responsive Design.
    These examples override the primary ('mobile first') styles.
@@ -180,9 +288,9 @@ textarea {
 }
 
 @media print,
-  (-webkit-min-device-pixel-ratio: 1.25),
-  (min-resolution: 1.25dppx),
-  (min-resolution: 120dpi) {
+(-webkit-min-device-pixel-ratio: 1.25),
+(min-resolution: 1.25dppx),
+(min-resolution: 120dpi) {
   /* Style adjustments for high resolution devices */
 }
 
