@@ -23,6 +23,17 @@
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RunManager">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="index.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/webdesign/Restaurant/index.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
@@ -42,6 +53,7 @@
       <updated>1601480885350</updated>
       <workItem from="1601480886436" duration="11907000" />
       <workItem from="1601580438906" duration="9889000" />
+      <workItem from="1601726901071" duration="4273000" />
     </task>
     <servers />
   </component>
@@ -121,9 +133,9 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="777" y="439" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/-1920.0.1536.840/0.0.1920.1050@0.0.1920.1050" timestamp="1601500978929" />
-    <state x="623" y="227" width="672" height="678" key="search.everywhere.popup" timestamp="1601493568010">
+    <state x="623" y="227" width="672" height="678" key="search.everywhere.popup" timestamp="1601735798065">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state x="623" y="227" width="672" height="678" key="search.everywhere.popup/-1920.0.1536.840/0.0.1920.1050@0.0.1920.1050" timestamp="1601493568010" />
+    <state x="623" y="227" width="672" height="678" key="search.everywhere.popup/-1920.0.1536.840/0.0.1920.1050@0.0.1920.1050" timestamp="1601735798065" />
   </component>
 </project>
