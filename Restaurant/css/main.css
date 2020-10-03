@@ -280,7 +280,7 @@ textarea {
   transform: translate(-50%, -50%);
 }
 
-.menu-content{
+.menu_content{
   display: flex;
   justify-content: center;
 }
@@ -322,12 +322,29 @@ textarea {
 
 /*
  *STYLING FOR MENU ITEM
+ https://stackoverflow.com/questions/41905164/creating-dot-leaders-for-menu
+ https://jsfiddle.net/
  */
 .menu_item{
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  align-items: baseline;
+}
+.menu_item:before {
+  border-bottom: 1px dashed #333;
+  content: '';
+  position: absolute;
+  bottom: 4px; left: 0; right: 0; top: 0;
+  z-index: -1;
+}
+.menu_item span{
+  background: #fff;
+  padding: 0 .5em
 }
 
-.title{
-}
+/*.title{*/
+/*}*/
 
 /*.dot{*/
 /*  border-bottom: dotted 3px grey;*/
@@ -337,10 +354,10 @@ textarea {
 /*  margin: 0 5px 0 5px;*/
 /*}*/
 
-.price {
-  float: right;
-  display: block;
-}
+/*.price {*/
+/*  float: right;*/
+/*  display: block;*/
+/*}*/
 
 /* ==========================================================================
    EXAMPLE Media Queries for Responsive Design.
