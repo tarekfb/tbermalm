@@ -16,7 +16,16 @@
 		<form action="" id="search-form" method="get" name="search-form" autocomplete="off">
 			<input id="text-box" name="query" type="text" placeholder="Enter movie title..." autofocus><button type="submit"><i class="fa fa-search"></i></button>
 		</form>
-		<div id="result">
+		<div id="result-container">
+		</div>
+		<!-- A modal to allow for saving a movie -->
+		<div id="modal-box" class="modal-box">
+			<!-- Modal content -->
+			<div class="modal-content">
+				<span class="close">&times;</span>
+				<p>Save to favourites?</p>
+				<button type="button" id="save">Save</button> <button type="button" id="cancel">Cancel</button>
+			</div>
 		</div>
 	</div>
 </body>

@@ -181,6 +181,7 @@ textarea {
   background-color: white;
   color: black;
   position: fixed;
+  z-index: 999;
 }
 
 .logo_container{
@@ -243,12 +244,15 @@ textarea {
 .homepage_container{
   background-color: white;
   width: 100%;
+  font-family: 'Nunito', sans-serif;
 
   /*hopefully this centers all content of div*/
   text-align: center;
 }
 
 .menu_image_text{
+  /*position: relative;*/
+  /*top: 100%;*/
 }
 
 #background_image_container{
@@ -266,8 +270,8 @@ textarea {
   font-size: 80px;
   font-weight: bold;
   letter-spacing: 0.24em;
-  font-family: 'Secular One', sans-serif;
   text-shadow: 4px 4px 6px black;
+  font-family: 'Secular One', sans-serif;
 
   /*centering*/
   position: absolute;
@@ -276,6 +280,84 @@ textarea {
   transform: translate(-50%, -50%);
 }
 
+.menu_content{
+  display: flex;
+  justify-content: center;
+}
+
+.column{
+  flex: 50%;
+  height: 1600px;
+  width: 100%;
+  text-align: left;
+}
+
+.inner_column_left, .inner_column_right{
+  width: 85%;
+}
+
+.inner_column_left{
+  float: right;
+  margin-right: 15px;
+}
+.inner_column_right{
+  float: left;
+  margin-left: 15px;
+}
+
+.inner_column_left h2, .inner_column_right h2{
+  letter-spacing: 0.15em;
+  font-weight: bold;
+  font-size: 25px;
+  /*change font*/
+}
+
+.column hr{
+  border-top: 1px solid #b9bfbc;
+  width: 100%;
+}
+
+.menu_content{
+}
+
+/*
+ *STYLING FOR MENU ITEM
+ https://stackoverflow.com/questions/41905164/creating-dot-leaders-for-menu
+ https://jsfiddle.net/
+ */
+.menu_item{
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  align-items: baseline;
+}
+.menu_item:before {
+  border-bottom: 1px dashed #333;
+  content: '';
+  position: absolute;
+  bottom: 4px; left: 0; right: 0; top: 0;
+  z-index: -1;
+}
+.menu_item span{
+  background: #fff;
+  padding: 0 .5em
+}
+
+/*.title{*/
+/*}*/
+
+/*.dot{*/
+/*  border-bottom: dotted 3px grey;*/
+/*  float: left;*/
+/*  display: block;*/
+/*  height: 12px;*/
+/*  margin: 0 5px 0 5px;*/
+/*}*/
+
+/*.price {*/
+/*  float: right;*/
+/*  display: block;*/
+/*}*/
 
 /* ==========================================================================
    EXAMPLE Media Queries for Responsive Design.

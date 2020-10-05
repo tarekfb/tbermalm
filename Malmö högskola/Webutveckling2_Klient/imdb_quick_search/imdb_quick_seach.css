@@ -11,7 +11,7 @@ html {
 	text-align: center;
 	margin: 0;
 }
-html, body, #container, #result {
+html, body, #container, #result-container {
 	height: 100%;
 }
 a {
@@ -43,7 +43,7 @@ form input {
 	width: 35%;
 	background: #f1f1f1;
 }
-#result {
+#result-container {
 	font-size: 25px;
 }
 #movie-container {
@@ -65,6 +65,7 @@ form input {
 }
 #movie-container:hover, movie-container:focus, movie-container:active {
 	transform: scale(1.03);
+	cursor: pointer;
 }
 #movie-container img {
 	width: 105px;
@@ -76,9 +77,8 @@ form input {
 	flex-grow: 1;
 	margin: 10px 0 0 10px;
 	box-sizing: border-box;
-		overflow-y: hidden;
+	overflow-y: hidden;
 	margin-bottom: 10px;
-
 }
 #movie-container #title-year {
 	font-size: 32px;
@@ -117,6 +117,87 @@ form input {
 	font-size: 18px;
 	color: #696969;
 }
+
+/*
+ * modal box design
+ */
+
+.modal-box {
+	display: none; /* Hidden by default */
+	position: fixed; /* Stay in place */
+	z-index: 1; /* Sit on top */
+	left: 0;
+	top: 0;
+	width: 100%; /* Full width */
+	height: 100%; /* Full height */
+	background-color: rgb(0,0,0); /* Fallback color */
+	background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.modal-content {
+	background-color: #fefefe;
+	margin: 15% auto; /* 15% from the top and centered */
+	padding: 20px;
+	border: 1px solid #888;
+	width: 40%; /* Could be more or less, depending on screen size */
+	height: 80px;
+	text-align: left;
+	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+	animation-name: animatetop;
+	animation-duration: 0.5s
+}
+
+@keyframes animatetop {
+	from {top: -300px; opacity: 0}
+	to {top: 0; opacity: 1}
+}
+
+.modal-content p{
+	margin-top: 0px;
+	font-size: 25px;
+}
+
+.close {
+	color: #f38363;
+	float: right;
+	font-size: 28px;
+	font-weight: bold;
+	margin-top: -20px;
+	margin-right: -10px;
+}
+
+.close:hover,
+.close:focus {
+	color: black;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+#save{
+	border-radius: 4px;
+	border: solid 2px #f4cb84;
+	background-color: #f4cb84;
+	padding: 3px;
+	font-size: 15px;
+}
+
+#save:hover,
+#save:focus {
+	cursor: pointer;
+}
+
+#cancel{
+	background-color: #fefefe;
+	border: none;
+	margin-left: 10px;
+	font-size: 15px;
+}
+
+#cancel:hover,
+#cancel:focus {
+	cursor: pointer;
+}
+
 @media screen and (max-width: 1300px) {
 	img {
 		width: 100px;
