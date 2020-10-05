@@ -217,8 +217,14 @@ function saveMovieToFavourite(entryFromAJAX) {
 
 	listOfFavouriteMovies.push(entryFromAJAX);
 	document.getElementById("cancel").onclick = displayFavouriteMovies;
-	console.log(listOfFavouriteMovies);
+	console.log(listOfFavouriteMovies + "int is = " + testInt);
+	testInt++;
+	//for some reason it pushes many more items than what i intend do
+	// will look at tomorrow with a pair of fresh eyes
 }
+
+let testInt = 0;
+
 function displayFavouriteMovies(entryFromAJAX) {
 
 	//this method displays the favourites that the user previously have saved
