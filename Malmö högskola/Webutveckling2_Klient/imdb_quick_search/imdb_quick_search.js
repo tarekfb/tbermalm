@@ -207,40 +207,33 @@ function showModalBox(entryFromAJAX) {
 	}
 	save.addEventListener("click", function (){
 		modal.style.display = "none";
-		saveMovie(entryFromAJAX);
+		saveMovieToFavourite(entryFromAJAX);
 	});
 }
 
-function saveMovie(entryFromAJAX) {
-	/*
-	plotting out my thoughts on the structure here:
+function saveMovieToFavourite(entryFromAJAX) {
 
-	Currently have some sort of object, maybe array? unsure
-	result.Search
+	//this method saves a movie to the list of favourites
 
-	Can probably create array with imdbid-strings
-	we can do for each on list -> fetchMoreMovieInfo(imdbID).then(info => generateNodesForLi(info));
-	then assemble a complete list of movies?
-
-	 */
-
-	array.push(entryFromAJAX);
-	document.getElementById("cancel").onclick = 	showNodes;
-	console.log(array);
+	listOfFavouriteMovies.push(entryFromAJAX);
+	document.getElementById("cancel").onclick = displayFavouriteMovies;
+	console.log(listOfFavouriteMovies);
 }
-function showNodes(entryFromAJAX) {
-	//fetchMovieInfoAndGenerateLiNodes(entryFromAJAX);
+function displayFavouriteMovies(entryFromAJAX) {
 
+	//this method displays the favourites that the user previously have saved
+
+	//need to clear whatever result is previously displayed
 	let resultContainer = document.getElementById('result-container');
 	resultContainer.innerHTML = "";
 
-	array.forEach(function(entry) {
+	listOfFavouriteMovies.forEach(function(entry) {
 		fetchMovieInfoAndGenerateLiNodes(entry);
 	});
 
 }
 
-let array = [];
+let listOfFavouriteMovies = [];
 
 
 //is this code for smartphone usage?
@@ -260,6 +253,7 @@ let array = [];
 /*
 todo: implement sorting method according to recency
 todo: implement browsing pages back and forward
+todo: make responsive
 is there another more suitable metric?
  */
 
@@ -270,7 +264,7 @@ Imdb ratings lookup tool
 16/06/2020
 
 Bumped into an issue when creating my imdb rating lookup tool. 
-Javascript is apparently an event-driven language, which means the compiler doesn’t wait for responses when executing code, but instead continues with the next operation. 
+Javascript is apparently an event-driven language, which means the compiler doesn't wait for responses when executing code, but instead continues with the next operation.
 This can be tricky, when you want to wait for a function to finish executing, for example in-order to update a variable value. 
 In my case my return statement returns the initial variable declaration, 0, instead of the updated value. 
 Because the value, updated by an event listener, has been updated after the return statement is executed.
