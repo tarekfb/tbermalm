@@ -41,6 +41,101 @@ function apiHandler(title) {
 	omdbAPI.send();
 }
 
+function fetchMovieInfoAndGenerateLiNodes(resultSearchEntry) {
+
+	let resultContainer = document.getElementById("result");
+
+	//handling sync is quite awkward at the moment
+	//first usage of promise and async
+	//found some fetch magic online
+	//will try to document for my own sake
+
+	//im running the async fun fetchMoreMovieInfo (a thenable promise)
+	//which returns a rating after the request comes through
+	//when the fetch has been resolved it moves to .then
+	//.then has a callback (function, object) attached to it
+	//generateNodes creates the appriopriate nodes
+	//the items are displayed and task is complete
+
+	fetchMoreMovieInfo(resultSearchEntry.imdbID).then(movieInfo => generateNodesForLi(movieInfo));
+
+	function generateNodesForLi(movieInfo) {
+		let movieContainer = document.createElement('div');
+		movieContainer.id = 'movie-container';
+		resultContainer.appendChild(movieContainer);
+
+		let a = document.createElement("a");
+		let url = "https://www.imdb.com/title/" + resultSearchEntry.imdbID + "/";
+		a.href = url;
+		movieContainer.appendChild(a);
+
+		let img = document.createElement('img');
+		if (resultSearchEntry.Poster == "N/A"){
+			img.src = "https://www.sunnxt.com/images/placeholders/placeholder_vertical.gif";
+		} else {
+			img.src = resultSearchEntry.Poster;
+		}
+		a.appendChild(img);
+
+		let text = document.createElement('div');
+		text.id = "text";
+		movieContainer.appendChild(text);
+
+		let titleYear = document.createElement("span");
+		titleYear.id = "title-year";
+		titleYear.appendChild(document.createTextNode(resultSearchEntry.Title + " (" + String(resultSearchEntry.Year) + ")")); // + "<br />"
+		text.appendChild(titleYear);
+
+		let actors = document.createElement("span");
+		actors.id = "actors";
+		actors.appendChild(document.createTextNode(movieInfo.actors));
+		text.appendChild(actors);
+		//need to insert linebreak for styling
+		text.insertBefore(document.createElement("br"), actors);
+
+		if (movieInfo.awards == "N/A"){
+			movieInfo.awards = "No awards ಠ╭╮ಠ.";
+		} else if (movieInfo.awards.length > 25){
+			if (screen && screen.width < 1300) {
+				movieInfo.awards = "Has won awards nominations."
+			}//not enough space
+			//TO-DO: change to dropdown on touch (jquery?)
+			//https://coderwall.com/p/3uwgga/make-css-dropdown-menus-work-on-touch-devices
+		}
+		let awards = document.createElement("span");
+		awards.id = "awards";
+		awards.appendChild(document.createTextNode(movieInfo.awards));
+		text.appendChild(awards);
+		//need to insert linebreak for styling
+		text.insertBefore(document.createElement("br"), awards);
+
+		let ratingDiv = document.createElement('div');
+		ratingDiv.id = "rating";
+		movieContainer.appendChild(ratingDiv);
+
+
+		if (movieInfo.rating == "N/A"){
+			ratingDiv.style.flexGrow = 0;
+			ratingDiv.style.display = "none";
+		} else {
+			ratingDiv.innerHTML = '<i class="fa fa-star" aria-hidden="true"></i>';
+			let ratingScore = document.createElement("span");
+			ratingScore.id = "rating-score";
+			ratingScore.appendChild(document.createTextNode(movieInfo.rating));
+			ratingDiv.appendChild(ratingScore);
+		}
+
+		let ratingMax = document.createElement("span");
+		ratingMax.id = "rating-max";
+		ratingMax.appendChild(document.createTextNode("/10"));
+		ratingDiv.appendChild(ratingMax);
+
+		movieContainer.addEventListener("click", function (){
+			showModalBox(resultSearchEntry.imdbID);
+		});
+	}
+}
+
 function displayResult(result) {
 
 	//in this case something went wrong with the search
@@ -64,108 +159,32 @@ function displayResult(result) {
 		//in this case the search came through
 		//we display result properties
 
-		let resultContainer = document.getElementById("result");
-
 		//this code needs to be executed for every item in array: Result.Search
 		result.Search.forEach(function(entry) {
-
-			//fetching the imdbRating is awkwardly designed
-			//first usage of promise and async
-			//found some fetch magic online
-			//will try to document for my own sake
-
-			let imdbRating = 0;
-			//im running the async fun fetchImdbRating (a thenable promise)
-			//which returns a rating after the request comes through
-			//when the fetch has been resolved it moves to .then
-			//.then has a callback (function, object) attached to it
-			//generateNodes creates the appriopriate nodes
-			//the items are displayed and task is complete
-
-			fetchImdbRating(entry.imdbID).then(info => generateNodesForLi(info));
-
-			function generateNodesForLi(info) {
-				let movieContainer = document.createElement('div');
-				movieContainer.id = 'movie-container';
-				resultContainer.appendChild(movieContainer);
-				
-				let a = document.createElement("a");  
-			    let url = "https://www.imdb.com/title/" + entry.imdbID + "/";
-			    a.href = url;
-				movieContainer.appendChild(a);
-
-				let img = document.createElement('img');
-				if (entry.Poster == "N/A"){
-					img.src = "https://www.sunnxt.com/images/placeholders/placeholder_vertical.gif";
-				} else {
-					img.src = entry.Poster;
-				}
-				a.appendChild(img);
-
-				let text = document.createElement('div');
-				text.id = "text";
-				movieContainer.appendChild(text);
-
-				let titleYear = document.createElement("span");
-				titleYear.id = "title-year";
-				titleYear.appendChild(document.createTextNode(entry.Title + " (" + String(entry.Year) + ")")); // + "<br />"
-				text.appendChild(titleYear);
-				
-				let actors = document.createElement("span");
-				actors.id = "actors";
-				actors.appendChild(document.createTextNode(info.actors)); //TO-DO: fix
-				text.appendChild(actors);
-				//need to insert linebreak for styling
-				text.insertBefore(document.createElement("br"), actors);
-
-				if (info.awards == "N/A"){
-					info.awards = "No awards ಠ╭╮ಠ.";
-				} else if (info.awards.length > 25){
-					if (screen && screen.width < 1300) {
-						info.awards = "Has won awards nominations."
-					}//not enough space
-					//TO-DO: change to dropdown on touch (jquery?) 
-					//https://coderwall.com/p/3uwgga/make-css-dropdown-menus-work-on-touch-devices
-				} 
-				let awards = document.createElement("span");
-				awards.id = "awards";
-				awards.appendChild(document.createTextNode(info.awards));
-				text.appendChild(awards);
-				//need to insert linebreak for styling
-				text.insertBefore(document.createElement("br"), awards);
-
-				let ratingDiv = document.createElement('div');
-				ratingDiv.id = "rating";
-				movieContainer.appendChild(ratingDiv);
-
-
-				if (info.rating == "N/A"){
-					ratingDiv.style.flexGrow = 0;
-					ratingDiv.style.display = "none";
-				} else {
-					ratingDiv.innerHTML = '<i class="fa fa-star" aria-hidden="true"></i>';
-					let ratingScore = document.createElement("span");
-					ratingScore.id = "rating-score";
-					ratingScore.appendChild(document.createTextNode(info.rating));
-					ratingDiv.appendChild(ratingScore);
-				}
-				
-				let ratingMax = document.createElement("span");
-				ratingMax.id = "rating-max";
-				ratingMax.appendChild(document.createTextNode("/10"));
-				ratingDiv.appendChild(ratingMax);
-
-				//if list size >0, list will appear on hamburger menu, right side
-				movieContainer.addEventListener("click", function (){
-					generateModalBox(entry.imdbID);
-				});
-			}
+			fetchMovieInfoAndGenerateLiNodes(entry);
 		});
 	}
 
 }
 
-function generateModalBox(imdbID) {
+//this is an async function (A promise, right?)
+//allowing us to use await
+//await forces the compiler to wait for the given task to be completed before proceeding
+//(only stops locally, not the entire program)
+//when the fetch as been resolved, the compiler tries to declare an object and give it the return value of res.json();
+//it then returns the imdbRating and the program proceeds as normally
+
+//however, I have no clue how we circumvent the otherwise needed "open(), send() with the arguments get, omdbURL, true"
+//my guess is that fetch has no need for these arguments, but only the appropriate url
+async function fetchMoreMovieInfo(imdbID) {
+	const res = await fetch(`https://www.omdbapi.com/?&apikey=${API_KEY}&s=&i=${imdbID}`);
+	const { imdbRating, Actors, Awards } = await res.json();
+	const movieInfo = {rating:imdbRating, actors:Actors, awards:Awards};
+	return movieInfo;
+}
+
+//showing the modalbox for saving movies
+function showModalBox(imdbID) {
 	let modal = document.getElementById("modal-box")
 	let span = document.getElementsByClassName("close")[0];
 	let save = document.getElementById("save");
@@ -185,25 +204,21 @@ function generateModalBox(imdbID) {
 	});
 }
 function saveMovie(imdbID) {
-	//generate array with movies where IMDB can be used to fetch movie
+	/*
+	plotting out my thoughts on the structure here:
+
+	Currently have some sort of object, maybe array? unsure
+	result.Search
+
+	Can probably create array with imdbid-strings
+	we can do for each on list -> fetchMoreMovieInfo(imdbID).then(info => generateNodesForLi(info));
+	then assemble a complete list of movies?
+
+	 */
+	fetchMoreMovieInfo(tt0120338).then(movieInfo => generateNodesForLi(movieInfo));
+
 }
 
-
-//this is an async function (A promise, right?)
-//allowing us to use await
-//await forces the compiler to wait for the given task to be completed before proceeding
-//(only stops locally, not the entire program)
-//when the fetch as been resolved, the compiler tries to declare an object and give it the return value of res.json();
-//it then returns the imdbRating and the program proceeds as normally
-
-//however, I have no clue how we circument the otherwise needed "open(), send() with the arguments get, omdbURL, true"
-//my guess is that fetch has no need for these arguments, but only the appriopriate url
-async function fetchImdbRating(id) {
-	const res = await fetch(`https://www.omdbapi.com/?&apikey=${API_KEY}&s=&i=${id}`);
-	const { imdbRating, Actors, Awards } = await res.json();
-	const info = {rating:imdbRating, actors:Actors, awards:Awards}; 
-	return info;
-}
 
 //is this code for smartphone usage?
 // document.getElementById("movie-container").addEventListener("touchstart", touchHandler, false);
