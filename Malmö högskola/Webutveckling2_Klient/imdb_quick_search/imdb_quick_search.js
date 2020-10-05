@@ -72,7 +72,7 @@ function displayResult(result) {
 			//fetching the imdbRating is awkwardly designed
 			//first usage of promise and async
 			//found some fetch magic online
-			//will try to document for my own sake, i suppose
+			//will try to document for my own sake
 
 			let imdbRating = 0;
 			//im running the async fun fetchImdbRating (a thenable promise)
@@ -154,11 +154,40 @@ function displayResult(result) {
 				ratingMax.id = "rating-max";
 				ratingMax.appendChild(document.createTextNode("/10"));
 				ratingDiv.appendChild(ratingMax);
-			}	
+
+				//if list size >0, list will appear on hamburger menu, right side
+				movieContainer.addEventListener("click", function (){
+					generateModalBox(entry.imdbID);
+				});
+			}
 		});
 	}
 
 }
+
+function generateModalBox(imdbID) {
+	let modal = document.getElementById("modal-box")
+	let span = document.getElementsByClassName("close")[0];
+	let save = document.getElementById("save");
+
+	modal.style.display = "block";
+	span.onclick = function() {
+		modal.style.display = "none";
+	}
+	window.onclick = function(event){
+		if (event.target == modal){
+			modal.style.display = "none";
+		}
+	}
+	save.addEventListener("click", function (){
+		modal.style.display = "none";
+		saveMovie(imdbID);
+	});
+}
+function saveMovie(imdbID) {
+	//generate array with movies where IMDB can be used to fetch movie
+}
+
 
 //this is an async function (A promise, right?)
 //allowing us to use await
@@ -175,6 +204,26 @@ async function fetchImdbRating(id) {
 	const info = {rating:imdbRating, actors:Actors, awards:Awards}; 
 	return info;
 }
+
+//is this code for smartphone usage?
+// document.getElementById("movie-container").addEventListener("touchstart", touchHandler, false);
+// document.getElementById("movie-container").addEventListener("touchmove", touchHandler, false);
+// document.getElementById("movie-container").addEventListener("touchend", touchHandler, false);
+// function touchHandler(e) {
+// 	if (e.type == "touchstart") {
+// 		alert("You touched the screen!");
+// 	} else if (e.type == "touchmove") {
+// 		alert("You moved your finger!");
+// 	} else if (e.type == "touchend" || e.type == "touchcancel") {
+// 		alert("You removed your finger from the screen!");
+// 	}
+// }
+
+/*
+todo: implement sorting method according to recency
+is there another more suitable metric?
+ */
+
 /*leaving some notes from programming diary
 
 Event-driven languages, and callbacks
