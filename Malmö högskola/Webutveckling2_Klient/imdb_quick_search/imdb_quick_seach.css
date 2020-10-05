@@ -11,7 +11,7 @@ html {
 	text-align: center;
 	margin: 0;
 }
-html, body, #container, #result {
+html, body, #container, #result-container {
 	height: 100%;
 }
 a {
@@ -43,7 +43,7 @@ form input {
 	width: 35%;
 	background: #f1f1f1;
 }
-#result {
+#result-container {
 	font-size: 25px;
 }
 #movie-container {

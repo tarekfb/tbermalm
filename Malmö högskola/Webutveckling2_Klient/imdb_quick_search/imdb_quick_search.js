@@ -6,7 +6,7 @@ const API_KEY = '5e65d4a0&s';
 let form = document.getElementById("search-form");
 form.addEventListener("submit", function(event) {
 	//clear containerDiv so previous results dont stick around
-	let containerDiv = document.getElementById("result");
+	let containerDiv = document.getElementById("result-container");
 	containerDiv.querySelectorAll('*').forEach(n => n.remove());
 
 	let target = event.target || event.srcElement;
@@ -41,9 +41,16 @@ function apiHandler(title) {
 	omdbAPI.send();
 }
 
-function fetchMovieInfoAndGenerateLiNodes(resultSearchEntry) {
+function fetchMovieInfoAndGenerateLiNodes(entryFromAJAX) {
 
-	let resultContainer = document.getElementById("result");
+	/*
+	this method takes an entry from forloop, on a list of entries
+	which was returned from API call to the OMDb API
+	then fetches some information for the entry
+	then displays all the entries
+	 */
+
+	let resultContainer = document.getElementById("result-container");
 
 	//handling sync is quite awkward at the moment
 	//first usage of promise and async
@@ -57,7 +64,7 @@ function fetchMovieInfoAndGenerateLiNodes(resultSearchEntry) {
 	//generateNodes creates the appriopriate nodes
 	//the items are displayed and task is complete
 
-	fetchMoreMovieInfo(resultSearchEntry.imdbID).then(movieInfo => generateNodesForLi(movieInfo));
+	fetchMoreMovieInfo(entryFromAJAX.imdbID).then(movieInfo => generateNodesForLi(movieInfo));
 
 	function generateNodesForLi(movieInfo) {
 		let movieContainer = document.createElement('div');
@@ -65,15 +72,15 @@ function fetchMovieInfoAndGenerateLiNodes(resultSearchEntry) {
 		resultContainer.appendChild(movieContainer);
 
 		let a = document.createElement("a");
-		let url = "https://www.imdb.com/title/" + resultSearchEntry.imdbID + "/";
+		let url = "https://www.imdb.com/title/" + entryFromAJAX.imdbID + "/";
 		a.href = url;
 		movieContainer.appendChild(a);
 
 		let img = document.createElement('img');
-		if (resultSearchEntry.Poster == "N/A"){
+		if (entryFromAJAX.Poster == "N/A"){
 			img.src = "https://www.sunnxt.com/images/placeholders/placeholder_vertical.gif";
 		} else {
-			img.src = resultSearchEntry.Poster;
+			img.src = entryFromAJAX.Poster;
 		}
 		a.appendChild(img);
 
@@ -83,7 +90,7 @@ function fetchMovieInfoAndGenerateLiNodes(resultSearchEntry) {
 
 		let titleYear = document.createElement("span");
 		titleYear.id = "title-year";
-		titleYear.appendChild(document.createTextNode(resultSearchEntry.Title + " (" + String(resultSearchEntry.Year) + ")")); // + "<br />"
+		titleYear.appendChild(document.createTextNode(entryFromAJAX.Title + " (" + String(entryFromAJAX.Year) + ")")); // + "<br />"
 		text.appendChild(titleYear);
 
 		let actors = document.createElement("span");
@@ -131,7 +138,7 @@ function fetchMovieInfoAndGenerateLiNodes(resultSearchEntry) {
 		ratingDiv.appendChild(ratingMax);
 
 		movieContainer.addEventListener("click", function (){
-			showModalBox(resultSearchEntry.imdbID);
+			showModalBox(entryFromAJAX);
 		});
 	}
 }
@@ -152,7 +159,7 @@ function displayResult(result) {
 		let p = document.createElement("p");
 		p.appendChild(document.createTextNode(resultString));
 
-		let resultContainer = document.getElementById("result")
+		let resultContainer = document.getElementById("result-container")
 		resultContainer.appendChild(p);
 	} else if (result.Response == "True"){
 
@@ -184,7 +191,7 @@ async function fetchMoreMovieInfo(imdbID) {
 }
 
 //showing the modalbox for saving movies
-function showModalBox(imdbID) {
+function showModalBox(entryFromAJAX) {
 	let modal = document.getElementById("modal-box")
 	let span = document.getElementsByClassName("close")[0];
 	let save = document.getElementById("save");
@@ -200,10 +207,11 @@ function showModalBox(imdbID) {
 	}
 	save.addEventListener("click", function (){
 		modal.style.display = "none";
-		saveMovie(imdbID);
+		saveMovie(entryFromAJAX);
 	});
 }
-function saveMovie(imdbID) {
+
+function saveMovie(entryFromAJAX) {
 	/*
 	plotting out my thoughts on the structure here:
 
@@ -215,9 +223,24 @@ function saveMovie(imdbID) {
 	then assemble a complete list of movies?
 
 	 */
-	fetchMoreMovieInfo(tt0120338).then(movieInfo => generateNodesForLi(movieInfo));
+
+	array.push(entryFromAJAX);
+	document.getElementById("cancel").onclick = 	showNodes;
+	console.log(array);
+}
+function showNodes(entryFromAJAX) {
+	//fetchMovieInfoAndGenerateLiNodes(entryFromAJAX);
+
+	let resultContainer = document.getElementById('result-container');
+	resultContainer.innerHTML = "";
+
+	array.forEach(function(entry) {
+		fetchMovieInfoAndGenerateLiNodes(entry);
+	});
 
 }
+
+let array = [];
 
 
 //is this code for smartphone usage?
@@ -236,6 +259,7 @@ function saveMovie(imdbID) {
 
 /*
 todo: implement sorting method according to recency
+todo: implement browsing pages back and forward
 is there another more suitable metric?
  */
 
