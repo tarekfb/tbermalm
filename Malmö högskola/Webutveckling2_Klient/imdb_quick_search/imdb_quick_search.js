@@ -2,6 +2,7 @@
 "use strict";
 
 const API_KEY = '5e65d4a0&s';
+let listOfFavouriteMovies = [];
 
 let form = document.getElementById("search-form");
 form.addEventListener("submit", function(event) {
@@ -192,12 +193,17 @@ async function fetchMoreMovieInfo(imdbID) {
 
 //showing the modalbox for saving movies
 function showModalBox(entryFromAJAX) {
-	let modal = document.getElementById("modal-box")
 	let span = document.getElementsByClassName("close")[0];
+	let cancel = document.getElementById("cancel");
 	let save = document.getElementById("save");
+	let modal = document.getElementById("modal-box")
 
 	modal.style.display = "block";
+
 	span.onclick = function() {
+		modal.style.display = "none";
+	}
+	cancel.onclick = function (){
 		modal.style.display = "none";
 	}
 	window.onclick = function(event){
@@ -205,27 +211,25 @@ function showModalBox(entryFromAJAX) {
 			modal.style.display = "none";
 		}
 	}
-	save.addEventListener("click", function (){
+	save.onclick = function (){
 		modal.style.display = "none";
 		saveMovieToFavourite(entryFromAJAX);
-	});
+		displayFavouriteMovies(); //remove this later
+	}
+
 }
 
 function saveMovieToFavourite(entryFromAJAX) {
 
 	//this method saves a movie to the list of favourites
 
+	//if array = 0, hamburger menu = display: show
 	listOfFavouriteMovies.push(entryFromAJAX);
-	document.getElementById("cancel").onclick = displayFavouriteMovies;
-	console.log(listOfFavouriteMovies + "int is = " + testInt);
-	testInt++;
-	//for some reason it pushes many more items than what i intend do
-	// will look at tomorrow with a pair of fresh eyes
+	//update arraylist visually
+	//pulse latest item
 }
 
-let testInt = 0;
-
-function displayFavouriteMovies(entryFromAJAX) {
+function displayFavouriteMovies() {
 
 	//this method displays the favourites that the user previously have saved
 
@@ -238,8 +242,6 @@ function displayFavouriteMovies(entryFromAJAX) {
 	});
 
 }
-
-let listOfFavouriteMovies = [];
 
 
 //is this code for smartphone usage?
