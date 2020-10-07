@@ -12,13 +12,35 @@
 </head>
 <body>
 	<div id="container">
+		<!-- HTML for favourite movies list -->
+		<div id="favourite-movies-toggle">
+			<!--
+			  A fake / hidden checkbox is used as click reciever,
+			  so you can use the :checked selector on it.
+			-->
+			<input type="checkbox"/>
+
+			<!--Some spans to act as a hamburger.-->
+			<span id="slice1"></span>
+			<span id="slice2"></span>
+			<span id="slice3"></span>
+
+<!--			<h1>Favourite movies</h1>-->
+
+			<ul id="favourite-movies-list">
+				<li>test</li>
+				<li>test2</li>
+			</ul>
+		</div>
+
 		<a href="/index.html" id="logo"><img src="/Webutveckling2_Klient/popcorn-1614707.png"></a><h1 id="title">Simple IMDB Search</h1>
 		<form action="" id="search-form" method="get" name="search-form" autocomplete="off">
 			<input id="text-box" name="query" type="text" placeholder="Enter movie title..." autofocus><button type="submit"><i class="fa fa-search"></i></button>
 		</form>
 		<div id="result-container">
 		</div>
-		<!-- A modal to allow for saving a movie -->
+
+		<!-- modal to allow for saving a movie -->
 		<div id="modal-box" class="modal-box">
 			<!-- Modal content -->
 			<div class="modal-content">
