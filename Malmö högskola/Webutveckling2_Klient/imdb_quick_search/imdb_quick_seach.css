@@ -1,3 +1,10 @@
+:root {
+	/*variables*/
+	--main-yellow: #f4cb84;
+	--main-red: #f38363 ;
+	--accept-green: #08b335;
+}
+
 html {
 	background-repeat: no-repeat;
 	background-position: right top;
@@ -7,25 +14,27 @@ html {
 	background-size: cover;
 	color: black;
 	font-family: 'Montserrat', sans-serif;
-	background-color: #f4cb84;
+	background-color: var(--main-yellow);
 	text-align: center;
 	margin: 0;
 }
 html, body, #container, #result-container {
 	height: 100%;
+	margin-top: 0;
 }
 a {
 	text-decoration: none;
 	color: inherit;
 }
-img {
+#logo img {
+	margin-top: 35px;
 	width: 200px;
 	height: 200px;
 }
 form button {
 	width: 45px;
 	padding: 10px;
-	background: #f38363;
+	background: var(--main-red);
 	font-size: 17px;
 	border: 1px solid grey;
 	border-left: none;
@@ -87,7 +96,7 @@ form input {
 	font-size: 18px;
 }
 #movie-container #rating {
-	background: #f38363;
+	background: var(--main-red);
 	flex-grow: 0.2;
 	display: flex;
 	/*allows centering*/
@@ -119,7 +128,7 @@ form input {
 .modal-box {
 	display: none; /* Hidden by default */
 	position: fixed; /* Stay in place */
-	z-index: 1; /* Sit on top */
+	z-index: 1000; /* Sit on top */
 	left: 0;
 	top: 0;
 	width: 100%; /* Full width */
@@ -152,7 +161,7 @@ form input {
 }
 
 .close {
-	color: #f38363;
+	color: var(--main-red);
 	float: right;
 	font-size: 28px;
 	font-weight: bold;
@@ -169,8 +178,9 @@ form input {
 
 #save{
 	border-radius: 4px;
-	border: solid 2px #f4cb84;
-	background-color: #f4cb84;
+	border: solid 2px white;
+	/*background-color: var(--accept-green);*/
+	background-color: white;
 	padding: 3px;
 	font-size: 15px;
 }
@@ -189,6 +199,167 @@ form input {
 
 #cancel:hover,
 #cancel:focus {
+	cursor: pointer;
+}
+
+/*
+favourites movies list
+using this as hamburger menu design
+https://codepen./erikterwan/pen/EVzeRP
+*/
+
+/*
+this is the parent of the favourite movie sidebar
+*/
+#favourite-movies-toggle{
+	display: block;
+	position: fixed;
+
+	top: 30px;
+	left: 30px;
+
+	z-index: 100;
+
+	/*stops user from being able to select text here*/
+	-webkit-user-select: none;
+	user-select: none;
+}
+
+/*
+designing the hamburger icon and transformation
+ */
+
+#favourite-movies-toggle span{
+	display: block;
+	width: 33px;
+	height: 4px;
+	margin-bottom: 5px;
+	position: relative;
+
+	background: black;
+	border-radius: 3px;
+
+	z-index: 1;
+
+	transform-origin: 4px 0px;
+
+	transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+	background 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+	opacity 0.55s ease;
+}
+
+#favourite-movies-toggle #slice2{
+	transform-origin: 0% 0%;
+}
+
+#favourite-movies-toggle #slice3{
+	transform-origin: 0% 100%;
+}
+
+/*
+ * Transform all the spans
+ * into a crossmark.
+ */
+#favourite-movies-toggle input:checked ~ span{
+	opacity: 1;
+	transform: rotate(45deg) translate(-2px, -1px);
+	background: black;
+}
+
+/*
+ * hide the middle span.
+ */
+#favourite-movies-toggle input:checked ~ #slice2 {
+	opacity: 0;
+	transform: rotate(0deg) scale(0.2, 0.2);
+}
+
+/*
+ * make last span go in other direction
+ */
+#favourite-movies-toggle input:checked ~ #slice3{
+	transform: rotate(-45deg) translate(0, -1px);
+}
+
+/*
+design the hidden input node
+*/
+#favourite-movies-toggle input{
+	display: block;
+	width: 40px;
+	height: 32px;
+	position: absolute;
+	top: -7px;
+	left: -5px;
+
+	cursor: pointer;
+
+	opacity: 0; /* hide it */
+	z-index: 101; /* and place it over the hamburger */
+
+	/*removes ability for user to hold touch over a node and do things (see information?) */
+	-webkit-touch-callout: none;
+}
+
+/*
+designing the container and content
+*/
+#favourite-movies-container{
+	width: 250px;
+	margin: -100px 0 0 -55px;
+	padding: 25px;
+	padding-top: 120px;
+	height: 100vh;
+
+	background: var(--main-red);
+	-webkit-font-smoothing: antialiased;
+	/* to stop flickering of text in safari */
+
+	transform-origin: 0% 0%;
+	transform: translate(-100%, 0);
+
+	transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
+}
+
+#favourite-movies-list{
+	list-style-type: none;
+}
+
+#favourite-movies-list li{
+	padding: 10px 0;
+	font-size: 22px;
+	text-align: left;
+}
+
+#favourite-movies-toggle input:checked ~ #favourite-movies-container
+{
+	transform: none;
+}
+
+#favourite-movies-toggle a{
+	text-decoration: none;
+	/*color: #232323;*/
+	/*unsure of hte color here */
+
+	transition: color 0.3s ease;
+}
+
+#favourite-movies-toggle a:hover {
+	/*color: tomato;*/
+	/*unsure of hte color here */
+}
+
+#show-favourite-movies{
+	border-radius: 4px;
+	border: solid 2px white;
+	/*background-color: var(--accept-green);*/
+	background-color: white;
+	padding: 3px;
+	font-size: 15px;
+}
+
+#show-favourite-movies:hover,
+#show-favourite-movies:focus {
 	cursor: pointer;
 }
 
