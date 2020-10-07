@@ -19,6 +19,8 @@ form.addEventListener("submit", function(event) {
 		
 });
 
+handlePlaceholderParagraph();
+
 function apiHandler(title) {
 	//define api request variables
 	var omdbAPI = new XMLHttpRequest();
@@ -91,7 +93,7 @@ function fetchMovieInfoAndGenerateLiNodes(entryFromAJAX) {
 
 		let titleYear = document.createElement("span");
 		titleYear.id = "title-year";
-		titleYear.appendChild(document.createTextNode(entryFromAJAX.Title + " (" + String(entryFromAJAX.Year) + ")")); // + "<br />"
+		titleYear.appendChild(document.createTextNode(entryFromAJAX.Title + " (" + String(entryFromAJAX.Year) + ")"));
 		text.appendChild(titleYear);
 
 		let actors = document.createElement("span");
@@ -214,19 +216,52 @@ function showModalBox(entryFromAJAX) {
 	save.onclick = function (){
 		modal.style.display = "none";
 		saveMovieToFavourite(entryFromAJAX);
-		displayFavouriteMovies(); //remove this later
 	}
 
 }
 
 function saveMovieToFavourite(entryFromAJAX) {
 
-	//this method saves a movie to the list of favourites
-
-	//if array = 0, hamburger menu = display: show
 	listOfFavouriteMovies.push(entryFromAJAX);
-	//update arraylist visually
-	//pulse latest item
+	let favouriteMoviesUL = document.getElementById("favourite-movies-list");
+	favouriteMoviesUL.innerHTML = "";
+
+	generateChildrenForFavouriteMoviesUL();
+	//pulse latest li here
+	handlePlaceholderParagraph();
+}
+
+function generateChildrenForFavouriteMoviesUL() {
+
+	listOfFavouriteMovies.forEach(function (entry){
+		let favouriteMoviesUL = document.getElementById("favourite-movies-list");
+
+		let a = document.createElement("a");
+		let url = "https://www.imdb.com/title/" + entry.imdbID + "/";
+		a.href = url;
+		favouriteMoviesUL.appendChild(a);
+
+		let li = document.createElement("li");
+		li.appendChild(document.createTextNode(entry.Title + " (" + String(entry.Year) + ")"));
+		a.appendChild(li);
+	});
+
+}
+
+function handlePlaceholderParagraph() {
+	//if array = 0, show p saying to list empty
+	let favouriteMoviesUL = document.getElementById("favourite-movies-list");
+	let placeholderParag = document.getElementById("empty-list-placeholder");
+	let showListButton = document.getElementById("show-favourite-movies");
+
+	if (favouriteMoviesUL.getElementsByTagName('li').length == 0){
+		placeholderParag.style.display = "block";
+		showListButton.style.display = "none";
+	} else {
+		placeholderParag.style.display = "none";
+		showListButton.style.display = "inline-block";
+
+	}
 }
 
 function displayFavouriteMovies() {
@@ -261,8 +296,8 @@ function displayFavouriteMovies() {
 /*
 todo: implement sorting method according to recency
 todo: implement browsing pages back and forward
-todo: make responsive
-is there another more suitable metric?
+todo: make responsive (is there another more suitable metric)?
+todo: make big "succesfull" checkbox after adding to list
  */
 
 /*leaving some notes from programming diary

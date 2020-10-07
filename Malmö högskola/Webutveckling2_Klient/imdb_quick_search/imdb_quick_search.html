@@ -15,7 +15,7 @@
 		<!-- HTML for favourite movies list -->
 		<div id="favourite-movies-toggle">
 			<!--
-			  A fake / hidden checkbox is used as click reciever,
+			  A fake / hidden checkbox is used as click receiver,
 			  so you can use the :checked selector on it.
 			-->
 			<input type="checkbox"/>
@@ -25,14 +25,15 @@
 			<span id="slice2"></span>
 			<span id="slice3"></span>
 
-<!--			<h1>Favourite movies</h1>-->
-
-			<ul id="favourite-movies-list">
-				<li>test</li>
-				<li>test2</li>
-			</ul>
+			<div id="favourite-movies-container">
+				<h2>Favourites</h2>
+				<p id="empty-list-placeholder" style="display: none;">No favourites. Try adding one by clicking on a movie!</p>
+				<ul id="favourite-movies-list"></ul>
+				<button type="button" id="show-favourite-movies" onclick="displayFavouriteMovies()">Show</button>
+			</div>
 		</div>
 
+		<!--Main content: search bar and results-->
 		<a href="/index.html" id="logo"><img src="/Webutveckling2_Klient/popcorn-1614707.png"></a><h1 id="title">Simple IMDB Search</h1>
 		<form action="" id="search-form" method="get" name="search-form" autocomplete="off">
 			<input id="text-box" name="query" type="text" placeholder="Enter movie title..." autofocus><button type="submit"><i class="fa fa-search"></i></button>

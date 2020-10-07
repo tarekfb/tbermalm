@@ -1,7 +1,8 @@
 :root {
 	/*variables*/
 	--main-yellow: #f4cb84;
-	--main-red: #f38363;;
+	--main-red: #f38363 ;
+	--accept-green: #08b335;
 }
 
 html {
@@ -25,7 +26,8 @@ a {
 	text-decoration: none;
 	color: inherit;
 }
-img {
+#logo img {
+	margin-top: 35px;
 	width: 200px;
 	height: 200px;
 }
@@ -176,8 +178,9 @@ form input {
 
 #save{
 	border-radius: 4px;
-	border: solid 2px var(--main-yellow);
-	background-color: var(--main-yellow);
+	border: solid 2px white;
+	/*background-color: var(--accept-green);*/
+	background-color: white;
 	padding: 3px;
 	font-size: 15px;
 }
@@ -201,14 +204,19 @@ form input {
 
 /*
 favourites movies list
-using this as inspiration
-https://codepen.io/erikterwan/pen/EVzeRP
+using this as hamburger menu design
+https://codepen./erikterwan/pen/EVzeRP
+*/
+
+/*
+this is the parent of the favourite movie sidebar
 */
 #favourite-movies-toggle{
 	display: block;
-	position: relative;
-	top: 50px;
-	left: 50px;
+	position: fixed;
+
+	top: 30px;
+	left: 30px;
 
 	z-index: 100;
 
@@ -240,13 +248,11 @@ designing the hamburger icon and transformation
 	opacity 0.55s ease;
 }
 
-#favourite-movies-toggle span:first-child
-{
+#favourite-movies-toggle #slice2{
 	transform-origin: 0% 0%;
 }
 
-#favourite-movies-toggle span:nth-last-child(2)
-{
+#favourite-movies-toggle #slice3{
 	transform-origin: 0% 100%;
 }
 
@@ -254,8 +260,7 @@ designing the hamburger icon and transformation
  * Transform all the spans
  * into a crossmark.
  */
-#favourite-movies-toggle input:checked ~ span
-{
+#favourite-movies-toggle input:checked ~ span{
 	opacity: 1;
 	transform: rotate(45deg) translate(-2px, -1px);
 	background: black;
@@ -264,8 +269,7 @@ designing the hamburger icon and transformation
 /*
  * hide the middle span.
  */
-#favourite-movies-toggle input:checked ~ span:nth-last-child(3)
-{
+#favourite-movies-toggle input:checked ~ #slice2 {
 	opacity: 0;
 	transform: rotate(0deg) scale(0.2, 0.2);
 }
@@ -273,15 +277,13 @@ designing the hamburger icon and transformation
 /*
  * make last span go in other direction
  */
-#favourite-movies-toggle input:checked ~ span:nth-last-child(2)
-{
+#favourite-movies-toggle input:checked ~ #slice3{
 	transform: rotate(-45deg) translate(0, -1px);
 }
 
 /*
 design the hidden input node
 */
-
 #favourite-movies-toggle input{
 	display: block;
 	width: 40px;
@@ -299,16 +301,17 @@ design the hidden input node
 	-webkit-touch-callout: none;
 }
 
-#favourite-movies-list{
-	position: absolute;
+/*
+designing the container and content
+*/
+#favourite-movies-container{
 	width: 250px;
 	margin: -100px 0 0 -55px;
 	padding: 25px;
 	padding-top: 120px;
 	height: 100vh;
 
-	background: white;
-	list-style-type: none;
+	background: var(--main-red);
 	-webkit-font-smoothing: antialiased;
 	/* to stop flickering of text in safari */
 
@@ -318,17 +321,21 @@ design the hidden input node
 	transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
 }
 
+#favourite-movies-list{
+	list-style-type: none;
+}
+
 #favourite-movies-list li{
 	padding: 10px 0;
 	font-size: 22px;
+	text-align: left;
 }
 
-#favourite-movies-toggle input:checked ~ ul
+#favourite-movies-toggle input:checked ~ #favourite-movies-container
 {
 	transform: none;
 }
 
-/*designing list items*/
 #favourite-movies-toggle a{
 	text-decoration: none;
 	/*color: #232323;*/
@@ -340,6 +347,20 @@ design the hidden input node
 #favourite-movies-toggle a:hover {
 	/*color: tomato;*/
 	/*unsure of hte color here */
+}
+
+#show-favourite-movies{
+	border-radius: 4px;
+	border: solid 2px white;
+	/*background-color: var(--accept-green);*/
+	background-color: white;
+	padding: 3px;
+	font-size: 15px;
+}
+
+#show-favourite-movies:hover,
+#show-favourite-movies:focus {
+	cursor: pointer;
 }
 
 @media screen and (max-width: 1300px) {
