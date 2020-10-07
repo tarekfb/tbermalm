@@ -26,12 +26,11 @@ form button {
 	width: 45px;
 	padding: 10px;
 	background: #f38363;
-	color: white;
 	font-size: 17px;
 	border: 1px solid grey;
 	border-left: none;
 	cursor: pointer;
-	border-radius: 0px 5px 5px 0px;
+	border-radius: 0 5px 5px 0;
 	color: black;
 	margin-left: -0.5%;
 	-webkit-appearance: none;
@@ -53,13 +52,12 @@ form input {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
-	margin: 0 auto;
 	width: 45%;
 	height: 165px;
 	background: #e7d2cc;
 	border-radius: 5px;
 	border: 1px solid grey;
-	margin-top: 20px;
+	margin: 20px auto 0;
 	position: relative;
 	text-align: left;
 }
@@ -70,15 +68,14 @@ form input {
 #movie-container img {
 	width: 105px;
 	height: 100%;
-	padding: 10px 0px 10px 10px;
+	padding: 10px 0 10px 10px;
 	box-sizing: border-box;
 }
 #movie-container #text {
 	flex-grow: 1;
-	margin: 10px 0 0 10px;
 	box-sizing: border-box;
 	overflow-y: hidden;
-	margin-bottom: 10px;
+	margin: 10px 0 10px 10px;
 }
 #movie-container #title-year {
 	font-size: 32px;
@@ -86,22 +83,19 @@ form input {
 }
 #movie-container #actors, #movie-container #awards {
 	display: inline-block;
-	margin-top: 0px;
+	margin-top: 0;
 	font-size: 18px;
 }
 #movie-container #rating {
-	text-align: center;
 	background: #f38363;
 	flex-grow: 0.2;
-	margin-bottom: 0 auto;
-	margin-top: 0 auto;
 	display: flex;
 	/*allows centering*/
 	justify-content: center;
 	/* align horizontal */
 	align-items: center;
 	/* align vertical */
-	padding: 0 0px 0 0px;
+	padding: 0;
 	min-width: 18%
 }
 #movie-container #rating i {
@@ -153,7 +147,7 @@ form input {
 }
 
 .modal-content p{
-	margin-top: 0px;
+	margin-top: 0;
 	font-size: 25px;
 }
 
@@ -238,6 +232,14 @@ form input {
 	}
 	#movie-container:hover, movie-container:focus, movie-container:active {
 		transform: scale(1.00);
+	}
+	.modal-content{
+		height: 60px;
+		width: 45%;
+	}
+	.modal-content p{
+		margin-top: 0;
+		font-size: 20px;
 	}
 }
 /*https://www.canva.com/colors/color-palette-generator/*/
