@@ -222,12 +222,23 @@ function showModalBox(entryFromAJAX) {
 
 function saveMovieToFavourite(entryFromAJAX) {
 
+	if (!document.getElementById("input-hamburger").checked && listOfFavouriteMovies.length == 0){
+		document.getElementById("slice1").classList.add("pulse-grey-animation");
+		document.getElementById("slice2").classList.add("pulse-grey-animation");
+		document.getElementById("slice3").classList.add("pulse-grey-animation");
+	}
+
 	listOfFavouriteMovies.push(entryFromAJAX);
 	let favouriteMoviesUL = document.getElementById("favourite-movies-list");
 	favouriteMoviesUL.innerHTML = "";
 
 	generateChildrenForFavouriteMoviesUL();
-	//pulse latest li here
+
+	if (document.getElementById("input-hamburger").checked){
+		favouriteMoviesUL.lastElementChild.classList.add("pulse-grey-animation");
+	}
+	//not working atm
+
 	handlePlaceholderParagraph();
 }
 

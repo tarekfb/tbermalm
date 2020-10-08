@@ -179,8 +179,7 @@ form input {
 #save{
 	border-radius: 4px;
 	border: solid 2px white;
-	/*background-color: var(--accept-green);*/
-	background-color: white;
+	background-color: var(--accept-green);
 	padding: 3px;
 	font-size: 15px;
 }
@@ -246,6 +245,30 @@ designing the hamburger icon and transformation
 	transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
 	background 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
 	opacity 0.55s ease;
+
+}
+
+/*
+pulse grey on save to list
+*/
+.pulse-grey-animation{
+	-webkit-animation: pulse 1.0s 3 ease-in-out;
+	-o-animation: pulse 1.0s 3 ease-in-out;
+	-ms-animation: pulse 1.0s 3 ease-in-out;
+	-moz-animation: pulse 1.0s 3 ease-in-out;
+	animation: pulse 1.0s 3 ease-in-out;
+}
+
+@-webkit-keyframes pulse {
+	0% {background-color: black;}
+	50% {background-color: #778899;}
+	100% {background-color: black;}
+}
+
+@keyframes pulse {
+	0% {background-color: black;}
+	50% {background-color: #778899;}
+	100% {background-color: black;}
 }
 
 #favourite-movies-toggle #slice2{
@@ -351,9 +374,8 @@ designing the container and content
 
 #show-favourite-movies{
 	border-radius: 4px;
-	border: solid 2px white;
-	/*background-color: var(--accept-green);*/
-	background-color: white;
+	border: solid 2px var(--main-yellow);
+	background-color: var(--main-yellow);
 	padding: 3px;
 	font-size: 15px;
 }
