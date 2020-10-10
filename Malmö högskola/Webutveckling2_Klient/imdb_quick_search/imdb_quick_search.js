@@ -45,6 +45,11 @@ function navToImdbListener() {
 	//if image is clicked, user is taken to imdb page for movie
 	//if user does this, we dont want to display the "save movie to favourites modal"
 	let resultContainer = document.getElementById("result-container");
+
+	let imgChildrenOfResultContainer = resultContainer.getElementsByTagName("img");
+	for (let i = 0; i < imgChildrenOfResultContainer.length; i++) {
+		imgChildrenOfResultContainer[i].classList.add("movie-poster")
+	}
 }
 
 function apiHandler(title) {
@@ -92,21 +97,31 @@ function fetchMovieInfoAndGenerateLiNodes(entryFromAJAX) {
 	fetchMoreMovieInfo(entryFromAJAX.imdbID).then(movieInfo => generateNodesForLi(movieInfo));
 
 	function generateNodesForLi(movieInfo) {
+
+		//this method generates the information for each movie
+		//rating, title, actors, etc
+
 		let movieContainer = document.createElement('div');
 		movieContainer.id = 'movie-container';
 		resultContainer.appendChild(movieContainer);
 
+		//adding hyperlink, the movie's imdb-page, to movie poster
 		let a = document.createElement("a");
 		let url = "https://www.imdb.com/title/" + entryFromAJAX.imdbID + "/";
 		a.href = url;
 		movieContainer.appendChild(a);
 
 		let img = document.createElement('img');
+
+		//setting poster src, if poster exists
 		if (entryFromAJAX.Poster == "N/A"){
 			img.src = "https://www.sunnxt.com/images/placeholders/placeholder_vertical.gif";
 		} else {
 			img.src = entryFromAJAX.Poster;
 		}
+		//using this to avoid modal box when clicking the movie poster
+		img.id = "movie-poster-anchor";
+
 		a.appendChild(img);
 
 		let text = document.createElement('div');
@@ -130,8 +145,9 @@ function fetchMovieInfoAndGenerateLiNodes(entryFromAJAX) {
 		} else if (movieInfo.awards.length > 25){
 			if (screen && screen.width < 1300) {
 				movieInfo.awards = "Has won awards nominations."
-			}//not enough space
-			//TO-DO: change to dropdown on touch (jquery?)
+			}
+			//not enough space to show all awards
+			//TODO: change to dropdown on touch (jquery?)
 			//https://coderwall.com/p/3uwgga/make-css-dropdown-menus-work-on-touch-devices
 		}
 		let awards = document.createElement("span");
@@ -162,8 +178,13 @@ function fetchMovieInfoAndGenerateLiNodes(entryFromAJAX) {
 		ratingMax.appendChild(document.createTextNode("/10"));
 		ratingDiv.appendChild(ratingMax);
 
-		movieContainer.addEventListener("click", function (){
-			showModalBox(entryFromAJAX);
+		movieContainer.addEventListener("click", function (event){
+			if (event.target.id == "movie-poster-anchor"){
+				//do nothing
+				//since we just want to avoid showing modalbox in this case
+			} else {
+				showModalBox(entryFromAJAX);
+			}
 		});
 	}
 }
@@ -225,6 +246,7 @@ function showModalBox(entryFromAJAX) {
 	let cancel = document.getElementById("cancel");
 	let save = document.getElementById("save");
 	let modal = document.getElementById("modal-box")
+
 
 	modal.style.display = "block";
 

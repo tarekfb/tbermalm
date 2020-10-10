@@ -55,7 +55,7 @@
       <workItem from="1602144125559" duration="4146000" />
       <workItem from="1602240795657" duration="2850000" />
       <workItem from="1602264494330" duration="2036000" />
-      <workItem from="1602331442928" duration="3795000" />
+      <workItem from="1602331442928" duration="8211000" />
     </task>
     <servers />
   </component>
@@ -75,6 +75,18 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="565" y="135" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1602336066532">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="565" y="135" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/-1920.0.1536.840/0.0.1920.1050@0.0.1920.1050" timestamp="1602336066532" />
+    <state x="777" y="439" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1602335882848">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="777" y="439" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/-1920.0.1536.840/0.0.1920.1050@0.0.1920.1050" timestamp="1602335882848" />
+    <state x="752" y="383" key="scopes" timestamp="1602335718995">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="752" y="383" key="scopes/-1920.0.1536.840/0.0.1920.1050@0.0.1920.1050" timestamp="1602335718995" />
     <state x="623" y="227" width="672" height="678" key="search.everywhere.popup" timestamp="1602075297730">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
