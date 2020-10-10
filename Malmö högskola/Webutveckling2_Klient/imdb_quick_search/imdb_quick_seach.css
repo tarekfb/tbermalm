@@ -274,10 +274,36 @@ pulse grey on save to list
 	100% {background-color: black;}
 }
 
-/*slide in and out sidebar*/
+/*slide sidebar in and out */
 #input-hamburger:checked ~ #favourite-movies-content-container {
 	transform: none;
+
+	/*can remove this code i suppose, tried using it for fade/slide*/
+	display: block;
+	visibility: visible;
+	opacity: 1;
+	animation: 1s;
+	right: 0;
 }
+/*attempted to use this to slide in AND set display:none
+didnt work
+leaving it without slide
+because with slide itll block content underneath since display: block*/
+#input-hamburger:not(:checked) ~ #favourite-movies-content-container {
+	display: none;
+	opacity: 0;
+	visibility: hidden;
+}
+@keyframes fade {
+	0% {
+		opacity: 0;
+	}
+
+	100% {
+		opacity: 1;
+	}
+}
+
 
 /*
  * Transform all the spans
@@ -291,7 +317,7 @@ pulse grey on save to list
 	transform-origin: 0% 100%;
 }
 
-#input-hamburger:checked ~ span{
+#input-hamburger:checked ~ #slice1, #input-hamburger:checked ~ #slice2, #input-hamburger:checked ~ #slice3{
 	opacity: 1;
 	transform: rotate(45deg) translate(-2px, -1px);
 	background: black;
