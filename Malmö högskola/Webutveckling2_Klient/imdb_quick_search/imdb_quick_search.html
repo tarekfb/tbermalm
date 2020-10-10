@@ -13,19 +13,19 @@
 <body>
 	<div id="container">
 		<!-- HTML for favourite movies list -->
-		<div id="favourite-movies-toggle">
+		<div id="favourite-movies-container">
 			<!--
-			  A fake / hidden checkbox is used as click receiver,
+			  A hidden checkbox is used as click receiver,
 			  so you can use the :checked selector on it.
 			-->
-			<input id="input-hamburger" type="checkbox"/>
+			<input id="input-hamburger" type="checkbox" onchange="toggleHideFavouriteMovies()"/>
 
 			<!--Some spans to act as a hamburger.-->
 			<span id="slice1"></span>
 			<span id="slice2"></span>
 			<span id="slice3"></span>
 
-			<div id="favourite-movies-container">
+			<div id="favourite-movies-content-container">
 				<h2>Favourites</h2>
 				<p id="empty-list-placeholder" style="display: none;">No favourites. Try adding one by clicking on a movie!</p>
 				<ul id="favourite-movies-list"></ul>
@@ -34,22 +34,25 @@
 		</div>
 
 		<!--Main content: search bar and results-->
-		<a href="/index.html" id="logo"><img src="/Webutveckling2_Klient/popcorn-1614707.png"></a><h1 id="title">Simple IMDB Search</h1>
-		<form action="" id="search-form" method="get" name="search-form" autocomplete="off">
-			<input id="text-box" name="query" type="text" placeholder="Enter movie title..." autofocus><button type="submit"><i class="fa fa-search"></i></button>
-		</form>
-		<div id="result-container">
-		</div>
+		<div id="main-content-container">
+			<a href="/index.html" id="logo"><img src="/Webutveckling2_Klient/popcorn-1614707.png"></a>
+			<h1 id="title">Simple IMDB Search</h1>
+			<form action="" id="search-form" method="get" name="search-form" autocomplete="off">
+				<input id="search-box" name="query" type="text" placeholder="Enter movie title..." autofocus><button type="submit"><i class="fa fa-search"></i></button>
+			</form>
+			<div id="result-container"></div>
 
-		<!-- modal to allow for saving a movie -->
-		<div id="modal-box" class="modal-box">
-			<!-- Modal content -->
-			<div class="modal-content">
-				<span class="close">&times;</span>
-				<p>Save to favourites?</p>
-				<button type="button" id="save">Save</button> <button type="button" id="cancel">Cancel</button>
+			<!-- modal to allow for saving a movie -->
+			<div id="modal-box" class="modal-box">
+				<!-- Modal content -->
+				<div class="modal-content">
+					<span class="close">&times;</span>
+					<p>Save to favourites?</p>
+					<button type="button" id="save">Save</button> <button type="button" id="cancel">Cancel</button>
+				</div>
 			</div>
 		</div>
+
 	</div>
 </body>
 </html>

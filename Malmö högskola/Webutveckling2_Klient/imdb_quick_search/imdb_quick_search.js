@@ -4,31 +4,58 @@
 const API_KEY = '5e65d4a0&s';
 let listOfFavouriteMovies = [];
 
-let form = document.getElementById("search-form");
-form.addEventListener("submit", function(event) {
-	//clear containerDiv so previous results dont stick around
-	let containerDiv = document.getElementById("result-container");
-	containerDiv.querySelectorAll('*').forEach(n => n.remove());
-
-	let target = event.target || event.srcElement;
-	
-	let queryText = form.elements.query.value;
-	apiHandler(encodeURI(queryText));
-
-	event.preventDefault();
-		
-});
-
+//functions to init page
+submitFormListener();
 handlePlaceholderParagraph();
+toggleHideFavouriteMovies();
+
+function submitFormListener() {
+	let form = document.getElementById("search-form");
+	let searchBox = document.getElementById("search-box");
+
+	form.addEventListener("submit", function(event) {
+
+		//in this case the user didnt enter any text in the search box
+		if (searchBox.value.length === 0){
+			searchBox.focus();
+
+			//clear resultContainer to prevent stacking of results/response messages
+			let resultContainer = document.getElementById("result-container")
+			resultContainer.querySelectorAll('*').forEach(n => n.remove());
+
+			//generate p saying to enter some text
+			let p = document.createElement("p");
+			p.appendChild(document.createTextNode("Please type something first."));
+			resultContainer.appendChild(p);
+
+			event.preventDefault();
+		} else {
+
+			let queryText = form.elements.query.value;
+			apiHandler(encodeURI(queryText));
+
+			event.preventDefault();
+		}
+
+	});
+}
+
+function navToImdbListener() {
+
+	//if image is clicked, user is taken to imdb page for movie
+	//if user does this, we dont want to display the "save movie to favourites modal"
+	let resultContainer = document.getElementById("result-container");
+
+	let imgChildrenOfResultContainer = resultContainer.getElementsByTagName("img");
+	for (let i = 0; i < imgChildrenOfResultContainer.length; i++) {
+		imgChildrenOfResultContainer[i].classList.add("movie-poster")
+	}
+}
 
 function apiHandler(title) {
 	//define api request variables
-	var omdbAPI = new XMLHttpRequest();
-	var omdbURL = "https://www.omdbapi.com/?&apikey=5e65d4a0&s=" + title; 
-		//var omdbURL = "https://www.omdbapi.com/?&apikey=5e65d4a0&s=" + title + "&type=movie"; 
-
-	//var omdbURL = "https://www.omdbapi.com/?apikey=5e65d4a0&
-	//var omdbURL = "https://www.omdbapi.com/t=" + title;
+	const omdbAPI = new XMLHttpRequest();
+	const omdbURL = "https://www.omdbapi.com/?&apikey=5e65d4a0&s=" + title;
 
 	//adding listener to request
 	omdbAPI.addEventListener("load", function() {
@@ -70,21 +97,31 @@ function fetchMovieInfoAndGenerateLiNodes(entryFromAJAX) {
 	fetchMoreMovieInfo(entryFromAJAX.imdbID).then(movieInfo => generateNodesForLi(movieInfo));
 
 	function generateNodesForLi(movieInfo) {
+
+		//this method generates the information for each movie
+		//rating, title, actors, etc
+
 		let movieContainer = document.createElement('div');
 		movieContainer.id = 'movie-container';
 		resultContainer.appendChild(movieContainer);
 
+		//adding hyperlink, the movie's imdb-page, to movie poster
 		let a = document.createElement("a");
 		let url = "https://www.imdb.com/title/" + entryFromAJAX.imdbID + "/";
 		a.href = url;
 		movieContainer.appendChild(a);
 
 		let img = document.createElement('img');
+
+		//setting poster src, if poster exists
 		if (entryFromAJAX.Poster == "N/A"){
 			img.src = "https://www.sunnxt.com/images/placeholders/placeholder_vertical.gif";
 		} else {
 			img.src = entryFromAJAX.Poster;
 		}
+		//using this to avoid modal box when clicking the movie poster
+		img.id = "movie-poster-anchor";
+
 		a.appendChild(img);
 
 		let text = document.createElement('div');
@@ -100,7 +137,7 @@ function fetchMovieInfoAndGenerateLiNodes(entryFromAJAX) {
 		actors.id = "actors";
 		actors.appendChild(document.createTextNode(movieInfo.actors));
 		text.appendChild(actors);
-		//need to insert linebreak for styling
+		//insert linebreak for styling
 		text.insertBefore(document.createElement("br"), actors);
 
 		if (movieInfo.awards == "N/A"){
@@ -108,15 +145,16 @@ function fetchMovieInfoAndGenerateLiNodes(entryFromAJAX) {
 		} else if (movieInfo.awards.length > 25){
 			if (screen && screen.width < 1300) {
 				movieInfo.awards = "Has won awards nominations."
-			}//not enough space
-			//TO-DO: change to dropdown on touch (jquery?)
+			}
+			//not enough space to show all awards
+			//TODO: change to dropdown on touch (jquery?)
 			//https://coderwall.com/p/3uwgga/make-css-dropdown-menus-work-on-touch-devices
 		}
 		let awards = document.createElement("span");
 		awards.id = "awards";
 		awards.appendChild(document.createTextNode(movieInfo.awards));
 		text.appendChild(awards);
-		//need to insert linebreak for styling
+		//insert linebreak for styling
 		text.insertBefore(document.createElement("br"), awards);
 
 		let ratingDiv = document.createElement('div');
@@ -126,7 +164,7 @@ function fetchMovieInfoAndGenerateLiNodes(entryFromAJAX) {
 
 		if (movieInfo.rating == "N/A"){
 			ratingDiv.style.flexGrow = 0;
-			ratingDiv.style.display = "none";
+			;
 		} else {
 			ratingDiv.innerHTML = '<i class="fa fa-star" aria-hidden="true"></i>';
 			let ratingScore = document.createElement("span");
@@ -140,16 +178,26 @@ function fetchMovieInfoAndGenerateLiNodes(entryFromAJAX) {
 		ratingMax.appendChild(document.createTextNode("/10"));
 		ratingDiv.appendChild(ratingMax);
 
-		movieContainer.addEventListener("click", function (){
-			showModalBox(entryFromAJAX);
+		movieContainer.addEventListener("click", function (event){
+			if (event.target.id == "movie-poster-anchor"){
+				//do nothing
+				//since we just want to avoid showing modalbox in this case
+			} else {
+				showModalBox(entryFromAJAX);
+			}
 		});
 	}
 }
 
 function displayResult(result) {
 
+	//clear resultContainer to prevent stacking of results/response messages
+	let resultContainer = document.getElementById("result-container")
+	resultContainer.querySelectorAll('*').forEach(n => n.remove());
+
+
 	//in this case something went wrong with the search
-	//this is communicated through div outputting string result.Error
+	//this is communicated through p outputting string result.Error
 	if (result.Response == "False"){
 		let resultString = String(result.Error);
 
@@ -158,18 +206,17 @@ function displayResult(result) {
 		} else if (resultString == "Movie not found!"){
 			resultString += " Did you misspell something?";
 		}
-	
+
+		//generate p with resultString
 		let p = document.createElement("p");
 		p.appendChild(document.createTextNode(resultString));
-
-		let resultContainer = document.getElementById("result-container")
 		resultContainer.appendChild(p);
 	} else if (result.Response == "True"){
 
 		//in this case the search came through
 		//we display result properties
 
-		//this code needs to be executed for every item in array: Result.Search
+		//executed for every item in array: Result.Search
 		result.Search.forEach(function(entry) {
 			fetchMovieInfoAndGenerateLiNodes(entry);
 		});
@@ -199,6 +246,7 @@ function showModalBox(entryFromAJAX) {
 	let cancel = document.getElementById("cancel");
 	let save = document.getElementById("save");
 	let modal = document.getElementById("modal-box")
+
 
 	modal.style.display = "block";
 
@@ -260,11 +308,11 @@ function generateChildrenForFavouriteMoviesUL() {
 }
 
 function handlePlaceholderParagraph() {
-	//if array = 0, show p saying to list empty
 	let favouriteMoviesUL = document.getElementById("favourite-movies-list");
 	let placeholderParag = document.getElementById("empty-list-placeholder");
 	let showListButton = document.getElementById("show-favourite-movies");
 
+	//if array = 0, show p saying list empty
 	if (favouriteMoviesUL.getElementsByTagName('li').length == 0){
 		placeholderParag.style.display = "block";
 		showListButton.style.display = "none";
@@ -279,13 +327,45 @@ function displayFavouriteMovies() {
 
 	//this method displays the favourites that the user previously have saved
 
-	//need to clear whatever result is previously displayed
+	//clear whatever result is previously displayed
 	let resultContainer = document.getElementById('result-container');
 	resultContainer.innerHTML = "";
 
 	listOfFavouriteMovies.forEach(function(entry) {
 		fetchMovieInfoAndGenerateLiNodes(entry);
 	});
+
+}
+
+function toggleHideFavouriteMovies() {
+	// //trying to make it so the sidebar deosnt cover container div, even when not clicked
+	let inputToggleFavouriteMovies = document.getElementById("input-hamburger");
+	// let favouriteMoviesContainer = document.getElementById("favourite-movies-container");
+	//
+	// if (inputToggleFavouriteMovies.checked){
+	// 	favouriteMoviesContainer.style.zIndex = "95";
+	// } else {
+	// 	document.getElementById("container").style.zIndex = "5";
+	// 	favouriteMoviesContainer.style.zIndex = "1";
+	// 	// i think it odesnt work bcus body is covering input
+	// }
+	//
+	// document.getElementById("slice1").style.zIndex = "-5";
+	// document.getElementById("slice2").style.zIndex = "-5";
+	// document.getElementById("slice3").style.zIndex = "-5";
+	//
+	// inputToggleFavouriteMovies.style.zIndex = "15010";
+
+	// if (inputToggleFavouriteMovies.checked){
+	// 	document.getElementById('favourite-movies-container').style.display = "block";
+	// 	document.getElementById("search-box").style.backgroundColor = "blue";
+	// } else {
+	// 	document.getElementById('favourite-movies-container').style.display = "none";
+	// 	document.getElementById("search-box").style.backgroundColor = "white";
+	// }
+	//if i can make the span and input be positioned outside out of the div
+	//i can hide the container of fav movs on click
+	//and use the flexbox pattern
 
 }
 

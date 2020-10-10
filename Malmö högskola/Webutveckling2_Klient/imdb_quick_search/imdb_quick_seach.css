@@ -26,6 +26,8 @@ a {
 	text-decoration: none;
 	color: inherit;
 }
+
+/*img, search bar and result container*/
 #logo img {
 	margin-top: 35px;
 	width: 200px;
@@ -54,6 +56,8 @@ form input {
 #result-container {
 	font-size: 25px;
 }
+
+/*style for each movie, within the result container*/
 #movie-container {
 	box-shadow: 0 0 1px rgba(0, 0, 0, 0);
 	transition-duration: 0.3s;
@@ -128,7 +132,7 @@ form input {
 .modal-box {
 	display: none; /* Hidden by default */
 	position: fixed; /* Stay in place */
-	z-index: 1000; /* Sit on top */
+	z-index: 200; /* Sit on top */
 	left: 0;
 	top: 0;
 	width: 100%; /* Full width */
@@ -204,20 +208,18 @@ form input {
 /*
 favourites movies list
 using this as hamburger menu design
-https://codepen./erikterwan/pen/EVzeRP
+https://codepen.com/erikterwan/pen/EVzeRP
 */
 
 /*
-this is the parent of the favourite movie sidebar
+this is the parent of the favourite movie hamburger menu
 */
-#favourite-movies-toggle{
+#favourite-movies-container{
 	display: block;
 	position: fixed;
 
 	top: 30px;
 	left: 30px;
-
-	z-index: 100;
 
 	/*stops user from being able to select text here*/
 	-webkit-user-select: none;
@@ -228,24 +230,25 @@ this is the parent of the favourite movie sidebar
 designing the hamburger icon and transformation
  */
 
-#favourite-movies-toggle span{
+#slice1, #slice2, #slice3{
+	position: relative;
 	display: block;
+
+	/*styles the spans into slices*/
 	width: 33px;
 	height: 4px;
 	margin-bottom: 5px;
-	position: relative;
-
 	background: black;
 	border-radius: 3px;
 
-	z-index: 1;
-
+	/*this transforms the slices into an x shape*/
 	transform-origin: 4px 0px;
-
 	transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
 	background 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
 	opacity 0.55s ease;
 
+	/*makes it higher than the sidebar content, except for input toggle*/
+	z-index: 100;
 }
 
 /*
@@ -271,19 +274,50 @@ pulse grey on save to list
 	100% {background-color: black;}
 }
 
-#favourite-movies-toggle #slice2{
-	transform-origin: 0% 0%;
+/*slide sidebar in and out */
+#input-hamburger:checked ~ #favourite-movies-content-container {
+	transform: none;
+
+	/*can remove this code i suppose, tried using it for fade/slide*/
+	display: block;
+	visibility: visible;
+	opacity: 1;
+	animation: 1s;
+	right: 0;
+}
+/*attempted to use this to slide in AND set display:none
+didnt work
+leaving it without slide
+because with slide itll block content underneath since display: block*/
+#input-hamburger:not(:checked) ~ #favourite-movies-content-container {
+	display: none;
+	opacity: 0;
+	visibility: hidden;
+}
+@keyframes fade {
+	0% {
+		opacity: 0;
+	}
+
+	100% {
+		opacity: 1;
+	}
 }
 
-#favourite-movies-toggle #slice3{
-	transform-origin: 0% 100%;
-}
 
 /*
  * Transform all the spans
  * into a crossmark.
  */
-#favourite-movies-toggle input:checked ~ span{
+#slice2{
+	transform-origin: 0% 0%;
+}
+
+#slice3{
+	transform-origin: 0% 100%;
+}
+
+#input-hamburger:checked ~ #slice1, #input-hamburger:checked ~ #slice2, #input-hamburger:checked ~ #slice3{
 	opacity: 1;
 	transform: rotate(45deg) translate(-2px, -1px);
 	background: black;
@@ -292,26 +326,27 @@ pulse grey on save to list
 /*
  * hide the middle span.
  */
-#favourite-movies-toggle input:checked ~ #slice2 {
+#input-hamburger:checked ~ #slice2 {
 	opacity: 0;
 	transform: rotate(0deg) scale(0.2, 0.2);
 }
 
 /*
- * make last span go in other direction
+make last span go in other direction
  */
-#favourite-movies-toggle input:checked ~ #slice3{
+#input-hamburger:checked ~ #slice3{
 	transform: rotate(-45deg) translate(0, -1px);
 }
 
 /*
 design the hidden input node
 */
-#favourite-movies-toggle input{
+#input-hamburger{
 	display: block;
+	position: absolute;
+
 	width: 40px;
 	height: 32px;
-	position: absolute;
 	top: -7px;
 	left: -5px;
 
@@ -325,14 +360,14 @@ design the hidden input node
 }
 
 /*
-designing the container and content
+designing the container for content
 */
-#favourite-movies-container{
-	width: 250px;
+#favourite-movies-content-container{
 	margin: -100px 0 0 -55px;
 	padding: 25px;
 	padding-top: 120px;
 	height: 100vh;
+	width: 250px;
 
 	background: var(--main-red);
 	-webkit-font-smoothing: antialiased;
@@ -344,6 +379,9 @@ designing the container and content
 	transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
 }
 
+/*
+designing the content of container
+*/
 #favourite-movies-list{
 	list-style-type: none;
 }
@@ -354,12 +392,7 @@ designing the container and content
 	text-align: left;
 }
 
-#favourite-movies-toggle input:checked ~ #favourite-movies-container
-{
-	transform: none;
-}
-
-#favourite-movies-toggle a{
+#favourite-movies-container a{
 	text-decoration: none;
 	/*color: #232323;*/
 	/*unsure of hte color here */
@@ -367,7 +400,7 @@ designing the container and content
 	transition: color 0.3s ease;
 }
 
-#favourite-movies-toggle a:hover {
+#favourite-movies-container a:hover {
 	/*color: tomato;*/
 	/*unsure of hte color here */
 }
