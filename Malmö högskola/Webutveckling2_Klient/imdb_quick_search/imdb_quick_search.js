@@ -7,7 +7,7 @@ let listOfFavouriteMovies = [];
 //functions to init page
 submitFormListener();
 handlePlaceholderParagraph();
-inputToggleFavouriteMovies();
+toggleHideFavouriteMovies();
 
 function submitFormListener() {
 	let form = document.getElementById("search-form");
@@ -337,24 +337,35 @@ function displayFavouriteMovies() {
 
 }
 
-function inputToggleFavouriteMovies() {
-	//trying to make it so the sidebar deosnt cover container div, even when not clicked
+function toggleHideFavouriteMovies() {
+	// //trying to make it so the sidebar deosnt cover container div, even when not clicked
 	let inputToggleFavouriteMovies = document.getElementById("input-hamburger");
-	let favouriteMoviesContainer = document.getElementById("favourite-movies-container");
-
-	if (inputToggleFavouriteMovies.checked){
-		favouriteMoviesContainer.style.zIndex = "95";
-	} else {
-		document.getElementById("container").style.zIndex = "5";
-		favouriteMoviesContainer.style.zIndex = "1";
-		// i think it odesnt work bcus body is covering input
-	}
-
+	// let favouriteMoviesContainer = document.getElementById("favourite-movies-container");
+	//
+	// if (inputToggleFavouriteMovies.checked){
+	// 	favouriteMoviesContainer.style.zIndex = "95";
+	// } else {
+	// 	document.getElementById("container").style.zIndex = "5";
+	// 	favouriteMoviesContainer.style.zIndex = "1";
+	// 	// i think it odesnt work bcus body is covering input
+	// }
+	//
 	// document.getElementById("slice1").style.zIndex = "-5";
 	// document.getElementById("slice2").style.zIndex = "-5";
 	// document.getElementById("slice3").style.zIndex = "-5";
 	//
 	// inputToggleFavouriteMovies.style.zIndex = "15010";
+
+	// if (inputToggleFavouriteMovies.checked){
+	// 	document.getElementById('favourite-movies-container').style.display = "block";
+	// 	document.getElementById("search-box").style.backgroundColor = "blue";
+	// } else {
+	// 	document.getElementById('favourite-movies-container').style.display = "none";
+	// 	document.getElementById("search-box").style.backgroundColor = "white";
+	// }
+	//if i can make the span and input be positioned outside out of the div
+	//i can hide the container of fav movs on click
+	//and use the flexbox pattern
 
 }
 

@@ -12,30 +12,26 @@
 </head>
 <body>
 	<div id="container">
+		<!-- HTML for favourite movies list -->
+		<div id="favourite-movies-container">
+			<!--
+			  A hidden checkbox is used as click receiver,
+			  so you can use the :checked selector on it.
+			-->
+			<input id="input-hamburger" type="checkbox" onchange="toggleHideFavouriteMovies()"/>
 
-		<div id="favourite-movies-flex-container">
-			<!-- HTML for favourite movies list -->
-			<div id="favourite-movies-container">
-				<!--
-                  A fake / hidden checkbox is used as click receiver,
-                  so you can use the :checked selector on it.
-                -->
-				<input id="input-hamburger" type="checkbox" onchange="inputToggleFavouriteMovies()"/>
+			<!--Some spans to act as a hamburger.-->
+			<span id="slice1"></span>
+			<span id="slice2"></span>
+			<span id="slice3"></span>
 
-				<!--Some spans to act as a hamburger.-->
-				<span id="slice1"></span>
-				<span id="slice2"></span>
-				<span id="slice3"></span>
-
-				<div id="favourite-movies-content-container">
-					<h2>Favourites</h2>
-					<p id="empty-list-placeholder" style="display: none;">No favourites. Try adding one by clicking on a movie!</p>
-					<ul id="favourite-movies-list"></ul>
-					<button type="button" id="show-favourite-movies" onclick="displayFavouriteMovies()">Show</button>
-				</div>
+			<div id="favourite-movies-content-container">
+				<h2>Favourites</h2>
+				<p id="empty-list-placeholder" style="display: none;">No favourites. Try adding one by clicking on a movie!</p>
+				<ul id="favourite-movies-list"></ul>
+				<button type="button" id="show-favourite-movies" onclick="displayFavouriteMovies()">Show</button>
 			</div>
 		</div>
-
 
 		<!--Main content: search bar and results-->
 		<div id="main-content-container">
