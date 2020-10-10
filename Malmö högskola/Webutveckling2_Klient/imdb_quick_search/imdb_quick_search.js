@@ -164,7 +164,7 @@ function fetchMovieInfoAndGenerateLiNodes(entryFromAJAX) {
 
 		if (movieInfo.rating == "N/A"){
 			ratingDiv.style.flexGrow = 0;
-			ratingDiv.style.display = "none";
+			;
 		} else {
 			ratingDiv.innerHTML = '<i class="fa fa-star" aria-hidden="true"></i>';
 			let ratingScore = document.createElement("span");
@@ -338,17 +338,24 @@ function displayFavouriteMovies() {
 }
 
 function inputToggleFavouriteMovies() {
+	//trying to make it so the sidebar deosnt cover container div, even when not clicked
 	let inputToggleFavouriteMovies = document.getElementById("input-hamburger");
 	let favouriteMoviesContainer = document.getElementById("favourite-movies-container");
 
 	if (inputToggleFavouriteMovies.checked){
-		favouriteMoviesContainer.style.zIndex = "1";
+		favouriteMoviesContainer.style.zIndex = "95";
 	} else {
-		favouriteMoviesContainer.style.zIndex = "-1";
+		document.getElementById("container").style.zIndex = "5";
+		favouriteMoviesContainer.style.zIndex = "1";
+		// i think it odesnt work bcus body is covering input
 	}
 
-	document.getElementById("slice1")
-	inputToggleFavouriteMovies.style.zIndex = "500";
+	// document.getElementById("slice1").style.zIndex = "-5";
+	// document.getElementById("slice2").style.zIndex = "-5";
+	// document.getElementById("slice3").style.zIndex = "-5";
+	//
+	// inputToggleFavouriteMovies.style.zIndex = "15010";
+
 }
 
 

@@ -26,6 +26,20 @@ a {
 	text-decoration: none;
 	color: inherit;
 }
+
+#container{
+	display: flex;
+	flex-flow: row nowrap;
+}
+#main-content-container{
+	flex-grow: 1;
+}
+
+#favourite-movies-flex-container{
+
+}
+
+/*img, search bar and result container*/
 #logo img {
 	margin-top: 35px;
 	width: 200px;
@@ -54,6 +68,8 @@ form input {
 #result-container {
 	font-size: 25px;
 }
+
+/*style for each movie, within the result container*/
 #movie-container {
 	box-shadow: 0 0 1px rgba(0, 0, 0, 0);
 	transition-duration: 0.3s;
@@ -204,7 +220,7 @@ form input {
 /*
 favourites movies list
 using this as hamburger menu design
-https://codepen./erikterwan/pen/EVzeRP
+https://codepen.com/erikterwan/pen/EVzeRP
 */
 
 /*
@@ -237,15 +253,14 @@ designing the hamburger icon and transformation
 	background: black;
 	border-radius: 3px;
 
-	/*makes it higher than the sidebar content, except for input toggle*/
-	z-index: 100;
-
 	/*this transforms the slices into an x shape*/
 	transform-origin: 4px 0px;
 	transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
 	background 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
 	opacity 0.55s ease;
 
+	/*makes it higher than the sidebar content, except for input toggle*/
+	z-index: 100;
 }
 
 /*
@@ -271,6 +286,15 @@ pulse grey on save to list
 	100% {background-color: black;}
 }
 
+/*slide in and out sidebar*/
+#favourite-movies-container input:checked ~ #favourite-movies-content-container {
+	transform: none;
+}
+
+/*
+ * Transform all the spans
+ * into a crossmark.
+ */
 #favourite-movies-container #slice2{
 	transform-origin: 0% 0%;
 }
@@ -279,10 +303,6 @@ pulse grey on save to list
 	transform-origin: 0% 100%;
 }
 
-/*
- * Transform all the spans
- * into a crossmark.
- */
 #favourite-movies-container input:checked ~ span{
 	opacity: 1;
 	transform: rotate(45deg) translate(-2px, -1px);
@@ -298,7 +318,7 @@ pulse grey on save to list
 }
 
 /*
- make last span go in other direction
+make last span go in other direction
  */
 #favourite-movies-container input:checked ~ #slice3{
 	transform: rotate(-45deg) translate(0, -1px);
@@ -309,15 +329,16 @@ design the hidden input node
 */
 #favourite-movies-container input{
 	display: block;
+	position: absolute;
+
 	width: 40px;
 	height: 32px;
-	position: absolute;
 	top: -7px;
 	left: -5px;
 
 	cursor: pointer;
 
-	opacity: 0; /* hide it */
+	opacity: 1; /* hide it */
 	z-index: 101; /* and place it over the hamburger */
 
 	/*removes ability for user to hold touch over a node and do things (see information?) */
@@ -325,7 +346,7 @@ design the hidden input node
 }
 
 /*
-designing the container and content
+designing the container for content
 */
 #favourite-movies-content-container{
 	margin: -100px 0 0 -55px;
@@ -344,6 +365,9 @@ designing the container and content
 	transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
 }
 
+/*
+designing the content of container
+*/
 #favourite-movies-list{
 	list-style-type: none;
 }
@@ -352,11 +376,6 @@ designing the container and content
 	padding: 10px 0;
 	font-size: 22px;
 	text-align: left;
-}
-
-#favourite-movies-container input:checked ~ #favourite-movies-content-container
-{
-	transform: none;
 }
 
 #favourite-movies-container a{
