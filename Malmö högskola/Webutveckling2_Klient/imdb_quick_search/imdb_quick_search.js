@@ -4,31 +4,53 @@
 const API_KEY = '5e65d4a0&s';
 let listOfFavouriteMovies = [];
 
-let form = document.getElementById("search-form");
-form.addEventListener("submit", function(event) {
-	//clear containerDiv so previous results dont stick around
-	let containerDiv = document.getElementById("result-container");
-	containerDiv.querySelectorAll('*').forEach(n => n.remove());
-
-	let target = event.target || event.srcElement;
-	
-	let queryText = form.elements.query.value;
-	apiHandler(encodeURI(queryText));
-
-	event.preventDefault();
-		
-});
-
+//functions to init page
+submitFormListener();
 handlePlaceholderParagraph();
+inputToggleFavouriteMovies();
+
+function submitFormListener() {
+	let form = document.getElementById("search-form");
+	let searchBox = document.getElementById("search-box");
+
+	form.addEventListener("submit", function(event) {
+
+		//in this case the user didnt enter any text in the search box
+		if (searchBox.value.length === 0){
+			searchBox.focus();
+
+			//clear resultContainer to prevent stacking of results/response messages
+			let resultContainer = document.getElementById("result-container")
+			resultContainer.querySelectorAll('*').forEach(n => n.remove());
+
+			//generate p saying to enter some text
+			let p = document.createElement("p");
+			p.appendChild(document.createTextNode("Please type something first."));
+			resultContainer.appendChild(p);
+
+			event.preventDefault();
+		} else {
+
+			let queryText = form.elements.query.value;
+			apiHandler(encodeURI(queryText));
+
+			event.preventDefault();
+		}
+
+	});
+}
+
+function navToImdbListener() {
+
+	//if image is clicked, user is taken to imdb page for movie
+	//if user does this, we dont want to display the "save movie to favourites modal"
+	let resultContainer = document.getElementById("result-container");
+}
 
 function apiHandler(title) {
 	//define api request variables
-	var omdbAPI = new XMLHttpRequest();
-	var omdbURL = "https://www.omdbapi.com/?&apikey=5e65d4a0&s=" + title; 
-		//var omdbURL = "https://www.omdbapi.com/?&apikey=5e65d4a0&s=" + title + "&type=movie"; 
-
-	//var omdbURL = "https://www.omdbapi.com/?apikey=5e65d4a0&
-	//var omdbURL = "https://www.omdbapi.com/t=" + title;
+	const omdbAPI = new XMLHttpRequest();
+	const omdbURL = "https://www.omdbapi.com/?&apikey=5e65d4a0&s=" + title;
 
 	//adding listener to request
 	omdbAPI.addEventListener("load", function() {
@@ -100,7 +122,7 @@ function fetchMovieInfoAndGenerateLiNodes(entryFromAJAX) {
 		actors.id = "actors";
 		actors.appendChild(document.createTextNode(movieInfo.actors));
 		text.appendChild(actors);
-		//need to insert linebreak for styling
+		//insert linebreak for styling
 		text.insertBefore(document.createElement("br"), actors);
 
 		if (movieInfo.awards == "N/A"){
@@ -116,7 +138,7 @@ function fetchMovieInfoAndGenerateLiNodes(entryFromAJAX) {
 		awards.id = "awards";
 		awards.appendChild(document.createTextNode(movieInfo.awards));
 		text.appendChild(awards);
-		//need to insert linebreak for styling
+		//insert linebreak for styling
 		text.insertBefore(document.createElement("br"), awards);
 
 		let ratingDiv = document.createElement('div');
@@ -148,8 +170,13 @@ function fetchMovieInfoAndGenerateLiNodes(entryFromAJAX) {
 
 function displayResult(result) {
 
+	//clear resultContainer to prevent stacking of results/response messages
+	let resultContainer = document.getElementById("result-container")
+	resultContainer.querySelectorAll('*').forEach(n => n.remove());
+
+
 	//in this case something went wrong with the search
-	//this is communicated through div outputting string result.Error
+	//this is communicated through p outputting string result.Error
 	if (result.Response == "False"){
 		let resultString = String(result.Error);
 
@@ -158,18 +185,17 @@ function displayResult(result) {
 		} else if (resultString == "Movie not found!"){
 			resultString += " Did you misspell something?";
 		}
-	
+
+		//generate p with resultString
 		let p = document.createElement("p");
 		p.appendChild(document.createTextNode(resultString));
-
-		let resultContainer = document.getElementById("result-container")
 		resultContainer.appendChild(p);
 	} else if (result.Response == "True"){
 
 		//in this case the search came through
 		//we display result properties
 
-		//this code needs to be executed for every item in array: Result.Search
+		//executed for every item in array: Result.Search
 		result.Search.forEach(function(entry) {
 			fetchMovieInfoAndGenerateLiNodes(entry);
 		});
@@ -260,11 +286,11 @@ function generateChildrenForFavouriteMoviesUL() {
 }
 
 function handlePlaceholderParagraph() {
-	//if array = 0, show p saying to list empty
 	let favouriteMoviesUL = document.getElementById("favourite-movies-list");
 	let placeholderParag = document.getElementById("empty-list-placeholder");
 	let showListButton = document.getElementById("show-favourite-movies");
 
+	//if array = 0, show p saying list empty
 	if (favouriteMoviesUL.getElementsByTagName('li').length == 0){
 		placeholderParag.style.display = "block";
 		showListButton.style.display = "none";
@@ -279,7 +305,7 @@ function displayFavouriteMovies() {
 
 	//this method displays the favourites that the user previously have saved
 
-	//need to clear whatever result is previously displayed
+	//clear whatever result is previously displayed
 	let resultContainer = document.getElementById('result-container');
 	resultContainer.innerHTML = "";
 
@@ -287,6 +313,20 @@ function displayFavouriteMovies() {
 		fetchMovieInfoAndGenerateLiNodes(entry);
 	});
 
+}
+
+function inputToggleFavouriteMovies() {
+	let inputToggleFavouriteMovies = document.getElementById("input-hamburger");
+	let favouriteMoviesContainer = document.getElementById("favourite-movies-container");
+
+	if (inputToggleFavouriteMovies.checked){
+		favouriteMoviesContainer.style.zIndex = "1";
+	} else {
+		favouriteMoviesContainer.style.zIndex = "-1";
+	}
+
+	document.getElementById("slice1")
+	inputToggleFavouriteMovies.style.zIndex = "500";
 }
 
 
