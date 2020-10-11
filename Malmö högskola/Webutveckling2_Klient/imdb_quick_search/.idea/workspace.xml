@@ -41,19 +41,6 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
   </component>
-  <component name="RunManager">
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -69,7 +56,8 @@
       <workItem from="1602144125559" duration="4146000" />
       <workItem from="1602240795657" duration="2850000" />
       <workItem from="1602264494330" duration="2036000" />
-      <workItem from="1602331442928" duration="17085000" />
+      <workItem from="1602331442928" duration="17305000" />
+      <workItem from="1602408381402" duration="671000" />
     </task>
     <servers />
   </component>
