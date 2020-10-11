@@ -339,7 +339,7 @@ function displayFavouriteMovies() {
 
 function toggleHideFavouriteMovies() {
 	// //trying to make it so the sidebar deosnt cover container div, even when not clicked
-	let inputToggleFavouriteMovies = document.getElementById("input-hamburger");
+	// let inputToggleFavouriteMovies = document.getElementById("input-hamburger");
 	// let favouriteMoviesContainer = document.getElementById("favourite-movies-container");
 	//
 	// if (inputToggleFavouriteMovies.checked){

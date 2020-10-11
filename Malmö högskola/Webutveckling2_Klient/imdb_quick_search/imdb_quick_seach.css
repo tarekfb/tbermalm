@@ -277,23 +277,9 @@ pulse grey on save to list
 /*slide sidebar in and out */
 #input-hamburger:checked ~ #favourite-movies-content-container {
 	transform: none;
+	/*since there is no display: none when unchecked, it'll block any content underneath*/
+}
 
-	/*can remove this code i suppose, tried using it for fade/slide*/
-	display: block;
-	visibility: visible;
-	opacity: 1;
-	animation: 1s;
-	right: 0;
-}
-/*attempted to use this to slide in AND set display:none
-didnt work
-leaving it without slide
-because with slide itll block content underneath since display: block*/
-#input-hamburger:not(:checked) ~ #favourite-movies-content-container {
-	display: none;
-	opacity: 0;
-	visibility: hidden;
-}
 @keyframes fade {
 	0% {
 		opacity: 0;
@@ -303,7 +289,6 @@ because with slide itll block content underneath since display: block*/
 		opacity: 1;
 	}
 }
-
 
 /*
  * Transform all the spans
@@ -466,6 +451,19 @@ designing the content of container
 	.modal-content p{
 		margin-top: 0;
 		font-size: 20px;
+	}
+
+	/*
+	makes the hamburger menu display: none (and not slide) on mobile devices
+	so it doesn't block content underneath
+	*/
+	#input-hamburger:checked ~ #favourite-movies-content-container {
+		transform: none;
+	}
+	#input-hamburger:not(:checked) ~ #favourite-movies-content-container {
+		display: none;
+		opacity: 0;
+		visibility: hidden;
 	}
 }
 /*https://www.canva.com/colors/color-palette-generator/*/
