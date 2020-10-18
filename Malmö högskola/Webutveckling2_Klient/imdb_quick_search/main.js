@@ -1,5 +1,8 @@
+import {dalFun} from "./dataAccessLayer";
+
 /* Tarek Bermalm - AK6336. */
 "use strict";
+
 
 const API_KEY = '5e65d4a0&s';
 let listOfFavouriteMovies = [];
@@ -38,18 +41,6 @@ function submitFormListener() {
 		}
 
 	});
-}
-
-function navToImdbListener() {
-
-	//if image is clicked, user is taken to imdb page for movie
-	//if user does this, we dont want to display the "save movie to favourites modal"
-	let resultContainer = document.getElementById("result-container");
-
-	let imgChildrenOfResultContainer = resultContainer.getElementsByTagName("img");
-	for (let i = 0; i < imgChildrenOfResultContainer.length; i++) {
-		imgChildrenOfResultContainer[i].classList.add("movie-poster")
-	}
 }
 
 function apiHandler(title) {
@@ -161,7 +152,6 @@ function fetchMovieInfoAndGenerateLiNodes(entryFromAJAX) {
 		ratingDiv.id = "rating";
 		movieContainer.appendChild(ratingDiv);
 
-
 		if (movieInfo.rating == "N/A"){
 			ratingDiv.style.flexGrow = 0;
 			;
@@ -235,7 +225,7 @@ function displayResult(result) {
 //my guess is that fetch has no need for these arguments, but only the appropriate url
 async function fetchMoreMovieInfo(imdbID) {
 	const res = await fetch(`https://www.omdbapi.com/?&apikey=${API_KEY}&s=&i=${imdbID}`);
-	const { imdbRating, Actors, Awards } = await res.json();
+	const {imdbRating, Actors, Awards} = await res.json();
 	const movieInfo = {rating:imdbRating, actors:Actors, awards:Awards};
 	return movieInfo;
 }
@@ -246,7 +236,6 @@ function showModalBox(entryFromAJAX) {
 	let cancel = document.getElementById("cancel");
 	let save = document.getElementById("save");
 	let modal = document.getElementById("modal-box")
-
 
 	modal.style.display = "block";
 
@@ -267,6 +256,11 @@ function showModalBox(entryFromAJAX) {
 	}
 
 }
+
+function mainFun(logString) {
+	console.log(logString);
+}
+dalFun("test from mainjs");
 
 function saveMovieToFavourite(entryFromAJAX) {
 
@@ -338,6 +332,7 @@ function displayFavouriteMovies() {
 }
 
 function toggleHideFavouriteMovies() {
+	//TODO: delete if fav-movies sidebar is working as intended
 	// //trying to make it so the sidebar deosnt cover container div, even when not clicked
 	// let inputToggleFavouriteMovies = document.getElementById("input-hamburger");
 	// let favouriteMoviesContainer = document.getElementById("favourite-movies-container");
@@ -369,7 +364,6 @@ function toggleHideFavouriteMovies() {
 
 }
 
-
 //is this code for smartphone usage?
 // document.getElementById("movie-container").addEventListener("touchstart", touchHandler, false);
 // document.getElementById("movie-container").addEventListener("touchmove", touchHandler, false);
@@ -387,7 +381,6 @@ function toggleHideFavouriteMovies() {
 /*
 todo: implement sorting method according to recency
 todo: implement browsing pages back and forward
-todo: make responsive (is there another more suitable metric)?
 todo: make big "succesfull" checkbox after adding to list
  */
 
