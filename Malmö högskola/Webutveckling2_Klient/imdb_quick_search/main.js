@@ -31,6 +31,7 @@ function submitFormListener() {
 			event.preventDefault();
 		} else {
 
+			//pass whatever the user entered into the search box as a query to the apiHandler
 			let queryText = form.elements.query.value;
 			apiHandler(encodeURI(queryText));
 
@@ -40,10 +41,10 @@ function submitFormListener() {
 	});
 }
 
-function apiHandler(title) {
+function apiHandler(queryText) {
 	//define api request variables
 	const omdbAPI = new XMLHttpRequest();
-	const omdbURL = "https://www.omdbapi.com/?&apikey=5e65d4a0&s=" + title;
+	const omdbURL = "https://www.omdbapi.com/?&apikey=5e65d4a0&s=" + queryText;
 
 	//adding listener to request
 	omdbAPI.addEventListener("load", function() {
@@ -219,7 +220,7 @@ function displayResult(result) {
 //it then returns the imdbRating and the program proceeds as normally
 
 //however, I have no clue how we circumvent the otherwise needed "open(), send() with the arguments get, omdbURL, true"
-//my guess is that fetch has no need for these arguments, but only the appropriate url
+//my guess is that fetch has no requirement for these arguments, but only the appropriate url
 async function fetchMoreMovieInfo(imdbID) {
 	const res = await fetch(`https://www.omdbapi.com/?&apikey=${API_KEY}&s=&i=${imdbID}`);
 	const {imdbRating, Actors, Awards} = await res.json();
@@ -227,7 +228,7 @@ async function fetchMoreMovieInfo(imdbID) {
 	return movieInfo;
 }
 
-//showing the modalbox for saving movies
+//showing the modal box for saving movies
 function showModalBox(entryFromAJAX) {
 	let span = document.getElementsByClassName("close")[0];
 	let cancel = document.getElementById("cancel");
@@ -274,7 +275,7 @@ function saveMovieToFavourite(entryFromAJAX) {
 
 	handlePlaceholderParagraph();
 
-	writeToDb(entryFromAJAX);
+	pushFavouriteMovieToDb(entryFromAJAX);
 
 }
 
@@ -294,7 +295,7 @@ function generateChildrenForFavouriteMoviesUL() {
 
 	});
 
-	//change this to read from db and update according to firestone db
+	//TODO: change this to read from db and update according to firestone db
 
 }
 
