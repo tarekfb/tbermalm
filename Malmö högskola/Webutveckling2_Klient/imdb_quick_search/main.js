@@ -1,8 +1,5 @@
-import {dalFun} from "./dataAccessLayer";
-
 /* Tarek Bermalm - AK6336. */
 "use strict";
-
 
 const API_KEY = '5e65d4a0&s';
 let listOfFavouriteMovies = [];
@@ -261,6 +258,7 @@ function mainFun(logString) {
 	console.log(logString);
 }
 dalFun("test from mainjs");
+console.log("test");
 
 function saveMovieToFavourite(entryFromAJAX) {
 
@@ -330,6 +328,14 @@ function displayFavouriteMovies() {
 	});
 
 }
+
+import {dalFun} from "./dataAccessLayer.js";
+
+/*
+	beneath this point shall all
+	'unwanted-but-possible-useful-down-the-line' lines of code
+	be kept
+ */
 
 function toggleHideFavouriteMovies() {
 	//TODO: delete if fav-movies sidebar is working as intended

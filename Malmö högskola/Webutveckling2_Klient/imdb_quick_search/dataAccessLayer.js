@@ -11,11 +11,6 @@ function writeToDb(imdbID) {
 }
 writeToDb("notrealimdbid");
 
-export function dalFun(logString) {
-    console.log(logString);
-}
-mainFun("test from dal");
-
 function gotData(data) {
 
 }
@@ -70,4 +65,8 @@ function handleSignIn() {
 });
 
    */
+}
+
+export function dalFun(logString) {
+    console.log(logString);
 }
