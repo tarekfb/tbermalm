@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 	<title>Simple IMDB Search</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width,initial-scale=1.0">
@@ -9,17 +10,6 @@
 	<link rel="shortcut icon" href="popcorn-1614707.ico">
 	<link rel="shortcut icon" href="#" />
 	<script async src="main.js" type="text/javascript"></script>
-
-	<!-- The core Firebase JS SDK is always required and must be listed first -->
-	<script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-app.js"></script>
-
-	<!-- TODO: Add SDKs for Firebase products that you want to use
-         https://firebase.google.com/docs/web/setup#available-libraries -->
-	<script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-database.js"></script>
-	<script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-analytics.js"></script>
-
-	<script src="dataAccessLayer.js" type="text/javascript"></script>
-
 
 </head>
 <body>
@@ -69,25 +59,20 @@
 	</div>
 
 	<!--Firebase tags-->
-	<script>
-		// Your web app's Firebase configuration
-		// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-		var firebaseConfig = {
-			apiKey: "AIzaSyDNoxennmAjR3Yjh9Rpe4ahpHv0zYcdO9Y",
-			authDomain: "simple-imdb-search.firebaseapp.com",
-			databaseURL: "https://simple-imdb-search.firebaseio.com",
-			projectId: "simple-imdb-search",
-			storageBucket: "simple-imdb-search.appspot.com",
-			messagingSenderId: "875771108342",
-			appId: "1:875771108342:web:63ed0e9505a5ac087b45d7",
-			measurementId: "G-NZGQ93J58S"
-		};
-		// Initialize Firebase
-		firebase.initializeApp(firebaseConfig);
-		firebase.analytics();
 
-		var database = firebase.database();
-		console.log("test");
+	<!-- The core Firebase JS SDK is always required and must be listed first -->
+	<script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-app.js"></script>
+
+	<!-- TODO: Add SDKs for Firebase products that you want to use
+         https://firebase.google.com/docs/web/setup#available-libraries -->
+	<script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-database.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-analytics.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-auth.js"></script>
+
+	<script>
+
 	</script>
+	<script src="dataAccessLayer.js" type="text/javascript"></script>
+
 </body>
 </html>
