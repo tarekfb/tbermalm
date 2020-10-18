@@ -4,15 +4,21 @@ let db = firebase.database();
 let ref = db.ref("simple-imdb-search");
 ref.on("value", gotData, errData);
 
-function writeToDb(imdbID) {
+function writeToDb(entryFromAJAX) {
+
+    console.log(entryFromAJAX.Year + " from dal");
+    
+
+    /*
     db.ref('movie-list/').set({
         imdbID: imdbID
     });
+    */
+
 }
-writeToDb("notrealimdbid");
 
 function gotData(data) {
-
+    console.log(data.val());
 }
 function errData(err) {
     console.log('error' + err);
@@ -67,6 +73,6 @@ function handleSignIn() {
    */
 }
 
-export function dalFun(logString) {
+function dalFun(logString) {
     console.log(logString);
 }

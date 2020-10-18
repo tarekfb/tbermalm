@@ -254,12 +254,6 @@ function showModalBox(entryFromAJAX) {
 
 }
 
-function mainFun(logString) {
-	console.log(logString);
-}
-dalFun("test from mainjs");
-console.log("test");
-
 function saveMovieToFavourite(entryFromAJAX) {
 
 	if (!document.getElementById("input-hamburger").checked && listOfFavouriteMovies.length == 0){
@@ -277,9 +271,11 @@ function saveMovieToFavourite(entryFromAJAX) {
 	if (document.getElementById("input-hamburger").checked){
 		favouriteMoviesUL.lastElementChild.classList.add("pulse-grey-animation");
 	}
-	//not working atm
 
 	handlePlaceholderParagraph();
+
+	writeToDb(entryFromAJAX);
+
 }
 
 function generateChildrenForFavouriteMoviesUL() {
@@ -295,7 +291,10 @@ function generateChildrenForFavouriteMoviesUL() {
 		let li = document.createElement("li");
 		li.appendChild(document.createTextNode(entry.Title + " (" + String(entry.Year) + ")"));
 		a.appendChild(li);
+
 	});
+
+	//change this to read from db and update according to firestone db
 
 }
 
@@ -328,8 +327,6 @@ function displayFavouriteMovies() {
 	});
 
 }
-
-import {dalFun} from "./dataAccessLayer.js";
 
 /*
 	beneath this point shall all
