@@ -1,25 +1,25 @@
 initializeFireBase();
 
 let db = firebase.database();
-let ref = db.ref("simple-imdb-search");
-ref.on("value", gotData, errData);
+let ref = db.ref();
 
-function writeToDb(imdbID) {
-    db.ref('movie-list/').set({
-        imdbID: imdbID
+function pushFavouriteMovieToDb(entryFromAJAX) {
+
+    let newFavouriteMovieRef = ref.child("movie-list/" + entryFromAJAX.imdbID);
+    newFavouriteMovieRef.set({
+        title: entryFromAJAX.Title,
+        year: entryFromAJAX.Year,
+        //rating: entryFromAJAX.imdbRating
+
+        //currently the imdbRating is fetched from a different object
+        //not the one that is passed to this method
+        //either have to look at restructuring the AJAX
+        //or pass the rating in some very awkward way from main.js
     });
-}
-writeToDb("notrealimdbid");
-
-function gotData(data) {
-
-}
-function errData(err) {
-    console.log('error' + err);
 }
 
 function initializeFireBase() {
-    // Your web app's Firebase configuration
+    // The Firebase configuration
     // For Firebase JS SDK v7.20.0 and later, measurementId is optional
     let firebaseConfig = {
         apiKey: "AIzaSyDNoxennmAjR3Yjh9Rpe4ahpHv0zYcdO9Y",
@@ -65,8 +65,4 @@ function handleSignIn() {
 });
 
    */
-}
-
-export function dalFun(logString) {
-    console.log(logString);
 }
