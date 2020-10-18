@@ -11,12 +11,16 @@ function writeToDb(imdbID) {
 }
 writeToDb("notrealimdbid");
 
+export function dalFun(logString) {
+    console.log(logString);
+}
+mainFun("test from dal");
 
 function gotData(data) {
 
 }
 function errData(err) {
-    console.log('errror' + err);
+    console.log('error' + err);
 }
 
 function initializeFireBase() {
