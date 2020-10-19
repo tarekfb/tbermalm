@@ -1,4 +1,3 @@
-/* Tarek Bermalm - AK6336. */
 "use strict";
 
 const API_KEY = '5e65d4a0&s';
@@ -6,8 +5,10 @@ let listOfFavouriteMovies = [];
 
 //functions to init page
 submitFormListener();
+showFavouriteMoviesListener();
 handlePlaceholderParagraph();
 toggleHideFavouriteMovies();
+favouriteMoviesHamburgerListener();
 
 function submitFormListener() {
 	let form = document.getElementById("search-form");
@@ -33,7 +34,7 @@ function submitFormListener() {
 
 			//pass whatever the user entered into the search box as a query to the apiHandler
 			let queryText = form.elements.query.value;
-			apiHandler(encodeURI(queryText));
+			apiHandlerByTitle(encodeURI(queryText));
 
 			event.preventDefault();
 		}
@@ -41,17 +42,20 @@ function submitFormListener() {
 	});
 }
 
-function apiHandler(queryText) {
+function apiHandlerByTitle(queryText) {
+	//this function queries the omdbAPI by title
+
 	//define api request variables
 	const omdbAPI = new XMLHttpRequest();
-	const omdbURL = "https://www.omdbapi.com/?&apikey=5e65d4a0&s=" + queryText;
+	const omdbURL = `https://www.omdbapi.com/?&apikey=${API_KEY}&s=` + queryText;
 
 	//adding listener to request
 	omdbAPI.addEventListener("load", function() {
 		//saving result
 	    let result = JSON.parse(this.responseText);
 
-	    //passing result to function that displays result
+		//TODO: rewrite to just return the result?
+		//then we can choose to display in the appropriate function, since this likely isn't it
 	    displayResult(result);
 	});
 
@@ -59,8 +63,82 @@ function apiHandler(queryText) {
 	omdbAPI.open("get", omdbURL, true);
 	omdbAPI.send();
 }
+function apiHandlerByImdbID(imdbID) {
+	//this function queries the omdbAPI by imdbID
+
+	//define api request variables
+	const omdbAPI = new XMLHttpRequest();
+	const omdbURL = `https://www.omdbapi.com/?&apikey=${API_KEY}&s=&i=${imdbID}`;
+
+	//adding listener to request
+	omdbAPI.addEventListener("load", function() {
+		//saving result
+		let result = JSON.parse(this.responseText);
+		displayResult(result);
+	});
+
+	//executing api request
+	omdbAPI.open("get", omdbURL, true);
+	omdbAPI.send();
+}
+
+function displayResult(result) {
+
+	//clear resultContainer to prevent stacking of results/response messages
+	let resultContainer = document.getElementById("result-container")
+	resultContainer.querySelectorAll('*').forEach(n => n.remove());
+
+
+	//in this case something went wrong with the search
+	//this is communicated through p outputting string result.Error
+	if (result.Response == "False"){
+		let resultString = String(result.Error);
+
+		if (resultString == "Too many results."){
+			resultString += " Try to be more specific."
+		} else if (resultString == "Movie not found!"){
+			resultString += " Did you misspell something?";
+		}
+
+		//generate p with resultString
+		let p = document.createElement("p");
+		p.appendChild(document.createTextNode(resultString));
+		resultContainer.appendChild(p);
+	} else if (result.Response == "True"){
+		if (result.Search == null){
+			//in this case I've passed a single movie, through imdbID
+			//instead of a list of results through title
+			//checking for null is not a sustainable way of checking if single movie or list
+			//TODO: fix
+
+			fetchMovieInfoAndGenerateLiNodes(result);
+		} else {
+			//in this case the search came through and is a list of movies
+			//we display result properties
+
+			//executed for every item in array: Result.Search
+			result.Search.forEach(function(entry) {
+				fetchMovieInfoAndGenerateLiNodes(entry);
+			});
+		}
+
+	}
+
+}
 
 function fetchMovieInfoAndGenerateLiNodes(entryFromAJAX) {
+	/*
+	TODO: rewrite this function:
+		after searching by title
+		for every item in result.Search
+			use the apiHandlerByImdbID function
+			get a movie based on imdbID
+			then call this method once, passing the single movie
+			instead of list
+
+		if so, we can circuvment the awkward "fetchMoreMovieInfo" and just use a single object
+		currently using 2: movieInfo, entryFromAJAX
+	*/
 
 	/*
 	this method takes an entry from forloop, on a list of entries
@@ -80,11 +158,10 @@ function fetchMovieInfoAndGenerateLiNodes(entryFromAJAX) {
 	//which returns a rating after the request comes through
 	//when the fetch has been resolved it moves to .then
 	//.then has a callback (function, object) attached to it
-	//generateNodes creates the appriopriate nodes
+	//generateNodes creates the appropriate nodes
 	//the items are displayed and task is complete
 
 	fetchMoreMovieInfo(entryFromAJAX.imdbID).then(movieInfo => generateNodesForLi(movieInfo));
-
 	function generateNodesForLi(movieInfo) {
 
 		//this method generates the information for each movie
@@ -175,56 +252,23 @@ function fetchMovieInfoAndGenerateLiNodes(entryFromAJAX) {
 			}
 		});
 	}
-}
-
-function displayResult(result) {
-
-	//clear resultContainer to prevent stacking of results/response messages
-	let resultContainer = document.getElementById("result-container")
-	resultContainer.querySelectorAll('*').forEach(n => n.remove());
-
-
-	//in this case something went wrong with the search
-	//this is communicated through p outputting string result.Error
-	if (result.Response == "False"){
-		let resultString = String(result.Error);
-
-		if (resultString == "Too many results."){
-			resultString += " Try to be more specific."
-		} else if (resultString == "Movie not found!"){
-			resultString += " Did you misspell something?";
-		}
-
-		//generate p with resultString
-		let p = document.createElement("p");
-		p.appendChild(document.createTextNode(resultString));
-		resultContainer.appendChild(p);
-	} else if (result.Response == "True"){
-
-		//in this case the search came through
-		//we display result properties
-
-		//executed for every item in array: Result.Search
-		result.Search.forEach(function(entry) {
-			fetchMovieInfoAndGenerateLiNodes(entry);
-		});
-	}
 
 }
 
-//this is an async function (A promise, right?)
-//allowing us to use await
-//await forces the compiler to wait for the given task to be completed before proceeding
-//(only stops locally, not the entire program)
-//when the fetch as been resolved, the compiler tries to declare an object and give it the return value of res.json();
-//it then returns the imdbRating and the program proceeds as normally
-
-//however, I have no clue how we circumvent the otherwise needed "open(), send() with the arguments get, omdbURL, true"
-//my guess is that fetch has no requirement for these arguments, but only the appropriate url
 async function fetchMoreMovieInfo(imdbID) {
+	//this is an async function (A promise, right?)
+	//allowing us to use await
+	//await forces the compiler to wait for the given task to be completed before proceeding
+	//(only stops locally, not the entire program)
+	//when the fetch as been resolved, the compiler tries to declare an object and give it the return value of res.json();
+	//it then returns the imdbRating and the program proceeds as normally
+
+	//however, I have no clue how we circumvent the otherwise needed "open(), send() with the arguments get, omdbURL, true"
+	//my guess is that fetch has no requirement for these arguments, but only the appropriate url
 	const res = await fetch(`https://www.omdbapi.com/?&apikey=${API_KEY}&s=&i=${imdbID}`);
 	const {imdbRating, Actors, Awards} = await res.json();
 	const movieInfo = {rating:imdbRating, actors:Actors, awards:Awards};
+
 	return movieInfo;
 }
 
@@ -256,6 +300,9 @@ function showModalBox(entryFromAJAX) {
 }
 
 function saveMovieToFavourite(entryFromAJAX) {
+	//TODO: update to work with firebase db
+	//if statement of hamburger pulse needs updating
+	//and add(pulse-grey-anim)
 
 	if (!document.getElementById("input-hamburger").checked && listOfFavouriteMovies.length == 0){
 		document.getElementById("slice1").classList.add("pulse-grey-animation");
@@ -263,63 +310,87 @@ function saveMovieToFavourite(entryFromAJAX) {
 		document.getElementById("slice3").classList.add("pulse-grey-animation");
 	}
 
-	listOfFavouriteMovies.push(entryFromAJAX);
 	let favouriteMoviesUL = document.getElementById("favourite-movies-list");
-	favouriteMoviesUL.innerHTML = "";
 
-	generateChildrenForFavouriteMoviesUL();
-
-	if (document.getElementById("input-hamburger").checked){
-		favouriteMoviesUL.lastElementChild.classList.add("pulse-grey-animation");
-	}
+	// if (document.getElementById("input-hamburger").checked){
+	// 	favouriteMoviesUL.lastElementChild.classList.add("pulse-grey-animation");
+	// }
 
 	handlePlaceholderParagraph();
 
-	pushFavouriteMovieToDb(entryFromAJAX);
+	pushFavouriteMovie(entryFromAJAX);
+	readFavouriteMoviesList().then(snapshot => populateFavouriteMoviesList(snapshot));
 
 }
 
-function generateChildrenForFavouriteMoviesUL() {
+function populateFavouriteMoviesList(snapshot) {
+	//this function populates the favmovieslist in the sidebar
+	//uses a snapshot that was indirectly passed from dataAccessLayer.js
+	//specifically, readFavouriteMoviesList()
 
-	listOfFavouriteMovies.forEach(function (entry){
+	snapshot.forEach(function (snapshot){
+		let movieObj = snapshot.val();
+
 		let favouriteMoviesUL = document.getElementById("favourite-movies-list");
 
 		let a = document.createElement("a");
-		let url = "https://www.imdb.com/title/" + entry.imdbID + "/";
+		let url = "https://www.imdb.com/title/" + snapshot.key + "/";
 		a.href = url;
 		favouriteMoviesUL.appendChild(a);
 
 		let li = document.createElement("li");
-		li.appendChild(document.createTextNode(entry.Title + " (" + String(entry.Year) + ")"));
+		li.appendChild(document.createTextNode(movieObj.title + " (" + String(movieObj.year) + ")"));
 		a.appendChild(li);
 
 	});
+//TODO: make scrollable if too many movies
+}
 
-	//TODO: change this to read from db and update according to firestone db
+function favouriteMoviesHamburgerListener() {
+	//whenever the user opens the sidebar menu with favourite movies
+	//this will update list with values from db
+	let inputHamburgerCheckbox = document.getElementById("input-hamburger");
 
+	inputHamburgerCheckbox.addEventListener( 'change', function() {
+		if (this.checked) {
+			readFavouriteMoviesList().then(snapshot => populateFavouriteMoviesList(snapshot));
+		}
+	});
 }
 
 function handlePlaceholderParagraph() {
 	let favouriteMoviesUL = document.getElementById("favourite-movies-list");
-	let placeholderParag = document.getElementById("empty-list-placeholder");
+	let placeholderP = document.getElementById("empty-list-placeholder");
 	let showListButton = document.getElementById("show-favourite-movies");
 
-	//if array = 0, show p saying list empty
-	if (favouriteMoviesUL.getElementsByTagName('li').length == 0){
-		placeholderParag.style.display = "block";
-		showListButton.style.display = "none";
-	} else {
-		placeholderParag.style.display = "none";
-		showListButton.style.display = "inline-block";
+	//TODO: rewrite to work with firebase db
+	placeholderP.style.display = "none";
 
-	}
+	//if array = 0, show p saying list empty
+	// if (favouriteMoviesUL.getElementsByTagName('li').length == 0){
+	// 	placeholderP.style.display = "block";
+	// 	showListButton.style.display = "none";
+	// } else {
+	// 	placeholderP.style.display = "none";
+	// 	showListButton.style.display = "inline-block";
+	//
+	// }
 }
 
-function displayFavouriteMovies() {
+function showFavouriteMoviesListener() {
+	//this function is allows us to resolve the promise given by readFavMovList in dal
+	//and pass the snapshot to displayFavMovies
 
-	//this method displays the favourites that the user previously have saved
+	let showFavouriteMoviesBtn = document.getElementById("show-favourite-movies");
+	showFavouriteMoviesBtn.addEventListener("click", function (){
+		readFavouriteMoviesList().then(snapshot => displayFavouriteMovies(snapshot));
+	});
+}
 
-	//clear whatever result is previously displayed
+function displayFavouriteMovies(snapshot) {
+	//TODO: rewrite to work with firebase db
+
+	//this clears whatever result is previously displayed
 	let resultContainer = document.getElementById('result-container');
 	resultContainer.innerHTML = "";
 
@@ -327,11 +398,31 @@ function displayFavouriteMovies() {
 		fetchMovieInfoAndGenerateLiNodes(entry);
 	});
 
+	snapshot.forEach(function (snapshot) {
+		let key = snapshot.key;
+		apiHandlerByImdbID(key);
+	});
+
+	/*
+	what i need to do is:
+		for every item in movie-list
+			get the imdbID from snapshot/firebase CHECK
+			make ajax call with the imdbID
+			pass the entryFromAJAX to fetchMovieInfoAndGenerateLiNodes()
+
+	however, it seems i need to break up the functions inside of fetchMovieInfoAndGenerateLiNodes
+	because that function presumes i already have an entry with
+
+	im instead creating new fun for imdbidapiahndler
+	and using that entry
+
+ */
+
 }
 
 /*
 	beneath this point shall all
-	'unwanted-but-possible-useful-down-the-line' lines of code
+	'unwanted-but-possibly-useful-down-the-line' lines of code
 	be kept
  */
 

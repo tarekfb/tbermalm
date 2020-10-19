@@ -1,22 +1,7 @@
 initializeFireBase();
 
 let db = firebase.database();
-let ref = db.ref();
-
-function pushFavouriteMovieToDb(entryFromAJAX) {
-
-    let newFavouriteMovieRef = ref.child("movie-list/" + entryFromAJAX.imdbID);
-    newFavouriteMovieRef.set({
-        title: entryFromAJAX.Title,
-        year: entryFromAJAX.Year,
-        //rating: entryFromAJAX.imdbRating
-
-        //currently the imdbRating is fetched from a different object
-        //not the one that is passed to this method
-        //either have to look at restructuring the AJAX
-        //or pass the rating in some very awkward way from main.js
-    });
-}
+let rootRef = db.ref();
 
 function initializeFireBase() {
     // The Firebase configuration
@@ -34,6 +19,31 @@ function initializeFireBase() {
     // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
     firebase.analytics();
+}
+
+function pushFavouriteMovie(entryFromAJAX) {
+
+    let newFavouriteMovieRef = rootRef.child("movie-list/" + entryFromAJAX.imdbID);
+    newFavouriteMovieRef.set({
+        title: entryFromAJAX.Title,
+        year: entryFromAJAX.Year,
+        //rating: entryFromAJAX.imdbRating
+
+        //currently the imdbRating is fetched from a different object
+        //not the one that is passed to this method
+        //either have to look at restructuring the AJAX
+        //or pass the rating in some very awkward way from main.js
+    });
+}
+
+async function readFavouriteMoviesList() {
+    //this async fun returns a promise with a snapshot of the movie-list
+
+    let movieListRef = db.ref("movie-list");
+    return movieListRef.once("value").then(function (snapshot) {
+        return snapshot;
+    });
+
 }
 
 function handleSignIn() {
