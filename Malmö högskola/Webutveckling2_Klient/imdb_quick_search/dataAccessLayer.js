@@ -3,45 +3,6 @@ initializeFireBase();
 let db = firebase.database();
 let rootRef = db.ref();
 
-function pushFavouriteMovie(entryFromAJAX) {
-
-    let newFavouriteMovieRef = rootRef.child("movie-list/" + entryFromAJAX.imdbID);
-    newFavouriteMovieRef.set({
-        title: entryFromAJAX.Title,
-        year: entryFromAJAX.Year,
-        //rating: entryFromAJAX.imdbRating
-
-        //currently the imdbRating is fetched from a different object
-        //not the one that is passed to this method
-        //either have to look at restructuring the AJAX
-        //or pass the rating in some very awkward way from main.js
-    });
-}
-
-async function readFavouriteMoviesList() {
-
-    // let movieListRef = db.ref("movie-list");
-    // movieListRef.once("value", function(snapshot) {
-    //     movieListSnapshot = snapshot;
-    //     console.log(movieListSnapshot);
-    // });
-
-    let movieListRef = db.ref("movie-list");
-    return movieListRef.once("value")
-        .then(function (snapshot){
-       return snapshot;
-    });
-
-    // var ref = firebase.database().ref("users/ada");
-    // ref.once("value")
-    //     .then(function(snapshot) {
-    //         var key = snapshot.key; // "ada"
-    //         var childKey = snapshot.child("name/last").key; // "last"
-    //     });
-}
-
-readFavouriteMoviesList();
-
 function initializeFireBase() {
     // The Firebase configuration
     // For Firebase JS SDK v7.20.0 and later, measurementId is optional
@@ -58,6 +19,31 @@ function initializeFireBase() {
     // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
     firebase.analytics();
+}
+
+function pushFavouriteMovie(entryFromAJAX) {
+
+    let newFavouriteMovieRef = rootRef.child("movie-list/" + entryFromAJAX.imdbID);
+    newFavouriteMovieRef.set({
+        title: entryFromAJAX.Title,
+        year: entryFromAJAX.Year,
+        //rating: entryFromAJAX.imdbRating
+
+        //currently the imdbRating is fetched from a different object
+        //not the one that is passed to this method
+        //either have to look at restructuring the AJAX
+        //or pass the rating in some very awkward way from main.js
+    });
+}
+
+async function readFavouriteMoviesList() {
+    //this async fun returns a promise with a snapshot of the movie-list
+
+    let movieListRef = db.ref("movie-list");
+    return movieListRef.once("value").then(function (snapshot) {
+        return snapshot;
+    });
+
 }
 
 function handleSignIn() {

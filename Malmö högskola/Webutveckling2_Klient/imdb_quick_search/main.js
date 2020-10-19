@@ -6,6 +6,7 @@ let listOfFavouriteMovies = [];
 
 //functions to init page
 submitFormListener();
+showFavouriteMoviesListener();
 handlePlaceholderParagraph();
 toggleHideFavouriteMovies();
 
@@ -256,6 +257,9 @@ function showModalBox(entryFromAJAX) {
 }
 
 function saveMovieToFavourite(entryFromAJAX) {
+	//TODO: update to work with firebase db
+	//if statement of hamburger pulse needs updating
+	//and add(pulse-grey-anim)
 
 	if (!document.getElementById("input-hamburger").checked && listOfFavouriteMovies.length == 0){
 		document.getElementById("slice1").classList.add("pulse-grey-animation");
@@ -263,68 +267,77 @@ function saveMovieToFavourite(entryFromAJAX) {
 		document.getElementById("slice3").classList.add("pulse-grey-animation");
 	}
 
-	listOfFavouriteMovies.push(entryFromAJAX);
 	let favouriteMoviesUL = document.getElementById("favourite-movies-list");
-	favouriteMoviesUL.innerHTML = "";
 
-	populateFavouriteMoviesList();
-
-	if (document.getElementById("input-hamburger").checked){
-		favouriteMoviesUL.lastElementChild.classList.add("pulse-grey-animation");
-	}
+	// if (document.getElementById("input-hamburger").checked){
+	// 	favouriteMoviesUL.lastElementChild.classList.add("pulse-grey-animation");
+	// }
 
 	handlePlaceholderParagraph();
 
 	pushFavouriteMovie(entryFromAJAX);
+	readFavouriteMoviesList().then(snapshot => populateFavouriteMoviesList(snapshot));
 
 }
 
-function populateFavouriteMoviesList() {
-	let snapshot = readFavouriteMoviesList();
+function populateFavouriteMoviesList(snapshot) {
+	//this function populates the favmovieslist in the sidebar
+	//uses a snapshot that was indirectly passed from dataAccessLayer.js
+	//specifically, readFavouriteMoviesList()
 
-	snapshot.forEach(function(child) {
-	    console.log(child.key+": "+child.val());
-	});
+	snapshot.forEach(function (snapshot){
+		let movieObj = snapshot.val();
 
-	listOfFavouriteMovies.forEach(function (entry){
 		let favouriteMoviesUL = document.getElementById("favourite-movies-list");
 
 		let a = document.createElement("a");
-		let url = "https://www.imdb.com/title/" + entry.imdbID + "/";
+		let url = "https://www.imdb.com/title/" + movieObj.key + "/";
 		a.href = url;
 		favouriteMoviesUL.appendChild(a);
 
 		let li = document.createElement("li");
-		li.appendChild(document.createTextNode(entry.Title + " (" + String(entry.Year) + ")"));
+		li.appendChild(document.createTextNode(movieObj.title + " (" + String(movieObj.year) + ")"));
 		a.appendChild(li);
 
-	});
+		console.log(movieObj.year + " and " + movieObj.title);
 
-	//TODO: change this to read from db and update according to firestone db
+	});
 
 }
 
 function handlePlaceholderParagraph() {
 	let favouriteMoviesUL = document.getElementById("favourite-movies-list");
-	let placeholderParag = document.getElementById("empty-list-placeholder");
+	let placeholderP = document.getElementById("empty-list-placeholder");
 	let showListButton = document.getElementById("show-favourite-movies");
 
-	//if array = 0, show p saying list empty
-	if (favouriteMoviesUL.getElementsByTagName('li').length == 0){
-		placeholderParag.style.display = "block";
-		showListButton.style.display = "none";
-	} else {
-		placeholderParag.style.display = "none";
-		showListButton.style.display = "inline-block";
+	//TODO: rewrite to work with firebase db
+	placeholderP.style.display = "none";
 
-	}
+	//if array = 0, show p saying list empty
+	// if (favouriteMoviesUL.getElementsByTagName('li').length == 0){
+	// 	placeholderP.style.display = "block";
+	// 	showListButton.style.display = "none";
+	// } else {
+	// 	placeholderP.style.display = "none";
+	// 	showListButton.style.display = "inline-block";
+	//
+	// }
 }
 
-function displayFavouriteMovies() {
+function showFavouriteMoviesListener() {
+	//this function is allows us to resolve the promise given by readFavMovList in dal
+	//and pass the snapshot to displayFavMovies
 
-	//this method displays the favourites that the user previously have saved
+	let showFavouriteMoviesBtn = document.getElementById("show-favourite-movies");
+	showFavouriteMoviesBtn.addEventListener("click", function (){
+		readFavouriteMoviesList().then(snapshot => displayFavouriteMovies(snapshot));
+	});
+}
 
-	//clear whatever result is previously displayed
+function displayFavouriteMovies(snapshot) {
+	//TODO: rewrite to work with firebase db
+
+	//this clears whatever result is previously displayed
 	let resultContainer = document.getElementById('result-container');
 	resultContainer.innerHTML = "";
 
@@ -332,11 +345,23 @@ function displayFavouriteMovies() {
 		fetchMovieInfoAndGenerateLiNodes(entry);
 	});
 
+	snapshot.forEach(function (snapshot) {
+		let movieObj = snapshot.val();
+	});
+
+	/*
+	what i need to do is:
+		for every item in movie-list
+			get the imdbID from snapshot/firebase
+			make ajax call with the imdbID
+			pass the entryFromAJAX to fetchMovieInfoAndGenerateLiNodes()
+ */
+
 }
 
 /*
 	beneath this point shall all
-	'unwanted-but-possible-useful-down-the-line' lines of code
+	'unwanted-but-possibly-useful-down-the-line' lines of code
 	be kept
  */
 
