@@ -267,7 +267,7 @@ function saveMovieToFavourite(entryFromAJAX) {
 	let favouriteMoviesUL = document.getElementById("favourite-movies-list");
 	favouriteMoviesUL.innerHTML = "";
 
-	generateChildrenForFavouriteMoviesUL();
+	populateFavouriteMoviesList();
 
 	if (document.getElementById("input-hamburger").checked){
 		favouriteMoviesUL.lastElementChild.classList.add("pulse-grey-animation");
@@ -275,11 +275,16 @@ function saveMovieToFavourite(entryFromAJAX) {
 
 	handlePlaceholderParagraph();
 
-	pushFavouriteMovieToDb(entryFromAJAX);
+	pushFavouriteMovie(entryFromAJAX);
 
 }
 
-function generateChildrenForFavouriteMoviesUL() {
+function populateFavouriteMoviesList() {
+	let snapshot = readFavouriteMoviesList();
+
+	snapshot.forEach(function(child) {
+	    console.log(child.key+": "+child.val());
+	});
 
 	listOfFavouriteMovies.forEach(function (entry){
 		let favouriteMoviesUL = document.getElementById("favourite-movies-list");
