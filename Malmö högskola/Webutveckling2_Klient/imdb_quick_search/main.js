@@ -1,4 +1,3 @@
-/* Tarek Bermalm - AK6336. */
 "use strict";
 
 const API_KEY = '5e65d4a0&s';
@@ -9,6 +8,7 @@ submitFormListener();
 showFavouriteMoviesListener();
 handlePlaceholderParagraph();
 toggleHideFavouriteMovies();
+favouriteMoviesHamburgerListener();
 
 function submitFormListener() {
 	let form = document.getElementById("search-form");
@@ -158,7 +158,7 @@ function fetchMovieInfoAndGenerateLiNodes(entryFromAJAX) {
 	//which returns a rating after the request comes through
 	//when the fetch has been resolved it moves to .then
 	//.then has a callback (function, object) attached to it
-	//generateNodes creates the appriopriate nodes
+	//generateNodes creates the appropriate nodes
 	//the items are displayed and task is complete
 
 	fetchMoreMovieInfo(entryFromAJAX.imdbID).then(movieInfo => generateNodesForLi(movieInfo));
@@ -343,7 +343,19 @@ function populateFavouriteMoviesList(snapshot) {
 		a.appendChild(li);
 
 	});
+//TODO: make scrollable if too many movies
+}
 
+function favouriteMoviesHamburgerListener() {
+	//whenever the user opens the sidebar menu with favourite movies
+	//this will update list with values from db
+	let inputHamburgerCheckbox = document.getElementById("input-hamburger");
+
+	inputHamburgerCheckbox.addEventListener( 'change', function() {
+		if (this.checked) {
+			readFavouriteMoviesList().then(snapshot => populateFavouriteMoviesList(snapshot));
+		}
+	});
 }
 
 function handlePlaceholderParagraph() {
