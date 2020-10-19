@@ -43,22 +43,78 @@ function submitFormListener() {
 }
 
 function apiHandler(queryText) {
+	//this function queries the omdbAPI by title
+
 	//define api request variables
 	const omdbAPI = new XMLHttpRequest();
-	const omdbURL = "https://www.omdbapi.com/?&apikey=5e65d4a0&s=" + queryText;
+	const omdbURL = `https://www.omdbapi.com/?&apikey=${API_KEY}&s=` + queryText;
 
 	//adding listener to request
 	omdbAPI.addEventListener("load", function() {
 		//saving result
 	    let result = JSON.parse(this.responseText);
 
-	    //passing result to function that displays result
+		//TODO: rewrite to just return the result?
+		//then we can choose to display in the appropriate function, since this likely isn't it
 	    displayResult(result);
 	});
 
 	//executing api request
 	omdbAPI.open("get", omdbURL, true);
 	omdbAPI.send();
+}
+function apiHandlerIfImdbID(imdbID) {
+	//this is currently being used for testing purposes, refactoring for firebase db
+
+	//define api request variables
+	const omdbAPI = new XMLHttpRequest();
+	const omdbURL = `https://www.omdbapi.com/?&apikey=${API_KEY}&s=&i=${imdbID}`;
+
+	//adding listener to request
+	omdbAPI.addEventListener("load", function() {
+		//saving result
+		let result = JSON.parse(this.responseText);
+		displayResult(result);
+	});
+
+	//executing api request
+	omdbAPI.open("get", omdbURL, true);
+	omdbAPI.send();
+}
+
+function displayResult(result) {
+
+	//clear resultContainer to prevent stacking of results/response messages
+	let resultContainer = document.getElementById("result-container")
+	resultContainer.querySelectorAll('*').forEach(n => n.remove());
+
+
+	//in this case something went wrong with the search
+	//this is communicated through p outputting string result.Error
+	if (result.Response == "False"){
+		let resultString = String(result.Error);
+
+		if (resultString == "Too many results."){
+			resultString += " Try to be more specific."
+		} else if (resultString == "Movie not found!"){
+			resultString += " Did you misspell something?";
+		}
+
+		//generate p with resultString
+		let p = document.createElement("p");
+		p.appendChild(document.createTextNode(resultString));
+		resultContainer.appendChild(p);
+	} else if (result.Response == "True"){
+
+		//in this case the search came through
+		//we display result properties
+
+		//executed for every item in array: Result.Search
+		result.Search.forEach(function(entry) {
+			fetchMovieInfoAndGenerateLiNodes(entry);
+		});
+	}
+
 }
 
 function fetchMovieInfoAndGenerateLiNodes(entryFromAJAX) {
@@ -85,7 +141,6 @@ function fetchMovieInfoAndGenerateLiNodes(entryFromAJAX) {
 	//the items are displayed and task is complete
 
 	fetchMoreMovieInfo(entryFromAJAX.imdbID).then(movieInfo => generateNodesForLi(movieInfo));
-
 	function generateNodesForLi(movieInfo) {
 
 		//this method generates the information for each movie
@@ -176,56 +231,23 @@ function fetchMovieInfoAndGenerateLiNodes(entryFromAJAX) {
 			}
 		});
 	}
-}
-
-function displayResult(result) {
-
-	//clear resultContainer to prevent stacking of results/response messages
-	let resultContainer = document.getElementById("result-container")
-	resultContainer.querySelectorAll('*').forEach(n => n.remove());
-
-
-	//in this case something went wrong with the search
-	//this is communicated through p outputting string result.Error
-	if (result.Response == "False"){
-		let resultString = String(result.Error);
-
-		if (resultString == "Too many results."){
-			resultString += " Try to be more specific."
-		} else if (resultString == "Movie not found!"){
-			resultString += " Did you misspell something?";
-		}
-
-		//generate p with resultString
-		let p = document.createElement("p");
-		p.appendChild(document.createTextNode(resultString));
-		resultContainer.appendChild(p);
-	} else if (result.Response == "True"){
-
-		//in this case the search came through
-		//we display result properties
-
-		//executed for every item in array: Result.Search
-		result.Search.forEach(function(entry) {
-			fetchMovieInfoAndGenerateLiNodes(entry);
-		});
-	}
 
 }
 
-//this is an async function (A promise, right?)
-//allowing us to use await
-//await forces the compiler to wait for the given task to be completed before proceeding
-//(only stops locally, not the entire program)
-//when the fetch as been resolved, the compiler tries to declare an object and give it the return value of res.json();
-//it then returns the imdbRating and the program proceeds as normally
-
-//however, I have no clue how we circumvent the otherwise needed "open(), send() with the arguments get, omdbURL, true"
-//my guess is that fetch has no requirement for these arguments, but only the appropriate url
 async function fetchMoreMovieInfo(imdbID) {
+	//this is an async function (A promise, right?)
+	//allowing us to use await
+	//await forces the compiler to wait for the given task to be completed before proceeding
+	//(only stops locally, not the entire program)
+	//when the fetch as been resolved, the compiler tries to declare an object and give it the return value of res.json();
+	//it then returns the imdbRating and the program proceeds as normally
+
+	//however, I have no clue how we circumvent the otherwise needed "open(), send() with the arguments get, omdbURL, true"
+	//my guess is that fetch has no requirement for these arguments, but only the appropriate url
 	const res = await fetch(`https://www.omdbapi.com/?&apikey=${API_KEY}&s=&i=${imdbID}`);
 	const {imdbRating, Actors, Awards} = await res.json();
 	const movieInfo = {rating:imdbRating, actors:Actors, awards:Awards};
+
 	return movieInfo;
 }
 
@@ -291,15 +313,13 @@ function populateFavouriteMoviesList(snapshot) {
 		let favouriteMoviesUL = document.getElementById("favourite-movies-list");
 
 		let a = document.createElement("a");
-		let url = "https://www.imdb.com/title/" + movieObj.key + "/";
+		let url = "https://www.imdb.com/title/" + snapshot.key + "/";
 		a.href = url;
 		favouriteMoviesUL.appendChild(a);
 
 		let li = document.createElement("li");
 		li.appendChild(document.createTextNode(movieObj.title + " (" + String(movieObj.year) + ")"));
 		a.appendChild(li);
-
-		console.log(movieObj.year + " and " + movieObj.title);
 
 	});
 
@@ -347,14 +367,21 @@ function displayFavouriteMovies(snapshot) {
 
 	snapshot.forEach(function (snapshot) {
 		let movieObj = snapshot.val();
+		let key = snapshot.key;
+
+		apiHandlerIfImdbID(key);
 	});
 
 	/*
 	what i need to do is:
 		for every item in movie-list
-			get the imdbID from snapshot/firebase
+			get the imdbID from snapshot/firebase CHECK
 			make ajax call with the imdbID
 			pass the entryFromAJAX to fetchMovieInfoAndGenerateLiNodes()
+
+
+	however, it seems i need to break up the functions inside of fetchMovieInfoAndGenerateLiNodes
+	because that function presumes i already have an entry with
  */
 
 }
