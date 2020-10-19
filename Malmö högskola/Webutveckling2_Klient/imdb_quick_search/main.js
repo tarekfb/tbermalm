@@ -34,7 +34,7 @@ function submitFormListener() {
 
 			//pass whatever the user entered into the search box as a query to the apiHandler
 			let queryText = form.elements.query.value;
-			apiHandler(encodeURI(queryText));
+			apiHandlerByTitle(encodeURI(queryText));
 
 			event.preventDefault();
 		}
@@ -42,7 +42,7 @@ function submitFormListener() {
 	});
 }
 
-function apiHandler(queryText) {
+function apiHandlerByTitle(queryText) {
 	//this function queries the omdbAPI by title
 
 	//define api request variables
@@ -63,8 +63,8 @@ function apiHandler(queryText) {
 	omdbAPI.open("get", omdbURL, true);
 	omdbAPI.send();
 }
-function apiHandlerIfImdbID(imdbID) {
-	//this is currently being used for testing purposes, refactoring for firebase db
+function apiHandlerByImdbID(imdbID) {
+	//this function queries the omdbAPI by imdbID
 
 	//define api request variables
 	const omdbAPI = new XMLHttpRequest();
@@ -105,19 +105,40 @@ function displayResult(result) {
 		p.appendChild(document.createTextNode(resultString));
 		resultContainer.appendChild(p);
 	} else if (result.Response == "True"){
+		if (result.Search == null){
+			//in this case I've passed a single movie, through imdbID
+			//instead of a list of results through title
+			//checking for null is not a sustainable way of checking if single movie or list
+			//TODO: fix
 
-		//in this case the search came through
-		//we display result properties
+			fetchMovieInfoAndGenerateLiNodes(result);
+		} else {
+			//in this case the search came through and is a list of movies
+			//we display result properties
 
-		//executed for every item in array: Result.Search
-		result.Search.forEach(function(entry) {
-			fetchMovieInfoAndGenerateLiNodes(entry);
-		});
+			//executed for every item in array: Result.Search
+			result.Search.forEach(function(entry) {
+				fetchMovieInfoAndGenerateLiNodes(entry);
+			});
+		}
+
 	}
 
 }
 
 function fetchMovieInfoAndGenerateLiNodes(entryFromAJAX) {
+	/*
+	TODO: rewrite this function:
+		after searching by title
+		for every item in result.Search
+			use the apiHandlerByImdbID function
+			get a movie based on imdbID
+			then call this method once, passing the single movie
+			instead of list
+
+		if so, we can circuvment the awkward "fetchMoreMovieInfo" and just use a single object
+		currently using 2: movieInfo, entryFromAJAX
+	*/
 
 	/*
 	this method takes an entry from forloop, on a list of entries
@@ -366,10 +387,8 @@ function displayFavouriteMovies(snapshot) {
 	});
 
 	snapshot.forEach(function (snapshot) {
-		let movieObj = snapshot.val();
 		let key = snapshot.key;
-
-		apiHandlerIfImdbID(key);
+		apiHandlerByImdbID(key);
 	});
 
 	/*
@@ -379,9 +398,12 @@ function displayFavouriteMovies(snapshot) {
 			make ajax call with the imdbID
 			pass the entryFromAJAX to fetchMovieInfoAndGenerateLiNodes()
 
-
 	however, it seems i need to break up the functions inside of fetchMovieInfoAndGenerateLiNodes
 	because that function presumes i already have an entry with
+
+	im instead creating new fun for imdbidapiahndler
+	and using that entry
+
  */
 
 }
