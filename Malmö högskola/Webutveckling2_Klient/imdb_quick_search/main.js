@@ -9,6 +9,7 @@ showFavouriteMoviesListener();
 handlePlaceholderParagraph();
 toggleHideFavouriteMovies();
 favouriteMoviesHamburgerListener();
+readFavouriteMoviesList().then(snapshot => populateFavouriteMoviesList(snapshot));
 
 function submitFormListener() {
 	let form = document.getElementById("search-form");
