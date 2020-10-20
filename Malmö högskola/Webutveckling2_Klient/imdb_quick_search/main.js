@@ -43,28 +43,6 @@ function submitFormListener() {
 }
 
 function apiHandlerByTitle(queryText) {
-	// //this function queries the omdbAPI by title
-	//
-	// //define api request variables
-	// const omdbAPI = new XMLHttpRequest();
-	// const omdbURL = `https://www.omdbapi.com/?&apikey=${API_KEY}&s=` + queryText;
-	//
-	// //adding listener to request
-	// omdbAPI.addEventListener("load", function() {
-	// 	//saving result
-	//     let result = JSON.parse(this.responseText);
-	//
-	// 	//TODO: rewrite to just return the result?
-	// 	//then we can choose to display in the appropriate function, since this likely isn't it
-	//     displayResult(result);
-	// });
-	//
-	// //executing api request
-	// omdbAPI.open("get", omdbURL, true);
-	// omdbAPI.send();
-
-
-
 	//this function queries the omdbAPI by title
 
 	//define api request variables
@@ -77,8 +55,15 @@ function apiHandlerByTitle(queryText) {
 		let result = JSON.parse(this.responseText);
 
 		if (result.Response == "False"){
+			//in this case the search was unsuccessful
 			displayResult(result);
 		} else if (result.Response == "True"){
+			//in this case the search was successful
+			//we iterate through all the results
+			//in-order to fetch a movie based on imdbid
+			//which contains more information than based on title
+			//such as actors, cast, poster, awards
+
 			result.Search.forEach(function (entry){
 				apiHandlerByImdbID(entry.imdbID);
 			});
@@ -88,7 +73,6 @@ function apiHandlerByTitle(queryText) {
 	//executing api request
 	omdbAPI.open("get", omdbURL, true);
 	omdbAPI.send();
-
 
 }
 function apiHandlerByImdbID(imdbID) {
@@ -111,7 +95,6 @@ function apiHandlerByImdbID(imdbID) {
 }
 
 function displayResult(result) {
-	//TODO: if mobile && if input-hamberger.checked --> uncheck (hide menu)
 	if (/Mobi|Android/i.test(navigator.userAgent) && document.getElementById("input-hamburger").checked) {
 		console.log("mobile!");
 		document.getElementById("input-hamburger").checked = false;
@@ -141,7 +124,7 @@ function displayResult(result) {
 			//in this case a single movie is passed, through apiHandlerByImdbID
 			//instead of a list of results, through apiHandlerByTitle
 			//checking for null is not a sustainable way of checking if single movie or list
-			//TODO: fix the check to use a more accurate condition
+			//TODO: implement a more accurate condition
 
 			generateMovieCard(result);
 		} else {
@@ -256,7 +239,7 @@ function generateMovieCard(apiCallResult) {
 	/*
 	when I wrote this function I initially had some really awkward design
 	it was my first usage of async functions
-	i tried to explain (to myself) async funtions and promises through comments here and there
+	i tried to explain (to myself) async functions and promises through comments here and there
 	leaving all comments below
 	*/
 
