@@ -38,11 +38,32 @@ function submitFormListener() {
 
 			event.preventDefault();
 		}
-
 	});
 }
 
 function apiHandlerByTitle(queryText) {
+	// //this function queries the omdbAPI by title
+	//
+	// //define api request variables
+	// const omdbAPI = new XMLHttpRequest();
+	// const omdbURL = `https://www.omdbapi.com/?&apikey=${API_KEY}&s=` + queryText;
+	//
+	// //adding listener to request
+	// omdbAPI.addEventListener("load", function() {
+	// 	//saving result
+	//     let result = JSON.parse(this.responseText);
+	//
+	// 	//TODO: rewrite to just return the result?
+	// 	//then we can choose to display in the appropriate function, since this likely isn't it
+	//     displayResult(result);
+	// });
+	//
+	// //executing api request
+	// omdbAPI.open("get", omdbURL, true);
+	// omdbAPI.send();
+
+
+
 	//this function queries the omdbAPI by title
 
 	//define api request variables
@@ -52,16 +73,22 @@ function apiHandlerByTitle(queryText) {
 	//adding listener to request
 	omdbAPI.addEventListener("load", function() {
 		//saving result
-	    let result = JSON.parse(this.responseText);
+		let result = JSON.parse(this.responseText);
 
-		//TODO: rewrite to just return the result?
-		//then we can choose to display in the appropriate function, since this likely isn't it
-	    displayResult(result);
+		if (result.Response == "False"){
+			displayResult(result);
+		} else if (result.Response == "True"){
+			result.Search.forEach(function (entry){
+				apiHandlerByImdbID(entry.imdbID);
+			});
+		}
 	});
 
 	//executing api request
 	omdbAPI.open("get", omdbURL, true);
 	omdbAPI.send();
+
+
 }
 function apiHandlerByImdbID(imdbID) {
 	//this function queries the omdbAPI by imdbID
@@ -83,11 +110,15 @@ function apiHandlerByImdbID(imdbID) {
 }
 
 function displayResult(result) {
+	//TODO: if mobile && if input-hamberger.checked --> uncheck (hide menu)
+	if (/Mobi|Android/i.test(navigator.userAgent) && document.getElementById("input-hamburger").checked) {
+		console.log("mobile!");
+		document.getElementById("input-hamburger").checked = false;
+	}
 
 	//clear resultContainer to prevent stacking of results/response messages
 	let resultContainer = document.getElementById("result-container")
 	resultContainer.querySelectorAll('*').forEach(n => n.remove());
-
 
 	//in this case something went wrong with the search
 	//this is communicated through p outputting string result.Error
@@ -106,10 +137,10 @@ function displayResult(result) {
 		resultContainer.appendChild(p);
 	} else if (result.Response == "True"){
 		if (result.Search == null){
-			//in this case I've passed a single movie, through imdbID
-			//instead of a list of results through title
+			//in this case a single movie is passed, through apiHandlerByImdbID
+			//instead of a list of results, through apiHandlerByTitle
 			//checking for null is not a sustainable way of checking if single movie or list
-			//TODO: fix
+			//TODO: fix the check to use a more accurate condition
 
 			fetchMovieInfoAndGenerateLiNodes(result);
 		} else {
@@ -121,7 +152,6 @@ function displayResult(result) {
 				fetchMovieInfoAndGenerateLiNodes(entry);
 			});
 		}
-
 	}
 
 }
@@ -164,7 +194,7 @@ function fetchMovieInfoAndGenerateLiNodes(entryFromAJAX) {
 	fetchMoreMovieInfo(entryFromAJAX.imdbID).then(movieInfo => generateNodesForLi(movieInfo));
 	function generateNodesForLi(movieInfo) {
 
-		//this method generates the information for each movie
+		//this method generates the design for each movie card
 		//rating, title, actors, etc
 
 		let movieContainer = document.createElement('div');
@@ -328,10 +358,11 @@ function populateFavouriteMoviesList(snapshot) {
 	//uses a snapshot that was indirectly passed from dataAccessLayer.js
 	//specifically, readFavouriteMoviesList()
 
+	let favouriteMoviesUL = document.getElementById("favourite-movies-list");
+	favouriteMoviesUL.querySelectorAll('*').forEach(n => n.remove());
+
 	snapshot.forEach(function (snapshot){
 		let movieObj = snapshot.val();
-
-		let favouriteMoviesUL = document.getElementById("favourite-movies-list");
 
 		let a = document.createElement("a");
 		let url = "https://www.imdb.com/title/" + snapshot.key + "/";
