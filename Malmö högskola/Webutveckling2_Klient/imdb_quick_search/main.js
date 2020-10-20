@@ -165,6 +165,7 @@ function fetchMovieInfoAndGenerateLiNodes(entryFromAJAX) {
 			get a movie based on imdbID
 			then call this method once, passing the single movie
 			instead of list
+		DONEDONEDONE, NOW JUST UPDATE THIS FUNCTION TO MATCH NEW STRUCTURE
 
 		if so, we can circuvment the awkward "fetchMoreMovieInfo" and just use a single object
 		currently using 2: movieInfo, entryFromAJAX
@@ -199,6 +200,7 @@ function fetchMovieInfoAndGenerateLiNodes(entryFromAJAX) {
 
 		let movieContainer = document.createElement('div');
 		movieContainer.id = 'movie-container';
+		movieContainer.style.zIndex = "-1"; //this fixes the movie card being infront of sidebar menu
 		resultContainer.appendChild(movieContainer);
 
 		//adding hyperlink, the movie's imdb-page, to movie poster
