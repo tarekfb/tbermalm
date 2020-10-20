@@ -17,13 +17,13 @@ function submitFormListener() {
 
 	form.addEventListener("submit", function(event) {
 
+		//clear resultContainer to prevent stacking of results/response messages
+		let resultContainer = document.getElementById("result-container")
+		resultContainer.querySelectorAll('*').forEach(n => n.remove());
+
 		//in this case the user didnt enter any text in the search box
 		if (searchBox.value.length === 0){
 			searchBox.focus();
-
-			//clear resultContainer to prevent stacking of results/response messages
-			let resultContainer = document.getElementById("result-container")
-			resultContainer.querySelectorAll('*').forEach(n => n.remove());
 
 			//generate p saying to enter some text
 			let p = document.createElement("p");
@@ -58,11 +58,13 @@ function apiHandlerByTitle(queryText) {
 			//in this case the search was unsuccessful
 			displayResult(result);
 		} else if (result.Response == "True"){
-			//in this case the search was successful
-			//we iterate through all the results
-			//in-order to fetch a movie based on imdbid
-			//which contains more information than based on title
-			//such as actors, cast, poster, awards
+			/*
+			in this case the search was successful
+			we iterate through all the results
+			in-order to fetch a movie based on imdbid
+			which contains more information than based on title
+			such as actors, cast, poster, awards
+			*/
 
 			result.Search.forEach(function (entry){
 				apiHandlerByImdbID(entry.imdbID);
@@ -100,9 +102,7 @@ function displayResult(result) {
 		document.getElementById("input-hamburger").checked = false;
 	}
 
-	//clear resultContainer to prevent stacking of results/response messages
-	let resultContainer = document.getElementById("result-container")
-	resultContainer.querySelectorAll('*').forEach(n => n.remove());
+	 let resultContainer = document.getElementById("result-container")
 
 	//in this case something went wrong with the search
 	//this is communicated through p outputting string result.Error
@@ -304,17 +304,20 @@ function saveMovieToFavourite(entryFromAJAX) {
 	//if statement of hamburger pulse needs updating
 	//and add(pulse-grey-anim)
 
-	if (!document.getElementById("input-hamburger").checked && listOfFavouriteMovies.length == 0){
+	let favouriteMoviesUL = document.getElementById("favourite-movies-list");
+
+
+
+	if (!document.getElementById("input-hamburger").checked && favouriteMoviesUL.childElementCount == 0){
 		document.getElementById("slice1").classList.add("pulse-grey-animation");
 		document.getElementById("slice2").classList.add("pulse-grey-animation");
 		document.getElementById("slice3").classList.add("pulse-grey-animation");
 	}
 
-	let favouriteMoviesUL = document.getElementById("favourite-movies-list");
 
-	// if (document.getElementById("input-hamburger").checked){
-	// 	favouriteMoviesUL.lastElementChild.classList.add("pulse-grey-animation");
-	// }
+	if (document.getElementById("input-hamburger").checked){
+		favouriteMoviesUL.lastElementChild.classList.add("pulse-grey-animation");
+	}
 
 	handlePlaceholderParagraph();
 
