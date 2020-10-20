@@ -9,6 +9,7 @@ showFavouriteMoviesListener();
 handlePlaceholderParagraph();
 toggleHideFavouriteMovies();
 favouriteMoviesHamburgerListener();
+readFavouriteMoviesList().then(snapshot => populateFavouriteMoviesList(snapshot));
 
 function submitFormListener() {
 	let form = document.getElementById("search-form");
@@ -16,13 +17,13 @@ function submitFormListener() {
 
 	form.addEventListener("submit", function(event) {
 
+		//clear resultContainer to prevent stacking of results/response messages
+		let resultContainer = document.getElementById("result-container")
+		resultContainer.querySelectorAll('*').forEach(n => n.remove());
+
 		//in this case the user didnt enter any text in the search box
 		if (searchBox.value.length === 0){
 			searchBox.focus();
-
-			//clear resultContainer to prevent stacking of results/response messages
-			let resultContainer = document.getElementById("result-container")
-			resultContainer.querySelectorAll('*').forEach(n => n.remove());
 
 			//generate p saying to enter some text
 			let p = document.createElement("p");
@@ -42,28 +43,6 @@ function submitFormListener() {
 }
 
 function apiHandlerByTitle(queryText) {
-	// //this function queries the omdbAPI by title
-	//
-	// //define api request variables
-	// const omdbAPI = new XMLHttpRequest();
-	// const omdbURL = `https://www.omdbapi.com/?&apikey=${API_KEY}&s=` + queryText;
-	//
-	// //adding listener to request
-	// omdbAPI.addEventListener("load", function() {
-	// 	//saving result
-	//     let result = JSON.parse(this.responseText);
-	//
-	// 	//TODO: rewrite to just return the result?
-	// 	//then we can choose to display in the appropriate function, since this likely isn't it
-	//     displayResult(result);
-	// });
-	//
-	// //executing api request
-	// omdbAPI.open("get", omdbURL, true);
-	// omdbAPI.send();
-
-
-
 	//this function queries the omdbAPI by title
 
 	//define api request variables
@@ -76,8 +55,17 @@ function apiHandlerByTitle(queryText) {
 		let result = JSON.parse(this.responseText);
 
 		if (result.Response == "False"){
+			//in this case the search was unsuccessful
 			displayResult(result);
 		} else if (result.Response == "True"){
+			/*
+			in this case the search was successful
+			we iterate through all the results
+			in-order to fetch a movie based on imdbid
+			which contains more information than based on title
+			such as actors, cast, poster, awards
+			*/
+
 			result.Search.forEach(function (entry){
 				apiHandlerByImdbID(entry.imdbID);
 			});
@@ -87,7 +75,6 @@ function apiHandlerByTitle(queryText) {
 	//executing api request
 	omdbAPI.open("get", omdbURL, true);
 	omdbAPI.send();
-
 
 }
 function apiHandlerByImdbID(imdbID) {
@@ -110,15 +97,12 @@ function apiHandlerByImdbID(imdbID) {
 }
 
 function displayResult(result) {
-	//TODO: if mobile && if input-hamberger.checked --> uncheck (hide menu)
 	if (/Mobi|Android/i.test(navigator.userAgent) && document.getElementById("input-hamburger").checked) {
 		console.log("mobile!");
 		document.getElementById("input-hamburger").checked = false;
 	}
 
-	//clear resultContainer to prevent stacking of results/response messages
-	let resultContainer = document.getElementById("result-container")
-	resultContainer.querySelectorAll('*').forEach(n => n.remove());
+	 let resultContainer = document.getElementById("result-container")
 
 	//in this case something went wrong with the search
 	//this is communicated through p outputting string result.Error
@@ -140,44 +124,124 @@ function displayResult(result) {
 			//in this case a single movie is passed, through apiHandlerByImdbID
 			//instead of a list of results, through apiHandlerByTitle
 			//checking for null is not a sustainable way of checking if single movie or list
-			//TODO: fix the check to use a more accurate condition
+			//TODO: implement a more accurate condition
 
-			fetchMovieInfoAndGenerateLiNodes(result);
+			generateMovieCard(result);
 		} else {
 			//in this case the search came through and is a list of movies
 			//we display result properties
 
 			//executed for every item in array: Result.Search
 			result.Search.forEach(function(entry) {
-				fetchMovieInfoAndGenerateLiNodes(entry);
+				generateMovieCard(entry);
 			});
 		}
 	}
 
 }
 
-function fetchMovieInfoAndGenerateLiNodes(entryFromAJAX) {
-	/*
-	TODO: rewrite this function:
-		after searching by title
-		for every item in result.Search
-			use the apiHandlerByImdbID function
-			get a movie based on imdbID
-			then call this method once, passing the single movie
-			instead of list
+function generateMovieCard(apiCallResult) {
 
-		if so, we can circuvment the awkward "fetchMoreMovieInfo" and just use a single object
-		currently using 2: movieInfo, entryFromAJAX
+	/*
+	this function takes the result of a imdbID query
+	which was returned from API call to the OMDb API
+	then generates a movie card
 	*/
 
-	/*
-	this method takes an entry from forloop, on a list of entries
-	which was returned from API call to the OMDb API
-	then fetches some information for the entry
-	then displays all the entries
-	 */
-
 	let resultContainer = document.getElementById("result-container");
+
+	let movieContainer = document.createElement('div');
+	movieContainer.id = 'movie-container';
+	movieContainer.style.zIndex = "-1"; //this fixes the movie card being infront of sidebar menu
+	resultContainer.appendChild(movieContainer);
+
+	//adding hyperlink, the movie's imdb-page, to movie poster
+	let a = document.createElement("a");
+	let url = "https://www.imdb.com/title/" + apiCallResult.imdbID + "/";
+	a.href = url;
+	movieContainer.appendChild(a);
+
+	let img = document.createElement('img');
+
+	//setting poster src, if poster exists
+	if (apiCallResult.Poster == "N/A"){
+		img.src = "https://www.sunnxt.com/images/placeholders/placeholder_vertical.gif";
+	} else {
+		img.src = apiCallResult.Poster;
+	}
+	//using this to avoid modal box when clicking the movie poster
+	img.id = "movie-poster-anchor";
+
+	a.appendChild(img);
+
+	let text = document.createElement('div');
+	text.id = "text";
+	movieContainer.appendChild(text);
+
+	let titleYear = document.createElement("span");
+	titleYear.id = "title-year";
+	titleYear.appendChild(document.createTextNode(apiCallResult.Title + " (" + String(apiCallResult.Year) + ")"));
+	text.appendChild(titleYear);
+
+	let actors = document.createElement("span");
+	actors.id = "actors";
+	actors.appendChild(document.createTextNode(apiCallResult.Actors));
+	text.appendChild(actors);
+	//insert linebreak for styling
+	text.insertBefore(document.createElement("br"), actors);
+
+	if (apiCallResult.Awards == "N/A"){
+		apiCallResult.Awards = "No awards ಠ╭╮ಠ.";
+	} else if (apiCallResult.Awards.length > 25){
+		if (screen && screen.width < 1300) {
+			apiCallResult.Awards = "Has won awards or nominations."
+		}
+		//not enough space to show all awards
+		//TODO: change to dropdown on touch (jquery?)
+		//https://coderwall.com/p/3uwgga/make-css-dropdown-menus-work-on-touch-devices
+	}
+	let awards = document.createElement("span");
+	awards.id = "awards";
+	awards.appendChild(document.createTextNode(apiCallResult.Awards));
+	text.appendChild(awards);
+	//insert linebreak for styling
+	text.insertBefore(document.createElement("br"), awards);
+
+	let ratingDiv = document.createElement('div');
+	ratingDiv.id = "rating";
+	movieContainer.appendChild(ratingDiv);
+
+	if (apiCallResult.imdbRating == "N/A"){
+		ratingDiv.style.display = "none";
+	} else {
+		ratingDiv.innerHTML = '<i class="fa fa-star" aria-hidden="true"></i>';
+		let ratingScore = document.createElement("span");
+		ratingScore.id = "rating-score";
+		ratingScore.appendChild(document.createTextNode(apiCallResult.imdbRating));
+		ratingDiv.appendChild(ratingScore);
+	}
+
+	let ratingMax = document.createElement("span");
+	ratingMax.id = "ra" +
+		"ting-max";
+	ratingMax.appendChild(document.createTextNode("/10"));
+	ratingDiv.appendChild(ratingMax);
+
+	movieContainer.addEventListener("click", function (event){
+		if (event.target.id == "movie-poster-anchor"){
+			//do nothing
+			//since we just want to avoid showing modalbox in this case
+		} else {
+			showModalBox(apiCallResult);
+		}
+	});
+
+	/*
+	when I wrote this function I initially had some really awkward design
+	it was my first usage of async functions
+	i tried to explain (to myself) async functions and promises through comments here and there
+	leaving all comments below
+	*/
 
 	//handling sync is quite awkward at the moment
 	//first usage of promise and async
@@ -191,101 +255,14 @@ function fetchMovieInfoAndGenerateLiNodes(entryFromAJAX) {
 	//generateNodes creates the appropriate nodes
 	//the items are displayed and task is complete
 
-	fetchMoreMovieInfo(entryFromAJAX.imdbID).then(movieInfo => generateNodesForLi(movieInfo));
-	function generateNodesForLi(movieInfo) {
+	//this method generates the design for each movie card
+	//rating, title, actors, etc
 
-		//this method generates the design for each movie card
-		//rating, title, actors, etc
+	/*
+	this comment below from a different (async) function, where I made another apicall by imdbID
+	i also used this result, so in effect i had two results from two api calls that could've been done with one
+	*/
 
-		let movieContainer = document.createElement('div');
-		movieContainer.id = 'movie-container';
-		resultContainer.appendChild(movieContainer);
-
-		//adding hyperlink, the movie's imdb-page, to movie poster
-		let a = document.createElement("a");
-		let url = "https://www.imdb.com/title/" + entryFromAJAX.imdbID + "/";
-		a.href = url;
-		movieContainer.appendChild(a);
-
-		let img = document.createElement('img');
-
-		//setting poster src, if poster exists
-		if (entryFromAJAX.Poster == "N/A"){
-			img.src = "https://www.sunnxt.com/images/placeholders/placeholder_vertical.gif";
-		} else {
-			img.src = entryFromAJAX.Poster;
-		}
-		//using this to avoid modal box when clicking the movie poster
-		img.id = "movie-poster-anchor";
-
-		a.appendChild(img);
-
-		let text = document.createElement('div');
-		text.id = "text";
-		movieContainer.appendChild(text);
-
-		let titleYear = document.createElement("span");
-		titleYear.id = "title-year";
-		titleYear.appendChild(document.createTextNode(entryFromAJAX.Title + " (" + String(entryFromAJAX.Year) + ")"));
-		text.appendChild(titleYear);
-
-		let actors = document.createElement("span");
-		actors.id = "actors";
-		actors.appendChild(document.createTextNode(movieInfo.actors));
-		text.appendChild(actors);
-		//insert linebreak for styling
-		text.insertBefore(document.createElement("br"), actors);
-
-		if (movieInfo.awards == "N/A"){
-			movieInfo.awards = "No awards ಠ╭╮ಠ.";
-		} else if (movieInfo.awards.length > 25){
-			if (screen && screen.width < 1300) {
-				movieInfo.awards = "Has won awards nominations."
-			}
-			//not enough space to show all awards
-			//TODO: change to dropdown on touch (jquery?)
-			//https://coderwall.com/p/3uwgga/make-css-dropdown-menus-work-on-touch-devices
-		}
-		let awards = document.createElement("span");
-		awards.id = "awards";
-		awards.appendChild(document.createTextNode(movieInfo.awards));
-		text.appendChild(awards);
-		//insert linebreak for styling
-		text.insertBefore(document.createElement("br"), awards);
-
-		let ratingDiv = document.createElement('div');
-		ratingDiv.id = "rating";
-		movieContainer.appendChild(ratingDiv);
-
-		if (movieInfo.rating == "N/A"){
-			ratingDiv.style.flexGrow = 0;
-			;
-		} else {
-			ratingDiv.innerHTML = '<i class="fa fa-star" aria-hidden="true"></i>';
-			let ratingScore = document.createElement("span");
-			ratingScore.id = "rating-score";
-			ratingScore.appendChild(document.createTextNode(movieInfo.rating));
-			ratingDiv.appendChild(ratingScore);
-		}
-
-		let ratingMax = document.createElement("span");
-		ratingMax.id = "rating-max";
-		ratingMax.appendChild(document.createTextNode("/10"));
-		ratingDiv.appendChild(ratingMax);
-
-		movieContainer.addEventListener("click", function (event){
-			if (event.target.id == "movie-poster-anchor"){
-				//do nothing
-				//since we just want to avoid showing modalbox in this case
-			} else {
-				showModalBox(entryFromAJAX);
-			}
-		});
-	}
-
-}
-
-async function fetchMoreMovieInfo(imdbID) {
 	//this is an async function (A promise, right?)
 	//allowing us to use await
 	//await forces the compiler to wait for the given task to be completed before proceeding
@@ -293,13 +270,6 @@ async function fetchMoreMovieInfo(imdbID) {
 	//when the fetch as been resolved, the compiler tries to declare an object and give it the return value of res.json();
 	//it then returns the imdbRating and the program proceeds as normally
 
-	//however, I have no clue how we circumvent the otherwise needed "open(), send() with the arguments get, omdbURL, true"
-	//my guess is that fetch has no requirement for these arguments, but only the appropriate url
-	const res = await fetch(`https://www.omdbapi.com/?&apikey=${API_KEY}&s=&i=${imdbID}`);
-	const {imdbRating, Actors, Awards} = await res.json();
-	const movieInfo = {rating:imdbRating, actors:Actors, awards:Awards};
-
-	return movieInfo;
 }
 
 //showing the modal box for saving movies
@@ -334,17 +304,20 @@ function saveMovieToFavourite(entryFromAJAX) {
 	//if statement of hamburger pulse needs updating
 	//and add(pulse-grey-anim)
 
-	if (!document.getElementById("input-hamburger").checked && listOfFavouriteMovies.length == 0){
+	let favouriteMoviesUL = document.getElementById("favourite-movies-list");
+
+
+
+	if (!document.getElementById("input-hamburger").checked && favouriteMoviesUL.childElementCount == 0){
 		document.getElementById("slice1").classList.add("pulse-grey-animation");
 		document.getElementById("slice2").classList.add("pulse-grey-animation");
 		document.getElementById("slice3").classList.add("pulse-grey-animation");
 	}
 
-	let favouriteMoviesUL = document.getElementById("favourite-movies-list");
 
-	// if (document.getElementById("input-hamburger").checked){
-	// 	favouriteMoviesUL.lastElementChild.classList.add("pulse-grey-animation");
-	// }
+	if (document.getElementById("input-hamburger").checked){
+		favouriteMoviesUL.lastElementChild.classList.add("pulse-grey-animation");
+	}
 
 	handlePlaceholderParagraph();
 
@@ -426,7 +399,7 @@ function displayFavouriteMovies(snapshot) {
 	resultContainer.innerHTML = "";
 
 	listOfFavouriteMovies.forEach(function(entry) {
-		fetchMovieInfoAndGenerateLiNodes(entry);
+		generateMovieCard(entry);
 	});
 
 	snapshot.forEach(function (snapshot) {
@@ -439,9 +412,9 @@ function displayFavouriteMovies(snapshot) {
 		for every item in movie-list
 			get the imdbID from snapshot/firebase CHECK
 			make ajax call with the imdbID
-			pass the entryFromAJAX to fetchMovieInfoAndGenerateLiNodes()
+			pass the entryFromAJAX to generateMovieCard()
 
-	however, it seems i need to break up the functions inside of fetchMovieInfoAndGenerateLiNodes
+	however, it seems i need to break up the functions inside of generateMovieCard
 	because that function presumes i already have an entry with
 
 	im instead creating new fun for imdbidapiahndler

@@ -233,6 +233,9 @@ designing the hamburger icon and transformation
 #slice1, #slice2, #slice3{
 	position: relative;
 	display: block;
+	
+	/*top: 30px;*/
+	/*left: 30px;*/
 
 	/*styles the spans into slices*/
 	width: 33px;
@@ -334,6 +337,8 @@ design the hidden input node
 	height: 32px;
 	top: -7px;
 	left: -5px;
+	/*top: 30px;*/
+	/*left: 30px;*/
 
 	cursor: pointer;
 
@@ -350,9 +355,13 @@ designing the container for content
 #favourite-movies-content-container{
 	margin: -100px 0 0 -55px;
 	padding: 25px;
-	padding-top: 120px;
-	height: 100vh;
+	padding-top: 90px;
+	/*height: 100vh;*/
 	width: 250px;
+
+	height: auto;
+	min-height: 100vh;
+
 
 	background: var(--main-red);
 	-webkit-font-smoothing: antialiased;
