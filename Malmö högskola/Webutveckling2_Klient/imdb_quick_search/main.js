@@ -261,8 +261,7 @@ function fetchMovieInfoAndGenerateLiNodes(entryFromAJAX) {
 		movieContainer.appendChild(ratingDiv);
 
 		if (movieInfo.rating == "N/A"){
-			ratingDiv.style.flexGrow = 0;
-			;
+			ratingDiv.style.display = "none";
 		} else {
 			ratingDiv.innerHTML = '<i class="fa fa-star" aria-hidden="true"></i>';
 			let ratingScore = document.createElement("span");
