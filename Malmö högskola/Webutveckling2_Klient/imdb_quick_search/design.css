@@ -59,20 +59,28 @@ form input {
 
 /*style for each movie, within the result container*/
 #movie-container {
-	box-shadow: 0 0 1px rgba(0, 0, 0, 0);
-	transition-duration: 0.3s;
-	transition-property: transform;
-	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
+	/*
+	TODO: this div, and only this div, is position above sidebar menu
+	even though sidebar menu has higher z-index
+	unsure why
+	could be something within this card itself, or the parents
+	 */
+	position: relative;
 	width: 45%;
 	height: 165px;
 	background: #e7d2cc;
 	border-radius: 5px;
 	border: 1px solid grey;
 	margin: 20px auto 0;
-	position: relative;
 	text-align: left;
+
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+
+	box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+	transition-duration: 0.3s;
+	transition-property: transform;
 }
 #movie-container:hover, movie-container:focus, movie-container:active {
 	transform: scale(1.03);

@@ -152,7 +152,7 @@ function generateMovieCard(apiCallResult) {
 
 	let movieContainer = document.createElement('div');
 	movieContainer.id = 'movie-container';
-	movieContainer.style.zIndex = "-1"; //this fixes the movie card being infront of sidebar menu
+	//movieContainer.style.zIndex = "-1"; //this fixes the movie card being infront of sidebar menu
 	resultContainer.appendChild(movieContainer);
 
 	//adding hyperlink, the movie's imdb-page, to movie poster
