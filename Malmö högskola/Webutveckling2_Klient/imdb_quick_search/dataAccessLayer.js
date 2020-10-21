@@ -27,6 +27,7 @@ function pushFavouriteMovie(entryFromAJAX) {
     newFavouriteMovieRef.set({
         title: entryFromAJAX.Title,
         year: entryFromAJAX.Year,
+        rating: entryFromAJAX.imdbRating
         //rating: entryFromAJAX.imdbRating
 
         //currently the imdbRating is fetched from a different object
