@@ -378,10 +378,9 @@ design the hidden input node
 
 #favourite-movies-content-container{
 	margin: -100px 0 0 -55px;
-	padding: 25px;
 	padding-top: 90px;
-	/*height: 100vh;*/
 	background: var(--main-red);
+	/*height: 100vh;*/
 
 	height: auto;
 	min-height: 100vh;
@@ -391,16 +390,13 @@ design the hidden input node
 	it blocks the content behind the sidebar, even when input-hamburger.unchecked
 	however, if i set the width here it doesn't block any content*/
 
-	/*display: flex;*/
-	/*flex-direction: row;*/
-	/*justify-content: center;*/
-
 	-webkit-font-smoothing: antialiased;
 	/* to stop flickering of text in safari */
 
 	transform-origin: 0% 0%;
 	transform: translate(-100%, 0);
 	transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
+
 }
 
 /*****************************
@@ -410,13 +406,6 @@ design the hidden input node
 #favourite-movies-list{
 	list-style-type: none;
 	padding: 0;
-
-	width: 100%;
-	background-color: red;
-}
-
-#favourite-movies-list li{
-	font-size: 22px;
 }
 
 #favourite-movies-container a{
@@ -463,21 +452,33 @@ design the hidden input node
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
+
+	flex-grow: 1;
 }
 
 #title-li{
 	flex-grow: 1;
+	font-size: 18px;
 }
 
 #year-li{
 	float: bottom;
 	flex-grow: 0.3;
+	font-size: 15px;
 }
 
-#favourite-movies-content-container span {
+#rating-li{
+	flex-basis: 33%;
+	top: 50%;
+	-ms-transform: translateY(-50%);
+	transform: translateY(-50%);
 }
 
-#favourite-movies-content-container span i {
+#rating-li span {
+	white-space: pre;
+}
+
+#rating-li i {
 	color: #FFD700;
 	text-shadow: 0 0 3px #000;
 }
@@ -487,7 +488,8 @@ design the hidden input node
 	border: solid 2px var(--main-yellow);
 	background-color: var(--main-yellow);
 	padding: 3px;
-	font-size: 15px;
+	font-size: 20px;
+	margin-top: 10px;
 }
 
 #show-favourite-movies:hover,
