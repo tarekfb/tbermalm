@@ -3,6 +3,7 @@
 	--main-yellow: #f4cb84;
 	--main-red: #f38363 ;
 	--accept-green: #08b335;
+	--background-grey: #e7d2cc;
 }
 
 html {
@@ -27,7 +28,9 @@ a {
 	color: inherit;
 }
 
-/*img, search bar and result container*/
+/*****************************
+	img, search bar and result container
+*****************************/
 #logo img {
 	margin-top: 35px;
 	width: 200px;
@@ -57,10 +60,12 @@ form input {
 	font-size: 25px;
 }
 
-/*style for each movie, within the result container*/
+/*****************************
+	style for each movie, within the result container
+*****************************/
 #movie-container {
 	/*
-	TODO: this div, and only this div, is position above sidebar menu
+	TODO: this div, and only this div, is positioned above sidebar menu
 	even though sidebar menu has higher z-index
 	unsure why
 	could be something within this card itself, or the parents
@@ -68,14 +73,16 @@ form input {
 
 	/*
 	TODO: FIX, for some reason the grow transformation is not working
+	seems to not work when z-index is negative
 	*/
+
 	position: relative;
 	width: 45%;
 	height: 165px;
-	background: #e7d2cc;
+	background-color: var(--background-grey);
 	border-radius: 5px;
 	border: 1px solid grey;
-	margin: 20px auto 0;
+	margin: 15px auto 0;
 	text-align: left;
 
 	display: flex;
@@ -137,9 +144,9 @@ form input {
 	color: #696969;
 }
 
-/*
- * modal box design
- */
+/*****************************
+	modal box design
+ *****************************/
 
 .modal-box {
 	display: none; /* Hidden by default */
@@ -217,11 +224,11 @@ form input {
 	cursor: pointer;
 }
 
-/*
-favourites movies list
-using this as hamburger menu design
-https://codepen.com/erikterwan/pen/EVzeRP
-*/
+/*****************************
+	favourites movies list
+	using this as hamburger menu design
+	https://codepen.com/erikterwan/pen/EVzeRP
+*****************************/
 
 /*
 this is the parent of the favourite movie sidebar
@@ -361,21 +368,28 @@ design the hidden input node
 	-webkit-touch-callout: none;
 }
 
-/*
-designing the container for content
-*/
+/*****************************
+	designing the container for content
+*****************************/
 #favourite-movies-content-container{
 	margin: -100px 0 0 -55px;
 	padding: 25px;
 	padding-top: 90px;
 	/*height: 100vh;*/
-	width: 250px;
+	background: var(--main-red);
 
 	height: auto;
 	min-height: 100vh;
 
+	width: 250px;
+	/*if i set the width of the sidebar menu at the parent container
+	it blocks the content behind the sidebar, even when input-hamburger.unchecked
+	however, if i set the width here it doesn't block any content*/
 
-	background: var(--main-red);
+	/*display: flex;*/
+	/*flex-direction: column;*/
+	/*justify-content: space-between;*/
+
 	-webkit-font-smoothing: antialiased;
 	/* to stop flickering of text in safari */
 
@@ -384,12 +398,15 @@ designing the container for content
 	transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
 }
 
-/*
-designing the content of container
-*/
+/*****************************
+	designing the content of container
+*****************************/
 #favourite-movies-list{
 	list-style-type: none;
 	padding: 0;
+
+	width: 100%;
+	background-color: red;
 }
 
 #favourite-movies-list li{
@@ -407,11 +424,13 @@ designing the content of container
 	/*position: relative;*/
 	width: 85%;
 	height: 80px;
-	background: #e7d2cc;
+	background: var(--background-grey);
 	border-radius: 5px;
 	border: 1px solid grey;
 	margin: 10px auto 0;
 	text-align: left;
+	padding: 5px;
+	overflow: hidden;
 
 	display: flex;
 	flex-direction: row;
@@ -433,10 +452,25 @@ designing the content of container
 	transform: scale(1.03);
 	cursor: pointer;
 	/*change color?*/
+
+}
+
+#title-year-li{
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+}
+
+#title-li{
+	flex-grow: 1;
+}
+
+#year-li{
+	float: bottom;
+	flex-grow: 0.3;
 }
 
 #favourite-movies-content-container span {
-	white-space: pre;
 }
 
 #favourite-movies-content-container span i {
@@ -456,6 +490,10 @@ designing the content of container
 #show-favourite-movies:focus {
 	cursor: pointer;
 }
+
+/*****************************
+	responsive design
+ *****************************/
 
 @media screen and (max-width: 1300px) {
 	img {
