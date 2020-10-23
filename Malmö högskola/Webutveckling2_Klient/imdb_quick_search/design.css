@@ -31,6 +31,7 @@ a {
 /*****************************
 	img, search bar and result container
 *****************************/
+
 #logo img {
 	margin-top: 35px;
 	width: 200px;
@@ -63,6 +64,7 @@ form input {
 /*****************************
 	style for each movie, within the result container
 *****************************/
+
 #movie-container {
 	/*
 	TODO: this div, and only this div, is positioned above sidebar menu
@@ -238,7 +240,7 @@ this is the parent of the favourite movie sidebar
 	position: fixed;
 
 	top: 30px;
-	left: 30px;
+	left: 55px;
 
 	/*stops user from being able to select text here*/
 	-webkit-user-select: none;
@@ -252,7 +254,8 @@ designing the hamburger icon and transformation
 #slice1, #slice2, #slice3{
 	position: relative;
 	display: block;
-	
+
+	left: -24px;
 	/*top: 30px;*/
 	/*left: 30px;*/
 
@@ -299,7 +302,8 @@ pulse grey on save to list
 /*slide sidebar in and out */
 #input-hamburger:checked ~ #favourite-movies-content-container {
 	transform: none;
-	/*since there is no display: none when unchecked, it'll block any content underneath*/
+	/*since there is no display: none when unchecked, it'll block any content underneath
+	circumvented by setting width on child container, instead of parent container*/
 }
 
 @keyframes fade {
@@ -355,7 +359,7 @@ design the hidden input node
 	width: 40px;
 	height: 32px;
 	top: -7px;
-	left: -5px;
+	left: -30px;
 	/*top: 30px;*/
 	/*left: 30px;*/
 
@@ -371,6 +375,7 @@ design the hidden input node
 /*****************************
 	designing the container for content
 *****************************/
+
 #favourite-movies-content-container{
 	margin: -100px 0 0 -55px;
 	padding: 25px;
@@ -387,8 +392,8 @@ design the hidden input node
 	however, if i set the width here it doesn't block any content*/
 
 	/*display: flex;*/
-	/*flex-direction: column;*/
-	/*justify-content: space-between;*/
+	/*flex-direction: row;*/
+	/*justify-content: center;*/
 
 	-webkit-font-smoothing: antialiased;
 	/* to stop flickering of text in safari */
@@ -401,6 +406,7 @@ design the hidden input node
 /*****************************
 	designing the content of container
 *****************************/
+
 #favourite-movies-list{
 	list-style-type: none;
 	padding: 0;
@@ -410,9 +416,7 @@ design the hidden input node
 }
 
 #favourite-movies-list li{
-	/*padding: 10px 0;*/
 	font-size: 22px;
-	/*text-align: left;*/
 }
 
 #favourite-movies-container a{
