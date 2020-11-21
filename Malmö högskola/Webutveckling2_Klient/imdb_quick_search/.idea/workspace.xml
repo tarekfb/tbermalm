@@ -42,7 +42,6 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="nodejs_package_manager_path" value="npm" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -105,28 +104,22 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="565" y="135" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/-1920.0.1536.840/0.0.1920.1050@0.0.1920.1050" timestamp="1603109514798" />
-    <state x="777" y="439" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1603443801844">
+    <state x="777" y="439" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1603129895324">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state x="777" y="439" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/-1920.0.1536.840/0.0.1920.1050@0.0.1920.1050" timestamp="1603443801844" />
-    <state x="622" y="349" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.834@0.0.1536.834" timestamp="1603283416545" />
+    <state x="777" y="439" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/-1920.0.1536.840/0.0.1920.1050@0.0.1920.1050" timestamp="1603129895324" />
     <state width="600" height="428" key="javadoc.popup" timestamp="1602352212811">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state width="600" height="428" key="javadoc.popup/-1920.0.1536.840/0.0.1920.1050@0.0.1920.1050" timestamp="1602352212811" />
-    <state x="425" y="189" width="672" height="677" key="run.anything.popup" timestamp="1603283363954">
-      <screen x="0" y="0" width="1536" height="834" />
-    </state>
-    <state x="425" y="189" width="672" height="677" key="run.anything.popup/0.0.1536.834@0.0.1536.834" timestamp="1603283363954" />
     <state x="752" y="383" key="scopes" timestamp="1602335718995">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="752" y="383" key="scopes/-1920.0.1536.840/0.0.1920.1050@0.0.1920.1050" timestamp="1602335718995" />
-    <state x="623" y="227" width="672" height="678" key="search.everywhere.popup" timestamp="1605972545279">
+    <state x="623" y="227" width="672" height="678" key="search.everywhere.popup" timestamp="1603183688191">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="-1422" y="182" width="672" height="543" key="search.everywhere.popup/-1920.0.1536.840/0.0.1920.1050@-1920.0.1536.840" timestamp="1602072333066" />
-    <state x="623" y="227" width="672" height="678" key="search.everywhere.popup/-1920.0.1536.840/0.0.1920.1050@0.0.1920.1050" timestamp="1605972545279" />
-    <state x="498" y="180" width="672" height="539" key="search.everywhere.popup/0.0.1536.834@0.0.1536.834" timestamp="1603283369056" />
+    <state x="623" y="227" width="672" height="678" key="search.everywhere.popup/-1920.0.1536.840/0.0.1920.1050@0.0.1920.1050" timestamp="1603183688191" />
   </component>
 </project>
