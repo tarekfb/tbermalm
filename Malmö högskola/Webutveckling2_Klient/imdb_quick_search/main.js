@@ -328,7 +328,7 @@ function populateFavouriteMoviesList(snapshot) {
 	//uses a snapshot that was indirectly passed from dataAccessLayer.js
 	//specifically, readFavouriteMoviesList()
 
-	/*let favouriteMoviesUL = document.getElementById("favourite-movies-list");
+	let favouriteMoviesUL = document.getElementById("favourite-movies-list");
 	favouriteMoviesUL.querySelectorAll('*').forEach(n => n.remove());
 
 	snapshot.forEach(function (snapshot){
@@ -340,6 +340,7 @@ function populateFavouriteMoviesList(snapshot) {
 		favouriteMoviesUL.appendChild(a);
 
 		let li = document.createElement("li");
+		li.id = 'favourite-movie-li';
 		li.appendChild(document.createTextNode(
 			movieObj.title + " (" + movieObj.year + ")"
 			));
@@ -352,9 +353,7 @@ function populateFavouriteMoviesList(snapshot) {
 
 		a.appendChild(li);
 
-	});*/
-	//commented out while working on design for sidebar li
-	//TODO: remove the /*
+	});
 //TODO: make scrollable if too many movies
 }
 
