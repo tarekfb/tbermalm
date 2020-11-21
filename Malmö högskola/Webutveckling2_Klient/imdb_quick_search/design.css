@@ -385,7 +385,7 @@ design the hidden input node
 	height: auto;
 	min-height: 100vh;
 
-	width: 250px;
+	width: 275px;
 	/*if i set the width of the sidebar menu at the parent container
 	it blocks the content behind the sidebar, even when input-hamburger.unchecked
 	however, if i set the width here it doesn't block any content*/
@@ -444,34 +444,35 @@ design the hidden input node
 #testDiv:hover, testDiv:focus, testDiv:active {
 	transform: scale(1.03);
 	cursor: pointer;
-	/*change color?*/
+/*	change to lighter  grey on hover*/
 
 }
 
 #title-year-li{
+	flex: 1 1 80%;
+
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
-
-	flex-grow: 1;
 }
 
 #title-li{
 	flex-grow: 1;
 	font-size: 18px;
+	flex-basis: 25%;
 }
 
 #year-li{
-	float: bottom;
-	flex-grow: 0.3;
 	font-size: 15px;
+	flex-basis: 15%;
 }
 
 #rating-li{
-	flex-basis: 33%;
-	top: 50%;
-	-ms-transform: translateY(-50%);
-	transform: translateY(-50%);
+	flex: 0.2 0.2 20%;
+
+	line-height: 5em;
+	/*arbitrary line height to vertically center div*/
+	min-width: 0;
 }
 
 #rating-li span {
