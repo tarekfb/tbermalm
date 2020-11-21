@@ -152,7 +152,7 @@ function generateMovieCard(apiCallResult) {
 
 	let movieContainer = document.createElement('div');
 	movieContainer.id = 'movie-container';
-	movieContainer.style.zIndex = "-1"; //this fixes the movie card being infront of sidebar menu
+	//movieContainer.style.zIndex = "-1"; //this fixes the movie card being infront of sidebar menu
 	resultContainer.appendChild(movieContainer);
 
 	//adding hyperlink, the movie's imdb-page, to movie poster
@@ -200,6 +200,7 @@ function generateMovieCard(apiCallResult) {
 		//TODO: change to dropdown on touch (jquery?)
 		//https://coderwall.com/p/3uwgga/make-css-dropdown-menus-work-on-touch-devices
 	}
+
 	let awards = document.createElement("span");
 	awards.id = "awards";
 	awards.appendChild(document.createTextNode(apiCallResult.Awards));
@@ -222,8 +223,7 @@ function generateMovieCard(apiCallResult) {
 	}
 
 	let ratingMax = document.createElement("span");
-	ratingMax.id = "ra" +
-		"ting-max";
+	ratingMax.id = "rating-max";
 	ratingMax.appendChild(document.createTextNode("/10"));
 	ratingDiv.appendChild(ratingMax);
 
@@ -306,17 +306,14 @@ function saveMovieToFavourite(entryFromAJAX) {
 
 	let favouriteMoviesUL = document.getElementById("favourite-movies-list");
 
-
-
 	if (!document.getElementById("input-hamburger").checked && favouriteMoviesUL.childElementCount == 0){
 		document.getElementById("slice1").classList.add("pulse-grey-animation");
 		document.getElementById("slice2").classList.add("pulse-grey-animation");
 		document.getElementById("slice3").classList.add("pulse-grey-animation");
 	}
 
-
 	if (document.getElementById("input-hamburger").checked){
-		favouriteMoviesUL.lastElementChild.classList.add("pulse-grey-animation");
+	//	favouriteMoviesUL.lastElementChild.classList.add("pulse-grey-animation");
 	}
 
 	handlePlaceholderParagraph();
@@ -343,7 +340,17 @@ function populateFavouriteMoviesList(snapshot) {
 		favouriteMoviesUL.appendChild(a);
 
 		let li = document.createElement("li");
-		li.appendChild(document.createTextNode(movieObj.title + " (" + String(movieObj.year) + ")"));
+		li.id = 'favourite-movie-li';
+		li.appendChild(document.createTextNode(
+			movieObj.title + " (" + movieObj.year + ")"
+			));
+
+		//this span displays rating-star and rating
+		let ratingSpan = document.createElement("span");
+		ratingSpan.innerHTML = " <i class=\"fa fa-star\" aria-hidden=\"true\"></i>";
+		ratingSpan.appendChild(document.createTextNode(" " + movieObj.rating));
+		li.appendChild(ratingSpan);
+
 		a.appendChild(li);
 
 	});
