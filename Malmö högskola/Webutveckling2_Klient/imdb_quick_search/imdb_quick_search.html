@@ -20,10 +20,12 @@
 	<script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-database.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-analytics.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-auth.js"></script>
-	<script src="https://www.gstatic.com/firebasejs/ui/4.7.1/firebase-ui-auth.js"></script>
-	<link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.7.1/firebase-ui-auth.css" />
 
+	<script>
+
+	</script>
 	<script src="dataAccessLayer.js" type="text/javascript"></script>
+
 	<script async src="main.js" type="text/javascript"></script>
 
 </head>
@@ -33,7 +35,6 @@
 
 		<!-- HTML for favourite movies list -->
 		<div id="favourite-movies-container">
-
 			<!--
 			  A hidden checkbox is used as click receiver,
 			  so you can use the :checked selector on it.
@@ -46,23 +47,13 @@
 			<span id="slice3"></span>
 
 			<div id="favourite-movies-content-container">
-				<div id="firebaseui-auth-container" onclick="firebaseUI()"></div>
 				<h2>Favourites</h2>
 				<p id="empty-list-placeholder">No favourites. Try adding one by clicking on a movie!</p>
-				<div id="favourite-movies-list">
-<!--					<div id="testDiv">-->
-<!--						<div id="title-year-li">-->
-<!--							<span id="title-li">The Testing of CSS wordwordword</span><br>-->
-<!--							<span id="year-li">2020</span>-->
-<!--						</div>-->
-<!--						<div id="rating-li"><i class="fa fa-star" aria-hidden="true"></i> 9.5</div>-->
-<!--					</div>-->
-<!--					this code is for testing a design of movie lists-->
-				</div>
+				<ul id="favourite-movies-list"></ul>
 				<button type="button" id="show-favourite-movies">Show</button>
 			</div>
-
 		</div>
+
 
 		<!--Main content: search bar and results-->
 		<div id="main-content-container">
