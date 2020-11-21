@@ -46,11 +46,34 @@
 			<span id="slice2"></span>
 			<span id="slice3"></span>
 
+
 			<div id="favourite-movies-content-container">
-				<h2>Favourites</h2>
-				<p id="empty-list-placeholder">No favourites. Try adding one by clicking on a movie!</p>
-				<ul id="favourite-movies-list"></ul>
-				<button type="button" id="show-favourite-movies">Show</button>
+
+				<div id="firebaseui-auth-container"></div>
+				<div id="sign-in-status"></div>
+				<form id="sign-in-form">
+					<label for="email">Email:</label><input type="text" id="email"><br>
+					<label for="password">Password:</label><input type="text" id="password">
+				</form>
+				<div id="sign-in"></div>
+
+
+				<div id="favourite-title-and-list">
+					<h3>Your favourites</h3>
+					<p id="empty-list-placeholder">No favourites. Try adding one by clicking on a movie!</p>
+					<div id="favourite-movies-list">
+	<!--					<div id="testDiv">-->
+	<!--						<div id="title-year-li">-->
+	<!--							<span id="title-li">The Testing of CSS wordwordword</span><br>-->
+	<!--							<span id="year-li">2020</span>-->
+	<!--						</div>-->
+	<!--						<div id="rating-li"><i class="fa fa-star" aria-hidden="true"></i> 9.5</div>-->
+	<!--					</div>-->
+	<!--					this code is for testing a design of movie lists-->
+					</div>
+					<button type="button" id="show-favourite-movies">Show</button>
+				</div>
+
 			</div>
 		</div>
 

@@ -125,9 +125,18 @@ form input {
 	color: #696969;
 }
 
-/*
- * modal box design
- */
+/*****************************
+	firebaseUI
+ *****************************/
+
+#sign-in:hover, #sign-in:active, #sign-in:focus{
+	cursor: pointer;
+}
+
+
+/*****************************
+	modal box design
+ *****************************/
 
 .modal-box {
 	display: none; /* Hidden by default */
