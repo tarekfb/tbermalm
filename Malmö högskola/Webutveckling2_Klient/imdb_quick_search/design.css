@@ -148,15 +148,6 @@ form input {
 }
 
 /*****************************
-	firebaseUI
- *****************************/
-
-#sign-in:hover, #sign-in:active, #sign-in:focus{
-	cursor: pointer;
-}
-
-
-/*****************************
 	modal box design
  *****************************/
 
@@ -410,6 +401,14 @@ design the hidden input node
 }
 
 /*****************************
+	firebaseUI
+ *****************************/
+
+#sign-in:hover, #sign-in:active, #sign-in:focus{
+	cursor: pointer;
+}
+
+/*****************************
 	designing the content of container
 *****************************/
 
@@ -436,80 +435,81 @@ design the hidden input node
 	color: var(--gold);
 }
 
+
 /*testing design, used for static html that is currently commented out*/
 /*the nodes x-li belong to a testDiv*/
 
-#testDiv {
-	/*position: relative;*/
-	width: 85%;
-	height: 80px;
-	background: var(--background-grey);
-	border-radius: 5px;
-	border: 1px solid grey;
-	margin: 10px auto 0;
-	text-align: left;
-	padding: 5px;
-	overflow: hidden;
+/*#testDiv {*/
+/*	!*position: relative;*!*/
+/*	width: 85%;*/
+/*	height: 80px;*/
+/*	background: var(--background-grey);*/
+/*	border-radius: 5px;*/
+/*	border: 1px solid grey;*/
+/*	margin: 10px auto 0;*/
+/*	text-align: left;*/
+/*	padding: 5px;*/
+/*	overflow: hidden;*/
 
-	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
+/*	display: flex;*/
+/*	flex-direction: row;*/
+/*	justify-content: space-between;*/
 
-	box-shadow: 0 0 1px rgba(0, 0, 0, 0);
-	transition-duration: 0.3s;
-	transition-property: transform;
+/*	box-shadow: 0 0 1px rgba(0, 0, 0, 0);*/
+/*	transition-duration: 0.3s;*/
+/*	transition-property: transform;*/
 
-	/*
-	TODO: style this div
-    can look at styling for movie-container for inspiration
-    should i use same style?
-    maybe same base style but change it up, such as background color??
-    */
-}
+/*	!**/
+/*	TODO: style this div*/
+/*    can look at styling for movie-container for inspiration*/
+/*    should i use same style?*/
+/*    maybe same base style but change it up, such as background color??*/
+/*    *!*/
+/*}*/
 
-#testDiv:hover, testDiv:focus, testDiv:active {
-	transform: scale(1.03);
-	cursor: pointer;
-/*	change to lighter  grey on hover*/
+/*#testDiv:hover, testDiv:focus, testDiv:active {*/
+/*	transform: scale(1.03);*/
+/*	cursor: pointer;*/
+/*!*	change to lighter  grey on hover*!*/
 
-}
+/*}*/
 
 
-#title-year-li{
-	flex: 1 1 80%;
+/*#title-year-li{*/
+/*	flex: 1 1 80%;*/
 
-	display: flex;
-	flex-direction: column;
-	justify-content: flex-start;
-}
+/*	display: flex;*/
+/*	flex-direction: column;*/
+/*	justify-content: flex-start;*/
+/*}*/
 
-#title-li{
-	flex-grow: 1;
-	font-size: 18px;
-	flex-basis: 25%;
-}
+/*#title-li{*/
+/*	flex-grow: 1;*/
+/*	font-size: 18px;*/
+/*	flex-basis: 25%;*/
+/*}*/
 
-#year-li{
-	font-size: 15px;
-	flex-basis: 15%;
-}
+/*#year-li{*/
+/*	font-size: 15px;*/
+/*	flex-basis: 15%;*/
+/*}*/
 
-#rating-li{
-	flex: 0.2 0.2 20%;
+/*#rating-li{*/
+/*	flex: 0.2 0.2 20%;*/
 
-	line-height: 5em;
-	/*arbitrary line height to vertically center div*/
-	min-width: 0;
-}
+/*	line-height: 5em;*/
+/*	!*arbitrary line height to vertically center div*!*/
+/*	min-width: 0;*/
+/*}*/
 
-#rating-li span {
-	white-space: pre;
-}
+/*#rating-li span {*/
+/*	white-space: pre;*/
+/*}*/
 
-#rating-li i {
-	color: #FFD700;
-	text-shadow: 0 0 3px #000;
-}
+/*#rating-li i {*/
+/*	color: #FFD700;*/
+/*	text-shadow: 0 0 3px #000;*/
+/*}*/
 
 #show-favourite-movies{
 	border-radius: 4px;
