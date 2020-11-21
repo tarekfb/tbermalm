@@ -11,6 +11,7 @@ toggleHideFavouriteMovies();
 favouriteMoviesHamburgerListener();
 readFavouriteMoviesList().then(snapshot => populateFavouriteMoviesList(snapshot));
 
+
 function submitFormListener() {
 	let form = document.getElementById("search-form");
 	let searchBox = document.getElementById("search-box");

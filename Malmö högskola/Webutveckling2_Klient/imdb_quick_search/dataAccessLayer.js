@@ -50,9 +50,13 @@ async function readFavouriteMoviesList() {
 
 
 function firebaseUI() {
+    //https://github.com/firebase/firebaseui-web/blob/master/README.md#demo
+    //https://stackoverflow.com/questions/43756899/how-to-login-a-user-using-firebase-authentication
+    //LOOK AT THIS FOR HANDLING BRANCHES AND USERS
+
     // FirebaseUI config.
     let uiConfig = {
-        signInSuccessUrl: '<url-to-redirect-to-on-success>',
+        signInSuccessUrl: 'http://localhost:63342/imdb_quick_search/imdb_quick_search.html', //https://www.tbdevstuff.live/webutveckling2_klient/imdb_quick_search/imdb_quick_search.html
         signInOptions: [
             // Leave the lines as is for the providers you want to offer your users.
             firebase.auth.EmailAuthProvider.PROVIDER_ID,
@@ -71,7 +75,72 @@ function firebaseUI() {
     // Initialize the FirebaseUI Widget using Firebase.
     let ui = new firebaseui.auth.AuthUI(firebase.auth());
     // The start method will wait until the DOM is loaded.
-    ui.start('#firebaseui-auth-container', uiConfig);
+
+    // Is there an email link sign-in?
+    if (ui.isPendingRedirect()) {
+        ui.start('#firebaseui-auth-container', uiConfig);
+    }
+
+}
+
+firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+        let firebaseUIAuthContainer = document.getElementById("firebaseui-auth-container");
+        firebaseUIAuthContainer.style.display = "none";
+
+
+
+
+        // User is signed in.
+        var displayName = user.displayName;
+        var email = user.email;
+        var emailVerified = user.emailVerified;
+        var photoURL = user.photoURL;
+        var uid = user.uid;
+        var phoneNumber = user.phoneNumber;
+        var providerData = user.providerData;
+        user.getIdToken().then(function(accessToken) {
+            document.getElementById('sign-in-status').textContent = 'Signed in: ' + displayName;
+            document.getElementById('sign-in').textContent = 'Sign out';
+            document.getElementById('sign-in').onclick = firebaseSignOut;
+            document.getElementById("sign-in-form").style.display = "none";
+            document.getElementById("favourite-title-and-list").style.display = "unset";
+            document.getElementById('sign-in-status').style.display = "unset";
+        });
+    } else {
+        // User is signed out.
+        document.getElementById('sign-in-status').textContent = 'Signed out';
+        document.getElementById('sign-in-status').style.display = "none";
+        document.getElementById('sign-in').textContent = 'Sign in';
+        document.getElementById("favourite-title-and-list").style.display = "none";
+        document.getElementById("sign-in-form").style.display = "unset";
+
+        document.getElementById('sign-in').onclick = firebaseSignIn;
+
+
+        let firebaseUIAuthContainer = document.getElementById("firebaseui-auth-container");
+        firebaseUIAuthContainer.style.display = "unset";
+
+    }
+}, function(error) {
+    console.log(error);
+});
+
+function firebaseSignIn() {
+
+    event.preventDefault();
+
+    let email = document.getElementById("email").value;
+    let password = document.getElementById("password").value;
+
+    firebase.auth().signInWithEmailAndPassword(email, password)
+        .catch((error) => {
+            console.log(error.code + "AND::::" + error.message);
+        });
+}
+
+function firebaseSignOut() {
+    firebase.auth().signOut();
 }
 
 function handleSignIn() {

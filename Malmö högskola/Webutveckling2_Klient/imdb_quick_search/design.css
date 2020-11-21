@@ -148,6 +148,15 @@ form input {
 }
 
 /*****************************
+	firebaseUI
+ *****************************/
+
+#sign-in:hover, #sign-in:active, #sign-in:focus{
+	cursor: pointer;
+}
+
+
+/*****************************
 	modal box design
  *****************************/
 
