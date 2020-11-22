@@ -2,6 +2,7 @@ initializeFireBase();
 
 let db = firebase.database();
 let rootRef = db.ref();
+firebaseUI();
 
 function initializeFireBase() {
     // The Firebase configuration
@@ -59,8 +60,7 @@ function firebaseUI() {
             firebase.auth.EmailAuthProvider.PROVIDER_ID,
             firebaseui.auth.AnonymousAuthProvider.PROVIDER_ID
         ],
-        // tosUrl and privacyPolicyUrl accept either url string or a callback
-        // function.
+        // tosUrl and privacyPolicyUrl accept either url string or a callback function.
         // Terms of service url/callback.
         tosUrl: '<your-tos-url>',
         // Privacy policy url/callback.
@@ -74,19 +74,19 @@ function firebaseUI() {
     // The start method will wait until the DOM is loaded.
 
     // Is there an email link sign-in?
-    if (ui.isPendingRedirect()) {
-        ui.start('#firebaseui-auth-container', uiConfig);
-    }
+    ui.start('#firebaseui-auth-container', uiConfig);
 
 }
 
 firebase.auth().onAuthStateChanged(function(user) {
+    let firebaseUISignupContainer = document.getElementById("firebaseui-signup-container");
+    let signInStatus = document.getElementById('sign-in-status');
+    let signOut =  document.getElementById('sign-out');
+    // let signInForm =  document.getElementById("sign-in-form");
+    let titleAndListContainer =  document.getElementById("title-and-list-container");
+
     if (user) {
-        let firebaseUIAuthContainer = document.getElementById("firebaseui-auth-container");
-        firebaseUIAuthContainer.style.display = "none";
-
-
-
+        //TODO: rewrite so it passes user to frontend and handle design there
 
         // User is signed in.
         var displayName = user.displayName;
@@ -97,26 +97,23 @@ firebase.auth().onAuthStateChanged(function(user) {
         var phoneNumber = user.phoneNumber;
         var providerData = user.providerData;
         user.getIdToken().then(function(accessToken) {
-            document.getElementById('sign-in-status').textContent = 'Signed in: ' + displayName;
-            document.getElementById('sign-in').textContent = 'Sign out';
-            document.getElementById('sign-in').onclick = firebaseSignOut;
-            document.getElementById("sign-in-form").style.display = "none";
-            document.getElementById("favourite-title-and-list").style.display = "unset";
-            document.getElementById('sign-in-status').style.display = "unset";
+
+            signInStatus.textContent = 'Signed in: ' + displayName;
+            signInStatus.style.display = "unset";
+            signOut.textContent = 'Log out';
+            signOut.onclick = firebaseSignOut;
+            titleAndListContainer.style.display = "unset";
+            firebaseUISignupContainer.style.display = "none";
+
         });
     } else {
         // User is signed out.
-        document.getElementById('sign-in-status').textContent = 'Signed out';
-        document.getElementById('sign-in-status').style.display = "none";
-        document.getElementById('sign-in').textContent = 'Sign in';
+        signInStatus.textContent = 'Signed out';
+        signInStatus.style.display = "none";
+        signOut.style.display = "none";
         document.getElementById("favourite-title-and-list").style.display = "none";
-        document.getElementById("sign-in-form").style.display = "unset";
-
-        document.getElementById('sign-in').onclick = firebaseSignIn;
-
-
-        let firebaseUIAuthContainer = document.getElementById("firebaseui-auth-container");
-        firebaseUIAuthContainer.style.display = "unset";
+        titleAndListContainer.style.display = "none";
+        firebaseUISignupContainer.style.display = "unset";
 
     }
 }, function(error) {
@@ -125,15 +122,6 @@ firebase.auth().onAuthStateChanged(function(user) {
 
 function firebaseSignIn() {
 
-    event.preventDefault();
-
-    let email = document.getElementById("email").value;
-    let password = document.getElementById("password").value;
-
-    firebase.auth().signInWithEmailAndPassword(email, password)
-        .catch((error) => {
-            console.log(error.code + "AND::::" + error.message);
-        });
 }
 
 function firebaseSignOut() {
@@ -147,26 +135,26 @@ function handleSignIn() {
     //get started with firebase security
     //https://firebase.google.com/docs/database/security/get-started?authuser=0
 
-  /*
-    firebase.auth().signInAnonymously().catch(function(error) {
-      // Handle Errors here.
-      var errorCode = error.code;
-      var errorMessage = error.message;
+    /*
+      firebase.auth().signInAnonymously().catch(function(error) {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        // ...
+      });
+
+     firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+      // User is signed in.
+      var isAnonymous = user.isAnonymous;
+      var uid = user.uid;
       // ...
-    });
-
-   firebase.auth().onAuthStateChanged(function(user) {
-  if (user) {
-    // User is signed in.
-    var isAnonymous = user.isAnonymous;
-    var uid = user.uid;
+    } else {
+      // User is signed out.
+      // ...
+    }
     // ...
-  } else {
-    // User is signed out.
-    // ...
-  }
-  // ...
-});
+  });
 
-   */
+     */
 }

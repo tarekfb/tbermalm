@@ -1,9 +1,23 @@
+/*****************************
+	variables and .hide
+*****************************/
+
 :root {
 	/*variables*/
 	--main-yellow: #f4cb84;
 	--main-red: #f38363 ;
 	--accept-green: #08b335;
+	--background-grey: #e7d2cc;
+	--gold: #FFD700;
 }
+
+.hide{
+	display: none;
+}
+
+/*****************************
+	reset/general
+*****************************/
 
 html {
 	background-repeat: no-repeat;
@@ -233,7 +247,7 @@ designing the hamburger icon and transformation
 #slice1, #slice2, #slice3{
 	position: relative;
 	display: block;
-	
+
 	/*top: 30px;*/
 	/*left: 30px;*/
 
@@ -377,7 +391,11 @@ designing the container for content
 	firebaseUI
  *****************************/
 
-#sign-in:hover, #sign-in:active, #sign-in:focus{
+#firebase-auth-container{
+	margin-top: 40px;
+}
+
+#sign-out:hover, #sign-out:active, #sign-out:focus{
 	cursor: pointer;
 }
 
