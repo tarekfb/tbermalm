@@ -1,21 +1,9 @@
-/*****************************
-	variables and .hide
-*****************************/
-
 :root {
 	/*variables*/
 	--main-yellow: #f4cb84;
 	--main-red: #f38363 ;
 	--accept-green: #08b335;
 }
-
-.hide{
-	display: none;
-}
-
-/*****************************
-	reset/general
-*****************************/
 
 html {
 	background-repeat: no-repeat;
@@ -389,11 +377,7 @@ designing the container for content
 	firebaseUI
  *****************************/
 
-#firebase-auth-container{
-	margin-top: 40px;
-}
-
-#sign-out:hover, #sign-out:active, #sign-out:focus{
+#sign-in:hover, #sign-in:active, #sign-in:focus{
 	cursor: pointer;
 }
 
