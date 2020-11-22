@@ -60,7 +60,8 @@ function firebaseUI() {
             firebase.auth.EmailAuthProvider.PROVIDER_ID,
             firebaseui.auth.AnonymousAuthProvider.PROVIDER_ID
         ],
-        // tosUrl and privacyPolicyUrl accept either url string or a callback function.
+        // tosUrl and privacyPolicyUrl accept either url string or a callback
+        // function.
         // Terms of service url/callback.
         tosUrl: '<your-tos-url>',
         // Privacy policy url/callback.
@@ -73,7 +74,6 @@ function firebaseUI() {
     let ui = new firebaseui.auth.AuthUI(firebase.auth());
     // The start method will wait until the DOM is loaded.
 
-    // Is there an email link sign-in?
     ui.start('#firebaseui-auth-container', uiConfig);
 
 }
