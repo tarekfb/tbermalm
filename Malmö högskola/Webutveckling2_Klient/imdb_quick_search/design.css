@@ -424,7 +424,7 @@ design the hidden input node
 }
 
 /*****************************
-	firebaseUI
+	firebaseAuth
  *****************************/
 
 #firebase-auth-container{
@@ -447,7 +447,6 @@ design the hidden input node
 	cursor: pointer;
 	color: var(--main-yellow);
 	transition: color 0.2s ease;
-
 }
 
 #favourite-movie-li{

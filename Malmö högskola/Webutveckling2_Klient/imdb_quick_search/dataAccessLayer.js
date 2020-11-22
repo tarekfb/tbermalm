@@ -54,7 +54,7 @@ function firebaseUI() {
 
     // FirebaseUI config.
     let uiConfig = {
-        signInSuccessUrl: 'http://localhost:63342/imdb_quick_search/imdb_quick_search.html', //https://www.tbdevstuff.live/webutveckling2_klient/imdb_quick_search/imdb_quick_search.html
+        //signInSuccessUrl: 'http://localhost:63342/imdb_quick_search/imdb_quick_search.html', //https://www.tbdevstuff.live/webutveckling2_klient/imdb_quick_search/imdb_quick_search.html
         signInOptions: [
             // Leave the lines as is for the providers you want to offer your users.
             firebase.auth.EmailAuthProvider.PROVIDER_ID,
@@ -97,22 +97,22 @@ firebase.auth().onAuthStateChanged(function(user) {
         var providerData = user.providerData;
         user.getIdToken().then(function(accessToken) {
 
-            signInStatus.textContent = 'Signed in: ' + displayName;
-            signInStatus.style.display = "unset";
-            signOut.textContent = 'Log out';
-            signOut.onclick = firebaseSignOut;
-            titleAndListContainer.style.display = "unset";
-            firebaseUISignupContainer.style.display = "none";
-
         });
+
+        firebaseUISignupContainer.style.display = "none";
+        signInStatus.textContent = 'Signed in: ' + displayName;
+        signInStatus.style.display = "unset";
+        signOut.textContent = 'Log out';
+        signOut.onclick = firebaseSignOut;
+        signOut.style.display = "unset";
+        titleAndListContainer.style.display = "unset";
     } else {
         // User is signed out.
+        firebaseUISignupContainer.style.display = "unset";
         signInStatus.textContent = 'Signed out';
         signInStatus.style.display = "none";
         signOut.style.display = "none";
         titleAndListContainer.style.display = "none";
-        firebaseUISignupContainer.style.display = "unset";
-
     }
 }, function(error) {
     console.log(error);
