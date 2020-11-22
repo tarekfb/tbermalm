@@ -41,7 +41,10 @@ a {
 	color: inherit;
 }
 
-/*img, search bar and result container*/
+/*****************************
+	img, search bar and result container
+*****************************/
+
 #logo img {
 	margin-top: 35px;
 	width: 200px;
@@ -71,8 +74,24 @@ form input {
 	font-size: 25px;
 }
 
-/*style for each movie, within the result container*/
+/*****************************
+	style for each movie, within the result container
+*****************************/
+
 #movie-container {
+	/*
+	TODO: this div, and only this div, is positioned above sidebar menu
+	even though sidebar menu has higher z-index
+	unsure why
+	could be something within this card itself, or the parents
+	 */
+
+	/*
+	TODO: FIX, for some reason the grow transformation is not working
+	seems to not work when z-index is negative
+	*/
+
+	position: relative;
 	box-shadow: 0 0 1px rgba(0, 0, 0, 0);
 	transition-duration: 0.3s;
 	transition-property: transform;
@@ -81,12 +100,21 @@ form input {
 	justify-content: space-between;
 	width: 45%;
 	height: 165px;
-	background: #e7d2cc;
+	background-color: var(--background-grey);
 	border-radius: 5px;
 	border: 1px solid grey;
-	margin: 20px auto 0;
+	margin: 15px auto 0;
 	position: relative;
 	text-align: left;
+
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+
+	box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+	transition-duration: 0.3s;
+	transition-property: transform;
+
 }
 #movie-container:hover, movie-container:focus, movie-container:active {
 	transform: scale(1.03);
@@ -219,11 +247,11 @@ form input {
 	cursor: pointer;
 }
 
-/*
-favourites movies list
-using this as hamburger menu design
-https://codepen.com/erikterwan/pen/EVzeRP
-*/
+/*****************************
+	favourites movies list
+	using this as hamburger menu design
+	https://codepen.com/erikterwan/pen/EVzeRP
+*****************************/
 
 /*
 this is the parent of the favourite movie sidebar
@@ -233,7 +261,7 @@ this is the parent of the favourite movie sidebar
 	position: fixed;
 
 	top: 30px;
-	left: 30px;
+	left: 55px;
 
 	/*stops user from being able to select text here*/
 	-webkit-user-select: none;
@@ -294,7 +322,10 @@ pulse grey on save to list
 /*slide sidebar in and out */
 #input-hamburger:checked ~ #favourite-movies-content-container {
 	transform: none;
-	/*since there is no display: none when unchecked, it'll block any content underneath*/
+	/*
+	since there is no "display: none" when unchecked, it'll block any content underneath
+	circumvented by setting width on child container, instead of parent container
+	*/
 }
 
 @keyframes fade {
@@ -363,19 +394,24 @@ design the hidden input node
 	-webkit-touch-callout: none;
 }
 
-/*
-designing the container for content
-*/
+/*****************************
+	designing the container for content
+*****************************/
+
 #favourite-movies-content-container{
 	margin: -100px 0 0 -55px;
 	padding: 25px;
 	padding-top: 90px;
 	/*height: 100vh;*/
-	width: 250px;
+	//width: 250px;
 
 	height: auto;
 	min-height: 100vh;
 
+	width: 275px;
+	/*if i set the width of the sidebar menu at the parent container
+	it blocks the content behind the sidebar, even when input-hamburger.unchecked
+	however, if i set the width here it doesn't block any content*/
 
 	background: var(--main-red);
 	-webkit-font-smoothing: antialiased;
@@ -410,16 +446,18 @@ designing the container for content
 #favourite-movie-li:focus, #favourite-movie-li:active, #favourite-movie-li:hover {
 	cursor: pointer;
 	color: var(--main-yellow);
+	transition: color 0.2s ease;
+
 }
 
 #favourite-movie-li{
 	margin-bottom: 10px;
+	text-align: left;
 }
 
 #favourite-movie-li span i {
 	color: var(--gold);
 }
-
 
 /*testing design, used for static html that is currently commented out*/
 /*the nodes x-li belong to a testDiv*/
@@ -495,25 +533,6 @@ designing the container for content
 /*	color: #FFD700;*/
 /*	text-shadow: 0 0 3px #000;*/
 /*}*/
-
-#favourite-movies-list li{
-	padding: 10px 0;
-	font-size: 22px;
-	text-align: left;
-}
-
-#favourite-movies-container a{
-	text-decoration: none;
-	/*color: #232323;*/
-	/*unsure of hte color here */
-
-	transition: color 0.3s ease;
-}
-
-#favourite-movies-container a:hover {
-	/*color: tomato;*/
-	/*unsure of hte color here */
-}
 
 #show-favourite-movies{
 	border-radius: 4px;
