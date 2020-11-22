@@ -2,7 +2,6 @@ initializeFireBase();
 
 let db = firebase.database();
 let rootRef = db.ref();
-firebaseUI();
 
 
 function initializeFireBase() {
@@ -29,7 +28,6 @@ function pushFavouriteMovie(entryFromAJAX) {
     newFavouriteMovieRef.set({
         title: entryFromAJAX.Title,
         year: entryFromAJAX.Year,
-        rating: entryFromAJAX.imdbRating
         //rating: entryFromAJAX.imdbRating
 
         //currently the imdbRating is fetched from a different object
@@ -48,7 +46,6 @@ async function readFavouriteMoviesList() {
     });
 
 }
-
 
 function firebaseUI() {
     //https://github.com/firebase/firebaseui-web/blob/master/README.md#demo
