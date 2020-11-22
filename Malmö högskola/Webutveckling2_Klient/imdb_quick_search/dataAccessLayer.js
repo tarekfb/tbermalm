@@ -4,6 +4,7 @@ let db = firebase.database();
 let rootRef = db.ref();
 firebaseUI();
 
+
 function initializeFireBase() {
     // The Firebase configuration
     // For Firebase JS SDK v7.20.0 and later, measurementId is optional
@@ -76,21 +77,19 @@ function firebaseUI() {
     let ui = new firebaseui.auth.AuthUI(firebase.auth());
     // The start method will wait until the DOM is loaded.
 
-    // Is there an email link sign-in?
-    if (ui.isPendingRedirect()) {
-        ui.start('#firebaseui-auth-container', uiConfig);
-    }
+    ui.start('#firebaseui-signup-container', uiConfig);
 
 }
 
 firebase.auth().onAuthStateChanged(function(user) {
+
+    let firebaseUISignupContainer = document.getElementById("firebaseui-signup-container");
+    let signInStatus = document.getElementById('sign-in-status');
+    let signOut =  document.getElementById('sign-out');
+   // let signInForm =  document.getElementById("sign-in-form");
+    let titleAndListContainer =  document.getElementById("title-and-list-container");
+
     if (user) {
-        let firebaseUIAuthContainer = document.getElementById("firebaseui-auth-container");
-        firebaseUIAuthContainer.style.display = "none";
-
-
-
-
         // User is signed in.
         var displayName = user.displayName;
         var email = user.email;
@@ -100,43 +99,41 @@ firebase.auth().onAuthStateChanged(function(user) {
         var phoneNumber = user.phoneNumber;
         var providerData = user.providerData;
         user.getIdToken().then(function(accessToken) {
-            document.getElementById('sign-in-status').textContent = 'Signed in: ' + displayName;
-            document.getElementById('sign-in').textContent = 'Sign out';
-            document.getElementById('sign-in').onclick = firebaseSignOut;
-            document.getElementById("sign-in-form").style.display = "none";
-            document.getElementById("favourite-title-and-list").style.display = "unset";
-            document.getElementById('sign-in-status').style.display = "unset";
+            // firebaseUISignupContainer.style.display = "unset";
+            signInStatus.textContent = 'Signed in: ' + displayName;
+            signInStatus.style.display = "unset";
+            signOut.textContent = 'Sign out';
+            signOut.onclick = firebaseSignOut;
+           // signInForm.style.display = "none";
+            titleAndListContainer.style.display = "unset";
+            firebaseUISignupContainer.style.display = "none";
         });
+
     } else {
-        // User is signed out.
-        document.getElementById('sign-in-status').textContent = 'Signed out';
-        document.getElementById('sign-in-status').style.display = "none";
-        document.getElementById('sign-in').textContent = 'Sign in';
-        document.getElementById("favourite-title-and-list").style.display = "none";
-        document.getElementById("sign-in-form").style.display = "unset";
+        //User is signed out.
+        signInStatus.textContent = 'Signed out';
+        signInStatus.style.display = "none";
 
-        document.getElementById('sign-in').onclick = firebaseSignIn;
+        signOut.style.display = "none";
 
-
-        let firebaseUIAuthContainer = document.getElementById("firebaseui-auth-container");
-        firebaseUIAuthContainer.style.display = "unset";
-
+        //signInForm.style.display = "unset";
+        titleAndListContainer.style.display = "none";
+        firebaseUISignupContainer.style.display = "unset";
     }
 }, function(error) {
     console.log(error);
 });
 
 function firebaseSignIn() {
-
-    event.preventDefault();
-
-    let email = document.getElementById("email").value;
-    let password = document.getElementById("password").value;
-
-    firebase.auth().signInWithEmailAndPassword(email, password)
-        .catch((error) => {
-            console.log(error.code + "AND::::" + error.message);
-        });
+    // event.preventDefault();
+    //
+    // let email = document.getElementById("email").value;
+    // let password = document.getElementById("password").value;
+    //
+    // firebase.auth().signInWithEmailAndPassword(email, password)
+    //     .catch((error) => {
+    //         console.log("Error code: " + error.code + "\n Error message: " + error.message);
+    //     });
 }
 
 function firebaseSignOut() {

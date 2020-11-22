@@ -1,3 +1,7 @@
+/*****************************
+	variables and .hide
+*****************************/
+
 :root {
 	/*variables*/
 	--main-yellow: #f4cb84;
@@ -6,6 +10,14 @@
 	--background-grey: #e7d2cc;
 	--gold: #FFD700;
 }
+
+.hide{
+	display: none;
+}
+
+/*****************************
+	reset/general
+*****************************/
 
 html {
 	background-repeat: no-repeat;
@@ -404,7 +416,11 @@ design the hidden input node
 	firebaseUI
  *****************************/
 
-#sign-in:hover, #sign-in:active, #sign-in:focus{
+#firebase-auth-container{
+	margin-top: 40px;
+}
+
+#sign-out:hover, #sign-out:active, #sign-out:focus{
 	cursor: pointer;
 }
 
