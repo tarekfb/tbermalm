@@ -74,7 +74,7 @@ function firebaseUI() {
     let ui = new firebaseui.auth.AuthUI(firebase.auth());
     // The start method will wait until the DOM is loaded.
 
-    ui.start('#firebaseui-auth-container', uiConfig);
+    ui.start('#firebaseui-signup-container', uiConfig);
 
 }
 
@@ -82,7 +82,6 @@ firebase.auth().onAuthStateChanged(function(user) {
     let firebaseUISignupContainer = document.getElementById("firebaseui-signup-container");
     let signInStatus = document.getElementById('sign-in-status');
     let signOut =  document.getElementById('sign-out');
-    // let signInForm =  document.getElementById("sign-in-form");
     let titleAndListContainer =  document.getElementById("title-and-list-container");
 
     if (user) {
@@ -111,7 +110,6 @@ firebase.auth().onAuthStateChanged(function(user) {
         signInStatus.textContent = 'Signed out';
         signInStatus.style.display = "none";
         signOut.style.display = "none";
-        document.getElementById("favourite-title-and-list").style.display = "none";
         titleAndListContainer.style.display = "none";
         firebaseUISignupContainer.style.display = "unset";
 
