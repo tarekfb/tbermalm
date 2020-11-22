@@ -2,6 +2,7 @@ initializeFireBase();
 
 let db = firebase.database();
 let rootRef = db.ref();
+firebaseUI();
 
 
 function initializeFireBase() {
@@ -79,6 +80,7 @@ function firebaseUI() {
 }
 
 firebase.auth().onAuthStateChanged(function(user) {
+    //TODO: rewrite so it passes user to frontend and handle design there
 
     let firebaseUISignupContainer = document.getElementById("firebaseui-signup-container");
     let signInStatus = document.getElementById('sign-in-status');
@@ -99,7 +101,7 @@ firebase.auth().onAuthStateChanged(function(user) {
             // firebaseUISignupContainer.style.display = "unset";
             signInStatus.textContent = 'Signed in: ' + displayName;
             signInStatus.style.display = "unset";
-            signOut.textContent = 'Sign out';
+            signOut.textContent = 'Log out';
             signOut.onclick = firebaseSignOut;
            // signInForm.style.display = "none";
             titleAndListContainer.style.display = "unset";
