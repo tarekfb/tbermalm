@@ -1,7 +1,6 @@
 "use strict";
 
 const API_KEY = '5e65d4a0&s';
-let listOfFavouriteMovies = [];
 
 //functions to init page
 submitFormListener();
@@ -405,30 +404,35 @@ function displayFavouriteMovies(snapshot) {
 	let resultContainer = document.getElementById('result-container');
 	resultContainer.innerHTML = "";
 
-	listOfFavouriteMovies.forEach(function(entry) {
-		generateMovieCard(entry);
-	});
-
+	//this generates a list of movies in the main result container, based on imdbID
 	snapshot.forEach(function (snapshot) {
 		let key = snapshot.key;
 		apiHandlerByImdbID(key);
 	});
 
-	/*
-	what i need to do is:
-		for every item in movie-list
-			get the imdbID from snapshot/firebase CHECK
-			make ajax call with the imdbID
-			pass the entryFromAJAX to generateMovieCard()
+}
 
-	however, it seems i need to break up the functions inside of generateMovieCard
-	because that function presumes i already have an entry with
+function authStateChanged(firebaseUser) {
+	let firebaseUISignupContainer = document.getElementById("firebaseui-signup-container");
+	let signInStatus = document.getElementById('sign-in-status');
+	let signOut =  document.getElementById('sign-out');
+	let titleAndListContainer =  document.getElementById("title-and-list-container");
 
-	im instead creating new fun for imdbidapiahndler
-	and using that entry
-
- */
-
+	if (firebaseUser){
+		firebaseUISignupContainer.style.display = "none";
+		signInStatus.textContent = 'Signed in: ' + firebaseUser.displayName;
+		signInStatus.style.display = "unset";
+		signOut.textContent = 'Log out';
+		signOut.onclick = firebaseSignOut;
+		signOut.style.display = "unset";
+		titleAndListContainer.style.display = "unset";
+	} else {
+		firebaseUISignupContainer.style.display = "unset";
+		signInStatus.textContent = 'Signed out';
+		signInStatus.style.display = "none";
+		signOut.style.display = "none";
+		titleAndListContainer.style.display = "none";
+	}
 }
 
 /*

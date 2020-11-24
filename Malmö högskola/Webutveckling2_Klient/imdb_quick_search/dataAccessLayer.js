@@ -78,49 +78,30 @@ function firebaseUI() {
 
 }
 
-firebase.auth().onAuthStateChanged(function(user) {
-    let firebaseUISignupContainer = document.getElementById("firebaseui-signup-container");
-    let signInStatus = document.getElementById('sign-in-status');
-    let signOut =  document.getElementById('sign-out');
-    let titleAndListContainer =  document.getElementById("title-and-list-container");
-
-    if (user) {
-        //TODO: rewrite so it passes user to frontend and handle design there
-
+firebase.auth().onAuthStateChanged(function(firebaseUser) {
+    if (firebaseUser) {
         // User is signed in.
-        var displayName = user.displayName;
-        var email = user.email;
-        var emailVerified = user.emailVerified;
-        var photoURL = user.photoURL;
-        var uid = user.uid;
-        var phoneNumber = user.phoneNumber;
-        var providerData = user.providerData;
-        user.getIdToken().then(function(accessToken) {
-
+        var displayName = firebaseUser.displayName;
+        var email = firebaseUser.email;
+        var emailVerified = firebaseUser.emailVerified;
+        var photoURL = firebaseUser.photoURL;
+        var uid = firebaseUser.uid;
+        var phoneNumber = firebaseUser.phoneNumber;
+        var providerData = firebaseUser.providerData;
+        firebaseUser.getIdToken().then(function(accessToken) {
         });
 
-        firebaseUISignupContainer.style.display = "none";
-        signInStatus.textContent = 'Signed in: ' + displayName;
-        signInStatus.style.display = "unset";
-        signOut.textContent = 'Log out';
-        signOut.onclick = firebaseSignOut;
-        signOut.style.display = "unset";
-        titleAndListContainer.style.display = "unset";
+        authStateChanged(firebaseUser);
+
+
     } else {
         // User is signed out.
-        firebaseUISignupContainer.style.display = "unset";
-        signInStatus.textContent = 'Signed out';
-        signInStatus.style.display = "none";
-        signOut.style.display = "none";
-        titleAndListContainer.style.display = "none";
+        authStateChanged(firebaseUser);
     }
 }, function(error) {
     console.log(error);
+    alert(error);
 });
-
-function firebaseSignIn() {
-
-}
 
 function firebaseSignOut() {
     firebase.auth().signOut();
