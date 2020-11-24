@@ -92,19 +92,12 @@ form input {
 	*/
 
 	position: relative;
-	box-shadow: 0 0 1px rgba(0, 0, 0, 0);
-	transition-duration: 0.3s;
-	transition-property: transform;
-	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
 	width: 45%;
 	height: 165px;
 	background-color: var(--background-grey);
 	border-radius: 5px;
 	border: 1px solid grey;
 	margin: 15px auto 0;
-	position: relative;
 	text-align: left;
 
 	display: flex;
@@ -116,7 +109,8 @@ form input {
 	transition-property: transform;
 
 }
-#movie-container:hover, movie-container:focus, movie-container:active {
+
+#movie-container:hover, #movie-container:focus, #movie-container:active {
 	transform: scale(1.03);
 	cursor: pointer;
 }
@@ -287,7 +281,7 @@ designing the hamburger icon and transformation
 	border-radius: 3px;
 
 	/*this transforms the slices into an x shape*/
-	transform-origin: 4px 0px;
+	transform-origin: 4px 0;
 	transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
 	background 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
 	opacity 0.55s ease;
@@ -302,7 +296,6 @@ pulse grey on save to list
 .pulse-grey-animation{
 	-webkit-animation: pulse 1.0s 3 ease-in-out;
 	-o-animation: pulse 1.0s 3 ease-in-out;
-	-ms-animation: pulse 1.0s 3 ease-in-out;
 	-moz-animation: pulse 1.0s 3 ease-in-out;
 	animation: pulse 1.0s 3 ease-in-out;
 }
@@ -343,11 +336,11 @@ pulse grey on save to list
  * into a crossmark.
  */
 #slice2{
-	transform-origin: 0% 0%;
+	transform-origin: 0 0;
 }
 
 #slice3{
-	transform-origin: 0% 100%;
+	transform-origin: 0 100%;
 }
 
 #input-hamburger:checked ~ #slice1, #input-hamburger:checked ~ #slice2, #input-hamburger:checked ~ #slice3{
@@ -417,7 +410,7 @@ design the hidden input node
 	-webkit-font-smoothing: antialiased;
 	/* to stop flickering of text in safari */
 
-	transform-origin: 0% 0%;
+	transform-origin: 0 0;
 	transform: translate(-100%, 0);
 
 	transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
@@ -584,7 +577,7 @@ design the hidden input node
 		font-size: 15px;
 		display: none;
 	}
-	#movie-container:hover, movie-container:focus, movie-container:active {
+	#movie-container:hover, #movie-container:focus, #movie-container:active {
 		transform: scale(1.00);
 	}
 	.modal-content{

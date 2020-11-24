@@ -2,7 +2,7 @@ initializeFireBase();
 
 let db = firebase.database();
 let rootRef = db.ref();
-firebaseUI();
+initFirebaseUI();
 
 function initializeFireBase() {
     // The Firebase configuration
@@ -23,6 +23,8 @@ function initializeFireBase() {
 }
 
 function pushFavouriteMovie(entryFromAJAX) {
+
+    console.log(firebase.auth().currentUser);
 
     let newFavouriteMovieRef = rootRef.child("movie-list/" + entryFromAJAX.imdbID);
     newFavouriteMovieRef.set({
@@ -47,7 +49,7 @@ async function readFavouriteMoviesList() {
 
 }
 
-function firebaseUI() {
+function initFirebaseUI() {
     //https://github.com/firebase/firebaseui-web/blob/master/README.md#demo
     //https://stackoverflow.com/questions/43756899/how-to-login-a-user-using-firebase-authentication
     //LOOK AT THIS FOR HANDLING BRANCHES AND USERS
@@ -79,6 +81,10 @@ function firebaseUI() {
 }
 
 firebase.auth().onAuthStateChanged(function(firebaseUser) {
+    //if the user signs out or in
+    //define firebaseUser properties
+    //pass firebaseUser to main.js (front end)
+
     if (firebaseUser) {
         // User is signed in.
         var displayName = firebaseUser.displayName;
@@ -92,8 +98,6 @@ firebase.auth().onAuthStateChanged(function(firebaseUser) {
         });
 
         authStateChanged(firebaseUser);
-
-
     } else {
         // User is signed out.
         authStateChanged(firebaseUser);
@@ -104,36 +108,11 @@ firebase.auth().onAuthStateChanged(function(firebaseUser) {
 });
 
 function firebaseSignOut() {
+    //this fun is called when user signs out
+    //does just that, and nothing else
     firebase.auth().signOut();
 }
 
-function handleSignIn() {
-    //anon sign in
-    //https://firebase.google.com/docs/auth/web/anonymous-auth?authuser=0
+function generateDatabaseTree(firebaseUser) {
 
-    //get started with firebase security
-    //https://firebase.google.com/docs/database/security/get-started?authuser=0
-
-    /*
-      firebase.auth().signInAnonymously().catch(function(error) {
-        // Handle Errors here.
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        // ...
-      });
-
-     firebase.auth().onAuthStateChanged(function(user) {
-    if (user) {
-      // User is signed in.
-      var isAnonymous = user.isAnonymous;
-      var uid = user.uid;
-      // ...
-    } else {
-      // User is signed out.
-      // ...
-    }
-    // ...
-  });
-
-     */
 }

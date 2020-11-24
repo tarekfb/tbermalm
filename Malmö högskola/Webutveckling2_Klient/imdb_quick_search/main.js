@@ -10,7 +10,6 @@ toggleHideFavouriteMovies();
 favouriteMoviesHamburgerListener();
 readFavouriteMoviesList().then(snapshot => populateFavouriteMoviesList(snapshot));
 
-
 function submitFormListener() {
 	let form = document.getElementById("search-form");
 	let searchBox = document.getElementById("search-box");
@@ -299,7 +298,7 @@ function showModalBox(entryFromAJAX) {
 }
 
 function saveMovieToFavourite(entryFromAJAX) {
-	//TODO: update to work with firebase db
+	//TODO: update to work with firebase db, see below
 	//if statement of hamburger pulse needs updating
 	//and add(pulse-grey-anim)
 
@@ -359,6 +358,8 @@ function populateFavouriteMoviesList(snapshot) {
 function favouriteMoviesHamburgerListener() {
 	//whenever the user opens the sidebar menu with favourite movies
 	//this will update list with values from db
+	//necessary to call every time because -->
+	// --> user could've added favourites while closed
 	let inputHamburgerCheckbox = document.getElementById("input-hamburger");
 
 	inputHamburgerCheckbox.addEventListener( 'change', function() {
@@ -443,7 +444,7 @@ function authStateChanged(firebaseUser) {
 
 function toggleHideFavouriteMovies() {
 	//TODO: delete if fav-movies sidebar is working as intended
-	// //trying to make it so the sidebar deosnt cover container div, even when not clicked
+	// //trying to make it so the sidebar doesn't cover container div, even when not clicked
 	// let inputToggleFavouriteMovies = document.getElementById("input-hamburger");
 	// let favouriteMoviesContainer = document.getElementById("favourite-movies-container");
 	//
