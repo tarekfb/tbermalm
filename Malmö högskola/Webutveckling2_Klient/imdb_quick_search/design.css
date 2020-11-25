@@ -91,7 +91,6 @@ form input {
 	seems to not work when z-index is negative
 	*/
 
-	position: relative;
 	width: 45%;
 	height: 165px;
 	background-color: var(--background-grey);

@@ -318,7 +318,6 @@ function saveMovieToFavourite(entryFromAJAX) {
 
 	pushFavouriteMovie(entryFromAJAX);
 	readFavouriteMoviesList().then(snapshot => populateFavouriteMoviesList(snapshot));
-
 }
 
 function populateFavouriteMoviesList(snapshot) {
@@ -399,7 +398,8 @@ function showFavouriteMoviesListener() {
 }
 
 function displayFavouriteMovies(snapshot) {
-	//TODO: rewrite to work with firebase db
+	//this fun takes the movies that the user saved to favourites -->
+	// --> and displays them in the main result container
 
 	//this clears whatever result is previously displayed
 	let resultContainer = document.getElementById('result-container');
@@ -414,6 +414,12 @@ function displayFavouriteMovies(snapshot) {
 }
 
 function authStateChanged(firebaseUser) {
+	//this fun is called when the fireBase user changes state (sign in or out)
+	//a fun in DAL is called at that point
+	//that fun calls this fun and passes either the firebaseUser
+	//the firebaseUser has properties on SIGN IN
+	//the firebaseUser is null on LOG OFF
+
 	let firebaseUISignupContainer = document.getElementById("firebaseui-signup-container");
 	let signInStatus = document.getElementById('sign-in-status');
 	let signOut =  document.getElementById('sign-out');

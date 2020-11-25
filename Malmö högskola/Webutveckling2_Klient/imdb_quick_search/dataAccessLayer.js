@@ -24,13 +24,18 @@ function initializeFireBase() {
 
 function pushFavouriteMovie(entryFromAJAX) {
 
+    //i want to read user
+    //if no branch for user exist
+    //  create branch, add the selected movie
+    //if branch exists
+    //  add selected movie
     console.log(firebase.auth().currentUser);
 
     let newFavouriteMovieRef = rootRef.child("movie-list/" + entryFromAJAX.imdbID);
     newFavouriteMovieRef.set({
         title: entryFromAJAX.Title,
         year: entryFromAJAX.Year,
-        //rating: entryFromAJAX.imdbRating
+        rating: entryFromAJAX.imdbRating
 
         //currently the imdbRating is fetched from a different object
         //not the one that is passed to this method
