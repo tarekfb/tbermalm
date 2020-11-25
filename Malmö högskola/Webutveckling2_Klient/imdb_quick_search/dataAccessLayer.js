@@ -29,25 +29,22 @@ function pushFavouriteMovie(entryFromAJAX) {
     //  create branch, add the selected movie
     //if branch exists
     //  add selected movie
-    console.log(firebase.auth().currentUser);
+    console.log(firebase.auth().currentUser.uid);
 
-    let newFavouriteMovieRef = rootRef.child("movie-list/" + entryFromAJAX.imdbID);
+    let uid = firebase.auth().currentUser.uid;
+    let newFavouriteMovieRef = rootRef.child("users/" + uid + "/" + entryFromAJAX.imdbID);
     newFavouriteMovieRef.set({
         title: entryFromAJAX.Title,
         year: entryFromAJAX.Year,
         rating: entryFromAJAX.imdbRating
-
-        //currently the imdbRating is fetched from a different object
-        //not the one that is passed to this method
-        //either have to look at restructuring the AJAX
-        //or pass the rating in some very awkward way from main.js
     });
 }
 
 async function readFavouriteMoviesList() {
     //this async fun returns a promise with a snapshot of the movie-list
 
-    let movieListRef = db.ref("movie-list");
+    let uid = firebase.auth().currentUser.uid;
+    let movieListRef = db.ref(uid);
     return movieListRef.once("value").then(function (snapshot) {
         return snapshot;
     });

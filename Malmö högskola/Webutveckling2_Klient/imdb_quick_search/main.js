@@ -234,6 +234,23 @@ function generateMovieCard(apiCallResult) {
 		}
 	});
 
+
+	//TODO: wip
+	//what I want to do is make sure the height of the sidebar menu matches the page height
+	//this is one of the times where page height is changed
+	//which means i can use tihs to test:
+	//the page height get increased by each movie card
+	//then match height of sidebar to parent (#container)
+	//do this for each card. but doesn't work atm.
+	//might be because sidebar div is absolute, so the background-color doesn't render where there is no content
+
+	let favouriteMovieContainer = document.getElementById('favourite-movies-container')
+	favouriteMovieContainer.style.height = favouriteMovieContainer.parentNode.offsetHeight+"px";
+	console.log("parentnode: " + favouriteMovieContainer.parentNode);
+	console.log("page heigt: " + favouriteMovieContainer.parentNode.offsetHeight);
+	console.log("sidebar heigt: " + favouriteMovieContainer.offsetHeight);
+
+
 	/*
 	when I wrote this function I initially had some really awkward design
 	it was my first usage of async functions

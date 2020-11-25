@@ -263,7 +263,7 @@ this is the parent of the favourite movie sidebar
 
 /*
 designing the hamburger icon and transformation
- */
+*/
 
 #slice1, #slice2, #slice3{
 	position: relative;
@@ -538,6 +538,10 @@ design the hidden input node
 	cursor: pointer;
 }
 
+/*****************************
+	responsive design
+ *****************************/
+
 @media screen and (max-width: 1300px) {
 	img {
 		width: 100px;
@@ -547,6 +551,13 @@ design the hidden input node
 		width: 100%;
 		height: 160px;
 		margin-top: 10px;
+
+		box-shadow: none;
+		transition-property: none;
+	}
+	#movie-container:hover, #movie-container:focus, #movie-container:active {
+		transform: none;
+		cursor: none;
 	}
 	#movie-container img {
 		width: 85px;
@@ -586,6 +597,14 @@ design the hidden input node
 	.modal-content p{
 		margin-top: 0;
 		font-size: 20px;
+	}
+
+	#favourite-movies-container{
+		/*
+		TODO: wip
+		what I want to do is make sure the height of the sidebar menu matches the page height
+		doesn't work atm. see main.js*/
+		/*position: absolute;*/
 	}
 
 	/*
