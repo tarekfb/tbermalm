@@ -8,7 +8,7 @@ showFavouriteMoviesListener();
 handlePlaceholderParagraph();
 toggleHideFavouriteMovies();
 favouriteMoviesHamburgerListener();
-readFavouriteMoviesList().then(snapshot => populateFavouriteMoviesList(snapshot));
+//readFavouriteMoviesList().then(snapshot => populateFavouriteMoviesList(snapshot));
 
 function submitFormListener() {
 	let form = document.getElementById("search-form");
@@ -405,7 +405,7 @@ function handlePlaceholderParagraph() {
 }
 
 function showFavouriteMoviesListener() {
-	//this function is allows us to resolve the promise given by readFavMovList in dal
+	//this function allows us to resolve the promise given by readFavMovList in dal
 	//and pass the snapshot to displayFavMovies
 
 	let showFavouriteMoviesBtn = document.getElementById("show-favourite-movies");
@@ -444,12 +444,18 @@ function authStateChanged(firebaseUser) {
 
 	if (firebaseUser){
 		firebaseUISignupContainer.style.display = "none";
-		signInStatus.textContent = 'Signed in: ' + firebaseUser.displayName;
-		signInStatus.style.display = "unset";
 		signOut.textContent = 'Log out';
 		signOut.onclick = firebaseSignOut;
 		signOut.style.display = "unset";
 		titleAndListContainer.style.display = "unset";
+
+		if (firebaseUser.displayName == null){
+			signInStatus.textContent = 'Signed in: Guest';
+		} else{
+			signInStatus.textContent = 'Signed in: ' + firebaseUser.displayName;
+		}
+		signInStatus.style.display = "unset";
+
 	} else {
 		firebaseUISignupContainer.style.display = "unset";
 		signInStatus.textContent = 'Signed out';

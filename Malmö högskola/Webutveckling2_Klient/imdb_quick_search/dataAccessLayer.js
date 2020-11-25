@@ -40,12 +40,18 @@ function pushFavouriteMovie(entryFromAJAX) {
     });
 }
 
+
+
 async function readFavouriteMoviesList() {
     //this async fun returns a promise with a snapshot of the movie-list
+    console.log("FROM READFAV: " + firebase.auth().currentUser.uid);
+
 
     let uid = firebase.auth().currentUser.uid;
     let movieListRef = db.ref(uid);
     return movieListRef.once("value").then(function (snapshot) {
+        console.log(snapshot);
+        console.log();
         return snapshot;
     });
 
@@ -80,6 +86,12 @@ function initFirebaseUI() {
 
     ui.start('#firebaseui-signup-container', uiConfig);
 
+    // let uid = firebase.auth().currentUser.uid;
+    // let movieListRef = db.ref(uid);
+    // movieListRef.on("value").then(function (snapshot) {
+    //     console.log("FROM ON: " + snapshot);
+    // });
+
 }
 
 firebase.auth().onAuthStateChanged(function(firebaseUser) {
@@ -89,13 +101,13 @@ firebase.auth().onAuthStateChanged(function(firebaseUser) {
 
     if (firebaseUser) {
         // User is signed in.
-        var displayName = firebaseUser.displayName;
-        var email = firebaseUser.email;
-        var emailVerified = firebaseUser.emailVerified;
-        var photoURL = firebaseUser.photoURL;
-        var uid = firebaseUser.uid;
-        var phoneNumber = firebaseUser.phoneNumber;
-        var providerData = firebaseUser.providerData;
+        let displayName = firebaseUser.displayName;
+        let  email = firebaseUser.email;
+        let emailVerified = firebaseUser.emailVerified;
+        let photoURL = firebaseUser.photoURL;
+        let uid = firebaseUser.uid;
+        let phoneNumber = firebaseUser.phoneNumber;
+        let providerData = firebaseUser.providerData;
         firebaseUser.getIdToken().then(function(accessToken) {
         });
 
@@ -113,8 +125,4 @@ function firebaseSignOut() {
     //this fun is called when user signs out
     //does just that, and nothing else
     firebase.auth().signOut();
-}
-
-function generateDatabaseTree(firebaseUser) {
-
 }
