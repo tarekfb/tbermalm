@@ -69,6 +69,7 @@ firebase.auth().onAuthStateChanged(function(firebaseUser) {
 
         authStateChanged(firebaseUser);
         readFavouriteMoviesList().then(snapshot => populateFavouriteMoviesList(snapshot));
+
     } else {
         // User is signed out.
         authStateChanged(firebaseUser);
@@ -106,6 +107,10 @@ async function readFavouriteMoviesList() {
         console.log(`YEAR FROM readFavMovList ${snapshot.val.title}`);
         return snapshot;
     });
+
+    //what im doing atm
+    //the code in populateFavouriteMoviesList isnt firing
+    //this fun should be called in "firebase.auth().onAuthStateChanged(function(firebaseUser) {"
 
 }
 
