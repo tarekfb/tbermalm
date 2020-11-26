@@ -1,8 +1,6 @@
 initializeFireBase();
-
-let db = firebase.database();
-let rootRef = db.ref();
-initFirebaseUI();
+const db = firebase.database();
+const rootRef = db.ref();
 
 function initializeFireBase() {
     // The Firebase configuration
@@ -20,47 +18,11 @@ function initializeFireBase() {
     // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
     firebase.analytics();
-}
 
-function pushFavouriteMovie(entryFromAJAX) {
-
-    //i want to read user
-    //if no branch for user exist
-    //  create branch, add the selected movie
-    //if branch exists
-    //  add selected movie
-    console.log(firebase.auth().currentUser.uid);
-
-    let uid = firebase.auth().currentUser.uid;
-    let newFavouriteMovieRef = rootRef.child("users/" + uid + "/" + entryFromAJAX.imdbID);
-    newFavouriteMovieRef.set({
-        title: entryFromAJAX.Title,
-        year: entryFromAJAX.Year,
-        rating: entryFromAJAX.imdbRating
-    });
-}
-
-
-
-async function readFavouriteMoviesList() {
-    //this async fun returns a promise with a snapshot of the movie-list
-    console.log("FROM READFAV: " + firebase.auth().currentUser.uid);
-
-
-    let uid = firebase.auth().currentUser.uid;
-    let movieListRef = db.ref(uid);
-    return movieListRef.once("value").then(function (snapshot) {
-        console.log(snapshot);
-        console.log();
-        return snapshot;
-    });
-
+    initFirebaseUI();
 }
 
 function initFirebaseUI() {
-    //https://github.com/firebase/firebaseui-web/blob/master/README.md#demo
-    //https://stackoverflow.com/questions/43756899/how-to-login-a-user-using-firebase-authentication
-    //LOOK AT THIS FOR HANDLING BRANCHES AND USERS
 
     // FirebaseUI config.
     let uiConfig = {
@@ -85,24 +47,18 @@ function initFirebaseUI() {
     // The start method will wait until the DOM is loaded.
 
     ui.start('#firebaseui-signup-container', uiConfig);
-
-    // let uid = firebase.auth().currentUser.uid;
-    // let movieListRef = db.ref(uid);
-    // movieListRef.on("value").then(function (snapshot) {
-    //     console.log("FROM ON: " + snapshot);
-    // });
-
 }
 
 firebase.auth().onAuthStateChanged(function(firebaseUser) {
     //if the user signs out or in
     //define firebaseUser properties
     //pass firebaseUser to main.js (front end)
+    //this fun will also fire when the initial state is determined
 
     if (firebaseUser) {
         // User is signed in.
         let displayName = firebaseUser.displayName;
-        let  email = firebaseUser.email;
+        let email = firebaseUser.email;
         let emailVerified = firebaseUser.emailVerified;
         let photoURL = firebaseUser.photoURL;
         let uid = firebaseUser.uid;
@@ -112,6 +68,7 @@ firebase.auth().onAuthStateChanged(function(firebaseUser) {
         });
 
         authStateChanged(firebaseUser);
+        readFavouriteMoviesList().then(snapshot => populateFavouriteMoviesList(snapshot));
     } else {
         // User is signed out.
         authStateChanged(firebaseUser);
@@ -121,8 +78,62 @@ firebase.auth().onAuthStateChanged(function(firebaseUser) {
     alert(error);
 });
 
+function pushFavouriteMovie(entryFromAJAX) {
+    //what this fun does:
+    //  if branch exists
+    //      add selected movie
+    //  if no branch for currentUser.uid exists
+    //    create branch after currentUser.uid, add the selected movie and its title/year/rating
+
+    let uid = firebase.auth().currentUser.uid;
+    let newFavouriteMovieRef = rootRef.child("users/" + uid + "/" + entryFromAJAX.imdbID);
+    newFavouriteMovieRef.set({
+        title: entryFromAJAX.Title,
+        year: entryFromAJAX.Year,
+        rating: entryFromAJAX.imdbRating
+    });
+
+}
+
+async function readFavouriteMoviesList() {
+    //this async fun returns a promise with a snapshot of the movie-list
+
+    console.log("FROM READFAV: " + firebase.auth().currentUser.uid);
+
+    let uid = firebase.auth().currentUser.uid;
+    let movieListRef = db.ref(uid);
+    return movieListRef.once("value").then(function (snapshot) {
+        console.log(`YEAR FROM readFavMovList ${snapshot.val.title}`);
+        return snapshot;
+    });
+
+}
+
 function firebaseSignOut() {
     //this fun is called when user signs out
     //does just that, and nothing else
     firebase.auth().signOut();
 }
+
+// testdbfun();
+//
+// function testdbfun() {
+//
+//     let newFavouriteMovieRef = rootRef.child("/usershere/imdbidhere");
+//     newFavouriteMovieRef.set({
+//         title: "atitle",
+//         year: "someyear",
+//         rating: "arating"
+//     });
+//     console.log(`log from testdbfun: ${newFavouriteMovieRef}`);
+//
+//     let movieListRef = db.ref("usershere");
+//     movieListRef.once("value").then(function (snapshot) {
+//         console.log(`YEAR FROM testdbfun ${snapshot.val}`);
+//
+//         snapshot.forEach(function (snapshot){
+//             console.log(`YEAR FROM testdbfun ${snapshot.val.title}`);
+//         });
+//
+//     });
+// }

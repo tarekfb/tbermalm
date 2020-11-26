@@ -97,7 +97,6 @@ function apiHandlerByImdbID(imdbID) {
 
 function displayResult(result) {
 	if (/Mobi|Android/i.test(navigator.userAgent) && document.getElementById("input-hamburger").checked) {
-		console.log("mobile!");
 		document.getElementById("input-hamburger").checked = false;
 	}
 
@@ -246,9 +245,9 @@ function generateMovieCard(apiCallResult) {
 
 	let favouriteMovieContainer = document.getElementById('favourite-movies-container')
 	favouriteMovieContainer.style.height = favouriteMovieContainer.parentNode.offsetHeight+"px";
-	console.log("parentnode: " + favouriteMovieContainer.parentNode);
-	console.log("page heigt: " + favouriteMovieContainer.parentNode.offsetHeight);
-	console.log("sidebar heigt: " + favouriteMovieContainer.offsetHeight);
+	// console.log("parentnode: " + favouriteMovieContainer.parentNode);
+	// console.log("page heigt: " + favouriteMovieContainer.parentNode.offsetHeight);
+	// console.log("sidebar heigt: " + favouriteMovieContainer.offsetHeight);
 
 
 	/*
@@ -366,6 +365,9 @@ function populateFavouriteMoviesList(snapshot) {
 		li.appendChild(ratingSpan);
 
 		a.appendChild(li);
+
+		console.log(`YEAR FROM main.j*******************s ${snapshot.val.year}`);
+
 
 	});
 //TODO: make scrollable if too many movies
