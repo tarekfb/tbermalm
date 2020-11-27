@@ -26,11 +26,17 @@ function initFirebaseUI() {
 
     // FirebaseUI config.
     let uiConfig = {
-        //signInSuccessUrl: 'http://localhost:63342/imdb_quick_search/imdb_quick_search.html', //https://www.tbdevstuff.live/webutveckling2_klient/imdb_quick_search/imdb_quick_search.html
+        // signInSuccess: function(currentUser, credential, redirectUrl) {
+        //     return false; //this will stop the signinsuccessurl from being used
+        //     },
+        //signInSuccessUrl: 'https://www.tbdevstuff.live/webutveckling2_klient/imdb_quick_search/imdb_quick_search.html',
         signInOptions: [
             // Leave the lines as is for the providers you want to offer your users.
             firebase.auth.EmailAuthProvider.PROVIDER_ID,
-            firebaseui.auth.AnonymousAuthProvider.PROVIDER_ID
+            firebaseui.auth.AnonymousAuthProvider.PROVIDER_ID,
+            firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+            firebase.auth.FacebookAuthProvider.PROVIDER_ID,
+            firebase.auth.TwitterAuthProvider.PROVIDER_ID
         ],
         // tosUrl and privacyPolicyUrl accept either url string or a callback
         // function.
@@ -79,6 +85,14 @@ firebase.auth().onAuthStateChanged(function(firebaseUser) {
     console.log(error);
     alert(error);
 });
+
+function checkFirebaseUserState() {
+    if (firebase.auth().currentUser){
+        return true;
+    } else {
+        return false;
+    }
+}
 
 function pushFavouriteMovie(entryFromAJAX) {
     //what this fun does:
