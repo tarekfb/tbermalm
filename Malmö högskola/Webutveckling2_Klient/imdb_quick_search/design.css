@@ -45,6 +45,10 @@ a {
 	img, search bar and result container
 *****************************/
 
+#search-box:focus, #search-form button{
+	outline: none;
+}
+
 #logo img {
 	margin-top: 35px;
 	width: 200px;
@@ -63,7 +67,7 @@ form button {
 	margin-left: -0.5%;
 	-webkit-appearance: none;
 }
-form input {
+#search-form input {
 	padding: 10px;
 	font-size: 17px;
 	border: 1px solid grey;
@@ -86,12 +90,7 @@ form input {
 	could be something within this card itself, or the parents
 	 */
 
-	/*
-	TODO: FIX, for some reason the grow transformation is not working
-	seems to not work when z-index is negative
-	*/
-
-	width: 45%;
+	width: 70%;
 	height: 165px;
 	background-color: var(--background-grey);
 	border-radius: 5px;
@@ -111,7 +110,11 @@ form input {
 
 #movie-container:hover, #movie-container:focus, #movie-container:active {
 	transform: scale(1.03);
+	-moz-transform: scale(1.03);
+	-ms-transform: scale(1.03);
+
 	cursor: pointer;
+
 }
 #movie-container img {
 	width: 105px;
@@ -259,6 +262,11 @@ this is the parent of the favourite movie sidebar
 	/*stops user from being able to select text here*/
 	-webkit-user-select: none;
 	user-select: none;
+
+	z-index: 1;
+	/*this is only to
+	prevent movie cards to be placed in front of sidebar
+	when a user hovers or focuses movie card*/
 }
 
 /*
@@ -268,9 +276,6 @@ designing the hamburger icon and transformation
 #slice1, #slice2, #slice3{
 	position: relative;
 	display: block;
-
-	/*top: 30px;*/
-	/*left: 30px;*/
 
 	/*styles the spans into slices*/
 	width: 33px;
@@ -394,9 +399,8 @@ design the hidden input node
 	margin: -100px 0 0 -55px;
 	padding: 25px;
 	padding-top: 90px;
-	/*height: 100vh;*/
-	//width: 250px;
 
+	/*height: 100vh;*/
 	height: auto;
 	min-height: 100vh;
 
@@ -415,12 +419,24 @@ design the hidden input node
 	transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
 }
 
+#favourite-movies-container h3{
+	font-size: 22px;
+	font-family: Arial, serif;
+
+}
+
+#favourite-movies-list{
+	font-size: 18px;
+}
+
+
 /*****************************
 	firebaseAuth
  *****************************/
 
 #firebase-auth-container{
 	margin-top: 40px;
+	font-size: 18px;
 }
 
 #sign-out:hover, #sign-out:active, #sign-out:focus{
@@ -548,16 +564,17 @@ design the hidden input node
 		height: 100px;
 	}
 	#movie-container {
-		width: 100%;
+		width: 94%;
 		height: 160px;
-		margin-top: 10px;
+		margin-top: 15px;
 
 		box-shadow: none;
 		transition-property: none;
 	}
-	#movie-container:hover, #movie-container:focus, #movie-container:active {
+	#movie-container:hover, #movie-container:focus, #movie-container:active {-webkit-transform: none;
 		transform: none;
-		cursor: none;
+		-moz-transform: none;
+		-ms-transform: none;
 	}
 	#movie-container img {
 		width: 85px;
