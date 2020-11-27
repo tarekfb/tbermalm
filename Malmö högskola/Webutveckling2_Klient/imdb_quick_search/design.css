@@ -90,7 +90,7 @@ form button {
 	could be something within this card itself, or the parents
 	 */
 
-	width: 70%;
+	width: 65%;
 	height: 165px;
 	background-color: var(--background-grey);
 	border-radius: 5px;
