@@ -187,7 +187,7 @@ function generateMovieCard(apiCallResult) {
 	text.insertBefore(document.createElement("br"), actors);
 
 	if (apiCallResult.Awards == "N/A"){
-		apiCallResult.Awards = "No awards ಠ╭╮ಠ.";
+		apiCallResult.Awards = "No awards.";
 	} else if (apiCallResult.Awards.length > 25){
 		if (screen && screen.width < 1300) {
 			apiCallResult.Awards = "Has won awards or nominations."
@@ -377,7 +377,9 @@ function favouriteMoviesHamburgerListener() {
 
 	inputHamburgerCheckbox.addEventListener( 'change', function() {
 		if (this.checked) {
-			readFavouriteMoviesList().then(snapshot => populateFavouriteMoviesList(snapshot));
+			if (!checkFirebaseUserState){
+				readFavouriteMoviesList().then(snapshot => populateFavouriteMoviesList(snapshot));
+			}
 		}
 	});
 }

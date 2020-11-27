@@ -6,7 +6,7 @@
 	/*variables*/
 	--main-yellow: #f4cb84;
 	--main-red: #f38363 ;
-	--accept-green: #08b335;
+	--accept-green: #00e500;
 	--background-grey: #e7d2cc;
 	--gold: #FFD700;
 }
@@ -181,7 +181,7 @@ form input {
 	margin: 15% auto; /* 15% from the top and centered */
 	padding: 20px;
 	border: 1px solid #888;
-	width: 40%; /* Could be more or less, depending on screen size */
+	width: 40%;
 	height: 80px;
 	text-align: left;
 	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
@@ -618,6 +618,9 @@ design the hidden input node
 		display: none;
 		opacity: 0;
 		visibility: hidden;
+	}
+	.modal-content{
+		height: 90px;
 	}
 }
 /*https://www.canva.com/colors/color-palette-generator/*/
