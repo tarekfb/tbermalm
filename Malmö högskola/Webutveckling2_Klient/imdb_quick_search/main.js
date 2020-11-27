@@ -7,7 +7,6 @@ submitFormListener();
 showFavouriteMoviesListener();
 toggleHideFavouriteMovies();
 favouriteMoviesHamburgerListener();
-//readFavouriteMoviesList().then(snapshot => populateFavouriteMoviesList(snapshot));
 
 function submitFormListener() {
 	let form = document.getElementById("search-form");
@@ -384,34 +383,27 @@ function favouriteMoviesHamburgerListener() {
 }
 
 function handlePlaceholderParagraph() {
+	//this fun checks if the user has added any movies yet
+	//if the list of fav movies is empty -->
+	// --> display p saying 'try adding movies'
+
 	let favouriteMoviesUL = document.getElementById("favourite-movies-list");
 	let placeholderP = document.getElementById("empty-list-placeholder");
 	let showListButton = document.getElementById("show-favourite-movies");
 
-	//TODO: rewrite to work with firebase db
 	placeholderP.style.display = "none";
 	readFavouriteMoviesList().then(function (snapshot){
-		if (snapshot.hasChildren()){
+		if (!snapshot.hasChildren()){
 			placeholderP.style.display = "block";
 			showListButton.style.display = "none";
-			console.log(snapshot.hasChildren());
+			favouriteMoviesUL.style.display = "none";
 		} else {
 			placeholderP.style.display = "none";
 			showListButton.style.display = "inline-block";
-			console.log(snapshot.hasChildren());
+			favouriteMoviesUL.style.display = "unset";
 		}
 	});
 
-
-
-	// if (favouriteMoviesUL.getElementsByTagName('li').length == 0){
-	// 	placeholderP.style.display = "block";
-	// 	showListButton.style.display = "none";
-	// } else {
-	// 	placeholderP.style.display = "none";
-	// 	showListButton.style.display = "inline-block";
-	//
-	// }
 }
 
 function showFavouriteMoviesListener() {
@@ -460,9 +452,9 @@ function authStateChanged(firebaseUser) {
 		titleAndListContainer.style.display = "unset";
 
 		if (firebaseUser.displayName == null){
-			signInStatus.textContent = 'Signed in: Guest';
+			signInStatus.textContent = 'Welcome, Guest';
 		} else{
-			signInStatus.textContent = 'Signed in: ' + firebaseUser.displayName;
+			signInStatus.textContent = 'Welcome, ' + firebaseUser.displayName;
 		}
 		signInStatus.style.display = "unset";
 
