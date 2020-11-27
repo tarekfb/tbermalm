@@ -5,7 +5,6 @@ const API_KEY = '5e65d4a0&s';
 //functions to init page
 submitFormListener();
 showFavouriteMoviesListener();
-handlePlaceholderParagraph();
 toggleHideFavouriteMovies();
 favouriteMoviesHamburgerListener();
 //readFavouriteMoviesList().then(snapshot => populateFavouriteMoviesList(snapshot));
@@ -337,9 +336,9 @@ function saveMovieToFavourite(entryFromAJAX) {
 }
 
 function populateFavouriteMoviesList(snapshot) {
-	//this function populates the favmovieslist in the sidebar
-	//uses a snapshot that was indirectly passed from dataAccessLayer.js
-	//specifically, readFavouriteMoviesList()
+	// this function populates the favmovieslist in the sidebar
+	// it takes a snapshot of the current user's branch that was passed from readFavouriteMoviesList() in dataAccessLayer.js
+	// it then creates the html elements
 
 	let favouriteMoviesUL = document.getElementById("favourite-movies-list");
 	favouriteMoviesUL.querySelectorAll('*').forEach(n => n.remove());
@@ -366,9 +365,6 @@ function populateFavouriteMoviesList(snapshot) {
 
 		a.appendChild(li);
 
-		console.log(`YEAR FROM main.j*******************s ${snapshot.val.year}`);
-
-
 	});
 //TODO: make scrollable if too many movies
 }
@@ -394,8 +390,20 @@ function handlePlaceholderParagraph() {
 
 	//TODO: rewrite to work with firebase db
 	placeholderP.style.display = "none";
+	readFavouriteMoviesList().then(function (snapshot){
+		if (snapshot.hasChildren()){
+			placeholderP.style.display = "block";
+			showListButton.style.display = "none";
+			console.log(snapshot.hasChildren());
+		} else {
+			placeholderP.style.display = "none";
+			showListButton.style.display = "inline-block";
+			console.log(snapshot.hasChildren());
+		}
+	});
 
-	//if array = 0, show p saying list empty
+
+
 	// if (favouriteMoviesUL.getElementsByTagName('li').length == 0){
 	// 	placeholderP.style.display = "block";
 	// 	showListButton.style.display = "none";

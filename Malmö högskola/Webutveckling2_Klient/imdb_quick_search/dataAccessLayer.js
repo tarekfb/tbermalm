@@ -69,6 +69,7 @@ firebase.auth().onAuthStateChanged(function(firebaseUser) {
 
         authStateChanged(firebaseUser);
         readFavouriteMoviesList().then(snapshot => populateFavouriteMoviesList(snapshot));
+        handlePlaceholderParagraph();
 
     } else {
         // User is signed out.
@@ -97,20 +98,14 @@ function pushFavouriteMovie(entryFromAJAX) {
 }
 
 async function readFavouriteMoviesList() {
-    //this async fun returns a promise with a snapshot of the movie-list
-
-    console.log("FROM READFAV: " + firebase.auth().currentUser.uid);
+    //this fun reads the current users branch (root/users/uid/)
+    //then returns a promise with a snapshot of the movie-list
 
     let uid = firebase.auth().currentUser.uid;
-    let movieListRef = db.ref(uid);
+    let movieListRef = db.ref(`users/${uid}`);
     return movieListRef.once("value").then(function (snapshot) {
-        console.log(`YEAR FROM readFavMovList ${snapshot.val.title}`);
         return snapshot;
     });
-
-    //what im doing atm
-    //the code in populateFavouriteMoviesList isnt firing
-    //this fun should be called in "firebase.auth().onAuthStateChanged(function(firebaseUser) {"
 
 }
 
@@ -119,26 +114,3 @@ function firebaseSignOut() {
     //does just that, and nothing else
     firebase.auth().signOut();
 }
-
-// testdbfun();
-//
-// function testdbfun() {
-//
-//     let newFavouriteMovieRef = rootRef.child("/usershere/imdbidhere");
-//     newFavouriteMovieRef.set({
-//         title: "atitle",
-//         year: "someyear",
-//         rating: "arating"
-//     });
-//     console.log(`log from testdbfun: ${newFavouriteMovieRef}`);
-//
-//     let movieListRef = db.ref("usershere");
-//     movieListRef.once("value").then(function (snapshot) {
-//         console.log(`YEAR FROM testdbfun ${snapshot.val}`);
-//
-//         snapshot.forEach(function (snapshot){
-//             console.log(`YEAR FROM testdbfun ${snapshot.val.title}`);
-//         });
-//
-//     });
-// }
