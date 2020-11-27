@@ -1,8 +1,6 @@
 initializeFireBase();
-
-let db = firebase.database();
-let rootRef = db.ref();
-firebaseUI();
+const db = firebase.database();
+const rootRef = db.ref();
 
 function initializeFireBase() {
     // The Firebase configuration
@@ -20,37 +18,11 @@ function initializeFireBase() {
     // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
     firebase.analytics();
+
+    initFirebaseUI();
 }
 
-function pushFavouriteMovie(entryFromAJAX) {
-
-    let newFavouriteMovieRef = rootRef.child("movie-list/" + entryFromAJAX.imdbID);
-    newFavouriteMovieRef.set({
-        title: entryFromAJAX.Title,
-        year: entryFromAJAX.Year,
-        //rating: entryFromAJAX.imdbRating
-
-        //currently the imdbRating is fetched from a different object
-        //not the one that is passed to this method
-        //either have to look at restructuring the AJAX
-        //or pass the rating in some very awkward way from main.js
-    });
-}
-
-async function readFavouriteMoviesList() {
-    //this async fun returns a promise with a snapshot of the movie-list
-
-    let movieListRef = db.ref("movie-list");
-    return movieListRef.once("value").then(function (snapshot) {
-        return snapshot;
-    });
-
-}
-
-function firebaseUI() {
-    //https://github.com/firebase/firebaseui-web/blob/master/README.md#demo
-    //https://stackoverflow.com/questions/43756899/how-to-login-a-user-using-firebase-authentication
-    //LOOK AT THIS FOR HANDLING BRANCHES AND USERS
+function initFirebaseUI() {
 
     // FirebaseUI config.
     let uiConfig = {
@@ -75,84 +47,70 @@ function firebaseUI() {
     // The start method will wait until the DOM is loaded.
 
     ui.start('#firebaseui-signup-container', uiConfig);
-
 }
 
-firebase.auth().onAuthStateChanged(function(user) {
-    let firebaseUISignupContainer = document.getElementById("firebaseui-signup-container");
-    let signInStatus = document.getElementById('sign-in-status');
-    let signOut =  document.getElementById('sign-out');
-    let titleAndListContainer =  document.getElementById("title-and-list-container");
+firebase.auth().onAuthStateChanged(function(firebaseUser) {
+    //if the user signs out or in
+    //define firebaseUser properties
+    //pass firebaseUser to main.js (front end)
+    //this fun will also fire when the initial state is determined
 
-    if (user) {
-        //TODO: rewrite so it passes user to frontend and handle design there
-
+    if (firebaseUser) {
         // User is signed in.
-        var displayName = user.displayName;
-        var email = user.email;
-        var emailVerified = user.emailVerified;
-        var photoURL = user.photoURL;
-        var uid = user.uid;
-        var phoneNumber = user.phoneNumber;
-        var providerData = user.providerData;
-        user.getIdToken().then(function(accessToken) {
-
+        let displayName = firebaseUser.displayName;
+        let email = firebaseUser.email;
+        let emailVerified = firebaseUser.emailVerified;
+        let photoURL = firebaseUser.photoURL;
+        let uid = firebaseUser.uid;
+        let phoneNumber = firebaseUser.phoneNumber;
+        let providerData = firebaseUser.providerData;
+        firebaseUser.getIdToken().then(function(accessToken) {
         });
 
-        firebaseUISignupContainer.style.display = "none";
-        signInStatus.textContent = 'Signed in: ' + displayName;
-        signInStatus.style.display = "unset";
-        signOut.textContent = 'Log out';
-        signOut.onclick = firebaseSignOut;
-        signOut.style.display = "unset";
-        titleAndListContainer.style.display = "unset";
+        authStateChanged(firebaseUser);
+        readFavouriteMoviesList().then(snapshot => populateFavouriteMoviesList(snapshot));
+        handlePlaceholderParagraph();
+
     } else {
         // User is signed out.
-        firebaseUISignupContainer.style.display = "unset";
-        signInStatus.textContent = 'Signed out';
-        signInStatus.style.display = "none";
-        signOut.style.display = "none";
-        titleAndListContainer.style.display = "none";
+        authStateChanged(firebaseUser);
     }
 }, function(error) {
     console.log(error);
+    alert(error);
 });
 
-function firebaseSignIn() {
+function pushFavouriteMovie(entryFromAJAX) {
+    //what this fun does:
+    //  if branch exists
+    //      add selected movie
+    //  if no branch for currentUser.uid exists
+    //    create branch after currentUser.uid, add the selected movie and its title/year/rating
+
+    let uid = firebase.auth().currentUser.uid;
+    let newFavouriteMovieRef = rootRef.child("users/" + uid + "/" + entryFromAJAX.imdbID);
+    newFavouriteMovieRef.set({
+        title: entryFromAJAX.Title,
+        year: entryFromAJAX.Year,
+        rating: entryFromAJAX.imdbRating
+    });
+
+}
+
+async function readFavouriteMoviesList() {
+    //this fun reads the current users branch (root/users/uid/)
+    //then returns a promise with a snapshot of the movie-list
+
+    let uid = firebase.auth().currentUser.uid;
+    let movieListRef = db.ref(`users/${uid}`);
+    return movieListRef.once("value").then(function (snapshot) {
+        return snapshot;
+    });
 
 }
 
 function firebaseSignOut() {
+    //this fun is called when user signs out
+    //does just that, and nothing else
     firebase.auth().signOut();
-}
-
-function handleSignIn() {
-    //anon sign in
-    //https://firebase.google.com/docs/auth/web/anonymous-auth?authuser=0
-
-    //get started with firebase security
-    //https://firebase.google.com/docs/database/security/get-started?authuser=0
-
-    /*
-      firebase.auth().signInAnonymously().catch(function(error) {
-        // Handle Errors here.
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        // ...
-      });
-
-     firebase.auth().onAuthStateChanged(function(user) {
-    if (user) {
-      // User is signed in.
-      var isAnonymous = user.isAnonymous;
-      var uid = user.uid;
-      // ...
-    } else {
-      // User is signed out.
-      // ...
-    }
-    // ...
-  });
-
-     */
 }

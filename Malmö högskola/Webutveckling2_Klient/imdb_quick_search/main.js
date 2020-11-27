@@ -1,16 +1,12 @@
 "use strict";
 
 const API_KEY = '5e65d4a0&s';
-let listOfFavouriteMovies = [];
 
 //functions to init page
 submitFormListener();
 showFavouriteMoviesListener();
-handlePlaceholderParagraph();
 toggleHideFavouriteMovies();
 favouriteMoviesHamburgerListener();
-readFavouriteMoviesList().then(snapshot => populateFavouriteMoviesList(snapshot));
-
 
 function submitFormListener() {
 	let form = document.getElementById("search-form");
@@ -99,7 +95,6 @@ function apiHandlerByImdbID(imdbID) {
 
 function displayResult(result) {
 	if (/Mobi|Android/i.test(navigator.userAgent) && document.getElementById("input-hamburger").checked) {
-		console.log("mobile!");
 		document.getElementById("input-hamburger").checked = false;
 	}
 
@@ -236,6 +231,23 @@ function generateMovieCard(apiCallResult) {
 		}
 	});
 
+
+	//TODO: wip
+	//what I want to do is make sure the height of the sidebar menu matches the page height
+	//this is one of the times where page height is changed
+	//which means i can use tihs to test:
+	//the page height get increased by each movie card
+	//then match height of sidebar to parent (#container)
+	//do this for each card. but doesn't work atm.
+	//might be because sidebar div is absolute, so the background-color doesn't render where there is no content
+
+	let favouriteMovieContainer = document.getElementById('favourite-movies-container')
+	favouriteMovieContainer.style.height = favouriteMovieContainer.parentNode.offsetHeight+"px";
+	// console.log("parentnode: " + favouriteMovieContainer.parentNode);
+	// console.log("page heigt: " + favouriteMovieContainer.parentNode.offsetHeight);
+	// console.log("sidebar heigt: " + favouriteMovieContainer.offsetHeight);
+
+
 	/*
 	when I wrote this function I initially had some really awkward design
 	it was my first usage of async functions
@@ -300,7 +312,7 @@ function showModalBox(entryFromAJAX) {
 }
 
 function saveMovieToFavourite(entryFromAJAX) {
-	//TODO: update to work with firebase db
+	//TODO: update to work with firebase db, see below
 	//if statement of hamburger pulse needs updating
 	//and add(pulse-grey-anim)
 
@@ -320,13 +332,12 @@ function saveMovieToFavourite(entryFromAJAX) {
 
 	pushFavouriteMovie(entryFromAJAX);
 	readFavouriteMoviesList().then(snapshot => populateFavouriteMoviesList(snapshot));
-
 }
 
 function populateFavouriteMoviesList(snapshot) {
-	//this function populates the favmovieslist in the sidebar
-	//uses a snapshot that was indirectly passed from dataAccessLayer.js
-	//specifically, readFavouriteMoviesList()
+	// this function populates the favmovieslist in the sidebar
+	// it takes a snapshot of the current user's branch that was passed from readFavouriteMoviesList() in dataAccessLayer.js
+	// it then creates the html elements
 
 	let favouriteMoviesUL = document.getElementById("favourite-movies-list");
 	favouriteMoviesUL.querySelectorAll('*').forEach(n => n.remove());
@@ -360,6 +371,8 @@ function populateFavouriteMoviesList(snapshot) {
 function favouriteMoviesHamburgerListener() {
 	//whenever the user opens the sidebar menu with favourite movies
 	//this will update list with values from db
+	//necessary to call every time because -->
+	// --> user could've added favourites while closed
 	let inputHamburgerCheckbox = document.getElementById("input-hamburger");
 
 	inputHamburgerCheckbox.addEventListener( 'change', function() {
@@ -370,26 +383,31 @@ function favouriteMoviesHamburgerListener() {
 }
 
 function handlePlaceholderParagraph() {
+	//this fun checks if the user has added any movies yet
+	//if the list of fav movies is empty -->
+	// --> display p saying 'try adding movies'
+
 	let favouriteMoviesUL = document.getElementById("favourite-movies-list");
 	let placeholderP = document.getElementById("empty-list-placeholder");
 	let showListButton = document.getElementById("show-favourite-movies");
 
-	//TODO: rewrite to work with firebase db
 	placeholderP.style.display = "none";
+	readFavouriteMoviesList().then(function (snapshot){
+		if (!snapshot.hasChildren()){
+			placeholderP.style.display = "block";
+			showListButton.style.display = "none";
+			favouriteMoviesUL.style.display = "none";
+		} else {
+			placeholderP.style.display = "none";
+			showListButton.style.display = "inline-block";
+			favouriteMoviesUL.style.display = "unset";
+		}
+	});
 
-	//if array = 0, show p saying list empty
-	// if (favouriteMoviesUL.getElementsByTagName('li').length == 0){
-	// 	placeholderP.style.display = "block";
-	// 	showListButton.style.display = "none";
-	// } else {
-	// 	placeholderP.style.display = "none";
-	// 	showListButton.style.display = "inline-block";
-	//
-	// }
 }
 
 function showFavouriteMoviesListener() {
-	//this function is allows us to resolve the promise given by readFavMovList in dal
+	//this function allows us to resolve the promise given by readFavMovList in dal
 	//and pass the snapshot to displayFavMovies
 
 	let showFavouriteMoviesBtn = document.getElementById("show-favourite-movies");
@@ -399,36 +417,54 @@ function showFavouriteMoviesListener() {
 }
 
 function displayFavouriteMovies(snapshot) {
-	//TODO: rewrite to work with firebase db
+	//this fun takes the movies that the user saved to favourites -->
+	// --> and displays them in the main result container
 
 	//this clears whatever result is previously displayed
 	let resultContainer = document.getElementById('result-container');
 	resultContainer.innerHTML = "";
 
-	listOfFavouriteMovies.forEach(function(entry) {
-		generateMovieCard(entry);
-	});
-
+	//this generates a list of movies in the main result container, based on imdbID
 	snapshot.forEach(function (snapshot) {
 		let key = snapshot.key;
 		apiHandlerByImdbID(key);
 	});
 
-	/*
-	what i need to do is:
-		for every item in movie-list
-			get the imdbID from snapshot/firebase CHECK
-			make ajax call with the imdbID
-			pass the entryFromAJAX to generateMovieCard()
+}
 
-	however, it seems i need to break up the functions inside of generateMovieCard
-	because that function presumes i already have an entry with
+function authStateChanged(firebaseUser) {
+	//this fun is called when the fireBase user changes state (sign in or out)
+	//a fun in DAL is called at that point
+	//that fun calls this fun and passes either the firebaseUser
+	//the firebaseUser has properties on SIGN IN
+	//the firebaseUser is null on LOG OFF
 
-	im instead creating new fun for imdbidapiahndler
-	and using that entry
+	let firebaseUISignupContainer = document.getElementById("firebaseui-signup-container");
+	let signInStatus = document.getElementById('sign-in-status');
+	let signOut =  document.getElementById('sign-out');
+	let titleAndListContainer =  document.getElementById("title-and-list-container");
 
- */
+	if (firebaseUser){
+		firebaseUISignupContainer.style.display = "none";
+		signOut.textContent = 'Log out';
+		signOut.onclick = firebaseSignOut;
+		signOut.style.display = "unset";
+		titleAndListContainer.style.display = "unset";
 
+		if (firebaseUser.displayName == null){
+			signInStatus.textContent = 'Welcome, Guest';
+		} else{
+			signInStatus.textContent = 'Welcome, ' + firebaseUser.displayName;
+		}
+		signInStatus.style.display = "unset";
+
+	} else {
+		firebaseUISignupContainer.style.display = "unset";
+		signInStatus.textContent = 'Signed out';
+		signInStatus.style.display = "none";
+		signOut.style.display = "none";
+		titleAndListContainer.style.display = "none";
+	}
 }
 
 /*
@@ -439,7 +475,7 @@ function displayFavouriteMovies(snapshot) {
 
 function toggleHideFavouriteMovies() {
 	//TODO: delete if fav-movies sidebar is working as intended
-	// //trying to make it so the sidebar deosnt cover container div, even when not clicked
+	// //trying to make it so the sidebar doesn't cover container div, even when not clicked
 	// let inputToggleFavouriteMovies = document.getElementById("input-hamburger");
 	// let favouriteMoviesContainer = document.getElementById("favourite-movies-container");
 	//
