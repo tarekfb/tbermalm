@@ -426,7 +426,13 @@ design the hidden input node
 	display: inline-block;
 }
 
-#title-and-list-container .fa-pencil{
+#edit-favourite-movies-icon:before{
+
+	font-family: "Font Awesome 5 Free";
+	content: "\f304";
+	font-style: normal;
+	font-weight: bold;
+
 	font-size: 20px;
 	margin-left: 8px;
 	display: inline-block;
@@ -435,14 +441,15 @@ design the hidden input node
 	transition-duration: 0.3s;
 	transition-property: transform;
 }
-.fa-pencil:hover,
-.fa-pencil:focus,
-.fa-pencil:active{
-	cursor: pointer;
 
-	transform: scale(1.03);
-	-moz-transform: scale(1.03);
-	-ms-transform: scale(1.03);
+#edit-favourite-movies-icon.confirm-favourite-movies:before{
+	content: "\f00c";
+}
+
+#edit-favourite-movies-icon:hover,
+#edit-favourite-movies-icon:active,
+#edit-favourite-movies-icon:focus{
+	color: grey;
 }
 
 /*****************************
@@ -468,19 +475,32 @@ design the hidden input node
 
 }
 
-#favourite-movie-li:focus, #favourite-movie-li:active, #favourite-movie-li:hover {
+.favourite-movie-anchor:focus, .favourite-movie-anchor:active, .favourite-movie-anchor:hover {
 	cursor: pointer;
 	color: var(--main-yellow);
 	transition: color 0.2s ease;
 }
 
 #favourite-movie-li{
-	margin-bottom: 10px;
+	margin-bottom: 20px;
 	text-align: left;
 }
 
-#favourite-movie-li span i {
+#favourite-movie-li .fa-star {
 	color: var(--gold);
+}
+
+#favourite-movie-li .fa-trash{
+	margin-left: 8px;
+	float: right;
+	display: none;
+}
+#favourite-movie-li .fa-trash:hover,
+#favourite-movie-li .fa-trash:focus,
+#favourite-movie-li .fa-trash:active{
+	color: black;
+	cursor: pointer;
+	color: grey;
 }
 
 /*testing design, used for static html that is currently commented out*/
@@ -652,6 +672,12 @@ design the hidden input node
 	}
 	.modal-content{
 		height: 90px;
+	}
+	#edit-favourite-movies-icon{
+	font-size: 25px;
+	 }
+	#favourite-movie-li .fa-trash{
+		font-size: 25px;
 	}
 }
 /*https://www.canva.com/colors/color-palette-generator/*/

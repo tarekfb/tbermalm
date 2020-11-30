@@ -5,8 +5,10 @@ const API_KEY = '5e65d4a0&s';
 //functions to init page
 submitFormListener();
 showFavouriteMoviesListener();
-toggleHideFavouriteMovies();
 favouriteMoviesHamburgerListener();
+favouriteMoviesIconListener();
+toggleHideFavouriteMovies();
+
 
 function submitFormListener() {
 	let form = document.getElementById("search-form");
@@ -147,7 +149,7 @@ function generateMovieCard(apiCallResult) {
 	let resultContainer = document.getElementById("result-container");
 
 	let movieContainer = document.createElement('div');
-	movieContainer.id = 'movie-container';
+	movieContainer.id = 'movie-container'; //TODO: fix. this assigning a unique ID to many divs. shouldnt be possible
 	movieContainer.style.zIndex = "-1"; //this fixes the movie card being infront of sidebar menu
 	resultContainer.appendChild(movieContainer);
 
@@ -343,26 +345,38 @@ function populateFavouriteMoviesList(snapshot) {
 	favouriteMoviesUL.querySelectorAll('*').forEach(n => n.remove());
 
 	snapshot.forEach(function (snapshot){
+
 		let movieObj = snapshot.val();
+
+		let li = document.createElement("li");
+		li.id = 'favourite-movie-li';
+		favouriteMoviesUL.appendChild(li);
 
 		let a = document.createElement("a");
 		let url = "https://www.imdb.com/title/" + snapshot.key + "/";
 		a.href = url;
-		favouriteMoviesUL.appendChild(a);
+		a.classList.add("favourite-movie-anchor");
+		li.appendChild(a);
 
-		let li = document.createElement("li");
-		li.id = 'favourite-movie-li';
-		li.appendChild(document.createTextNode(
+		a.appendChild(document.createTextNode(
 			movieObj.title + " (" + movieObj.year + ")"
 		));
 
 		//this span displays rating-star and rating
 		let ratingSpan = document.createElement("span");
-		ratingSpan.innerHTML = " <i class=\"fa fa-star\" aria-hidden=\"true\"></i>";
+		ratingSpan.innerHTML = "<i class=\"fa fa-star\" aria-hidden=\"true\"></i>";
 		ratingSpan.appendChild(document.createTextNode(" " + movieObj.rating));
-		li.appendChild(ratingSpan);
 
-		a.appendChild(li);
+		a.appendChild(ratingSpan);
+
+		let deleteSpan = document.createElement("span");
+		deleteSpan.innerHTML = "<i class=\"fas fa-trash\"></i>";
+		li.appendChild(deleteSpan);
+
+		//li.innerHTML = li.innerHTML + "<i class=\"fas fa-trash\"></i>";
+		//placed this here to allow using white-space: nowrap; on the entire span
+
+		//a.appendChild(li);
 
 	});
 //TODO: make scrollable if too many movies
@@ -406,6 +420,63 @@ function handlePlaceholderParagraph() {
 		}
 	});
 
+}
+
+function favouriteMoviesIconListener() {
+	let editFavouriteMovies = document.getElementById("edit-favourite-movies-icon");
+	editFavouriteMovies.addEventListener("click", editOrConfirmStateChange);
+
+	//this code forces the 'edit' icon on page reload
+	//the sessionStorage will expire on each page reload
+	editFavouriteMovies.classList.remove("confirm-favourite-movies");
+	sessionStorage.setItem("notEditing", "true");
+
+	//localStorage does NOT expire on page reload
+	//this could just as well be implemented as:
+	//	window.onload = fun{notEditing.classlist.remove "confirm-fav-m"};
+	//but im here to learn, so this stays
+	window.onload = function() {
+		let notEditing = localStorage.getItem('notEditing');
+		if (notEditing === 'true'){
+			editFavouriteMovies.classList.remove("confirm-favourite-movies");
+		}
+	}
+}
+
+function editOrConfirmStateChange() {
+	//this fun changes whether the user is currently editing their favouriteMovieList -->
+	// --> or if they already confirmed edits
+	//we toggle a class that changes the icon to "check"
+	//when the icon is pressed, it'll display or hide the trashcan icon
+
+	let editFavouriteMovies = document.getElementById("edit-favourite-movies-icon");
+	editFavouriteMovies.classList.toggle("confirm-favourite-movies");
+
+	let favouriteMoviesUL = document.getElementById("favourite-movies-list");
+	let trashList = favouriteMoviesUL.querySelectorAll(".fas.fa-trash"); //should search for favourite-movie-anchor
+	let trashArray = [...trashList];
+	//spread operator: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax
+
+	trashArray.forEach(trash => {
+		trash.addEventListener("click", deleteFromFavouriteMovies);
+		//trash.classList.toggle("hide"); 	//toggle doesnt work for some reason
+
+		console.log(trash.style.display == "none"); //this logs as false, when it is true. WHats going on?
+
+		//resorting to manually toggling
+		if (trash.style.display == "none"){
+			trash.style.display = "inline-block";
+		} else if (trash.style.display = "inline-block"){
+			trash.style.display = "none";
+		}
+	});
+
+}
+
+
+function deleteFromFavouriteMovies() {
+	//this fun will
+	console.log("delete WIP");
 }
 
 function showFavouriteMoviesListener() {
