@@ -1,6 +1,7 @@
 initializeFireBase();
 const db = firebase.database();
 const rootRef = db.ref();
+let userRef = null;
 
 function initializeFireBase() {
     // The Firebase configuration
@@ -29,7 +30,7 @@ function initFirebaseUI() {
         // signInSuccess: function(currentUser, credential, redirectUrl) {
         //     return false; //this will stop the signinsuccessurl from being used
         //     },
-        //signInSuccessUrl: 'https://www.tbdevstuff.live/webutveckling2_klient/imdb_quick_search/imdb_quick_search.html',
+        signInSuccessUrl: 'https://www.tbdevstuff.live/webutveckling2_klient/imdb_quick_search/imdb_quick_search.html',
         signInOptions: [
             // Leave the lines as is for the providers you want to offer your users.
             firebase.auth.EmailAuthProvider.PROVIDER_ID,
@@ -73,6 +74,7 @@ firebase.auth().onAuthStateChanged(function(firebaseUser) {
         authStateChanged(firebaseUser);
         readFavouriteMoviesList().then(snapshot => populateFavouriteMoviesList(snapshot));
         handlePlaceholderParagraph();
+        userRef = rootRef.child(`users/${uid}/`);
 
     } else {
         // User is signed out.
@@ -118,6 +120,11 @@ async function readFavouriteMoviesList() {
         return snapshot;
     });
 
+}
+
+function deleteFromFavouriteMovies(imdbID) {
+   const movieRef = userRef.child(imdbID);
+   movieRef.remove();
 }
 
 function firebaseSignOut() {

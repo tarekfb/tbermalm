@@ -371,12 +371,29 @@ function populateFavouriteMoviesList(snapshot) {
 
 		let deleteSpan = document.createElement("span");
 		deleteSpan.innerHTML = "<i class=\"fas fa-trash\"></i>";
+		deleteSpan.classList.add("delete-span");
+
+		function f() {
+			return deleteSpan.currentStyle ? deleteSpan.currentStyle.display :
+				getComputedStyle(deleteSpan, null).display;
+		}
+
+		console.log(f());
+
+			if (deleteSpan.style.display == "inline-block"){
+			console.log("true");
+		}
+
+		if (deleteSpan.style.display != "none"){
+			deleteSpan.style.display = "none";
+		}
+
+		deleteSpan.addEventListener("click", function (event){
+			deleteMovie(snapshot.key, event);
+		});
+
 		li.appendChild(deleteSpan);
 
-		//li.innerHTML = li.innerHTML + "<i class=\"fas fa-trash\"></i>";
-		//placed this here to allow using white-space: nowrap; on the entire span
-
-		//a.appendChild(li);
 
 	});
 //TODO: make scrollable if too many movies
@@ -426,21 +443,28 @@ function favouriteMoviesIconListener() {
 	let editFavouriteMovies = document.getElementById("edit-favourite-movies-icon");
 	editFavouriteMovies.addEventListener("click", editOrConfirmStateChange);
 
+	//following code was educational but can be replaced with one line
+	//therefore doing so, but leaving code here, in comments
+
 	//this code forces the 'edit' icon on page reload
 	//the sessionStorage will expire on each page reload
-	editFavouriteMovies.classList.remove("confirm-favourite-movies");
-	sessionStorage.setItem("notEditing", "true");
+
+	// editFavouriteMovies.classList.remove("confirm-favourite-movies");
+	// sessionStorage.setItem("notEditing", "true");
 
 	//localStorage does NOT expire on page reload
-	//this could just as well be implemented as:
-	//	window.onload = fun{notEditing.classlist.remove "confirm-fav-m"};
-	//but im here to learn, so this stays
-	window.onload = function() {
-		let notEditing = localStorage.getItem('notEditing');
-		if (notEditing === 'true'){
-			editFavouriteMovies.classList.remove("confirm-favourite-movies");
-		}
-	}
+
+	// window.onload = function() {
+	// 	let notEditing = localStorage.getItem('notEditing');
+	// 	if (notEditing === 'true'){
+	// 		editFavouriteMovies.classList.remove("confirm-favourite-movies");
+	// 		}
+	// 	}
+	// }
+
+	//this code forces the 'edit' icon on page reload
+	editFavouriteMovies.classList.remove("confirm-favourite-movies");
+
 }
 
 function editOrConfirmStateChange() {
@@ -453,30 +477,30 @@ function editOrConfirmStateChange() {
 	editFavouriteMovies.classList.toggle("confirm-favourite-movies");
 
 	let favouriteMoviesUL = document.getElementById("favourite-movies-list");
-	let trashList = favouriteMoviesUL.querySelectorAll(".fas.fa-trash"); //should search for favourite-movie-anchor
-	let trashArray = [...trashList];
-	//spread operator: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax
-
-	trashArray.forEach(trash => {
-		trash.addEventListener("click", deleteFromFavouriteMovies);
-		//trash.classList.toggle("hide"); 	//toggle doesnt work for some reason
-
-		console.log(trash.style.display == "none"); //this logs as false, when it is true. WHats going on?
-
-		//resorting to manually toggling
-		if (trash.style.display == "none"){
-			trash.style.display = "inline-block";
-		} else if (trash.style.display = "inline-block"){
-			trash.style.display = "none";
+	let deleteSpanList = favouriteMoviesUL.getElementsByClassName("delete-span");
+	for (let i = 0; i < deleteSpanList.length; i++) {
+		if (deleteSpanList[i].style.display == "none"){
+			deleteSpanList[i].style.display = "unset";
+		} else {
+			deleteSpanList[i].style.display = "none";
+			readFavouriteMoviesList().then(snapshot => populateFavouriteMoviesList(snapshot));
 		}
-	});
+	}
 
 }
 
+function deleteMovie(imdbID, event) {
+	//this fun calls fun in dal.js, which deletes movie from db
+	//it then simply hides the li that was clicked
+	//this is faster than repopulating
+	//and if we repopulate, it'll reset the trashcan state (hide vs show)
 
-function deleteFromFavouriteMovies() {
-	//this fun will
-	console.log("delete WIP");
+	//in future, can implement a successfull/failure check in dal
+	//and then return true/false to deletemovie, and call deleteFromFav.then
+
+	deleteFromFavouriteMovies(imdbID);
+	event.target.parentNode.parentNode.style.display = "none";
+
 }
 
 function showFavouriteMoviesListener() {
