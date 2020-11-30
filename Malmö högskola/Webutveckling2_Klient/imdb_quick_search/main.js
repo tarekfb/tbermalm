@@ -5,8 +5,10 @@ const API_KEY = '5e65d4a0&s';
 //functions to init page
 submitFormListener();
 showFavouriteMoviesListener();
-toggleHideFavouriteMovies();
 favouriteMoviesHamburgerListener();
+favouriteMoviesIconListener();
+toggleHideFavouriteMovies();
+
 
 function submitFormListener() {
 	let form = document.getElementById("search-form");
@@ -407,6 +409,71 @@ function handlePlaceholderParagraph() {
 	});
 
 }
+
+function favouriteMoviesIconListener() {
+	// let editFavouriteMoviesIcon = document.getElementById("edit-favourite-movies-icon");
+	// editFavouriteMoviesIcon.addEventListener("click", editFavouriteMovies);
+	// //editFavouriteMoviesIcon.classList.toggle("hide"); //upon page load, this will be displayed
+	//
+	// let confirmFavouriteMoviesIcon = document.getElementById("confirm-favourite-movies-icon");
+	// confirmFavouriteMoviesIcon.addEventListener("click", confirmFavouriteMovies);
+	// confirmFavouriteMoviesIcon.classList.add("hide"); //upon page load, this will be hidden
+
+	let editFavouriteMovies = document.getElementById("edit-favourite-movies-icon");
+	editFavouriteMovies.addEventListener("click", editOrConfirm);
+}
+
+function editOrConfirm() {
+	let editFavouriteMovies = document.getElementById("edit-favourite-movies-icon");
+	editFavouriteMovies.classList.toggle("confirm-favourite-movies");
+
+	// let favouriteMoviesUL = document.getElementById("favourite-movies-list");
+	// let liList = favouriteMoviesUL.querySelectorAll('li');
+	// let liArray = [...liList];
+	// //spread operator: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax
+	//
+	// liArray.forEach(li => {
+	// 	let contents = li.innerHTML;
+	// 	li.innerHTML = `${contents} <i class="fas fa-trash"></i>`;
+	// 	console.log("test");
+	// });
+
+	let favouriteMoviesUL = document.getElementById("favourite-movies-list");
+	let liList = favouriteMoviesUL.querySelectorAll('li');
+	let liArray = [...liList];
+	//spread operator: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax
+
+	liArray.forEach(li => {
+		let contents = li.innerHTML;
+		li.innerHTML = `${contents} <i class="fas fa-trash"></i>`;
+		console.log("test");
+	});
+
+}
+
+// function editFavouriteMovies() {
+// 	let editFavouriteMoviesIcon = document.getElementById("edit-favourite-movies-icon");
+// 	editFavouriteMoviesIcon.classList.toggle("hide");
+// 	//this will hide "edit" icon
+//
+// 	let confirmFavouriteMoviesIcon = document.getElementById("confirm-favourite-movies-icon");
+// 	confirmFavouriteMoviesIcon.classList.toggle("hide");
+// 	//this will display the "confirm" icon, and allow user to confirm choices
+//
+// 	console.log("edit");
+// }
+//
+// function confirmFavouriteMovies() {
+// 	let editFavouriteMoviesIcon = document.getElementById("edit-favourite-movies-icon");
+// 	editFavouriteMoviesIcon.classList.toggle("hide");
+// 	//this will hide "edit" icon
+//
+// 	let confirmFavouriteMoviesIcon = document.getElementById("confirm-favourite-movies-icon");
+// 	confirmFavouriteMoviesIcon.classList.toggle("hide");
+// 	//this will display the "confirm" icon, and allow user to confirm choices
+//
+// 	console.log("confirm");
+// }
 
 function showFavouriteMoviesListener() {
 	//this function allows us to resolve the promise given by readFavMovList in dal

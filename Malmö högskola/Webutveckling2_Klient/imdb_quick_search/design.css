@@ -426,7 +426,13 @@ design the hidden input node
 	display: inline-block;
 }
 
-#title-and-list-container .fa-pencil{
+#edit-favourite-movies-icon:before{
+
+	font-family: "Font Awesome 5 Free";
+	content: "\f00c";
+	font-style: normal;
+	font-weight: bold;
+
 	font-size: 20px;
 	margin-left: 8px;
 	display: inline-block;
@@ -435,15 +441,32 @@ design the hidden input node
 	transition-duration: 0.3s;
 	transition-property: transform;
 }
-.fa-pencil:hover,
-.fa-pencil:focus,
-.fa-pencil:active{
-	cursor: pointer;
 
-	transform: scale(1.03);
-	-moz-transform: scale(1.03);
-	-ms-transform: scale(1.03);
+#edit-favourite-movies-icon.confirm-favourite-movies:before{
+	content: "\f304";
 }
+
+/*#edit-favourite-movies-icon, #confirm-favourite-movies-icon{*/
+/*	font-size: 20px;*/
+/*	margin-left: 8px;*/
+/*	display: inline-block;*/
+
+/*	box-shadow: 0 0 1px rgba(0, 0, 0, 0);*/
+/*	transition-duration: 0.3s;*/
+/*	transition-property: transform;*/
+/*}*/
+/*#edit-favourite-movies-icon:hover,*/
+/*#edit-favourite-movies-icon:focus,*/
+/*#edit-favourite-movies-icon:active,*/
+/*#confirm-favourite-movies-icon:hover,*/
+/*#confirm-favourite-movies-icon:focus,*/
+/*#confirm-favourite-movies-icon:active{*/
+/*	cursor: pointer;*/
+
+/*	transform: scale(1.03);*/
+/*	-moz-transform: scale(1.03);*/
+/*	-ms-transform: scale(1.03);*/
+/*}*/
 
 /*****************************
 	firebaseAuth
