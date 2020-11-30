@@ -109,12 +109,11 @@ form button {
 }
 
 #movie-container:hover, #movie-container:focus, #movie-container:active {
+	cursor: pointer;
+
 	transform: scale(1.03);
 	-moz-transform: scale(1.03);
 	-ms-transform: scale(1.03);
-
-	cursor: pointer;
-
 }
 #movie-container img {
 	width: 105px;
@@ -424,13 +423,27 @@ design the hidden input node
 #favourite-movies-container h3{
 	font-size: 22px;
 	font-family: Arial, serif;
-
+	display: inline-block;
 }
 
-#favourite-movies-list{
-	font-size: 18px;
-}
+#title-and-list-container .fa-pencil{
+	font-size: 20px;
+	margin-left: 8px;
+	display: inline-block;
 
+	box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+	transition-duration: 0.3s;
+	transition-property: transform;
+}
+.fa-pencil:hover,
+.fa-pencil:focus,
+.fa-pencil:active{
+	cursor: pointer;
+
+	transform: scale(1.03);
+	-moz-transform: scale(1.03);
+	-ms-transform: scale(1.03);
+}
 
 /*****************************
 	firebaseAuth
@@ -446,11 +459,13 @@ design the hidden input node
 }
 
 /*****************************
-	designing the content of container
+	designing the list
 *****************************/
 
 #favourite-movies-list{
 	list-style-type: none;
+	font-size: 18px;
+
 }
 
 #favourite-movie-li:focus, #favourite-movie-li:active, #favourite-movie-li:hover {
@@ -492,7 +507,7 @@ design the hidden input node
 /*	transition-property: transform;*/
 
 /*	!**/
-/*	TODO: style this div*/
+/*
 /*    can look at styling for movie-container for inspiration*/
 /*    should i use same style?*/
 /*    maybe same base style but change it up, such as background color??*/
@@ -605,9 +620,6 @@ design the hidden input node
 	#movie-container #rating #rating-max {
 		font-size: 15px;
 		display: none;
-	}
-	#movie-container:hover, #movie-container:focus, #movie-container:active {
-		transform: scale(1.00);
 	}
 	.modal-content{
 		height: 60px;
