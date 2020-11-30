@@ -445,12 +445,12 @@ design the hidden input node
 #edit-favourite-movies-icon.confirm-favourite-movies:before{
 	content: "\f00c";
 }
+
 #edit-favourite-movies-icon:hover,
 #edit-favourite-movies-icon:active,
 #edit-favourite-movies-icon:focus{
 	color: grey;
 }
-
 
 /*****************************
 	firebaseAuth
@@ -475,7 +475,7 @@ design the hidden input node
 
 }
 
-#favourite-movie-anchor:focus, #favourite-movie-anchor:active, #favourite-movie-anchor:hover {
+.favourite-movie-anchor:focus, .favourite-movie-anchor:active, .favourite-movie-anchor:hover {
 	cursor: pointer;
 	color: var(--main-yellow);
 	transition: color 0.2s ease;
@@ -493,6 +493,7 @@ design the hidden input node
 #favourite-movie-li .fa-trash{
 	margin-left: 8px;
 	float: right;
+	display: none;
 }
 #favourite-movie-li .fa-trash:hover,
 #favourite-movie-li .fa-trash:focus,

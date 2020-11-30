@@ -345,33 +345,6 @@ function populateFavouriteMoviesList(snapshot) {
 	favouriteMoviesUL.querySelectorAll('*').forEach(n => n.remove());
 
 	snapshot.forEach(function (snapshot){
-		// let movieObj = snapshot.val();
-		//
-		// let a = document.createElement("a");
-		// let url = "https://www.imdb.com/title/" + snapshot.key + "/";
-		// a.href = url;
-		// favouriteMoviesUL.appendChild(a);
-		//
-		// let li = document.createElement("li");
-		// li.id = 'favourite-movie-li';
-		// li.appendChild(document.createTextNode(
-		// 	movieObj.title + " (" + movieObj.year + ")"
-		// ));
-		//
-		// //this span displays rating-star and rating
-		// let ratingSpan = document.createElement("span");
-		// ratingSpan.innerHTML = "<i class=\"fa fa-star\" aria-hidden=\"true\"></i>";
-		// ratingSpan.appendChild(document.createTextNode(" " + movieObj.rating));
-		//
-		// // ratingSpan.innerHTML = ratingSpan.innerHTML + "<i class=\"fas fa-trash\"></i>";
-		// // //placed this here to allow using white-space: nowrap; on the entire span
-		//
-		// li.appendChild(ratingSpan);
-		//
-		// li.innerHTML = li.innerHTML + "<i class=\"fas fa-trash\"></i>";
-		// //placed this here to allow using white-space: nowrap; on the entire span
-		//
-		// a.appendChild(li);
 
 		let movieObj = snapshot.val();
 
@@ -382,7 +355,7 @@ function populateFavouriteMoviesList(snapshot) {
 		let a = document.createElement("a");
 		let url = "https://www.imdb.com/title/" + snapshot.key + "/";
 		a.href = url;
-		a.id = "favourite-movie-anchor";
+		a.classList.add("favourite-movie-anchor");
 		li.appendChild(a);
 
 		a.appendChild(document.createTextNode(
@@ -450,14 +423,6 @@ function handlePlaceholderParagraph() {
 }
 
 function favouriteMoviesIconListener() {
-	// let editFavouriteMoviesIcon = document.getElementById("edit-favourite-movies-icon");
-	// editFavouriteMoviesIcon.addEventListener("click", editFavouriteMovies);
-	// //editFavouriteMoviesIcon.classList.toggle("hide"); //upon page load, this will be displayed
-	//
-	// let confirmFavouriteMoviesIcon = document.getElementById("confirm-favourite-movies-icon");
-	// confirmFavouriteMoviesIcon.addEventListener("click", confirmFavouriteMovies);
-	// confirmFavouriteMoviesIcon.classList.add("hide"); //upon page load, this will be hidden
-
 	let editFavouriteMovies = document.getElementById("edit-favourite-movies-icon");
 	editFavouriteMovies.addEventListener("click", editOrConfirmStateChange);
 
@@ -488,13 +453,15 @@ function editOrConfirmStateChange() {
 	editFavouriteMovies.classList.toggle("confirm-favourite-movies");
 
 	let favouriteMoviesUL = document.getElementById("favourite-movies-list");
-	let trashList = favouriteMoviesUL.querySelectorAll(".fas.fa-trash");
+	let trashList = favouriteMoviesUL.querySelectorAll(".fas.fa-trash"); //should search for favourite-movie-anchor
 	let trashArray = [...trashList];
 	//spread operator: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax
 
 	trashArray.forEach(trash => {
 		trash.addEventListener("click", deleteFromFavouriteMovies);
-		//li.classList.toggle("hide"); 	//toggle doesnt work for some reason
+		//trash.classList.toggle("hide"); 	//toggle doesnt work for some reason
+
+		console.log(trash.style.display == "none"); //this logs as false, when it is true. WHats going on?
 
 		//resorting to manually toggling
 		if (trash.style.display == "none"){
@@ -511,32 +478,6 @@ function deleteFromFavouriteMovies() {
 	//this fun will
 	console.log("delete WIP");
 }
-
-
-
-// function editFavouriteMovies() {
-// 	let editFavouriteMoviesIcon = document.getElementById("edit-favourite-movies-icon");
-// 	editFavouriteMoviesIcon.classList.toggle("hide");
-// 	//this will hide "edit" icon
-//
-// 	let confirmFavouriteMoviesIcon = document.getElementById("confirm-favourite-movies-icon");
-// 	confirmFavouriteMoviesIcon.classList.toggle("hide");
-// 	//this will display the "confirm" icon, and allow user to confirm choices
-//
-// 	console.log("edit");
-// }
-//
-// function confirmFavouriteMovies() {
-// 	let editFavouriteMoviesIcon = document.getElementById("edit-favourite-movies-icon");
-// 	editFavouriteMoviesIcon.classList.toggle("hide");
-// 	//this will hide "edit" icon
-//
-// 	let confirmFavouriteMoviesIcon = document.getElementById("confirm-favourite-movies-icon");
-// 	confirmFavouriteMoviesIcon.classList.toggle("hide");
-// 	//this will display the "confirm" icon, and allow user to confirm choices
-//
-// 	console.log("confirm");
-// }
 
 function showFavouriteMoviesListener() {
 	//this function allows us to resolve the promise given by readFavMovList in dal
