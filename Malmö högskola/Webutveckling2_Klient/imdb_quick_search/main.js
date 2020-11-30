@@ -543,21 +543,21 @@ function authStateChanged(firebaseUser) {
 
 	if (firebaseUser){
 		firebaseUISignupContainer.style.display = "none";
-		signOut.textContent = 'Log out';
+		signOut.innerHTML = 'Log out';
 		signOut.onclick = firebaseSignOut;
 		signOut.style.display = "unset";
 		titleAndListContainer.style.display = "unset";
 
 		if (firebaseUser.displayName == null){
-			signInStatus.textContent = 'Welcome, Guest';
+			signInStatus.innerHTML = 'Welcome, Guest';
 		} else{
-			signInStatus.textContent = 'Welcome, ' + firebaseUser.displayName;
+			signInStatus.innerHTML = 'Welcome, ' + firebaseUser.displayName;
 		}
 		signInStatus.style.display = "unset";
 
 	} else {
 		firebaseUISignupContainer.style.display = "unset";
-		signInStatus.textContent = 'Signed out';
+		signInStatus.innerHTML = 'Signed out';
 		signInStatus.style.display = "none";
 		signOut.style.display = "none";
 		titleAndListContainer.style.display = "none";

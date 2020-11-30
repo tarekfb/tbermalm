@@ -30,7 +30,7 @@ function initFirebaseUI() {
         // signInSuccess: function(currentUser, credential, redirectUrl) {
         //     return false; //this will stop the signinsuccessurl from being used
         //     },
-        signInSuccessUrl: 'https://www.tbdevstuff.live/webutveckling2_klient/imdb_quick_search/imdb_quick_search.html',
+       // signInSuccessUrl: 'https://www.tbdevstuff.live/webutveckling2_klient/imdb_quick_search/imdb_quick_search.html',
         signInOptions: [
             // Leave the lines as is for the providers you want to offer your users.
             firebase.auth.EmailAuthProvider.PROVIDER_ID,

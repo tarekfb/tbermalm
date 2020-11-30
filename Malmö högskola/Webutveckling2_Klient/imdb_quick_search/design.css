@@ -459,9 +459,18 @@ design the hidden input node
 	firebaseAuth
  *****************************/
 
-#firebase-auth-container{
+#firebase-auth-container {
 	margin-top: 40px;
 	font-size: 18px;
+}
+
+#sign-in-status{
+	display: block;
+}
+
+#sign-out{
+	display: block;
+/*	these are appearning on same line for some reason*/
 }
 
 #sign-out:hover, #sign-out:active, #sign-out:focus{
