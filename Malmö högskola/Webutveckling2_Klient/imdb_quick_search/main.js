@@ -372,13 +372,28 @@ function populateFavouriteMoviesList(snapshot) {
 		let deleteSpan = document.createElement("span");
 		deleteSpan.innerHTML = "<i class=\"fas fa-trash\"></i>";
 		deleteSpan.classList.add("delete-span");
-		deleteSpan.style.display = "none";
+
+		function f() {
+			return deleteSpan.currentStyle ? deleteSpan.currentStyle.display :
+				getComputedStyle(deleteSpan, null).display;
+		}
+
+		console.log(f());
+
+			if (deleteSpan.style.display == "inline-block"){
+			console.log("true");
+		}
+
+		if (deleteSpan.style.display != "none"){
+			deleteSpan.style.display = "none";
+		}
+
+		deleteSpan.addEventListener("click", function (event){
+			deleteMovie(snapshot.key, event);
+		});
+
 		li.appendChild(deleteSpan);
 
-		//li.innerHTML = li.innerHTML + "<i class=\"fas fa-trash\"></i>";
-		//placed this here to allow using white-space: nowrap; on the entire span
-
-		//a.appendChild(li);
 
 	});
 //TODO: make scrollable if too many movies
@@ -462,21 +477,30 @@ function editOrConfirmStateChange() {
 	editFavouriteMovies.classList.toggle("confirm-favourite-movies");
 
 	let favouriteMoviesUL = document.getElementById("favourite-movies-list");
-	let trashList = favouriteMoviesUL.getElementsByClassName("delete-span");
-	for (let i = 0; i < trashList.length; i++) {
-		if (trashList[i].style.display == "none"){
-			trashList[i].style.display = "unset";
+	let deleteSpanList = favouriteMoviesUL.getElementsByClassName("delete-span");
+	for (let i = 0; i < deleteSpanList.length; i++) {
+		if (deleteSpanList[i].style.display == "none"){
+			deleteSpanList[i].style.display = "unset";
 		} else {
-			trashList[i].style.display = "none";
+			deleteSpanList[i].style.display = "none";
+			readFavouriteMoviesList().then(snapshot => populateFavouriteMoviesList(snapshot));
 		}
 	}
 
 }
 
+function deleteMovie(imdbID, event) {
+	//this fun calls fun in dal.js, which deletes movie from db
+	//it then simply hides the li that was clicked
+	//this is faster than repopulating
+	//and if we repopulate, it'll reset the trashcan state (hide vs show)
 
-function deleteFromFavouriteMovies() {
-	//this fun will
-	console.log("delete WIP");
+	//in future, can implement a successfull/failure check in dal
+	//and then return true/false to deletemovie, and call deleteFromFav.then
+
+	deleteFromFavouriteMovies(imdbID);
+	event.target.parentNode.parentNode.style.display = "none";
+
 }
 
 function showFavouriteMoviesListener() {
