@@ -371,6 +371,8 @@ function populateFavouriteMoviesList(snapshot) {
 
 		let deleteSpan = document.createElement("span");
 		deleteSpan.innerHTML = "<i class=\"fas fa-trash\"></i>";
+		deleteSpan.classList.add("delete-span");
+		deleteSpan.style.display = "none";
 		li.appendChild(deleteSpan);
 
 		//li.innerHTML = li.innerHTML + "<i class=\"fas fa-trash\"></i>";
@@ -426,21 +428,28 @@ function favouriteMoviesIconListener() {
 	let editFavouriteMovies = document.getElementById("edit-favourite-movies-icon");
 	editFavouriteMovies.addEventListener("click", editOrConfirmStateChange);
 
+	//following code was educational but can be replaced with one line
+	//therefore doing so, but leaving code here, in comments
+
 	//this code forces the 'edit' icon on page reload
 	//the sessionStorage will expire on each page reload
-	editFavouriteMovies.classList.remove("confirm-favourite-movies");
-	sessionStorage.setItem("notEditing", "true");
+
+	// editFavouriteMovies.classList.remove("confirm-favourite-movies");
+	// sessionStorage.setItem("notEditing", "true");
 
 	//localStorage does NOT expire on page reload
-	//this could just as well be implemented as:
-	//	window.onload = fun{notEditing.classlist.remove "confirm-fav-m"};
-	//but im here to learn, so this stays
-	window.onload = function() {
-		let notEditing = localStorage.getItem('notEditing');
-		if (notEditing === 'true'){
-			editFavouriteMovies.classList.remove("confirm-favourite-movies");
-		}
-	}
+
+	// window.onload = function() {
+	// 	let notEditing = localStorage.getItem('notEditing');
+	// 	if (notEditing === 'true'){
+	// 		editFavouriteMovies.classList.remove("confirm-favourite-movies");
+	// 		}
+	// 	}
+	// }
+
+	//this code forces the 'edit' icon on page reload
+	editFavouriteMovies.classList.remove("confirm-favourite-movies");
+
 }
 
 function editOrConfirmStateChange() {
@@ -453,23 +462,14 @@ function editOrConfirmStateChange() {
 	editFavouriteMovies.classList.toggle("confirm-favourite-movies");
 
 	let favouriteMoviesUL = document.getElementById("favourite-movies-list");
-	let trashList = favouriteMoviesUL.querySelectorAll(".fas.fa-trash"); //should search for favourite-movie-anchor
-	let trashArray = [...trashList];
-	//spread operator: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax
-
-	trashArray.forEach(trash => {
-		trash.addEventListener("click", deleteFromFavouriteMovies);
-		//trash.classList.toggle("hide"); 	//toggle doesnt work for some reason
-
-		console.log(trash.style.display == "none"); //this logs as false, when it is true. WHats going on?
-
-		//resorting to manually toggling
-		if (trash.style.display == "none"){
-			trash.style.display = "inline-block";
-		} else if (trash.style.display = "inline-block"){
-			trash.style.display = "none";
+	let trashList = favouriteMoviesUL.getElementsByClassName("delete-span");
+	for (let i = 0; i < trashList.length; i++) {
+		if (trashList[i].style.display == "none"){
+			trashList[i].style.display = "unset";
+		} else {
+			trashList[i].style.display = "none";
 		}
-	});
+	}
 
 }
 

@@ -84,11 +84,13 @@ form button {
 
 #movie-container {
 	/*
-	TODO: this div, and only this div, is positioned above sidebar menu
+	this div, and only this div, is positioned above sidebar menu
 	even though sidebar menu has higher z-index
 	unsure why
 	could be something within this card itself, or the parents
-	 */
+
+	fixed by adding z-index: 1; to sidebar
+	*/
 
 	width: 65%;
 	height: 165px;
@@ -450,6 +452,7 @@ design the hidden input node
 #edit-favourite-movies-icon:active,
 #edit-favourite-movies-icon:focus{
 	color: grey;
+	transition: color 0.2s ease;
 }
 
 /*****************************
@@ -472,7 +475,6 @@ design the hidden input node
 #favourite-movies-list{
 	list-style-type: none;
 	font-size: 18px;
-
 }
 
 .favourite-movie-anchor:focus, .favourite-movie-anchor:active, .favourite-movie-anchor:hover {
@@ -488,19 +490,20 @@ design the hidden input node
 
 #favourite-movie-li .fa-star {
 	color: var(--gold);
+	margin-left: 8px;
 }
 
 #favourite-movie-li .fa-trash{
 	margin-left: 8px;
 	float: right;
-	display: none;
+	/*display: none;*/
 }
 #favourite-movie-li .fa-trash:hover,
 #favourite-movie-li .fa-trash:focus,
 #favourite-movie-li .fa-trash:active{
-	color: black;
 	cursor: pointer;
 	color: grey;
+	transition: color 0.2s ease;
 }
 
 /*testing design, used for static html that is currently commented out*/
