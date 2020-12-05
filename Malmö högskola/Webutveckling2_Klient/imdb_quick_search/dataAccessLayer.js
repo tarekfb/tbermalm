@@ -77,7 +77,7 @@ firebase.auth().onAuthStateChanged(function(firebaseUser) {
 
         authStateChanged(firebaseUser);
         readFavouriteMoviesList().then(snapshot => populateFavouriteMoviesList(snapshot));
-        handlePlaceholderParagraph();
+        handlePlaceholderSpan();
         userRef = rootRef.child(`users/${uid}/`);
 
     } else {
@@ -91,6 +91,29 @@ firebase.auth().onAuthStateChanged(function(firebaseUser) {
 
 function getFirebaseAuth() {
     return firebase.auth();
+}
+
+function checkFirebaseUserState() {
+    if (firebase.auth().currentUser) {
+        //logged in
+        return true;
+    } else {
+        return false;
+    }
+}
+
+async function checkIfUserHasChildren() {
+    let boolean;
+    return readFavouriteMoviesList().then(function (snapshot) {
+        if (snapshot.hasChildren()) {
+            boolean = true;
+            return boolean;
+        } else {
+            boolean = false;
+            return boolean;
+        }
+    });
+
 }
 
 function pushFavouriteMovie(entryFromAJAX) {

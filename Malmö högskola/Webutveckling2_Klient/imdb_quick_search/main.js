@@ -330,7 +330,7 @@ function saveMovieToFavourite(entryFromAJAX) {
 		//favouriteMoviesUL.lastElementChild.classList.add("pulse-grey-animation");
 	}
 
-	handlePlaceholderParagraph();
+	handlePlaceholderSpan();
 
 	pushFavouriteMovie(entryFromAJAX);
 	readFavouriteMoviesList().then(snapshot => populateFavouriteMoviesList(snapshot));
@@ -373,17 +373,6 @@ function populateFavouriteMoviesList(snapshot) {
 		deleteSpan.innerHTML = "<i class=\"fas fa-trash\"></i>";
 		deleteSpan.classList.add("delete-span");
 
-		function f() {
-			return deleteSpan.currentStyle ? deleteSpan.currentStyle.display :
-				getComputedStyle(deleteSpan, null).display;
-		}
-
-		console.log(f());
-
-			if (deleteSpan.style.display == "inline-block"){
-			console.log("true");
-		}
-
 		if (deleteSpan.style.display != "none"){
 			deleteSpan.style.display = "none";
 		}
@@ -415,10 +404,11 @@ function favouriteMoviesHamburgerListener() {
 	});
 }
 
-function handlePlaceholderParagraph() {
-	//this fun checks if the user has added any movies yet
+function handlePlaceholderSpan() {
+	//this fun checks if the user has any movies in fav list
 	//if the list of fav movies is empty -->
 	// --> display p saying 'try adding movies'
+	// --> hide relevant divs
 
 	let favouriteMoviesUL = document.getElementById("favourite-movies-list");
 	let placeholderSpan = document.getElementById("empty-list-placeholder");
@@ -500,6 +490,17 @@ function deleteMovie(imdbID, event) {
 
 	deleteFromFavouriteMovies(imdbID);
 	event.target.parentNode.parentNode.style.display = "none";
+
+	//if the users fav movie list is now empty, then -->
+	// - toggle trash can icon
+	// -
+
+	checkIfUserHasChildren().then(function (hasChildren){
+		if (!hasChildren){
+			editOrConfirmStateChange();
+			handlePlaceholderSpan();
+		}
+	})
 
 }
 
