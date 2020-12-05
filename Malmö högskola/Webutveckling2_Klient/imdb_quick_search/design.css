@@ -110,13 +110,6 @@ form button {
 
 }
 
-#movie-container:hover, #movie-container:focus, #movie-container:active {
-	cursor: pointer;
-
-	transform: scale(1.03);
-	-moz-transform: scale(1.03);
-	-ms-transform: scale(1.03);
-}
 #movie-container img {
 	width: 105px;
 	height: 100%;
@@ -214,13 +207,6 @@ form button {
 	margin-right: -10px;
 }
 
-.close:hover,
-.close:focus {
-	color: black;
-	text-decoration: none;
-	cursor: pointer;
-}
-
 #save{
 	border-radius: 4px;
 	border: solid 2px white;
@@ -229,21 +215,11 @@ form button {
 	font-size: 15px;
 }
 
-#save:hover,
-#save:focus {
-	cursor: pointer;
-}
-
 #cancel{
 	background-color: #fefefe;
 	border: none;
 	margin-left: 10px;
 	font-size: 15px;
-}
-
-#cancel:hover,
-#cancel:focus {
-	cursor: pointer;
 }
 
 /*****************************
@@ -448,24 +424,22 @@ design the hidden input node
 	content: "\f00c";
 }
 
-#edit-favourite-movies-icon:hover,
-#edit-favourite-movies-icon:active,
-#edit-favourite-movies-icon:focus{
-	color: grey;
-	transition: color 0.2s ease;
-}
-
 /*****************************
 	firebaseAuth
  *****************************/
 
-#firebase-auth-container{
+#firebase-auth-container {
 	margin-top: 40px;
 	font-size: 18px;
 }
 
-#sign-out:hover, #sign-out:active, #sign-out:focus{
-	cursor: pointer;
+#sign-in-status{
+	display: block;
+}
+
+#sign-out{
+	display: block;
+/*	these are appearning on same line for some reason*/
 }
 
 /*****************************
@@ -475,12 +449,6 @@ design the hidden input node
 #favourite-movies-list{
 	list-style-type: none;
 	font-size: 18px;
-}
-
-.favourite-movie-anchor:focus, .favourite-movie-anchor:active, .favourite-movie-anchor:hover {
-	cursor: pointer;
-	color: var(--main-yellow);
-	transition: color 0.2s ease;
 }
 
 #favourite-movie-li{
@@ -498,13 +466,7 @@ design the hidden input node
 	float: right;
 	/*display: none;*/
 }
-#favourite-movie-li .fa-trash:hover,
-#favourite-movie-li .fa-trash:focus,
-#favourite-movie-li .fa-trash:active{
-	cursor: pointer;
-	color: grey;
-	transition: color 0.2s ease;
-}
+
 
 /*testing design, used for static html that is currently commented out*/
 /*the nodes x-li belong to a testDiv*/
@@ -589,9 +551,43 @@ design the hidden input node
 	font-size: 15px;
 }
 
-#show-favourite-movies:hover,
-#show-favourite-movies:focus {
-	cursor: pointer;
+/*****************************
+	all hover selects below
+	this media query only includes devices that have hover (ie. cursor) support
+ *****************************/
+
+@media (hover: hover) {
+	#show-favourite-movies:hover, #cancel:hover, #save:hover, #sign-out:hover {
+		cursor: pointer;
+	}
+	#edit-favourite-movies-icon:hover {
+		color: grey;
+		transition: color 0.2s ease;
+		cursor: pointer;
+	}
+	#movie-container:hover {
+		cursor: pointer;
+
+		transform: scale(1.03);
+		-moz-transform: scale(1.03);
+		-ms-transform: scale(1.03);
+	}
+	.close:hover{
+		color: black;
+		text-decoration: none;
+		cursor: pointer;
+	}
+	.favourite-movie-anchor:hover {
+		cursor: pointer;
+		color: var(--main-yellow);
+		transition: color 0.2s ease;
+	}
+	#favourite-movie-li .fa-trash:hover {
+		cursor: pointer;
+		color: grey;
+		transition: color 0.2s ease;
+	}
+
 }
 
 /*****************************
@@ -615,6 +611,8 @@ design the hidden input node
 		transform: none;
 		-moz-transform: none;
 		-ms-transform: none;
+
+		/*is this necessary, now that i've used media query for selection of devices with cursors?*/
 	}
 	#movie-container img {
 		width: 85px;

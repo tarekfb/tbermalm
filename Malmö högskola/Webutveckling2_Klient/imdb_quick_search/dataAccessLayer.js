@@ -30,7 +30,7 @@ function initFirebaseUI() {
         // signInSuccess: function(currentUser, credential, redirectUrl) {
         //     return false; //this will stop the signinsuccessurl from being used
         //     },
-        signInSuccessUrl: 'https://www.tbdevstuff.live/webutveckling2_klient/imdb_quick_search/imdb_quick_search.html',
+       // signInSuccessUrl: 'https://www.tbdevstuff.live/webutveckling2_klient/imdb_quick_search/imdb_quick_search.html',
         signInOptions: [
             // Leave the lines as is for the providers you want to offer your users.
             firebase.auth.EmailAuthProvider.PROVIDER_ID,
@@ -61,19 +61,23 @@ firebase.auth().onAuthStateChanged(function(firebaseUser) {
 
     if (firebaseUser) {
         // User is signed in.
+        let uid = firebaseUser.uid;
+
+        /* this code isn't used, so commenting out but leaving for future usage
         let displayName = firebaseUser.displayName;
         let email = firebaseUser.email;
         let emailVerified = firebaseUser.emailVerified;
         let photoURL = firebaseUser.photoURL;
-        let uid = firebaseUser.uid;
         let phoneNumber = firebaseUser.phoneNumber;
         let providerData = firebaseUser.providerData;
+
         firebaseUser.getIdToken().then(function(accessToken) {
         });
+        */
 
         authStateChanged(firebaseUser);
         readFavouriteMoviesList().then(snapshot => populateFavouriteMoviesList(snapshot));
-        handlePlaceholderParagraph();
+        handlePlaceholderSpan();
         userRef = rootRef.child(`users/${uid}/`);
 
     } else {
@@ -85,12 +89,31 @@ firebase.auth().onAuthStateChanged(function(firebaseUser) {
     alert(error);
 });
 
+function getFirebaseAuth() {
+    return firebase.auth();
+}
+
 function checkFirebaseUserState() {
-    if (firebase.auth().currentUser){
+    if (firebase.auth().currentUser) {
+        //logged in
         return true;
     } else {
         return false;
     }
+}
+
+async function checkIfUserHasChildren() {
+    let boolean;
+    return readFavouriteMoviesList().then(function (snapshot) {
+        if (snapshot.hasChildren()) {
+            boolean = true;
+            return boolean;
+        } else {
+            boolean = false;
+            return boolean;
+        }
+    });
+
 }
 
 function pushFavouriteMovie(entryFromAJAX) {
