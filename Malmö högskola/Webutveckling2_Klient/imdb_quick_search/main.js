@@ -408,7 +408,7 @@ function favouriteMoviesHamburgerListener() {
 
 	inputHamburgerCheckbox.addEventListener( 'change', function() {
 		if (this.checked) {
-			if (!checkFirebaseUserState){
+			if (getFirebaseAuth().currentUser != null){
 				readFavouriteMoviesList().then(snapshot => populateFavouriteMoviesList(snapshot));
 			}
 		}
@@ -421,17 +421,17 @@ function handlePlaceholderParagraph() {
 	// --> display p saying 'try adding movies'
 
 	let favouriteMoviesUL = document.getElementById("favourite-movies-list");
-	let placeholderP = document.getElementById("empty-list-placeholder");
+	let placeholderSpan = document.getElementById("empty-list-placeholder");
 	let showListButton = document.getElementById("show-favourite-movies");
 
-	placeholderP.style.display = "none";
+	placeholderSpan.style.display = "none";
 	readFavouriteMoviesList().then(function (snapshot){
 		if (!snapshot.hasChildren()){
-			placeholderP.style.display = "block";
+			placeholderSpan.style.display = "block";
 			showListButton.style.display = "none";
 			favouriteMoviesUL.style.display = "none";
 		} else {
-			placeholderP.style.display = "none";
+			placeholderSpan.style.display = "none";
 			showListButton.style.display = "inline-block";
 			favouriteMoviesUL.style.display = "unset";
 		}

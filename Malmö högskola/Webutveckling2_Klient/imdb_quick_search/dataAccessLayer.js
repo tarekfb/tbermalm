@@ -61,15 +61,19 @@ firebase.auth().onAuthStateChanged(function(firebaseUser) {
 
     if (firebaseUser) {
         // User is signed in.
+        let uid = firebaseUser.uid;
+
+        /* this code isn't used, so commenting out but leaving for future usage
         let displayName = firebaseUser.displayName;
         let email = firebaseUser.email;
         let emailVerified = firebaseUser.emailVerified;
         let photoURL = firebaseUser.photoURL;
-        let uid = firebaseUser.uid;
         let phoneNumber = firebaseUser.phoneNumber;
         let providerData = firebaseUser.providerData;
+
         firebaseUser.getIdToken().then(function(accessToken) {
         });
+        */
 
         authStateChanged(firebaseUser);
         readFavouriteMoviesList().then(snapshot => populateFavouriteMoviesList(snapshot));
@@ -85,12 +89,8 @@ firebase.auth().onAuthStateChanged(function(firebaseUser) {
     alert(error);
 });
 
-function checkFirebaseUserState() {
-    if (firebase.auth().currentUser){
-        return true;
-    } else {
-        return false;
-    }
+function getFirebaseAuth() {
+    return firebase.auth();
 }
 
 function pushFavouriteMovie(entryFromAJAX) {
