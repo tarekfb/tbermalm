@@ -565,6 +565,35 @@ design the hidden input node
 	margin-left: var(--icon-distance);
 }
 
+/*TODO TESTING STYLES FOR BUTTONS SIDEBAR*/
+
+.btn{
+	outline: none;
+	background-color: var(--secondary-red);
+	font-weight: 700;
+	letter-spacing: 2px;
+	padding: 0.5em 1.25em;
+	background-position: 100%;
+	border: 3px solid var(--secondary-red);
+	text-transform: uppercase;
+	border-radius: 3px;
+	transition: all .2s ease-out;
+	background-image: linear-gradient(110deg, var(--secondary-red) 0%, var(--secondary-red) 50%, transparent 50%, transparent 100%);
+	font-size: 14px;
+	white-space: nowrap;
+}
+
+#firebase-test{
+	margin-top: 40px;
+	font-size: 18px;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-content: center;
+}
+
+
 /*****************************
 	designing the list
 *****************************/

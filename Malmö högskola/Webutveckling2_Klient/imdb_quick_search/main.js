@@ -524,7 +524,7 @@ function showFavouriteMoviesListener() {
 
 	let showFavouriteMoviesBtn = document.getElementById("show-favourite-movies");
 	showFavouriteMoviesBtn.addEventListener("click", function (){
-		
+
 		// this code shows the loading animation div
 		let loadingResults = document.getElementById("loading-results");
 		loadingResults.style.display = "inline-block";
