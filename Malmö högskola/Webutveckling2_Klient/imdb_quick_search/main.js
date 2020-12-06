@@ -31,12 +31,20 @@ function submitFormListener() {
 
 			event.preventDefault();
 		} else {
+			// in this case the search has gone through
+			// making api call
+
+			// this code shows the loading animation div
+			let loadingResults = document.getElementById("loading-results");
+			loadingResults.style.display = "inline-block";
 
 			//pass whatever the user entered into the search box as a query to the apiHandler
 			let queryText = form.elements.query.value;
 			apiHandlerByTitle(encodeURI(queryText));
 
 			event.preventDefault();
+
+
 		}
 	});
 }
@@ -96,6 +104,10 @@ function apiHandlerByImdbID(imdbID) {
 }
 
 function displayResult(result) {
+	//hiding the loading div
+	let loadingResults = document.getElementById("loading-results");
+	loadingResults.style.display = "none";
+
 	if (/Mobi|Android/i.test(navigator.userAgent) && document.getElementById("input-hamburger").checked) {
 		document.getElementById("input-hamburger").checked = false;
 	}
@@ -512,6 +524,11 @@ function showFavouriteMoviesListener() {
 
 	let showFavouriteMoviesBtn = document.getElementById("show-favourite-movies");
 	showFavouriteMoviesBtn.addEventListener("click", function (){
+		
+		// this code shows the loading animation div
+		let loadingResults = document.getElementById("loading-results");
+		loadingResults.style.display = "inline-block";
+
 		readFavouriteMoviesList().then(snapshot => displayFavouriteMovies(snapshot));
 	});
 }
