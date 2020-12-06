@@ -377,45 +377,6 @@ design the hidden input node
 	designing the container for content
 *****************************/
 
-/*sidebar-btn is a general style for buttons in the sidebar*/
-.sidebar-btn {
-	display: block;
-	background-size: 220%;
-	box-shadow: 0 .2em .3em rgba(0, 0, 0, 0.15);
-	color: black;
-	background-color: transparent;
-	background-position: 100%;
-	border: 3px solid var(--secondary-red);
-	text-transform: uppercase;
-	padding: 0.5em 1.25em;
-	border-radius: 3px;
-	transition: all .2s ease-out;
-	font-weight: 900;
-	cursor: pointer;
-	letter-spacing: 2px;
-	background-image: linear-gradient(110deg, var(--secondary-red) 0%, var(--secondary-red) 50%, transparent 50%, transparent 100%);
-	font-size: 14px;
-	white-space: nowrap;
-}
-
-.sidebar-btn:hover {
-	transform: translateY(-2px);
-	box-shadow: 0 0 .3em rgba(0, 0, 0, 0.25);
-	background-position: 0;
-	color: #000;
-}
-
-.sidebar-btn:active {
-	transform: translateY(-1px);
-}
-
-.sidebar-btn::before{
-	font-family: "Font Awesome 5 Free", serif;
-	font-style: normal;
-	font-weight: bold;
-	margin-right: var(--icon-distance);
-}
-
 #favourite-movies-content-container{
 	margin: -100px 0 0 -55px;
 	padding: 25px;
@@ -467,19 +428,18 @@ design the hidden input node
 	content: "\f00c";
 }
 
-
 /*****************************
 	firebaseAuth
  *****************************/
 
+/*TODO REDO BUTTONS AND STYLING*/
 #firebase-auth-container {
 	margin-top: 40px;
 	font-size: 18px;
 
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
-	align-content: center;
+	justify-content: space-between;
 }
 
 #sign-in-status::after{
@@ -497,8 +457,13 @@ design the hidden input node
 	text-align: center;
 }
 
-#sign-out::before{
+#sign-out::after{
+	font-family: "Font Awesome 5 Free", serif;
+	font-style: normal;
+	font-weight: bold;
 	content: "\f2f5";
+
+	margin-left: var(--icon-distance);
 }
 
 /*****************************
