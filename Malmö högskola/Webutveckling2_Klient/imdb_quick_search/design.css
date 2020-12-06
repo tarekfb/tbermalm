@@ -387,7 +387,7 @@ design the hidden input node
 	background-position: 100%;
 	border: 3px solid var(--secondary-red);
 	text-transform: uppercase;
-	padding: 8px 16px;
+	padding: 0.5em 1.25em;
 	border-radius: 3px;
 	transition: all .2s ease-out;
 	font-weight: 900;
@@ -395,6 +395,7 @@ design the hidden input node
 	letter-spacing: 2px;
 	background-image: linear-gradient(110deg, var(--secondary-red) 0%, var(--secondary-red) 50%, transparent 50%, transparent 100%);
 	font-size: 14px;
+	white-space: nowrap;
 }
 
 .sidebar-btn:hover {
@@ -409,7 +410,7 @@ design the hidden input node
 }
 
 .sidebar-btn::before{
-	font-family: "Font Awesome 5 Free";
+	font-family: "Font Awesome 5 Free", serif;
 	font-style: normal;
 	font-weight: bold;
 	margin-right: var(--icon-distance);
@@ -482,7 +483,7 @@ design the hidden input node
 }
 
 #sign-in-status::after{
-	font-family: "Font Awesome 5 Free";
+	font-family: "Font Awesome 5 Free", serif;
 	content: "\f007";
 	font-style: normal;
 	font-weight: bold;
