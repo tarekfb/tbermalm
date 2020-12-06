@@ -491,9 +491,11 @@ function deleteMovie(imdbID, event) {
 	deleteFromFavouriteMovies(imdbID);
 	event.target.parentNode.parentNode.style.display = "none";
 
-	//if the users fav movie list is now empty, then -->
-	// - toggle trash can icon
-	// -
+	//this code isnt crucial, because "handlePlaceHlderSPan" takes care of it below
+	//but it looks ugly if i wait for the promise to be resolved
+	//Bcus the show button jumps up when there is content, and then goes poof
+	let showListButton = document.getElementById("show-favourite-movies");
+	showListButton.style.display = "none";
 
 	checkIfUserHasChildren().then(function (hasChildren){
 		if (!hasChildren){
@@ -544,7 +546,6 @@ function authStateChanged(firebaseUser) {
 
 	if (firebaseUser){
 		firebaseUISignupContainer.style.display = "none";
-		signOut.innerHTML = 'Log out';
 		signOut.onclick = firebaseSignOut;
 		signOut.style.display = "unset";
 		titleAndListContainer.style.display = "unset";

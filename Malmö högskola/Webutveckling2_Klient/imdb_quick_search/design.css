@@ -5,10 +5,12 @@
 :root {
 	/*variables*/
 	--main-yellow: #f4cb84;
-	--main-red: #f38363 ;
+	--main-red: #98523e;
+	--secondary-red-darker: #98523E;
 	--accept-green: #00e500;
 	--background-grey: #e7d2cc;
 	--gold: #FFD700;
+	--icon-distance: 0.5em;
 }
 
 .hide{
@@ -404,15 +406,15 @@ design the hidden input node
 	display: inline-block;
 }
 
-#edit-favourite-movies-icon:before{
-
+#edit-favourite-movies-icon::before{
+	/*edit icon, for starting to deleting favourites*/
 	font-family: "Font Awesome 5 Free";
 	content: "\f304";
 	font-style: normal;
 	font-weight: bold;
 
 	font-size: 20px;
-	margin-left: 8px;
+	margin-left: var(--icon-distance);
 	display: inline-block;
 
 	box-shadow: 0 0 1px rgba(0, 0, 0, 0);
@@ -420,9 +422,11 @@ design the hidden input node
 	transition-property: transform;
 }
 
-#edit-favourite-movies-icon.confirm-favourite-movies:before{
+#edit-favourite-movies-icon.confirm-favourite-movies::before{
+	/*confirm icon, for exiting the edit mode*/
 	content: "\f00c";
 }
+
 
 /*****************************
 	firebaseAuth
@@ -431,15 +435,31 @@ design the hidden input node
 #firebase-auth-container {
 	margin-top: 40px;
 	font-size: 18px;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
 }
 
-#sign-in-status{
-	display: block;
+#sign-in-status::after{
+	font-family: "Font Awesome 5 Free";
+	content: "\f007";
+	font-style: normal;
+	font-weight: bold;
+
+	margin-left: var(--icon-distance);
 }
 
 #sign-out{
-	display: block;
-/*	these are appearning on same line for some reason*/
+	margin-top: 10px;
+}
+#sign-out::after{
+	font-family: "Font Awesome 5 Free";
+	content: "\f2f5";
+	font-style: normal;
+	font-weight: bold;
+
+	margin-left: var(--icon-distance);
 }
 
 /*****************************
@@ -548,8 +568,14 @@ design the hidden input node
 	border: solid 2px var(--main-yellow);
 	background-color: var(--main-yellow);
 	padding: 3px;
-	font-size: 15px;
+	font-size: 20px;
 }
+
+
+/*test*/
+
+
+
 
 /*****************************
 	all hover selects below
