@@ -44,6 +44,21 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
   </component>
+  <component name="RunManager">
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -82,7 +97,8 @@
       <workItem from="1606489417940" duration="6702000" />
       <workItem from="1606662796183" duration="988000" />
       <workItem from="1606729452376" duration="17319000" />
-      <workItem from="1607189556773" duration="5429000" />
+      <workItem from="1607189556773" duration="10121000" />
+      <workItem from="1607255469373" duration="7600000" />
     </task>
     <servers />
   </component>
@@ -123,10 +139,10 @@
     </state>
     <state x="565" y="135" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/-1920.0.1536.840/0.0.1920.1050@0.0.1920.1050" timestamp="1603109514798" />
     <state x="452" y="56" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1536.834@0.0.1536.834" timestamp="1606302423990" />
-    <state x="777" y="439" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1606386198984">
+    <state x="777" y="439" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1607261052135">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state x="777" y="439" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/-1920.0.1536.840/0.0.1920.1050@0.0.1920.1050" timestamp="1606386198984" />
+    <state x="777" y="439" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/-1920.0.1536.840/0.0.1920.1050@0.0.1920.1050" timestamp="1607261052135" />
     <state x="667" y="124" width="707" height="801" key="find.popup" timestamp="1606738331544">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
@@ -139,11 +155,11 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="752" y="383" key="scopes/-1920.0.1536.840/0.0.1920.1050@0.0.1920.1050" timestamp="1602335718995" />
-    <state x="623" y="227" width="672" height="678" key="search.everywhere.popup" timestamp="1606747969744">
+    <state x="623" y="227" width="672" height="678" key="search.everywhere.popup" timestamp="1607252470571">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="-1422" y="182" width="672" height="543" key="search.everywhere.popup/-1920.0.1536.840/0.0.1920.1050@-1920.0.1536.840" timestamp="1602072333066" />
-    <state x="623" y="227" width="672" height="678" key="search.everywhere.popup/-1920.0.1536.840/0.0.1920.1050@0.0.1920.1050" timestamp="1606747969744" />
+    <state x="623" y="227" width="672" height="678" key="search.everywhere.popup/-1920.0.1536.840/0.0.1920.1050@0.0.1920.1050" timestamp="1607252470571" />
     <state x="498" y="180" width="672" height="539" key="search.everywhere.popup/0.0.1536.834@0.0.1536.834" timestamp="1606662891720" />
   </component>
 </project>

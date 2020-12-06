@@ -31,12 +31,20 @@ function submitFormListener() {
 
 			event.preventDefault();
 		} else {
+			// in this case the search has gone through
+			// making api call
+
+			// this code shows the loading animation div
+			let loadingResults = document.getElementById("loading-results");
+			loadingResults.style.display = "inline-block";
 
 			//pass whatever the user entered into the search box as a query to the apiHandler
 			let queryText = form.elements.query.value;
 			apiHandlerByTitle(encodeURI(queryText));
 
 			event.preventDefault();
+
+
 		}
 	});
 }
@@ -96,6 +104,10 @@ function apiHandlerByImdbID(imdbID) {
 }
 
 function displayResult(result) {
+	//hiding the loading div
+	let loadingResults = document.getElementById("loading-results");
+	loadingResults.style.display = "none";
+
 	if (/Mobi|Android/i.test(navigator.userAgent) && document.getElementById("input-hamburger").checked) {
 		document.getElementById("input-hamburger").checked = false;
 	}
@@ -491,9 +503,11 @@ function deleteMovie(imdbID, event) {
 	deleteFromFavouriteMovies(imdbID);
 	event.target.parentNode.parentNode.style.display = "none";
 
-	//if the users fav movie list is now empty, then -->
-	// - toggle trash can icon
-	// -
+	//this code isnt crucial, because "handlePlaceHlderSPan" takes care of it below
+	//but it looks ugly if i wait for the promise to be resolved
+	//Bcus the show button jumps up when there is content, and then goes poof
+	let showListButton = document.getElementById("show-favourite-movies");
+	showListButton.style.display = "none";
 
 	checkIfUserHasChildren().then(function (hasChildren){
 		if (!hasChildren){
@@ -510,6 +524,11 @@ function showFavouriteMoviesListener() {
 
 	let showFavouriteMoviesBtn = document.getElementById("show-favourite-movies");
 	showFavouriteMoviesBtn.addEventListener("click", function (){
+		
+		// this code shows the loading animation div
+		let loadingResults = document.getElementById("loading-results");
+		loadingResults.style.display = "inline-block";
+
 		readFavouriteMoviesList().then(snapshot => displayFavouriteMovies(snapshot));
 	});
 }
@@ -544,7 +563,6 @@ function authStateChanged(firebaseUser) {
 
 	if (firebaseUser){
 		firebaseUISignupContainer.style.display = "none";
-		signOut.innerHTML = 'Log out';
 		signOut.onclick = firebaseSignOut;
 		signOut.style.display = "unset";
 		titleAndListContainer.style.display = "unset";

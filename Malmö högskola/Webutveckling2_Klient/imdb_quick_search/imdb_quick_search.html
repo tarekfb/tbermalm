@@ -36,8 +36,7 @@
 				<div id="firebase-auth-container">
 					<div id="firebaseui-signup-container"></div>
 					<div id="sign-in-status"></div>
-					<br>
-					<div id="sign-out"></div>
+					<div id="sign-out">Log out</div>
 				</div>
 
 				<div id="title-and-list-container">
@@ -57,6 +56,8 @@
 			<form id="search-form" method="get" name="search-form" autocomplete="off">
 				<input id="search-box" name="query" type="text" placeholder="Enter movie title..." autofocus><button type="submit"><i class="fa fa-search"></i></button>
 			</form>
+
+			<div id="loading-results" class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
 			<div id="result-container"></div>
 
 			<!-- modal to allow for saving a movie -->

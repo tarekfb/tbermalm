@@ -5,10 +5,13 @@
 :root {
 	/*variables*/
 	--main-yellow: #f4cb84;
-	--main-red: #f38363 ;
+	--main-red: #f38363;
+	--secondary-red: #ec344a;
+	--secondary-red-alt: #f07563;
 	--accept-green: #00e500;
 	--background-grey: #e7d2cc;
 	--gold: #FFD700;
+	--icon-distance: 0.5em;
 }
 
 .hide{
@@ -76,6 +79,101 @@ form button {
 }
 #result-container {
 	font-size: 25px;
+}
+
+/*****************************
+	loader
+*****************************/
+
+#loading-results{
+	display: none;
+	margin: auto;
+	margin-top: 25px;
+}
+
+.lds-roller {
+	display: inline-block;
+	position: relative;
+	width: 80px;
+	height: 80px;
+}
+.lds-roller div {
+	animation: lds-roller 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+	transform-origin: 40px 40px;
+}
+.lds-roller div:after {
+	content: " ";
+	display: block;
+	position: absolute;
+	width: 7px;
+	height: 7px;
+	border-radius: 50%;
+	background: black;
+	margin: -4px 0 0 -4px;
+}
+.lds-roller div:nth-child(1) {
+	animation-delay: -0.036s;
+}
+.lds-roller div:nth-child(1):after {
+	top: 63px;
+	left: 63px;
+}
+.lds-roller div:nth-child(2) {
+	animation-delay: -0.072s;
+}
+.lds-roller div:nth-child(2):after {
+	top: 68px;
+	left: 56px;
+}
+.lds-roller div:nth-child(3) {
+	animation-delay: -0.108s;
+}
+.lds-roller div:nth-child(3):after {
+	top: 71px;
+	left: 48px;
+}
+.lds-roller div:nth-child(4) {
+	animation-delay: -0.144s;
+}
+.lds-roller div:nth-child(4):after {
+	top: 72px;
+	left: 40px;
+}
+.lds-roller div:nth-child(5) {
+	animation-delay: -0.18s;
+}
+.lds-roller div:nth-child(5):after {
+	top: 71px;
+	left: 32px;
+}
+.lds-roller div:nth-child(6) {
+	animation-delay: -0.216s;
+}
+.lds-roller div:nth-child(6):after {
+	top: 68px;
+	left: 24px;
+}
+.lds-roller div:nth-child(7) {
+	animation-delay: -0.252s;
+}
+.lds-roller div:nth-child(7):after {
+	top: 63px;
+	left: 17px;
+}
+.lds-roller div:nth-child(8) {
+	animation-delay: -0.288s;
+}
+.lds-roller div:nth-child(8):after {
+	top: 56px;
+	left: 12px;
+}
+@keyframes lds-roller {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
 }
 
 /*****************************
@@ -404,15 +502,15 @@ design the hidden input node
 	display: inline-block;
 }
 
-#edit-favourite-movies-icon:before{
-
+#edit-favourite-movies-icon::before{
+	/*edit icon, for starting to deleting favourites*/
 	font-family: "Font Awesome 5 Free";
 	content: "\f304";
 	font-style: normal;
 	font-weight: bold;
 
 	font-size: 20px;
-	margin-left: 8px;
+	margin-left: var(--icon-distance);
 	display: inline-block;
 
 	box-shadow: 0 0 1px rgba(0, 0, 0, 0);
@@ -420,7 +518,8 @@ design the hidden input node
 	transition-property: transform;
 }
 
-#edit-favourite-movies-icon.confirm-favourite-movies:before{
+#edit-favourite-movies-icon.confirm-favourite-movies::before{
+	/*confirm icon, for exiting the edit mode*/
 	content: "\f00c";
 }
 
@@ -428,18 +527,42 @@ design the hidden input node
 	firebaseAuth
  *****************************/
 
+/*TODO REDO BUTTONS AND STYLING
+   https://tympanus.net/Development/CreativeButtons/
+   https://csslab.app/buttons
+*/
+
 #firebase-auth-container {
 	margin-top: 40px;
 	font-size: 18px;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
 }
 
-#sign-in-status{
-	display: block;
+#sign-in-status::after{
+	font-family: "Font Awesome 5 Free", serif;
+	content: "\f007";
+	font-style: normal;
+	font-weight: bold;
+
+	margin-left: var(--icon-distance);
 }
 
 #sign-out{
-	display: block;
-/*	these are appearning on same line for some reason*/
+	margin-top: 10px;
+	width: 65%;
+	text-align: center;
+}
+
+#sign-out::after{
+	font-family: "Font Awesome 5 Free", serif;
+	font-style: normal;
+	font-weight: bold;
+	content: "\f2f5";
+
+	margin-left: var(--icon-distance);
 }
 
 /*****************************
@@ -467,88 +590,12 @@ design the hidden input node
 	/*display: none;*/
 }
 
-
-/*testing design, used for static html that is currently commented out*/
-/*the nodes x-li belong to a testDiv*/
-
-/*#testDiv {*/
-/*	!*position: relative;*!*/
-/*	width: 85%;*/
-/*	height: 80px;*/
-/*	background: var(--background-grey);*/
-/*	border-radius: 5px;*/
-/*	border: 1px solid grey;*/
-/*	margin: 10px auto 0;*/
-/*	text-align: left;*/
-/*	padding: 5px;*/
-/*	overflow: hidden;*/
-
-/*	display: flex;*/
-/*	flex-direction: row;*/
-/*	justify-content: space-between;*/
-
-/*	box-shadow: 0 0 1px rgba(0, 0, 0, 0);*/
-/*	transition-duration: 0.3s;*/
-/*	transition-property: transform;*/
-
-/*	!**/
-/*
-/*    can look at styling for movie-container for inspiration*/
-/*    should i use same style?*/
-/*    maybe same base style but change it up, such as background color??*/
-/*    *!*/
-/*}*/
-
-/*#testDiv:hover, testDiv:focus, testDiv:active {*/
-/*	transform: scale(1.03);*/
-/*	cursor: pointer;*/
-/*!*	change to lighter  grey on hover*!*/
-
-/*}*/
-
-
-/*#title-year-li{*/
-/*	flex: 1 1 80%;*/
-
-/*	display: flex;*/
-/*	flex-direction: column;*/
-/*	justify-content: flex-start;*/
-/*}*/
-
-/*#title-li{*/
-/*	flex-grow: 1;*/
-/*	font-size: 18px;*/
-/*	flex-basis: 25%;*/
-/*}*/
-
-/*#year-li{*/
-/*	font-size: 15px;*/
-/*	flex-basis: 15%;*/
-/*}*/
-
-/*#rating-li{*/
-/*	flex: 0.2 0.2 20%;*/
-
-/*	line-height: 5em;*/
-/*	!*arbitrary line height to vertically center div*!*/
-/*	min-width: 0;*/
-/*}*/
-
-/*#rating-li span {*/
-/*	white-space: pre;*/
-/*}*/
-
-/*#rating-li i {*/
-/*	color: #FFD700;*/
-/*	text-shadow: 0 0 3px #000;*/
-/*}*/
-
 #show-favourite-movies{
 	border-radius: 4px;
 	border: solid 2px var(--main-yellow);
 	background-color: var(--main-yellow);
 	padding: 3px;
-	font-size: 15px;
+	font-size: 20px;
 }
 
 /*****************************
