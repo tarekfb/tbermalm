@@ -5,8 +5,9 @@
 :root {
 	/*variables*/
 	--main-yellow: #f4cb84;
-	--main-red: #98523e;
-	--secondary-red-darker: #98523E;
+	--main-red: #f38363;
+	--secondary-red: #ec344a;
+	--secondary-red-alt: #f07563;
 	--accept-green: #00e500;
 	--background-grey: #e7d2cc;
 	--gold: #FFD700;
@@ -376,6 +377,44 @@ design the hidden input node
 	designing the container for content
 *****************************/
 
+/*sidebar-btn is a general style for buttons in the sidebar*/
+.sidebar-btn {
+	display: block;
+	background-size: 220%;
+	box-shadow: 0 .2em .3em rgba(0, 0, 0, 0.15);
+	color: black;
+	background-color: transparent;
+	background-position: 100%;
+	border: 3px solid var(--secondary-red);
+	text-transform: uppercase;
+	padding: 8px 16px;
+	border-radius: 3px;
+	transition: all .2s ease-out;
+	font-weight: 900;
+	cursor: pointer;
+	letter-spacing: 2px;
+	background-image: linear-gradient(110deg, var(--secondary-red) 0%, var(--secondary-red) 50%, transparent 50%, transparent 100%);
+	font-size: 14px;
+}
+
+.sidebar-btn:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 0 .3em rgba(0, 0, 0, 0.25);
+	background-position: 0;
+	color: #000;
+}
+
+.sidebar-btn:active {
+	transform: translateY(-1px);
+}
+
+.sidebar-btn::before{
+	font-family: "Font Awesome 5 Free";
+	font-style: normal;
+	font-weight: bold;
+	margin-right: var(--icon-distance);
+}
+
 #favourite-movies-content-container{
 	margin: -100px 0 0 -55px;
 	padding: 25px;
@@ -438,7 +477,8 @@ design the hidden input node
 
 	display: flex;
 	flex-direction: column;
-	justify-content: space-between;
+	justify-content: center;
+	align-content: center;
 }
 
 #sign-in-status::after{
@@ -452,14 +492,12 @@ design the hidden input node
 
 #sign-out{
 	margin-top: 10px;
+	width: 65%;
+	text-align: center;
 }
-#sign-out::after{
-	font-family: "Font Awesome 5 Free";
-	content: "\f2f5";
-	font-style: normal;
-	font-weight: bold;
 
-	margin-left: var(--icon-distance);
+#sign-out::before{
+	content: "\f2f5";
 }
 
 /*****************************
@@ -487,82 +525,6 @@ design the hidden input node
 	/*display: none;*/
 }
 
-
-/*testing design, used for static html that is currently commented out*/
-/*the nodes x-li belong to a testDiv*/
-
-/*#testDiv {*/
-/*	!*position: relative;*!*/
-/*	width: 85%;*/
-/*	height: 80px;*/
-/*	background: var(--background-grey);*/
-/*	border-radius: 5px;*/
-/*	border: 1px solid grey;*/
-/*	margin: 10px auto 0;*/
-/*	text-align: left;*/
-/*	padding: 5px;*/
-/*	overflow: hidden;*/
-
-/*	display: flex;*/
-/*	flex-direction: row;*/
-/*	justify-content: space-between;*/
-
-/*	box-shadow: 0 0 1px rgba(0, 0, 0, 0);*/
-/*	transition-duration: 0.3s;*/
-/*	transition-property: transform;*/
-
-/*	!**/
-/*
-/*    can look at styling for movie-container for inspiration*/
-/*    should i use same style?*/
-/*    maybe same base style but change it up, such as background color??*/
-/*    *!*/
-/*}*/
-
-/*#testDiv:hover, testDiv:focus, testDiv:active {*/
-/*	transform: scale(1.03);*/
-/*	cursor: pointer;*/
-/*!*	change to lighter  grey on hover*!*/
-
-/*}*/
-
-
-/*#title-year-li{*/
-/*	flex: 1 1 80%;*/
-
-/*	display: flex;*/
-/*	flex-direction: column;*/
-/*	justify-content: flex-start;*/
-/*}*/
-
-/*#title-li{*/
-/*	flex-grow: 1;*/
-/*	font-size: 18px;*/
-/*	flex-basis: 25%;*/
-/*}*/
-
-/*#year-li{*/
-/*	font-size: 15px;*/
-/*	flex-basis: 15%;*/
-/*}*/
-
-/*#rating-li{*/
-/*	flex: 0.2 0.2 20%;*/
-
-/*	line-height: 5em;*/
-/*	!*arbitrary line height to vertically center div*!*/
-/*	min-width: 0;*/
-/*}*/
-
-/*#rating-li span {*/
-/*	white-space: pre;*/
-/*}*/
-
-/*#rating-li i {*/
-/*	color: #FFD700;*/
-/*	text-shadow: 0 0 3px #000;*/
-/*}*/
-
 #show-favourite-movies{
 	border-radius: 4px;
 	border: solid 2px var(--main-yellow);
@@ -570,12 +532,6 @@ design the hidden input node
 	padding: 3px;
 	font-size: 20px;
 }
-
-
-/*test*/
-
-
-
 
 /*****************************
 	all hover selects below
