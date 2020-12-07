@@ -492,7 +492,7 @@ design the hidden input node
 	padding-top: 90px;
 
 	/*height: 100vh;*/
-	height: auto;
+	/*height: auto;*/
 	min-height: 100vh;
 
 	width: 275px;
@@ -508,6 +508,50 @@ design the hidden input node
 	transform: translate(-100%, 0);
 
 	transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
+
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: start;
+	overflow-y: auto;
+	/*	not working scroll*/
+}
+
+/*this is the general style for buttons*/
+.btn{
+	/*reset style*/
+	padding: 0.5em 1em;
+	outline: none;
+	border-radius: 3px;
+	white-space: nowrap;
+	cursor: pointer;
+
+	/*style text*/
+	font-weight: 700;
+	letter-spacing: 2px;
+	font-size: 15px;
+	text-transform: uppercase;
+
+	/*style the sliding background*/
+	background-size: 220%;
+	box-shadow: 0 .2em .3em rgba(0, 0, 0, 0.15);
+	background-color: transparent;
+	background-position: 100%;
+	border: 3px solid var(--secondary-red);
+	transition: all .4s ease-out;
+	background-image: linear-gradient(
+			90deg,
+			var(--secondary-red) 0%,
+			var(--secondary-red) 50%,
+			transparent 50%,
+			transparent 100%
+	);
+}
+/*	#favourite-movie-li .fa-trash:hover { also style this*/
+.btn:hover {
+	box-shadow: 0 0 .3em rgba(0, 0, 0, 0.25);
+	background-position: 0;
+	color: #fff;
 }
 
 #favourite-movies-container h3{
@@ -517,20 +561,24 @@ design the hidden input node
 	font-weight: normal;
 }
 
+#icon-container{
+	margin-left: var(--icon-distance);
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	display: -webkit-inline-flex;
+	display: -ms-inline-flexbox;
+	display: inline-flex;
+	width: auto;
+}
+
 #edit-favourite-movies-icon::before{
 	/*edit icon, for starting to deleting favourites*/
-	font-family: "Font Awesome 5 Free";
+	font-family: "Font Awesome 5 Free", serif;
 	content: "\f304";
 	font-style: normal;
 	font-weight: bold;
-
 	font-size: 20px;
-	margin-left: var(--icon-distance);
-	display: inline-block;
-
-	box-shadow: 0 0 1px rgba(0, 0, 0, 0);
-	transition-duration: 0.3s;
-	transition-property: transform;
 }
 
 #edit-favourite-movies-icon.confirm-favourite-movies::before{
@@ -543,6 +591,14 @@ design the hidden input node
 	font-size: 20px;
 }
 
+#show-favourite-movies{
+	border-radius: 4px;
+	border: solid 2px var(--main-yellow);
+	background-color: var(--main-yellow);
+	padding: 3px;
+	font-size: 20px;
+}
+
 /*****************************
 	firebaseAuth
  *****************************/
@@ -551,41 +607,6 @@ design the hidden input node
    https://tympanus.net/Development/CreativeButtons/
    https://csslab.app/buttons
 */
-
-/*#firebase-auth-container {*/
-/*	margin-top: 40px;*/
-/*	font-size: 18px;*/
-
-/*	display: flex;*/
-/*	flex-direction: column;*/
-/*	justify-content: space-between;*/
-/*}*/
-
-/*#sign-in-status::after{*/
-/*	font-family: "Font Awesome 5 Free", serif;*/
-/*	content: "\f007";*/
-/*	font-style: normal;*/
-/*	font-weight: bold;*/
-
-/*	margin-left: var(--icon-distance);*/
-/*}*/
-
-/*#sign-out{*/
-/*	margin-top: 10px;*/
-/*	width: 65%;*/
-/*	text-align: center;*/
-/*}*/
-
-/*#sign-out::after{*/
-/*	font-family: "Font Awesome 5 Free", serif;*/
-/*	font-style: normal;*/
-/*	font-weight: bold;*/
-/*	content: "\f2f5";*/
-
-/*	margin-left: var(--icon-distance);*/
-/*}*/
-
-/*TODO TESTING STYLES FOR BUTTONS SIDEBAR*/
 
 #firebase-auth-container{
 	margin-top: 40px;
@@ -600,36 +621,30 @@ design the hidden input node
 #auth-status{
 	font-size: 22px;
 }
+
 #auth-welcome{
 	font-family: var(--font-title-main);
 }
+#auth-welcome::before{
+	font-family: "Font Awesome 5 Free", serif;
+	content: "\f007";
+	font-style: normal;
+	font-weight: bold;
 
-#sign-out-container{
-	outline: none;
-	padding: 0.5em 1em;
-	border-radius: 3px;
-	white-space: nowrap;
-	cursor: pointer;
-	margin-top: 15px;
-
-	font-weight: 700;
-	letter-spacing: 2px;
-	font-size: 15px;
-	text-transform: uppercase;
-
-	background-size: 220%;
-	box-shadow: 0 .2em .3em rgba(0, 0, 0, 0.15);
-	background-color: transparent;
-	background-position: 100%;
-	border: 3px solid var(--secondary-red);
-	transition: all .2s ease-out;
-	background-image: linear-gradient(110deg, var(--secondary-red) 0%, var(--secondary-red) 50%, transparent 50%, transparent 100%);
+	margin-right: var(--icon-distance);
 }
 
-#sign-out-container:hover {
-	box-shadow: 0 0 .3em rgba(0, 0, 0, 0.25);
-	background-position: 0;
-	color: #fff;
+#sign-out-container{
+	margin-top: 15px;
+
+	transition: all .6s ease-out;
+	background-image: linear-gradient(
+			90deg,
+			var(--secondary-red) 0%,
+			var(--secondary-red) 66.5%,
+			transparent 50%,
+			transparent 100%
+	);
 }
 
 #sign-out::before{
@@ -641,7 +656,6 @@ design the hidden input node
 
 	margin-right: var(--icon-distance);
 }
-
 
 /*****************************
 	designing the list
@@ -668,12 +682,8 @@ design the hidden input node
 	/*display: none;*/
 }
 
-#show-favourite-movies{
-	border-radius: 4px;
-	border: solid 2px var(--main-yellow);
-	background-color: var(--main-yellow);
-	padding: 3px;
-	font-size: 20px;
+.favourites-list-rating-span{
+	white-space: nowrap;
 }
 
 /*****************************
@@ -686,9 +696,9 @@ design the hidden input node
 		cursor: pointer;
 	}
 	#edit-favourite-movies-icon:hover {
-		color: grey;
-		transition: color 0.2s ease;
-		cursor: pointer;
+		/*color: grey;*/
+		/*transition: color 0.2s ease;*/
+		/*cursor: pointer;*/
 	}
 	#movie-container:hover {
 		cursor: pointer;
@@ -779,8 +789,11 @@ design the hidden input node
 		font-size: 20px;
 	}
 	#favourite-movies-content-container{
-		min-width: 100%;
-		width: 100%;
+		/*
+		this sets width to 100% of vp
+		but it makes it so trashcan goes outside of list
+		also cant scroll this div
+		width: 100vw;*/
 	}
 	#favourite-movies-container{
 
@@ -801,9 +814,6 @@ design the hidden input node
 	.modal-content{
 		height: 90px;
 	}
-	#edit-favourite-movies-icon{
-	font-size: 25px;
-	 }
 	#favourite-movie-li .fa-trash{
 		font-size: 25px;
 	}

@@ -378,6 +378,7 @@ function populateFavouriteMoviesList(snapshot) {
 		let ratingSpan = document.createElement("span");
 		ratingSpan.innerHTML = "<i class=\"fa fa-star\" aria-hidden=\"true\"></i>";
 		ratingSpan.appendChild(document.createTextNode(" " + movieObj.rating));
+		ratingSpan.classList.add("favourites-list-rating-span");
 
 		a.appendChild(ratingSpan);
 
@@ -427,17 +428,22 @@ function handlePlaceholderSpan() {
 	let favouriteMoviesUL = document.getElementById("favourite-movies-list");
 	let placeholderSpan = document.getElementById("empty-list-placeholder");
 	let showListButton = document.getElementById("show-favourite-movies");
+	let editFavouriteMoviesIcon = document.getElementById("edit-favourite-movies-icon");
 
-	placeholderSpan.style.display = "none";
+	// placeholderSpan.style.display = "none";
+
 	readFavouriteMoviesList().then(function (snapshot){
 		if (!snapshot.hasChildren()){
 			placeholderSpan.style.display = "block";
 			showListButton.style.display = "none";
 			favouriteMoviesUL.style.display = "none";
+			editFavouriteMoviesIcon.style.display = "none";
 		} else {
 			placeholderSpan.style.display = "none";
 			showListButton.style.display = "inline-block";
 			favouriteMoviesUL.style.display = "unset";
+			editFavouriteMoviesIcon.style.display = "unset";
+
 		}
 	});
 
@@ -504,12 +510,6 @@ function deleteMovie(imdbID, event) {
 
 	deleteFromFavouriteMovies(imdbID);
 	event.target.parentNode.parentNode.style.display = "none";
-
-	//this code isnt crucial, because "handlePlaceHlderSPan" takes care of it below
-	//but it looks ugly if i wait for the promise to be resolved
-	//Bcus the show button jumps up when there is content, and then goes poof
-	let showListButton = document.getElementById("show-favourite-movies");
-	showListButton.style.display = "none";
 
 	checkIfUserHasChildren().then(function (hasChildren){
 		if (!hasChildren){
