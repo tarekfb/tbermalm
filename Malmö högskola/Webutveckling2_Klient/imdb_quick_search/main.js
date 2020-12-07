@@ -384,6 +384,8 @@ function populateFavouriteMoviesList(snapshot) {
 		let deleteSpan = document.createElement("span");
 		deleteSpan.innerHTML = "<i class=\"fas fa-trash\"></i>";
 		deleteSpan.classList.add("delete-span");
+		//TODO: add this span next to the entire list item, instead of inside the list item?
+		//to avoid it jumping rows when no space left
 
 		if (deleteSpan.style.display != "none"){
 			deleteSpan.style.display = "none";
@@ -557,28 +559,32 @@ function authStateChanged(firebaseUser) {
 	//the firebaseUser is null on LOG OFF
 
 	let firebaseUISignupContainer = document.getElementById("firebaseui-signup-container");
-	let signInStatus = document.getElementById('sign-in-status');
-	let signOut =  document.getElementById('sign-out');
+	let authStatus = document.getElementById("auth-status");
+	let authWelcome = document.getElementById('auth-welcome');
+	let authName = document.getElementById("auth-name");
+	let signOutContainer =  document.getElementById('sign-out-container');
 	let titleAndListContainer =  document.getElementById("title-and-list-container");
 
 	if (firebaseUser){
 		firebaseUISignupContainer.style.display = "none";
-		signOut.onclick = firebaseSignOut;
-		signOut.style.display = "unset";
+		signOutContainer.onclick = firebaseSignOut;
+		signOutContainer.style.display = "unset";
 		titleAndListContainer.style.display = "unset";
 
 		if (firebaseUser.displayName == null){
-			signInStatus.innerHTML = 'Welcome, Guest';
+			authWelcome.innerHTML = 'Welcome, ';
+			authName.innerHTML = 'Guest';
 		} else{
-			signInStatus.innerHTML = 'Welcome, ' + firebaseUser.displayName;
+			authWelcome.innerHTML = 'Welcome, ';
+			authName.innerHTML = firebaseUser.displayName;
 		}
-		signInStatus.style.display = "unset";
+		authStatus.style.display = "unset";
 
 	} else {
 		firebaseUISignupContainer.style.display = "unset";
-		signInStatus.innerHTML = 'Signed out';
-		signInStatus.style.display = "none";
-		signOut.style.display = "none";
+		// signInStatus.innerHTML = 'Signed out';
+		authStatus.style.display = "none";
+		signOutContainer.style.display = "none";
 		titleAndListContainer.style.display = "none";
 	}
 }

@@ -10,6 +10,7 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
 	<link rel="preconnect" href="https://fonts.gstatic.com">
 	<link href="https://fonts.googleapis.com/css2?family=Limelight&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Calistoga&display=swap" rel="stylesheet">
 	<link rel="shortcut icon" href="popcorn-1614707.ico">
 	<link rel="shortcut icon" href="#" />
 	<link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.7.1/firebase-ui-auth.css" />
@@ -36,15 +37,11 @@
 
 				<div id="firebase-auth-container">
 					<div id="firebaseui-signup-container"></div>
-					<div id="sign-in-status"></div>
-					<div id="sign-out">Log out</div>
-				</div>
-
-				<!--TESTING TESTING TESTING-->
-				<div id="firebase-test">
-					<div id="signup-test">Welcome, Person</div>
-					<button id="sign-out-test-container">
-						<span id="sign-out-test" class="btn">Log out</span>
+					<div id="auth-status">
+						<span id="auth-welcome"></span><span id="auth-name"></span>
+					</div>
+					<button id="sign-out-container">
+						<span id="sign-out" class="sidebar-btn">Log out</span>
 					</button>
 				</div>
 

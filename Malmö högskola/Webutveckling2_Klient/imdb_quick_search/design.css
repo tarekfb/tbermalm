@@ -11,7 +11,10 @@
 	--accept-green: #00e500;
 	--background-grey: #e7d2cc;
 	--gold: #FFD700;
+
 	--icon-distance: 0.5em;
+	--font-title-main: 'Limelight', cursive;
+	--font-title-secondary: 'Calistoga', cursive;
 }
 
 .hide{
@@ -48,7 +51,7 @@ a {
 	img, title search bar and result container
 *****************************/
 #title{
-	font-family: 'Limelight', cursive;
+	font-family: var(--font-title-main);
 	font-weight: normal;
 	font-size: 45px;
 	display: block;
@@ -60,8 +63,8 @@ a {
 
 #logo img {
 	margin-top: 35px;
-	width: 200px;
-	height: 200px;
+	width: 250px;
+	height: 250px;
 }
 form button {
 	width: 45px;
@@ -330,6 +333,11 @@ form button {
 	favourites movies list
 	using this as hamburger menu design
 	https://codepen.com/erikterwan/pen/EVzeRP
+
+	in hindsight, this design structure was a terrible choice
+	should've went with flexbox design
+	but rest of webpage sort of relies upon this, here and there
+	so it's a lesson learnt for future projects: dont use hacky solutions from the web
 *****************************/
 
 /*
@@ -503,9 +511,10 @@ design the hidden input node
 }
 
 #favourite-movies-container h3{
-	font-size: 22px;
-	font-family: Arial, serif;
 	display: inline-block;
+	font-size: 25px;
+	font-family: var(--font-title-secondary);
+	font-weight: normal;
 }
 
 #edit-favourite-movies-icon::before{
@@ -529,6 +538,11 @@ design the hidden input node
 	content: "\f00c";
 }
 
+#empty-list-placeholder{
+	display: block;
+	font-size: 20px;
+}
+
 /*****************************
 	firebaseAuth
  *****************************/
@@ -538,42 +552,42 @@ design the hidden input node
    https://csslab.app/buttons
 */
 
-#firebase-auth-container {
-	margin-top: 40px;
-	font-size: 18px;
+/*#firebase-auth-container {*/
+/*	margin-top: 40px;*/
+/*	font-size: 18px;*/
 
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-}
+/*	display: flex;*/
+/*	flex-direction: column;*/
+/*	justify-content: space-between;*/
+/*}*/
 
-#sign-in-status::after{
-	font-family: "Font Awesome 5 Free", serif;
-	content: "\f007";
-	font-style: normal;
-	font-weight: bold;
+/*#sign-in-status::after{*/
+/*	font-family: "Font Awesome 5 Free", serif;*/
+/*	content: "\f007";*/
+/*	font-style: normal;*/
+/*	font-weight: bold;*/
 
-	margin-left: var(--icon-distance);
-}
+/*	margin-left: var(--icon-distance);*/
+/*}*/
 
-#sign-out{
-	margin-top: 10px;
-	width: 65%;
-	text-align: center;
-}
+/*#sign-out{*/
+/*	margin-top: 10px;*/
+/*	width: 65%;*/
+/*	text-align: center;*/
+/*}*/
 
-#sign-out::after{
-	font-family: "Font Awesome 5 Free", serif;
-	font-style: normal;
-	font-weight: bold;
-	content: "\f2f5";
+/*#sign-out::after{*/
+/*	font-family: "Font Awesome 5 Free", serif;*/
+/*	font-style: normal;*/
+/*	font-weight: bold;*/
+/*	content: "\f2f5";*/
 
-	margin-left: var(--icon-distance);
-}
+/*	margin-left: var(--icon-distance);*/
+/*}*/
 
 /*TODO TESTING STYLES FOR BUTTONS SIDEBAR*/
 
-#firebase-test{
+#firebase-auth-container{
 	margin-top: 40px;
 	font-size: 18px;
 
@@ -583,11 +597,14 @@ design the hidden input node
 	justify-content: space-between;
 }
 
-#signup-test{
-	font-size: 20px;
+#auth-status{
+	font-size: 22px;
+}
+#auth-welcome{
+	font-family: var(--font-title-main);
 }
 
-#sign-out-test-container{
+#sign-out-container{
 	outline: none;
 	padding: 0.5em 1em;
 	border-radius: 3px;
@@ -602,7 +619,6 @@ design the hidden input node
 
 	background-size: 220%;
 	box-shadow: 0 .2em .3em rgba(0, 0, 0, 0.15);
-	background-color: var(--secondary-red);
 	background-color: transparent;
 	background-position: 100%;
 	border: 3px solid var(--secondary-red);
@@ -610,13 +626,13 @@ design the hidden input node
 	background-image: linear-gradient(110deg, var(--secondary-red) 0%, var(--secondary-red) 50%, transparent 50%, transparent 100%);
 }
 
-#sign-out-test-container:hover {
+#sign-out-container:hover {
 	box-shadow: 0 0 .3em rgba(0, 0, 0, 0.25);
 	background-position: 0;
 	color: #fff;
 }
 
-#sign-out-test::before{
+#sign-out::before{
 	speak: none;
 	font-family: "Font Awesome 5 Free", serif;
 	font-style: normal;
@@ -763,7 +779,11 @@ design the hidden input node
 		font-size: 20px;
 	}
 	#favourite-movies-content-container{
+		min-width: 100%;
 		width: 100%;
+	}
+	#favourite-movies-container{
+
 	}
 
 	/*
