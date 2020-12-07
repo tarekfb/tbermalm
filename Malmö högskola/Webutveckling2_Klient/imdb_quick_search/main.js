@@ -378,12 +378,15 @@ function populateFavouriteMoviesList(snapshot) {
 		let ratingSpan = document.createElement("span");
 		ratingSpan.innerHTML = "<i class=\"fa fa-star\" aria-hidden=\"true\"></i>";
 		ratingSpan.appendChild(document.createTextNode(" " + movieObj.rating));
+		ratingSpan.classList.add("favourites-list-rating-span");
 
 		a.appendChild(ratingSpan);
 
 		let deleteSpan = document.createElement("span");
 		deleteSpan.innerHTML = "<i class=\"fas fa-trash\"></i>";
 		deleteSpan.classList.add("delete-span");
+		//TODO: add this span next to the entire list item, instead of inside the list item?
+		//to avoid it jumping rows when no space left
 
 		if (deleteSpan.style.display != "none"){
 			deleteSpan.style.display = "none";
@@ -425,17 +428,22 @@ function handlePlaceholderSpan() {
 	let favouriteMoviesUL = document.getElementById("favourite-movies-list");
 	let placeholderSpan = document.getElementById("empty-list-placeholder");
 	let showListButton = document.getElementById("show-favourite-movies");
+	let editFavouriteMoviesIcon = document.getElementById("edit-favourite-movies-icon");
 
-	placeholderSpan.style.display = "none";
+	// placeholderSpan.style.display = "none";
+
 	readFavouriteMoviesList().then(function (snapshot){
 		if (!snapshot.hasChildren()){
 			placeholderSpan.style.display = "block";
 			showListButton.style.display = "none";
 			favouriteMoviesUL.style.display = "none";
+			editFavouriteMoviesIcon.style.display = "none";
 		} else {
 			placeholderSpan.style.display = "none";
 			showListButton.style.display = "inline-block";
 			favouriteMoviesUL.style.display = "unset";
+			editFavouriteMoviesIcon.style.display = "unset";
+
 		}
 	});
 
@@ -503,12 +511,6 @@ function deleteMovie(imdbID, event) {
 	deleteFromFavouriteMovies(imdbID);
 	event.target.parentNode.parentNode.style.display = "none";
 
-	//this code isnt crucial, because "handlePlaceHlderSPan" takes care of it below
-	//but it looks ugly if i wait for the promise to be resolved
-	//Bcus the show button jumps up when there is content, and then goes poof
-	let showListButton = document.getElementById("show-favourite-movies");
-	showListButton.style.display = "none";
-
 	checkIfUserHasChildren().then(function (hasChildren){
 		if (!hasChildren){
 			editOrConfirmStateChange();
@@ -524,7 +526,7 @@ function showFavouriteMoviesListener() {
 
 	let showFavouriteMoviesBtn = document.getElementById("show-favourite-movies");
 	showFavouriteMoviesBtn.addEventListener("click", function (){
-		
+
 		// this code shows the loading animation div
 		let loadingResults = document.getElementById("loading-results");
 		loadingResults.style.display = "inline-block";
@@ -557,28 +559,32 @@ function authStateChanged(firebaseUser) {
 	//the firebaseUser is null on LOG OFF
 
 	let firebaseUISignupContainer = document.getElementById("firebaseui-signup-container");
-	let signInStatus = document.getElementById('sign-in-status');
-	let signOut =  document.getElementById('sign-out');
+	let authStatus = document.getElementById("auth-status");
+	let authWelcome = document.getElementById('auth-welcome');
+	let authName = document.getElementById("auth-name");
+	let signOutContainer =  document.getElementById('sign-out-container');
 	let titleAndListContainer =  document.getElementById("title-and-list-container");
 
 	if (firebaseUser){
 		firebaseUISignupContainer.style.display = "none";
-		signOut.onclick = firebaseSignOut;
-		signOut.style.display = "unset";
+		signOutContainer.onclick = firebaseSignOut;
+		signOutContainer.style.display = "unset";
 		titleAndListContainer.style.display = "unset";
 
 		if (firebaseUser.displayName == null){
-			signInStatus.innerHTML = 'Welcome, Guest';
+			authWelcome.innerHTML = 'Welcome, ';
+			authName.innerHTML = 'Guest';
 		} else{
-			signInStatus.innerHTML = 'Welcome, ' + firebaseUser.displayName;
+			authWelcome.innerHTML = 'Welcome, ';
+			authName.innerHTML = firebaseUser.displayName;
 		}
-		signInStatus.style.display = "unset";
+		authStatus.style.display = "unset";
 
 	} else {
 		firebaseUISignupContainer.style.display = "unset";
-		signInStatus.innerHTML = 'Signed out';
-		signInStatus.style.display = "none";
-		signOut.style.display = "none";
+		// signInStatus.innerHTML = 'Signed out';
+		authStatus.style.display = "none";
+		signOutContainer.style.display = "none";
 		titleAndListContainer.style.display = "none";
 	}
 }

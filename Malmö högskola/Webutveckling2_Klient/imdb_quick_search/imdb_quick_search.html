@@ -7,8 +7,10 @@
 	<meta name="viewport" content="width=device-width,initial-scale=1.0">
 
 	<link href="design.css" rel="stylesheet" type="text/css">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Limelight&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Calistoga&display=swap" rel="stylesheet">
 	<link rel="shortcut icon" href="popcorn-1614707.ico">
 	<link rel="shortcut icon" href="#" />
 	<link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.7.1/firebase-ui-auth.css" />
@@ -35,15 +37,19 @@
 
 				<div id="firebase-auth-container">
 					<div id="firebaseui-signup-container"></div>
-					<div id="sign-in-status"></div>
-					<div id="sign-out">Log out</div>
+					<div id="auth-status">
+						<span id="auth-welcome"></span><span id="auth-name"></span>
+					</div>
+					<button id="sign-out-container" class="btn">
+						<span id="sign-out">Log out</span>
+					</button>
 				</div>
 
 				<div id="title-and-list-container">
-					<h3>Your favourites</h3><span id="edit-favourite-movies-icon"> </span>
+					<h3>Your favourites</h3><span id="icon-container"><span id="edit-favourite-movies-icon" class="btn"></span></span>
 					<span id="empty-list-placeholder">No favourites. Try adding one by clicking on a movie!</span>
 					<div id="favourite-movies-list"></div>
-					<button type="button" id="show-favourite-movies">Show</button>
+					<button type="button" id="show-favourite-movies" class="btn">Show</button>
 				</div>
 
 			</div>
@@ -51,10 +57,10 @@
 
 		<!--Main content: search bar and results-->
 		<div id="main-content-container">
-			<a href="/index.html" id="logo"><img src="/Webutveckling2_Klient/popcorn-1614707.png" alt="Popcorn logo"></a>
+			<a href="/index.html" id="logo"><img src="https://www.tbdevstuff.live/Webutveckling2_Klient/popcorn-1614707.png" alt="Popcorn logo"></a>
 			<h1 id="title">Simple IMDB Search</h1>
 			<form id="search-form" method="get" name="search-form" autocomplete="off">
-				<input id="search-box" name="query" type="text" placeholder="Enter movie title..." autofocus><button type="submit"><i class="fa fa-search"></i></button>
+				<input id="search-box" name="query" type="text" placeholder="Enter movie title..." autofocus><button  id="main-search-button" type="submit" class="btn"><i class="fa fa-search"></i></button>
 			</form>
 
 			<div id="loading-results" class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
@@ -66,7 +72,7 @@
 				<div class="modal-content">
 					<span class="close">&times;</span>
 					<p>Save to favourites?</p>
-					<button type="button" id="save">Save</button> <button type="button" id="cancel">Cancel</button>
+					<button type="button" id="save" class="btn">Save</button> <button type="button" id="cancel">Cancel</button>
 				</div>
 			</div>
 		</div>
