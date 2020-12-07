@@ -47,6 +47,49 @@ a {
 	color: inherit;
 }
 
+/*this is the general style for buttons*/
+.btn{
+	/*reset style*/
+	padding: 0.5em 1em;
+	outline: none;
+	border-radius: 3px;
+	white-space: nowrap;
+	cursor: pointer;
+
+	/*style text*/
+	font-weight: 700;
+	letter-spacing: 2px;
+	font-size: 15px;
+	text-transform: uppercase;
+
+	/*style the sliding background*/
+	background-size: 220%;
+	box-shadow: 0 .2em .3em rgba(0, 0, 0, 0.15);
+	background-color: transparent;
+	background-position: 100%;
+	border: 3px solid var(--secondary-red);
+	transition: all .4s ease-out;
+	background-image: linear-gradient(
+			90deg,
+			var(--secondary-red) 0%,
+			var(--secondary-red) 50%,
+			transparent 50%,
+			transparent 100%
+	);
+}
+/*TODO: style these divs
+   	#favourite-movie-li .fa-trash:hover
+   	search-button
+   	show button
+   	trashcan
+   	save modal
+   	*/
+.btn:hover {
+	box-shadow: 0 0 .3em rgba(0, 0, 0, 0.25);
+	background-position: 0;
+	color: #fff;
+}
+
 /*****************************
 	img, title search bar and result container
 *****************************/
@@ -315,18 +358,23 @@ form button {
 }
 
 #save{
-	border-radius: 4px;
-	border: solid 2px white;
-	background-color: var(--accept-green);
-	padding: 3px;
+	/*border-radius: 4px;*/
+	/*border: solid 2px white;*/
+	/*background-color: var(--accept-green);*/
+	/*padding: 3px;*/
 	font-size: 15px;
+}
+#save:hover {
+	box-shadow: 0 0 .3em rgba(0, 0, 0, 0.25);
+	background-position: 0;
+	color: #fff;
 }
 
 #cancel{
 	background-color: #fefefe;
 	border: none;
 	margin-left: 10px;
-	font-size: 15px;
+	/*font-size: 16px; this line doesn't have any effect for some reason*/
 }
 
 /*****************************
@@ -517,43 +565,6 @@ design the hidden input node
 	/*	not working scroll*/
 }
 
-/*this is the general style for buttons*/
-.btn{
-	/*reset style*/
-	padding: 0.5em 1em;
-	outline: none;
-	border-radius: 3px;
-	white-space: nowrap;
-	cursor: pointer;
-
-	/*style text*/
-	font-weight: 700;
-	letter-spacing: 2px;
-	font-size: 15px;
-	text-transform: uppercase;
-
-	/*style the sliding background*/
-	background-size: 220%;
-	box-shadow: 0 .2em .3em rgba(0, 0, 0, 0.15);
-	background-color: transparent;
-	background-position: 100%;
-	border: 3px solid var(--secondary-red);
-	transition: all .4s ease-out;
-	background-image: linear-gradient(
-			90deg,
-			var(--secondary-red) 0%,
-			var(--secondary-red) 50%,
-			transparent 50%,
-			transparent 100%
-	);
-}
-/*	#favourite-movie-li .fa-trash:hover { also style this*/
-.btn:hover {
-	box-shadow: 0 0 .3em rgba(0, 0, 0, 0.25);
-	background-position: 0;
-	color: #fff;
-}
-
 #favourite-movies-container h3{
 	display: inline-block;
 	font-size: 25px;
@@ -592,11 +603,18 @@ design the hidden input node
 }
 
 #show-favourite-movies{
-	border-radius: 4px;
-	border: solid 2px var(--main-yellow);
-	background-color: var(--main-yellow);
-	padding: 3px;
-	font-size: 20px;
+	/*border-radius: 4px;*/
+	/*border: solid 2px var(--main-yellow);*/
+	/*background-color: var(--main-yellow);*/
+	/*padding: 3px;*/
+	font-size: 18px;
+}
+#show-favourite-movies::before{
+	font-family: "Font Awesome 5 Free", serif;
+	content: "\f06e";
+	font-style: normal;
+	font-weight: bold;
+	margin-right: var(--icon-distance);
 }
 
 /*****************************
@@ -636,15 +654,6 @@ design the hidden input node
 
 #sign-out-container{
 	margin-top: 15px;
-
-	transition: all .6s ease-out;
-	background-image: linear-gradient(
-			90deg,
-			var(--secondary-red) 0%,
-			var(--secondary-red) 66.5%,
-			transparent 50%,
-			transparent 100%
-	);
 }
 
 #sign-out::before{
@@ -660,6 +669,8 @@ design the hidden input node
 /*****************************
 	designing the list
 *****************************/
+
+/*https://www.youtube.com/watch?v=dhLcyBCJ0r4*/
 
 #favourite-movies-list{
 	list-style-type: none;
