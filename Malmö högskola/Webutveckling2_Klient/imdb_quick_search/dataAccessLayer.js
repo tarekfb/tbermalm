@@ -1,6 +1,6 @@
 initializeFireBase();
-const db = firebase.database();
-const rootRef = db.ref();
+const DATABASE = firebase.database();
+const ROOT_REF = DATABASE.ref();
 let userRef = null;
 
 function initializeFireBase() {
@@ -78,7 +78,7 @@ firebase.auth().onAuthStateChanged(function(firebaseUser) {
         authStateChanged(firebaseUser);
         readFavouriteMoviesList().then(snapshot => populateFavouriteMoviesList(snapshot));
         handlePlaceholderSpan();
-        userRef = rootRef.child(`users/${uid}/`);
+        userRef = ROOT_REF.child(`users/${uid}/`);
 
     } else {
         // User is signed out.
@@ -124,7 +124,7 @@ function pushFavouriteMovie(entryFromAJAX) {
     //    create branch after currentUser.uid, add the selected movie and its title/year/rating
 
     let uid = firebase.auth().currentUser.uid;
-    let newFavouriteMovieRef = rootRef.child("users/" + uid + "/" + entryFromAJAX.imdbID);
+    let newFavouriteMovieRef = ROOT_REF.child("users/" + uid + "/" + entryFromAJAX.imdbID);
     newFavouriteMovieRef.set({
         title: entryFromAJAX.Title,
         year: entryFromAJAX.Year,
@@ -138,7 +138,7 @@ async function readFavouriteMoviesList() {
     //then returns a promise with a snapshot of the movie-list
 
     let uid = firebase.auth().currentUser.uid;
-    let movieListRef = db.ref(`users/${uid}`);
+    let movieListRef = DATABASE.ref(`users/${uid}`);
     return movieListRef.once("value").then(function (snapshot) {
         return snapshot;
     });
@@ -154,4 +154,5 @@ function firebaseSignOut() {
     //this fun is called when user signs out
     //does just that, and nothing else
     firebase.auth().signOut();
+    window.location='https://www.tbdevstuff.live/webutveckling2_klient/imdb_quick_search/imdb_quick_search.html';
 }

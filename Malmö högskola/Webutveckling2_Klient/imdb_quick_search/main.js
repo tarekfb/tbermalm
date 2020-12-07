@@ -257,10 +257,6 @@ function generateMovieCard(apiCallResult) {
 
 	let favouriteMovieContainer = document.getElementById('favourite-movies-container')
 	favouriteMovieContainer.style.height = favouriteMovieContainer.parentNode.offsetHeight+"px";
-	// console.log("parentnode: " + favouriteMovieContainer.parentNode);
-	// console.log("page heigt: " + favouriteMovieContainer.parentNode.offsetHeight);
-	// console.log("sidebar heigt: " + favouriteMovieContainer.offsetHeight);
-
 
 	/*
 	when I wrote this function I initially had some really awkward design

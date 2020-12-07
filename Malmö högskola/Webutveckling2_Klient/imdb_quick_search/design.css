@@ -109,18 +109,6 @@ a {
 }
 
 #main-search-button{
-	/*width: 45px;*/
-	/*padding: 10px;*/
-	/*background: var(--main-red);*/
-	/*font-size: 17px;*/
-	/*border: 1px solid grey;*/
-	/*border-left: none;*/
-	/*cursor: pointer;*/
-	/*border-radius: 0 5px 5px 0;*/
-	/*color: black;*/
-	/*margin-left: -0.5%;*/
-	/*-webkit-appearance: none;*/
-
 	padding: 0.5em 0;
 	width: 65px;
 	font-size: 20px;
@@ -235,6 +223,7 @@ a {
 		transform: rotate(360deg);
 	}
 }
+
 
 /*****************************
 	style for each movie, within the result container
@@ -578,6 +567,7 @@ design the hidden input node
 	font-size: 25px;
 	font-family: var(--font-title-secondary);
 	font-weight: normal;
+	margin-top: 0;
 }
 
 #icon-container{
@@ -623,6 +613,17 @@ design the hidden input node
 	font-style: normal;
 	font-weight: bold;
 	margin-right: var(--icon-distance);
+}
+
+/* Solid border */
+hr {
+	display: block;
+	height: 2px;
+	border: 0;
+	border-top: 2px solid black;
+	margin: 1em 0;
+	margin-top: 1.5em;
+	padding: 0;
 }
 
 /*****************************
