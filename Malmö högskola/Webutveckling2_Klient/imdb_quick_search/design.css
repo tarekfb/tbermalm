@@ -80,9 +80,7 @@ a {
 /*TODO: style these divs
    	#favourite-movie-li .fa-trash:hover
    	search-button
-   	show button
    	trashcan
-   	save modal
    	*/
 .btn:hover {
 	box-shadow: 0 0 .3em rgba(0, 0, 0, 0.25);
@@ -109,19 +107,28 @@ a {
 	width: 250px;
 	height: 250px;
 }
-form button {
-	width: 45px;
-	padding: 10px;
-	background: var(--main-red);
-	font-size: 17px;
-	border: 1px solid grey;
-	border-left: none;
-	cursor: pointer;
-	border-radius: 0 5px 5px 0;
-	color: black;
-	margin-left: -0.5%;
-	-webkit-appearance: none;
+
+#main-search-button{
+	/*width: 45px;*/
+	/*padding: 10px;*/
+	/*background: var(--main-red);*/
+	/*font-size: 17px;*/
+	/*border: 1px solid grey;*/
+	/*border-left: none;*/
+	/*cursor: pointer;*/
+	/*border-radius: 0 5px 5px 0;*/
+	/*color: black;*/
+	/*margin-left: -0.5%;*/
+	/*-webkit-appearance: none;*/
+
+	padding: 0.5em 0;
+	width: 65px;
+	font-size: 20px;
+	margin-left: var(--icon-distance);
+	box-shadow: 0 0 .3em rgba(0, 0, 0, 0.25);
+
 }
+
 #search-form input {
 	padding: 10px;
 	font-size: 17px;
@@ -129,6 +136,7 @@ form button {
 	width: 35%;
 	background: #f1f1f1;
 }
+
 #result-container {
 	font-size: 25px;
 }
@@ -741,12 +749,23 @@ design the hidden input node
  *****************************/
 
 @media screen and (max-width: 1300px) {
+	.btn{
+		background-color: var(--secondary-red);
+	}
+	.btn:hover {
+		box-shadow: 0 .2em .3em rgba(0, 0, 0, 0.15);
+		background-position: 0;
+		color: black;
+	}
 	#title{
 		font-size: 30px;
 	}
-	img {
-		width: 100px;
-		height: 100px;
+	#logo img {
+		width: 45vw;
+		height: 45vw;
+	}
+	#main-search-button{
+		font-size: 18px;
 	}
 	#movie-container {
 		width: 94%;
