@@ -7,8 +7,9 @@
 	<meta name="viewport" content="width=device-width,initial-scale=1.0">
 
 	<link href="design.css" rel="stylesheet" type="text/css">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Limelight&display=swap" rel="stylesheet">
 	<link rel="shortcut icon" href="popcorn-1614707.ico">
 	<link rel="shortcut icon" href="#" />
 	<link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.7.1/firebase-ui-auth.css" />
@@ -39,9 +40,12 @@
 					<div id="sign-out">Log out</div>
 				</div>
 
+				<!--TESTING TESTING TESTING-->
 				<div id="firebase-test">
 					<div id="signup-test">Welcome, Person</div>
-					<button id="sign-out-test" class="btn">Log out</button>
+					<button id="sign-out-test-container">
+						<span id="sign-out-test" class="btn">Log out</span>
+					</button>
 				</div>
 
 				<div id="title-and-list-container">
@@ -56,7 +60,7 @@
 
 		<!--Main content: search bar and results-->
 		<div id="main-content-container">
-			<a href="/index.html" id="logo"><img src="/Webutveckling2_Klient/popcorn-1614707.png" alt="Popcorn logo"></a>
+			<a href="/index.html" id="logo"><img src="https://www.tbdevstuff.live/Webutveckling2_Klient/popcorn-1614707.png" alt="Popcorn logo"></a>
 			<h1 id="title">Simple IMDB Search</h1>
 			<form id="search-form" method="get" name="search-form" autocomplete="off">
 				<input id="search-box" name="query" type="text" placeholder="Enter movie title..." autofocus><button type="submit"><i class="fa fa-search"></i></button>

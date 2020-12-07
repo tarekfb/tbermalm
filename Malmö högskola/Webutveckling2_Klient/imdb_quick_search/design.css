@@ -45,8 +45,14 @@ a {
 }
 
 /*****************************
-	img, search bar and result container
+	img, title search bar and result container
 *****************************/
+#title{
+	font-family: 'Limelight', cursive;
+	font-weight: normal;
+	font-size: 45px;
+	display: block;
+}
 
 #search-box:focus, #search-form button{
 	outline: none;
@@ -567,30 +573,57 @@ design the hidden input node
 
 /*TODO TESTING STYLES FOR BUTTONS SIDEBAR*/
 
-.btn{
-	outline: none;
-	background-color: var(--secondary-red);
-	font-weight: 700;
-	letter-spacing: 2px;
-	padding: 0.5em 1.25em;
-	background-position: 100%;
-	border: 3px solid var(--secondary-red);
-	text-transform: uppercase;
-	border-radius: 3px;
-	transition: all .2s ease-out;
-	background-image: linear-gradient(110deg, var(--secondary-red) 0%, var(--secondary-red) 50%, transparent 50%, transparent 100%);
-	font-size: 14px;
-	white-space: nowrap;
-}
-
 #firebase-test{
 	margin-top: 40px;
 	font-size: 18px;
 
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
-	align-content: center;
+	align-items: center;
+	justify-content: space-between;
+}
+
+#signup-test{
+	font-size: 20px;
+}
+
+#sign-out-test-container{
+	outline: none;
+	padding: 0.5em 1em;
+	border-radius: 3px;
+	white-space: nowrap;
+	cursor: pointer;
+	margin-top: 15px;
+
+	font-weight: 700;
+	letter-spacing: 2px;
+	font-size: 15px;
+	text-transform: uppercase;
+
+	background-size: 220%;
+	box-shadow: 0 .2em .3em rgba(0, 0, 0, 0.15);
+	background-color: var(--secondary-red);
+	background-color: transparent;
+	background-position: 100%;
+	border: 3px solid var(--secondary-red);
+	transition: all .2s ease-out;
+	background-image: linear-gradient(110deg, var(--secondary-red) 0%, var(--secondary-red) 50%, transparent 50%, transparent 100%);
+}
+
+#sign-out-test-container:hover {
+	box-shadow: 0 0 .3em rgba(0, 0, 0, 0.25);
+	background-position: 0;
+	color: #fff;
+}
+
+#sign-out-test::before{
+	speak: none;
+	font-family: "Font Awesome 5 Free", serif;
+	font-style: normal;
+	font-weight: bold;
+	content: "\f2f5";
+
+	margin-right: var(--icon-distance);
 }
 
 
@@ -671,6 +704,9 @@ design the hidden input node
  *****************************/
 
 @media screen and (max-width: 1300px) {
+	#title{
+		font-size: 30px;
+	}
 	img {
 		width: 100px;
 		height: 100px;
@@ -726,13 +762,8 @@ design the hidden input node
 		margin-top: 0;
 		font-size: 20px;
 	}
-
-	#favourite-movies-container{
-		/*
-		TODO: wip
-		what I want to do is make sure the height of the sidebar menu matches the page height
-		doesn't work atm. see main.js*/
-		/*position: absolute;*/
+	#favourite-movies-content-container{
+		width: 100%;
 	}
 
 	/*
