@@ -65,7 +65,29 @@ firebase.auth().onAuthStateChanged(function(firebaseUser) {
         userRef = ROOT_REF.child(`users/${uid}/`);
 
         authStateChanged(firebaseUser);
-        readFavouriteMoviesList().then(snapshot => populateFavouriteMoviesList(snapshot));
+        readFavouriteMoviesList().then(function(snapshot){
+
+            let hide = "hide";
+            handleSidebarLoadingAnimation(hide);
+
+            // this designs will make the sidebar load faster
+            // because we only readFavouriteMoviesList once
+            // previously called handlePlaceholder and popFavMovList in two separate lines
+
+            // determine if list empty or not --> pass result to handlePlaceholderSpan
+            let statusOfList = null;
+            if (snapshot.hasChildren()) {
+                statusOfList = "notEmpty";
+                handlePlaceholderSpan(statusOfList);
+            } else if (!snapshot.hasChildren()) {
+                statusOfList = "empty";
+                handlePlaceholderSpan(statusOfList);
+            }
+
+            populateFavouriteMoviesList(snapshot);
+
+        });
+
 
         let statusOfList = "unknown";
         handlePlaceholderSpan(statusOfList)

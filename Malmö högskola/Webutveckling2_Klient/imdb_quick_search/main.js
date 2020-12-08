@@ -9,6 +9,9 @@ favouriteMoviesHamburgerListener();
 favouriteMoviesIconListener();
 toggleHideFavouriteMovies();
 
+let show = "show";
+handleSidebarLoadingAnimation(show);
+
 function submitFormListener() {
 	let form = document.getElementById("search-form");
 	let searchBox = document.getElementById("search-box");
@@ -147,6 +150,43 @@ function displayResult(result) {
 		}
 	}
 
+}
+function handleSidebarLoadingAnimation(hideShow){
+
+	let loadingSidebar = document.getElementById("loading-sidebar");
+
+	let firebaseAuthContainer = document.getElementById("firebase-auth-container");
+	let titleAndListContainer =  document.getElementById("title-and-list-container");
+	let favouriteMovieContentContainer = document.getElementById('favourite-movies-content-container');
+	let hr = favouriteMovieContentContainer.querySelectorAll('hr');
+
+	if (hideShow === "show"){
+		console.log("show");
+
+		firebaseAuthContainer.style.display = "none";
+		titleAndListContainer.style.display = "none";
+		hr.forEach(function (n) {
+			n.style.display = "none";
+		});
+		loadingSidebar.style.display = "block";
+
+	} else if (hideShow === "hide"){
+
+		console.log("hide");
+		loadingSidebar.style.display = "none";
+
+		firebaseAuthContainer.style.display = "unset";
+		titleAndListContainer.style.display = "unset";
+		hr.forEach(function (n) {
+			n.style.display = "unset";
+		});
+
+		// hide splash
+		// show:
+		// 	firebase-auth-cont
+		// all hr
+		// title-and-list-container
+	}
 }
 
 function generateMovieCard(apiCallResult) {
@@ -394,9 +434,7 @@ function populateFavouriteMoviesList(snapshot) {
 
 		li.appendChild(deleteSpan);
 
-
 	});
-//TODO: make scrollable if too many movies
 }
 
 function favouriteMoviesHamburgerListener() {
@@ -442,7 +480,9 @@ function handlePlaceholderSpan(statusOfList) {
 		editFavouriteMoviesIcon.style.display = "unset";
 
 	} else if (statusOfList === "unknown"){
-		// unknown if list is empty or not, perform check and act accordingly
+		// unknown if list is empty or not
+		// perform check and act accordingly
+
 		readFavouriteMoviesList().then(function (snapshot){
 			if (!snapshot.hasChildren()){
 				placeholderSpan.style.display = "block";
@@ -571,13 +611,6 @@ function authStateChanged(firebaseUser) {
 	//that fun calls this fun and passes either the firebaseUser
 	//the firebaseUser has properties on SIGN IN
 	//the firebaseUser is null on LOG OFF
-
-	// let favo = document.getElementById("favourite-movies-content-container");
-	// favo.querySelectorAll('*').forEach(function(n){
-	// 	n.style.display = "none";
-	// 	console.log(`${n} from qSforEach`);
-	// });
-
 
 	let firebaseUISignupContainer = document.getElementById("firebaseui-signup-container");
 	let authStatus = document.getElementById("auth-status");
