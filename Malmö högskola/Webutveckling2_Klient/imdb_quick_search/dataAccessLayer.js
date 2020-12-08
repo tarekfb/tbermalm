@@ -88,7 +88,6 @@ firebase.auth().onAuthStateChanged(function(firebaseUser) {
 
         });
 
-
         let statusOfList = "unknown";
         handlePlaceholderSpan(statusOfList)
 

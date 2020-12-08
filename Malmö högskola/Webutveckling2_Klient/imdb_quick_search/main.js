@@ -7,7 +7,6 @@ submitFormListener();
 showFavouriteMoviesListener();
 favouriteMoviesHamburgerListener();
 favouriteMoviesIconListener();
-toggleHideFavouriteMovies();
 
 let show = "show";
 handleSidebarLoadingAnimation(show);
@@ -18,15 +17,15 @@ function submitFormListener() {
 
 	form.addEventListener("submit", function(event) {
 
-		//clear resultContainer to prevent stacking of results/response messages
+		// clear resultContainer to prevent stacking of results/response messages
 		let resultContainer = document.getElementById("result-container")
 		resultContainer.querySelectorAll('*').forEach(n => n.remove());
 
-		//in this case the user didnt enter any text in the search box
+		// in this case the user didnt enter any text in the search box
 		if (searchBox.value.length === 0){
 			searchBox.focus();
 
-			//generate p saying to enter some text
+			// generate p saying to enter some text
 			let p = document.createElement("p");
 			p.appendChild(document.createTextNode("Please type something first."));
 			resultContainer.appendChild(p);
@@ -152,41 +151,46 @@ function displayResult(result) {
 
 }
 function handleSidebarLoadingAnimation(hideShow){
+	// there are currently two issues with this function
+	// first:
+	//	something is displaying the title-and-list-container
+	//	before this fun has a chance to display them
+	//	at an appreciate time (meaning, when the animation will hide)
+	//	therefore, it's showing both the loading anim and the container at the same time
+	//  need to locate whats (programmatically?) setting the container to display
 
-	let loadingSidebar = document.getElementById("loading-sidebar");
-
-	let firebaseAuthContainer = document.getElementById("firebase-auth-container");
-	let titleAndListContainer =  document.getElementById("title-and-list-container");
-	let favouriteMovieContentContainer = document.getElementById('favourite-movies-content-container');
-	let hr = favouriteMovieContentContainer.querySelectorAll('hr');
-
-	if (hideShow === "show"){
-		console.log("show");
-
-		firebaseAuthContainer.style.display = "none";
-		titleAndListContainer.style.display = "none";
-		hr.forEach(function (n) {
-			n.style.display = "none";
-		});
-		loadingSidebar.style.display = "block";
-
-	} else if (hideShow === "hide"){
-
-		console.log("hide");
-		loadingSidebar.style.display = "none";
-
-		firebaseAuthContainer.style.display = "unset";
-		titleAndListContainer.style.display = "unset";
-		hr.forEach(function (n) {
-			n.style.display = "unset";
-		});
-
-		// hide splash
-		// show:
-		// 	firebase-auth-cont
-		// all hr
-		// title-and-list-container
-	}
+	// second:
+	//	the sidebar content is displayed upon page load
+	//  just after that, this fun is called, and hides them
+	//  so it shows --> hides bcus of this fun --> shows, when db finished loading
+	// let loadingSidebar = document.getElementById("loading-sidebar");
+	//
+	// let firebaseAuthContainer = document.getElementById("firebase-auth-container");
+	// let titleAndListContainer =  document.getElementById("title-and-list-container");
+	// let favouriteMovieContentContainer = document.getElementById('favourite-movies-content-container');
+	// let hr = favouriteMovieContentContainer.querySelectorAll('hr');
+	//
+	// if (hideShow === "show"){
+	// 	console.log("show");
+	//
+	// 	firebaseAuthContainer.style.display = "none";
+	// 	titleAndListContainer.style.display = "none";
+	// 	hr.forEach(function (n) {
+	// 		n.style.display = "none";
+	// 	});
+	// 	loadingSidebar.style.display = "block";
+	//
+	// } else if (hideShow === "hide"){
+	//
+	// 	console.log("hide");
+	// 	loadingSidebar.style.display = "none";
+	//
+	// 	firebaseAuthContainer.style.display = "unset";
+	// 	titleAndListContainer.style.display = "unset";
+	// 	hr.forEach(function (n) {
+	// 		n.style.display = "unset";
+	// 	});
+	// }
 }
 
 function generateMovieCard(apiCallResult) {
@@ -618,6 +622,8 @@ function authStateChanged(firebaseUser) {
 	let authName = document.getElementById("auth-name");
 	let signOutContainer =  document.getElementById('sign-out-container');
 	let titleAndListContainer =  document.getElementById("title-and-list-container");
+	let favouriteMovieContentContainer = document.getElementById('favourite-movies-content-container');
+	let hr = favouriteMovieContentContainer.querySelectorAll('hr');
 
 	if (firebaseUser){
 		firebaseUISignupContainer.style.display = "none";
@@ -634,20 +640,27 @@ function authStateChanged(firebaseUser) {
 		}
 		authStatus.style.display = "unset";
 
+		hr.forEach(function (n) {
+			n.style.display = "unset";
+		});
+
 	} else {
 		firebaseUISignupContainer.style.display = "unset";
-		// signInStatus.innerHTML = 'Signed out';
 		authStatus.style.display = "none";
 		signOutContainer.style.display = "none";
 		titleAndListContainer.style.display = "none";
+
+		hr.forEach(function (n) {
+			n.style.display = "none";
+		});
 	}
 }
 
-/*
-	beneath this point shall all
-	'unwanted-but-possibly-useful-down-the-line' lines of code
-	be kept
- */
+/********************************************************************
+ beneath this point shall all
+ 'unwanted-but-possibly-useful-down-the-line' lines of code
+ be kept
+ ********************************************************************/
 
 function toggleHideFavouriteMovies() {
 	//TODO: delete if fav-movies sidebar is working as intended
