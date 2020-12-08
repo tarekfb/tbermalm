@@ -9,7 +9,6 @@ favouriteMoviesHamburgerListener();
 favouriteMoviesIconListener();
 toggleHideFavouriteMovies();
 
-
 function submitFormListener() {
 	let form = document.getElementById("search-form");
 	let searchBox = document.getElementById("search-box");
@@ -338,7 +337,8 @@ function saveMovieToFavourite(entryFromAJAX) {
 		//favouriteMoviesUL.lastElementChild.classList.add("pulse-grey-animation");
 	}
 
-	handlePlaceholderSpan();
+	let statusOfList = "notEmpty";
+	handlePlaceholderSpan(statusOfList);
 
 	pushFavouriteMovie(entryFromAJAX);
 	readFavouriteMoviesList().then(snapshot => populateFavouriteMoviesList(snapshot));
@@ -400,9 +400,9 @@ function populateFavouriteMoviesList(snapshot) {
 }
 
 function favouriteMoviesHamburgerListener() {
-	//whenever the user opens the sidebar menu with favourite movies
-	//this will update list with values from db
-	//necessary to call every time because -->
+	// whenever the user opens the sidebar menu with favourite movies
+	// this will update list with values from db
+	// necessary to call every time because -->
 	// --> user could've added favourites while closed
 	let inputHamburgerCheckbox = document.getElementById("input-hamburger");
 
@@ -415,33 +415,49 @@ function favouriteMoviesHamburgerListener() {
 	});
 }
 
-function handlePlaceholderSpan() {
-	//this fun checks if the user has any movies in fav list
-	//if the list of fav movies is empty -->
-	// --> display p saying 'try adding movies'
-	// --> hide relevant divs
+function handlePlaceholderSpan(statusOfList) {
+	// this fun takes a string that indicates whether the favlist is empty, !empty, or unknown
+	// in the case of empty || !empty, hide/show divs etc
+	// in the case of unknown, fun will do check and then hide/shows divs etc
+
+	// first this fun just checked everytime (Read from db)
+	// and then hide/show divs etc
+	// but in this way, in some conditions, when we already now if empty or !empty, it will faster
 
 	let favouriteMoviesUL = document.getElementById("favourite-movies-list");
 	let placeholderSpan = document.getElementById("empty-list-placeholder");
 	let showListButton = document.getElementById("show-favourite-movies");
 	let editFavouriteMoviesIcon = document.getElementById("edit-favourite-movies-icon");
 
-	// placeholderSpan.style.display = "none";
+	if (statusOfList === "empty"){
+		placeholderSpan.style.display = "block";
+		showListButton.style.display = "none";
+		favouriteMoviesUL.style.display = "none";
+		editFavouriteMoviesIcon.style.display = "none";
 
-	readFavouriteMoviesList().then(function (snapshot){
-		if (!snapshot.hasChildren()){
-			placeholderSpan.style.display = "block";
-			showListButton.style.display = "none";
-			favouriteMoviesUL.style.display = "none";
-			editFavouriteMoviesIcon.style.display = "none";
-		} else {
-			placeholderSpan.style.display = "none";
-			showListButton.style.display = "inline-block";
-			favouriteMoviesUL.style.display = "unset";
-			editFavouriteMoviesIcon.style.display = "unset";
+	} else if (statusOfList === "notEmpty"){
+		placeholderSpan.style.display = "none";
+		showListButton.style.display = "inline-block";
+		favouriteMoviesUL.style.display = "unset";
+		editFavouriteMoviesIcon.style.display = "unset";
 
-		}
-	});
+	} else if (statusOfList === "unknown"){
+		// unknown if list is empty or not, perform check and act accordingly
+		readFavouriteMoviesList().then(function (snapshot){
+			if (!snapshot.hasChildren()){
+				placeholderSpan.style.display = "block";
+				showListButton.style.display = "none";
+				favouriteMoviesUL.style.display = "none";
+				editFavouriteMoviesIcon.style.display = "none";
+			} else {
+				placeholderSpan.style.display = "none";
+				showListButton.style.display = "inline-block";
+				favouriteMoviesUL.style.display = "unset";
+				editFavouriteMoviesIcon.style.display = "unset";
+
+			}
+		});
+	}
 
 }
 
@@ -507,10 +523,12 @@ function deleteMovie(imdbID, event) {
 	deleteFromFavouriteMovies(imdbID);
 	event.target.parentNode.parentNode.style.display = "none";
 
-	checkIfUserHasChildren().then(function (hasChildren){
+	checkIfUserBranchHasChildren().then(function (hasChildren){
 		if (!hasChildren){
 			editOrConfirmStateChange();
-			handlePlaceholderSpan();
+
+			let statusOfList = "unknown";
+			handlePlaceholderSpan(statusOfList);
 		}
 	})
 
@@ -553,6 +571,13 @@ function authStateChanged(firebaseUser) {
 	//that fun calls this fun and passes either the firebaseUser
 	//the firebaseUser has properties on SIGN IN
 	//the firebaseUser is null on LOG OFF
+
+	// let favo = document.getElementById("favourite-movies-content-container");
+	// favo.querySelectorAll('*').forEach(function(n){
+	// 	n.style.display = "none";
+	// 	console.log(`${n} from qSforEach`);
+	// });
+
 
 	let firebaseUISignupContainer = document.getElementById("firebaseui-signup-container");
 	let authStatus = document.getElementById("auth-status");
