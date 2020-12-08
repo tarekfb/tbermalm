@@ -100,6 +100,31 @@ firebase.auth().onAuthStateChanged(function(firebaseUser) {
     alert(error);
 });
 
+async function readFavouriteMoviesList() {
+    //this fun reads the current users branch (root/users/uid/)
+    //then returns a promise with a snapshot of the movie-list
+
+    let uid = firebase.auth().currentUser.uid;
+    let movieListRef = DATABASE.ref(`users/${uid}`);
+    return movieListRef.once("value").then(function (snapshot) {
+        return snapshot;
+    });
+
+}
+
+function deleteFromFavouriteMovies(imdbID) {
+    const movieRef = userRef.child(imdbID);
+    movieRef.remove();
+}
+
+function firebaseSignOut() {
+    //this fun is called when user signs out
+    //it signs out, and then redirects user to homepage
+    //redirected needed to reset firebaseui div
+    firebase.auth().signOut();
+    window.location='https://www.tbdevstuff.live/webutveckling2_klient/imdb_quick_search/imdb_quick_search.html';
+}
+
 function getFirebaseAuth() {
     return firebase.auth();
 }
@@ -141,31 +166,17 @@ function pushFavouriteMovie(entryFromAJAX) {
 
 }
 
-function checkIfMovieAlreadyInFavourites() {
-
-}
-
-async function readFavouriteMoviesList() {
-    //this fun reads the current users branch (root/users/uid/)
-    //then returns a promise with a snapshot of the movie-list
-
-    let uid = firebase.auth().currentUser.uid;
-    let movieListRef = DATABASE.ref(`users/${uid}`);
-    return movieListRef.once("value").then(function (snapshot) {
-        return snapshot;
+async function checkIfMovieAlreadyInFavourites(entryFromAJAX) {
+    let boolean = null;
+    return readFavouriteMoviesList().then(function (snapshot) {
+        if (snapshot.hasChild(entryFromAJAX.imdbID)){
+            console.log("yes");
+            boolean = true;
+            return boolean;
+        } else {
+            console.log("no");
+            boolean = false;
+            return boolean;
+        }
     });
-
-}
-
-function deleteFromFavouriteMovies(imdbID) {
-   const movieRef = userRef.child(imdbID);
-   movieRef.remove();
-}
-
-function firebaseSignOut() {
-    //this fun is called when user signs out
-    //it signs out, and then redirects user to homepage
-    //redirected needed to reset firebaseui div
-    firebase.auth().signOut();
-    window.location='https://www.tbdevstuff.live/webutveckling2_klient/imdb_quick_search/imdb_quick_search.html';
 }

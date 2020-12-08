@@ -364,28 +364,60 @@ function showModalBox(entryFromAJAX) {
 
 }
 
+function showAlreadyAddedModalBox() {
+	//all of these vars have terrible names
+	//TODO fix
+	// x not working
+
+	let span = document.getElementsByClassName("close")[0];
+	let okay = document.getElementById("okay");
+	let alreadyAdded = document.getElementById("modal-box-already-added");
+
+	alreadyAdded.style.display = "unset";
+
+	span.onclick = function() {
+		alreadyAdded.style.display = "none";
+	}
+	window.onclick = function(event){
+		if (event.target == alreadyAdded){
+			alreadyAdded.style.display = "none";
+		}
+	}
+	okay.onclick = function (){
+		alreadyAdded.style.display = "none";
+	}
+}
+
 function saveMovieToFavourite(entryFromAJAX) {
 	//TODO: update to work with firebase db, see below
 	//if statement of hamburger pulse needs updating
 	//and add(pulse-grey-anim)
 
-	let favouriteMoviesUL = document.getElementById("favourite-movies-list");
+	checkIfMovieAlreadyInFavourites(entryFromAJAX).then(function (boolean) {
+		if (boolean){
+			showAlreadyAddedModalBox();
+		} else {
+			let favouriteMoviesUL = document.getElementById("favourite-movies-list");
 
-	if (!document.getElementById("input-hamburger").checked && favouriteMoviesUL.childElementCount == 0){
-		document.getElementById("slice1").classList.add("pulse-grey-animation");
-		document.getElementById("slice2").classList.add("pulse-grey-animation");
-		document.getElementById("slice3").classList.add("pulse-grey-animation");
-	}
+			if (!document.getElementById("input-hamburger").checked && favouriteMoviesUL.childElementCount == 0){
+				document.getElementById("slice1").classList.add("pulse-grey-animation");
+				document.getElementById("slice2").classList.add("pulse-grey-animation");
+				document.getElementById("slice3").classList.add("pulse-grey-animation");
+			}
 
-	if (document.getElementById("input-hamburger").checked){
-		//favouriteMoviesUL.lastElementChild.classList.add("pulse-grey-animation");
-	}
+			if (document.getElementById("input-hamburger").checked){
+				//favouriteMoviesUL.lastElementChild.classList.add("pulse-grey-animation");
+			}
 
-	let statusOfList = "notEmpty";
-	handlePlaceholderSpan(statusOfList);
+			let statusOfList = "notEmpty";
+			handlePlaceholderSpan(statusOfList);
 
-	pushFavouriteMovie(entryFromAJAX);
-	readFavouriteMoviesList().then(snapshot => populateFavouriteMoviesList(snapshot));
+			pushFavouriteMovie(entryFromAJAX);
+			readFavouriteMoviesList().then(snapshot => populateFavouriteMoviesList(snapshot));
+		}
+
+	});
+
 }
 
 function populateFavouriteMoviesList(snapshot) {
