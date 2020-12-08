@@ -1,6 +1,6 @@
 initializeFireBase();
-const db = firebase.database();
-const rootRef = db.ref();
+const DATABASE = firebase.database();
+const ROOT_REF = DATABASE.ref();
 let userRef = null;
 
 function initializeFireBase() {
@@ -54,31 +54,42 @@ function initFirebaseUI() {
 }
 
 firebase.auth().onAuthStateChanged(function(firebaseUser) {
-    //if the user signs out or in
-    //define firebaseUser properties
-    //pass firebaseUser to main.js (front end)
-    //this fun will also fire when the initial state is determined
+    // if the user signs out or in
+    // define firebaseUser properties
+    // pass firebaseUser to main.js (front end)
+    // this fun will also fire when the initial state is determined (on page load or such)
 
     if (firebaseUser) {
         // User is signed in.
         let uid = firebaseUser.uid;
-
-        /* this code isn't used, so commenting out but leaving for future usage
-        let displayName = firebaseUser.displayName;
-        let email = firebaseUser.email;
-        let emailVerified = firebaseUser.emailVerified;
-        let photoURL = firebaseUser.photoURL;
-        let phoneNumber = firebaseUser.phoneNumber;
-        let providerData = firebaseUser.providerData;
-
-        firebaseUser.getIdToken().then(function(accessToken) {
-        });
-        */
+        userRef = ROOT_REF.child(`users/${uid}/`);
 
         authStateChanged(firebaseUser);
-        readFavouriteMoviesList().then(snapshot => populateFavouriteMoviesList(snapshot));
-        handlePlaceholderSpan();
-        userRef = rootRef.child(`users/${uid}/`);
+        readFavouriteMoviesList().then(function(snapshot){
+
+            let hide = "hide";
+            handleSidebarLoadingAnimation(hide);
+
+            // this designs will make the sidebar load faster
+            // because we only readFavouriteMoviesList once
+            // previously called handlePlaceholder and popFavMovList in two separate lines
+
+            // determine if list empty or not --> pass result to handlePlaceholderSpan
+            let statusOfList = null;
+            if (snapshot.hasChildren()) {
+                statusOfList = "notEmpty";
+                handlePlaceholderSpan(statusOfList);
+            } else if (!snapshot.hasChildren()) {
+                statusOfList = "empty";
+                handlePlaceholderSpan(statusOfList);
+            }
+
+            populateFavouriteMoviesList(snapshot);
+
+        });
+
+        let statusOfList = "unknown";
+        handlePlaceholderSpan(statusOfList)
 
     } else {
         // User is signed out.
@@ -93,22 +104,19 @@ function getFirebaseAuth() {
     return firebase.auth();
 }
 
-function checkFirebaseUserState() {
-    if (firebase.auth().currentUser) {
-        //logged in
-        return true;
-    } else {
-        return false;
-    }
-}
+async function checkIfUserBranchHasChildren() {
+    // this fun checks if users list of fav movies is empty
 
-async function checkIfUserHasChildren() {
+    // limitations: if the user hasn't added any movie at any point, there is no branch created for user
+    // this might cause issues at some point
+
     let boolean;
     return readFavouriteMoviesList().then(function (snapshot) {
         if (snapshot.hasChildren()) {
             boolean = true;
             return boolean;
         } else {
+            // no children
             boolean = false;
             return boolean;
         }
@@ -117,14 +125,14 @@ async function checkIfUserHasChildren() {
 }
 
 function pushFavouriteMovie(entryFromAJAX) {
-    //what this fun does:
-    //  if branch exists
-    //      add selected movie
-    //  if no branch for currentUser.uid exists
-    //    create branch after currentUser.uid, add the selected movie and its title/year/rating
+    // what this fun does:
+    //   if branch exists
+    //       add selected movie
+    //   if no branch for currentUser.uid exists
+    //     create branch after currentUser.uid, add the selected movie and its title/year/rating
 
     let uid = firebase.auth().currentUser.uid;
-    let newFavouriteMovieRef = rootRef.child("users/" + uid + "/" + entryFromAJAX.imdbID);
+    let newFavouriteMovieRef = ROOT_REF.child("users/" + uid + "/" + entryFromAJAX.imdbID);
     newFavouriteMovieRef.set({
         title: entryFromAJAX.Title,
         year: entryFromAJAX.Year,
@@ -133,12 +141,16 @@ function pushFavouriteMovie(entryFromAJAX) {
 
 }
 
+function checkIfMovieAlreadyInFavourites() {
+
+}
+
 async function readFavouriteMoviesList() {
     //this fun reads the current users branch (root/users/uid/)
     //then returns a promise with a snapshot of the movie-list
 
     let uid = firebase.auth().currentUser.uid;
-    let movieListRef = db.ref(`users/${uid}`);
+    let movieListRef = DATABASE.ref(`users/${uid}`);
     return movieListRef.once("value").then(function (snapshot) {
         return snapshot;
     });
@@ -152,6 +164,8 @@ function deleteFromFavouriteMovies(imdbID) {
 
 function firebaseSignOut() {
     //this fun is called when user signs out
-    //does just that, and nothing else
+    //it signs out, and then redirects user to homepage
+    //redirected needed to reset firebaseui div
     firebase.auth().signOut();
+    window.location='https://www.tbdevstuff.live/webutveckling2_klient/imdb_quick_search/imdb_quick_search.html';
 }
