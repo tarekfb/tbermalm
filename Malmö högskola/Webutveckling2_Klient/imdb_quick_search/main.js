@@ -15,7 +15,13 @@ function endlessScrollingListener() {
 		look for all elements with classname == movie-container
 		choose last one in array
 		lastMovie = this one
+		perhaps not possible because can go past, bcus past is too low
+		also TODO: make press escape will escape modals
 		 */
+
+		let resultContainer = document.getElementById("result-container");
+		let movieContainerList = resultContainer.querySelector('movie-container');
+		console.log(movieContainerList);
 
 		let lastMovie = null; //= last movie in list somehow;
 
@@ -224,7 +230,7 @@ function generateMovieCard(apiCallResult) {
 	let resultContainer = document.getElementById("result-container");
 
 	let movieContainer = document.createElement('div');
-	movieContainer.id = 'movie-container'; //TODO: fix. this assigning a unique ID to many divs. shouldnt be possible
+	movieContainer.classList.add('movie-container'); //TODO: fix. this assigning a unique ID to many divs. shouldnt be possible
 	movieContainer.style.zIndex = "-1"; //this fixes the movie card being infront of sidebar menu
 	resultContainer.appendChild(movieContainer);
 
@@ -744,26 +750,6 @@ function toggleHideFavouriteMovies() {
 	//and use the flexbox pattern
 
 }
-
-//is this code for smartphone usage?
-// document.getElementById("movie-container").addEventListener("touchstart", touchHandler, false);
-// document.getElementById("movie-container").addEventListener("touchmove", touchHandler, false);
-// document.getElementById("movie-container").addEventListener("touchend", touchHandler, false);
-// function touchHandler(e) {
-// 	if (e.type == "touchstart") {
-// 		alert("You touched the screen!");
-// 	} else if (e.type == "touchmove") {
-// 		alert("You moved your finger!");
-// 	} else if (e.type == "touchend" || e.type == "touchcancel") {
-// 		alert("You removed your finger from the screen!");
-// 	}
-// }
-
-/*
-todo: implement sorting method according to recency
-todo: implement browsing pages back and forward
-todo: make big "succesfull" checkbox after adding to list
- */
 
 /*leaving some notes from programming diary
 

@@ -170,7 +170,6 @@ async function checkIfMovieAlreadyInFavourites(entryFromAJAX) {
     let boolean = null;
     return readFavouriteMoviesList().then(function (snapshot) {
         if (snapshot.hasChild(entryFromAJAX.imdbID)){
-            console.log("yes");
             boolean = true;
             return boolean;
         } else {
