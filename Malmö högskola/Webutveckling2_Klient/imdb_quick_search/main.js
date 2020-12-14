@@ -8,6 +8,26 @@ showFavouriteMoviesListener();
 favouriteMoviesHamburgerListener();
 favouriteMoviesIconListener();
 
+function endlessScrollingListener() {
+	window.addEventListener("scroll", function() {
+
+		/*
+		look for all elements with classname == movie-container
+		choose last one in array
+		lastMovie = this one
+		 */
+
+		let lastMovie = null; //= last movie in list somehow;
+
+
+		if (window.scrollY > (lastMovie.offsetTop + lastMovie.offsetHeight)) {
+			alert("You've scrolled past the last movie in results");
+		}
+	});
+}
+
+endlessScrollingListener();
+
 let show = "show";
 handleSidebarLoadingAnimation(show);
 
@@ -284,7 +304,7 @@ function generateMovieCard(apiCallResult) {
 			//do nothing
 			//since we just want to avoid showing modalbox in this case
 		} else {
-			showModalBox(apiCallResult);
+			showAddToFavouritesModalBox(apiCallResult);
 		}
 	});
 
@@ -338,7 +358,7 @@ function generateMovieCard(apiCallResult) {
 }
 
 //showing the modal box for saving movies
-function showModalBox(entryFromAJAX) {
+function showAddToFavouritesModalBox(entryFromAJAX) {
 	let span = document.getElementsByClassName("close")[0];
 	let cancel = document.getElementById("cancel");
 	let save = document.getElementById("save");
@@ -366,16 +386,14 @@ function showModalBox(entryFromAJAX) {
 
 function showAlreadyAddedModalBox() {
 	//all of these vars have terrible names
-	//TODO fix
-	// x not working
 
-	let span = document.getElementsByClassName("close")[0];
 	let okay = document.getElementById("okay");
 	let alreadyAdded = document.getElementById("modal-box-already-added");
+	let close = alreadyAdded.getElementsByClassName("close")[0];
 
 	alreadyAdded.style.display = "unset";
 
-	span.onclick = function() {
+	close.onclick = function() {
 		alreadyAdded.style.display = "none";
 	}
 	window.onclick = function(event){
