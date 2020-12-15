@@ -24,6 +24,7 @@ function endlessScrollingListener() {
 		//i need to only add this listener if length = 10
 		//but when do i check length?
 
+		/*
 		let resultContainer = document.getElementById("result-container");
 		let movieContainerList = resultContainer.getElementsByClassName("movie-container");
 		console.log(movieContainerList[movieContainerList.length]);
@@ -34,15 +35,22 @@ function endlessScrollingListener() {
 		if (window.scrollY > (lastMovie.offsetTop + lastMovie.offsetHeight)) {
 			alert("You've scrolled past the last movie in results");
 		}
+		 */
 	});
 }
 
+/*
 let resultChildrenCounter = {
 	children: 0,
-	setChildren: function (counter) {
-		this.children = counter;
+
+	get children(){
+		return children;
+	},
+
+	set children (amount) {
+		this.children = amount; 
 	}
-};
+};*/
 
 let show = "show";
 handleSidebarLoadingAnimation(show);
@@ -331,9 +339,25 @@ function generateMovieCard(apiCallResult) {
 		}
 	});
 
-	resultChildrenCounter.setChildren(resultChildrenCounter.children++);
-	console.log(resultChildrenCounter.children);
+
+	//resultChildrenCounter.set = 5;
+	//console.log(Math.random() + " and " + resultChildrenCounter.get);
+
+	/*
+	console.log(Math.random() + " and " + resultChildrenCounter.children);
 	//is it setting counter to 0 every time i call it?
+
+	let intVar = 5;
+	let something = {
+		x : 10,
+		y : function() {
+			x = 15;
+			console.log(`från inuti ${x}`);
+		}
+	};
+	something.y;
+		console.log(`från utanför XXXX ${something.x}`);
+	*/
 
 
 	//TODO: wip

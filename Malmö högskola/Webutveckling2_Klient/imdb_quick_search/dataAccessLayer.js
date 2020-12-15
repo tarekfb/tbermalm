@@ -97,7 +97,6 @@ firebase.auth().onAuthStateChanged(function(firebaseUser) {
     }
 }, function(error) {
     console.log(error);
-    alert(error);
 });
 
 async function readFavouriteMoviesList() {
@@ -173,7 +172,6 @@ async function checkIfMovieAlreadyInFavourites(entryFromAJAX) {
             boolean = true;
             return boolean;
         } else {
-            console.log("no");
             boolean = false;
             return boolean;
         }
