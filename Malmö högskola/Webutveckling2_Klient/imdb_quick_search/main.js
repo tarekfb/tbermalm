@@ -8,10 +8,32 @@ showFavouriteMoviesListener();
 favouriteMoviesHamburgerListener();
 favouriteMoviesIconListener();
 
-// endlessScrollingListener();
+ endlessScrollingListener();
 
 function endlessScrollingListener() {
 	window.addEventListener("scroll", function() {
+		//attempting to look if user scrolled to bottom of page
+		//and if resultcontainer has 10 children with "movie-container"
+
+		let resultContainer = document.getElementById("result-container");
+		let movieContainerList = resultContainer.getElementsByClassName("movie-container");
+
+		if (movieContainerList.length === 10){
+			let lastMovie = movieContainerList[movieContainerList.length - 1]; //= last movie in list somehow;
+			if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+				console.log(lastMovie);
+			}
+		} //NEED TO DO BETTER HEIGHT PAGE CHECK
+
+		// document.addEventListener('scroll', function (event) {
+		// 	if (document.body.scrollHeight ===
+		// 		document.body.scrollTop +
+		// 		window.innerHeight) {
+		// 		console.log("Bottom!");
+		// 	}
+		// });
+
+
 
 		/*
 		look for all elements with classname == movie-container
@@ -153,6 +175,8 @@ function displayResult(result) {
 	let loadingResults = document.getElementById("loading-results");
 	loadingResults.style.display = "none";
 
+	//this code will make the sidebar retract itself
+	//if mobile user
 	if (/Mobi|Android/i.test(navigator.userAgent) && document.getElementById("input-hamburger").checked) {
 		document.getElementById("input-hamburger").checked = false;
 	}
@@ -304,6 +328,7 @@ function generateMovieCard(apiCallResult) {
 		//TODO: change to dropdown on touch (jquery?)
 		//https://coderwall.com/p/3uwgga/make-css-dropdown-menus-work-on-touch-devices
 	}
+
 	let awards = document.createElement("span");
 	awards.id = "awards";
 	awards.appendChild(document.createTextNode(apiCallResult.Awards));
