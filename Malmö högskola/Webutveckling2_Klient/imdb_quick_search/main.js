@@ -8,6 +8,8 @@ showFavouriteMoviesListener();
 favouriteMoviesHamburgerListener();
 favouriteMoviesIconListener();
 
+// endlessScrollingListener();
+
 function endlessScrollingListener() {
 	window.addEventListener("scroll", function() {
 
@@ -19,11 +21,14 @@ function endlessScrollingListener() {
 		also TODO: make press escape will escape modals
 		 */
 
-		let resultContainer = document.getElementById("result-container");
-		let movieContainerList = resultContainer.querySelector('movie-container');
-		console.log(movieContainerList);
+		//i need to only add this listener if length = 10
+		//but when do i check length?
 
-		let lastMovie = null; //= last movie in list somehow;
+		let resultContainer = document.getElementById("result-container");
+		let movieContainerList = resultContainer.getElementsByClassName("movie-container");
+		console.log(movieContainerList[movieContainerList.length]);
+
+		let lastMovie = movieContainerList[movieContainerList.length]; //= last movie in list somehow;
 
 
 		if (window.scrollY > (lastMovie.offsetTop + lastMovie.offsetHeight)) {
@@ -32,7 +37,12 @@ function endlessScrollingListener() {
 	});
 }
 
-endlessScrollingListener();
+let resultChildrenCounter = {
+	children: 0,
+	setChildren: function (counter) {
+		this.children = counter;
+	}
+};
 
 let show = "show";
 handleSidebarLoadingAnimation(show);
@@ -163,6 +173,10 @@ function displayResult(result) {
 			//checking for null is not a sustainable way of checking if single movie or list
 			//TODO: implement a more accurate condition
 
+			//I'm quite certain this case never fires  because i redesigned apicalls
+			//nvm, it does fire
+			//does the else-case never fire?
+
 			generateMovieCard(result);
 		} else {
 			//in this case the search came through and is a list of movies
@@ -172,6 +186,9 @@ function displayResult(result) {
 			result.Search.forEach(function(entry) {
 				generateMovieCard(entry);
 			});
+
+			alert("problem :(");
+
 		}
 	}
 
@@ -313,6 +330,10 @@ function generateMovieCard(apiCallResult) {
 			showAddToFavouritesModalBox(apiCallResult);
 		}
 	});
+
+	resultChildrenCounter.setChildren(resultChildrenCounter.children++);
+	console.log(resultChildrenCounter.children);
+	//is it setting counter to 0 every time i call it?
 
 
 	//TODO: wip
