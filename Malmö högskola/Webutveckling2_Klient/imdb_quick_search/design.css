@@ -4,7 +4,7 @@
 
 :root {
 	/*variables*/
-	--main-yellow: #f4cb84;
+	--dark-beige: #f4cb84;
 	--main-red: #f38363;
 	--secondary-red: #ec344a;
 	--secondary-red-alt: #f07563;
@@ -34,13 +34,13 @@ html {
 	background-size: cover;
 	color: black;
 	font-family: 'Montserrat', sans-serif;
-	background-color: var(--main-yellow);
+	background-color: var(--dark-beige);
 	text-align: center;
 	margin: 0;
 }
 html, body, #container, #result-container {
 	height: 100%;
-	margin-top: 0;
+	margin: 0;
 }
 a {
 	text-decoration: none;
@@ -742,7 +742,7 @@ hr {
 	}
 	.favourite-movie-anchor:hover {
 		cursor: pointer;
-		color: var(--main-yellow);
+		color: var(--dark-beige);
 		transition: color 0.2s ease;
 	}
 	#favourite-movie-li .fa-trash:hover {
@@ -858,3 +858,4 @@ hr {
 	}
 }
 /*https://www.canva.com/colors/color-palette-generator/*/
+/*https://coolors.co/f2c886-ffe4b3-e94f37-ece2d0-f48660*/
