@@ -8,6 +8,72 @@ showFavouriteMoviesListener();
 favouriteMoviesHamburgerListener();
 favouriteMoviesIconListener();
 
+ endlessScrollingListener();
+
+function endlessScrollingListener() {
+	window.addEventListener("scroll", function() {
+		//attempting to look if user scrolled to bottom of page
+		//and if resultcontainer has 10 children with "movie-container"
+
+		let resultContainer = document.getElementById("result-container");
+		let movieContainerList = resultContainer.getElementsByClassName("movie-container");
+
+		if (movieContainerList.length === 10){
+			let lastMovie = movieContainerList[movieContainerList.length - 1]; //= last movie in list somehow;
+			if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+				console.log(lastMovie);
+			}
+		} //NEED TO DO BETTER HEIGHT PAGE CHECK
+
+		// document.addEventListener('scroll', function (event) {
+		// 	if (document.body.scrollHeight ===
+		// 		document.body.scrollTop +
+		// 		window.innerHeight) {
+		// 		console.log("Bottom!");
+		// 	}
+		// });
+
+
+
+		/*
+		look for all elements with classname == movie-container
+		choose last one in array
+		lastMovie = this one
+		perhaps not possible because can go past, bcus past is too low
+		also TODO: make press escape will escape modals
+		 */
+
+		//i need to only add this listener if length = 10
+		//but when do i check length?
+
+		/*
+		let resultContainer = document.getElementById("result-container");
+		let movieContainerList = resultContainer.getElementsByClassName("movie-container");
+		console.log(movieContainerList[movieContainerList.length]);
+
+		let lastMovie = movieContainerList[movieContainerList.length]; //= last movie in list somehow;
+
+
+		if (window.scrollY > (lastMovie.offsetTop + lastMovie.offsetHeight)) {
+			alert("You've scrolled past the last movie in results");
+		}
+		 */
+	});
+}
+
+/*
+let resultChildrenCounter = {
+	children: 0,
+
+	get children(){
+		return children;
+	},
+
+	set children (amount) {
+		this.children = amount; 
+	}
+};*/
+
 let show = "show";
 handleSidebarLoadingAnimation(show);
 
@@ -44,8 +110,6 @@ function submitFormListener() {
 			apiHandlerByTitle(encodeURI(queryText));
 
 			event.preventDefault();
-
-
 		}
 	});
 }
@@ -109,6 +173,8 @@ function displayResult(result) {
 	let loadingResults = document.getElementById("loading-results");
 	loadingResults.style.display = "none";
 
+	//this code will make the sidebar retract itself
+	//if mobile user
 	if (/Mobi|Android/i.test(navigator.userAgent) && document.getElementById("input-hamburger").checked) {
 		document.getElementById("input-hamburger").checked = false;
 	}
@@ -137,6 +203,10 @@ function displayResult(result) {
 			//checking for null is not a sustainable way of checking if single movie or list
 			//TODO: implement a more accurate condition
 
+			//I'm quite certain this case never fires  because i redesigned apicalls
+			//nvm, it does fire
+			//does the else-case never fire?
+
 			generateMovieCard(result);
 		} else {
 			//in this case the search came through and is a list of movies
@@ -146,6 +216,9 @@ function displayResult(result) {
 			result.Search.forEach(function(entry) {
 				generateMovieCard(entry);
 			});
+
+			alert("problem :(");
+
 		}
 	}
 
@@ -204,8 +277,9 @@ function generateMovieCard(apiCallResult) {
 	let resultContainer = document.getElementById("result-container");
 
 	let movieContainer = document.createElement('div');
-	movieContainer.id = 'movie-container'; //TODO: fix. this assigning a unique ID to many divs. shouldnt be possible
+	movieContainer.classList.add('movie-container'); //TODO: fix. this assigning a unique ID to many divs. shouldnt be possible
 	movieContainer.style.zIndex = "-1"; //this fixes the movie card being infront of sidebar menu
+	// TODO WHY DID I ASSIGN ZINDEX HERE? CHANGE
 	resultContainer.appendChild(movieContainer);
 
 	//adding hyperlink, the movie's imdb-page, to movie poster
@@ -223,25 +297,24 @@ function generateMovieCard(apiCallResult) {
 		img.src = apiCallResult.Poster;
 	}
 	//using this to avoid modal box when clicking the movie poster
+	//TODO: change to class
 	img.id = "movie-poster-anchor";
 
 	a.appendChild(img);
 
 	let text = document.createElement('div');
-	text.id = "text";
+	text.classList.add("text");
 	movieContainer.appendChild(text);
 
 	let titleYear = document.createElement("span");
-	titleYear.id = "title-year";
+	titleYear.classList.add("title-year");
 	titleYear.appendChild(document.createTextNode(apiCallResult.Title + " (" + String(apiCallResult.Year) + ")"));
 	text.appendChild(titleYear);
 
 	let actors = document.createElement("span");
-	actors.id = "actors";
+	actors.classList.add("actors");
 	actors.appendChild(document.createTextNode(apiCallResult.Actors));
 	text.appendChild(actors);
-	//insert linebreak for styling
-	text.insertBefore(document.createElement("br"), actors);
 
 	if (apiCallResult.Awards == "N/A"){
 		apiCallResult.Awards = "No awards.";
@@ -253,40 +326,71 @@ function generateMovieCard(apiCallResult) {
 		//TODO: change to dropdown on touch (jquery?)
 		//https://coderwall.com/p/3uwgga/make-css-dropdown-menus-work-on-touch-devices
 	}
+
 	let awards = document.createElement("span");
-	awards.id = "awards";
+	awards.classList.add("awards");
 	awards.appendChild(document.createTextNode(apiCallResult.Awards));
 	text.appendChild(awards);
-	//insert linebreak for styling
-	text.insertBefore(document.createElement("br"), awards);
+
+	let ratingContainer = document.createElement('div');
+	ratingContainer.classList.add("rating-container");
+	movieContainer.appendChild(ratingContainer);
 
 	let ratingDiv = document.createElement('div');
-	ratingDiv.id = "rating";
-	movieContainer.appendChild(ratingDiv);
+	ratingDiv.classList.add("rating");
+	ratingContainer.appendChild(ratingDiv);
 
 	if (apiCallResult.imdbRating == "N/A"){
 		ratingDiv.style.display = "none";
 	} else {
 		ratingDiv.innerHTML = '<i class="fa fa-star" aria-hidden="true"></i>';
 		let ratingScore = document.createElement("span");
-		ratingScore.id = "rating-score";
+		ratingScore.classList.add("rating-score");
 		ratingScore.appendChild(document.createTextNode(apiCallResult.imdbRating));
 		ratingDiv.appendChild(ratingScore);
 	}
 
 	let ratingMax = document.createElement("span");
-	ratingMax.id = "rating-max";
+	ratingMax.classList.add("rating-max");
 	ratingMax.appendChild(document.createTextNode("/10"));
 	ratingDiv.appendChild(ratingMax);
+
+	let saveToFavourites = document.createElement("span");
+	saveToFavourites.classList.add("save-to-favorites");
+	let saveIcon = document.createElement('i');
+	saveIcon.innerHTML = '<i class="fas fa-save" aria-hidden="true"></i>';
+
+	saveToFavourites.appendChild(saveIcon);
+	movieContainer.appendChild(saveToFavourites);
 
 	movieContainer.addEventListener("click", function (event){
 		if (event.target.id == "movie-poster-anchor"){
 			//do nothing
 			//since we just want to avoid showing modalbox in this case
 		} else {
-			showModalBox(apiCallResult);
+			showAddToFavouritesModalBox(apiCallResult);
 		}
 	});
+
+
+	//resultChildrenCounter.set = 5;
+	//console.log(Math.random() + " and " + resultChildrenCounter.get);
+
+	/*
+	console.log(Math.random() + " and " + resultChildrenCounter.children);
+	//is it setting counter to 0 every time i call it?
+
+	let intVar = 5;
+	let something = {
+		x : 10,
+		y : function() {
+			x = 15;
+			console.log(`från inuti ${x}`);
+		}
+	};
+	something.y;
+		console.log(`från utanför XXXX ${something.x}`);
+	*/
 
 
 	//TODO: wip
@@ -338,7 +442,7 @@ function generateMovieCard(apiCallResult) {
 }
 
 //showing the modal box for saving movies
-function showModalBox(entryFromAJAX) {
+function showAddToFavouritesModalBox(entryFromAJAX) {
 	let span = document.getElementsByClassName("close")[0];
 	let cancel = document.getElementById("cancel");
 	let save = document.getElementById("save");
@@ -364,28 +468,58 @@ function showModalBox(entryFromAJAX) {
 
 }
 
+function showAlreadyAddedModalBox() {
+	//all of these vars have terrible names
+
+	let okay = document.getElementById("okay");
+	let alreadyAdded = document.getElementById("modal-box-already-added");
+	let close = alreadyAdded.getElementsByClassName("close")[0];
+
+	alreadyAdded.style.display = "unset";
+
+	close.onclick = function() {
+		alreadyAdded.style.display = "none";
+	}
+	window.onclick = function(event){
+		if (event.target == alreadyAdded){
+			alreadyAdded.style.display = "none";
+		}
+	}
+	okay.onclick = function (){
+		alreadyAdded.style.display = "none";
+	}
+}
+
 function saveMovieToFavourite(entryFromAJAX) {
 	//TODO: update to work with firebase db, see below
 	//if statement of hamburger pulse needs updating
 	//and add(pulse-grey-anim)
 
-	let favouriteMoviesUL = document.getElementById("favourite-movies-list");
+	checkIfMovieAlreadyInFavourites(entryFromAJAX).then(function (boolean) {
+		if (boolean){
+			showAlreadyAddedModalBox();
+		} else {
+			let favouriteMoviesUL = document.getElementById("favourite-movies-list");
 
-	if (!document.getElementById("input-hamburger").checked && favouriteMoviesUL.childElementCount == 0){
-		document.getElementById("slice1").classList.add("pulse-grey-animation");
-		document.getElementById("slice2").classList.add("pulse-grey-animation");
-		document.getElementById("slice3").classList.add("pulse-grey-animation");
-	}
+			if (!document.getElementById("input-hamburger").checked && favouriteMoviesUL.childElementCount == 0){
+				document.getElementById("slice1").classList.add("pulse-grey-animation");
+				document.getElementById("slice2").classList.add("pulse-grey-animation");
+				document.getElementById("slice3").classList.add("pulse-grey-animation");
+			}
 
-	if (document.getElementById("input-hamburger").checked){
-		//favouriteMoviesUL.lastElementChild.classList.add("pulse-grey-animation");
-	}
+			if (document.getElementById("input-hamburger").checked){
+				//favouriteMoviesUL.lastElementChild.classList.add("pulse-grey-animation");
+			}
 
-	let statusOfList = "notEmpty";
-	handlePlaceholderSpan(statusOfList);
+			let statusOfList = "notEmpty";
+			handlePlaceholderSpan(statusOfList);
 
-	pushFavouriteMovie(entryFromAJAX);
-	readFavouriteMoviesList().then(snapshot => populateFavouriteMoviesList(snapshot));
+			pushFavouriteMovie(entryFromAJAX);
+			readFavouriteMoviesList().then(snapshot => populateFavouriteMoviesList(snapshot));
+		}
+
+	});
+
 }
 
 function populateFavouriteMoviesList(snapshot) {
@@ -694,26 +828,6 @@ function toggleHideFavouriteMovies() {
 	//and use the flexbox pattern
 
 }
-
-//is this code for smartphone usage?
-// document.getElementById("movie-container").addEventListener("touchstart", touchHandler, false);
-// document.getElementById("movie-container").addEventListener("touchmove", touchHandler, false);
-// document.getElementById("movie-container").addEventListener("touchend", touchHandler, false);
-// function touchHandler(e) {
-// 	if (e.type == "touchstart") {
-// 		alert("You touched the screen!");
-// 	} else if (e.type == "touchmove") {
-// 		alert("You moved your finger!");
-// 	} else if (e.type == "touchend" || e.type == "touchcancel") {
-// 		alert("You removed your finger from the screen!");
-// 	}
-// }
-
-/*
-todo: implement sorting method according to recency
-todo: implement browsing pages back and forward
-todo: make big "succesfull" checkbox after adding to list
- */
 
 /*leaving some notes from programming diary
 

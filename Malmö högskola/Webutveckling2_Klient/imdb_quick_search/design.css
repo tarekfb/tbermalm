@@ -1,10 +1,10 @@
 /*****************************
-	variables and .hide
+	variables
 *****************************/
 
 :root {
 	/*variables*/
-	--main-yellow: #f4cb84;
+	--dark-beige: #f4cb84;
 	--main-red: #f38363;
 	--secondary-red: #ec344a;
 	--secondary-red-alt: #f07563;
@@ -12,13 +12,30 @@
 	--background-grey: #e7d2cc;
 	--gold: #FFD700;
 
+	--light-beige: #ffe4b3;
+
 	--icon-distance: 0.5em;
+	--icon-distance-secondary: 0.2em;
+
 	--font-title-main: 'Limelight', cursive;
 	--font-title-secondary: 'Calistoga', cursive;
+
+	--fontsize-title: 46px;
+	--fontsize-title-small: 36px;
+	--fontsize-title-smaller: 28px;
+	--fontsize-title-smallest: 22px;
+	--fontsize-text-large: 16px;
+	--fontsize-text: 13px;
 }
 
-.hide{
-	display: none;
+@font-face {
+	font-family: AbelRegular;
+	src: url("fonts/abel/Abel-Regular.ttf");
+}
+
+@font-face {
+	font-family: UbuntuRegular;
+	src: url("fonts/ubuntu/Ubuntu-Regular.ttf");
 }
 
 /*****************************
@@ -34,13 +51,16 @@ html {
 	background-size: cover;
 	color: black;
 	font-family: 'Montserrat', sans-serif;
-	background-color: var(--main-yellow);
+	background-color: var(--dark-beige);
 	text-align: center;
 	margin: 0;
+
+	font-family: UbuntuRegular;
+
 }
 html, body, #container, #result-container {
 	height: 100%;
-	margin-top: 0;
+	margin: 0;
 }
 a {
 	text-decoration: none;
@@ -77,10 +97,9 @@ a {
 			transparent 100%
 	);
 }
+
 /*TODO: style these divs
    	#favourite-movie-li .fa-trash:hover
-   	search-button
-   	trashcan
    	*/
 .btn:hover {
 	box-shadow: 0 0 .3em rgba(0, 0, 0, 0.25);
@@ -88,14 +107,36 @@ a {
 	color: #fff;
 }
 
+.hide{
+	display: none;
+}
+
+/*****************************
+ 	section divider
+*****************************/
+
+.curved {
+	position: absolute;
+	top: 0;
+	background: var(--light-beige);
+	height: 55vh; /*need to change for mobile too*/
+	border-bottom-left-radius: 40% 5%;
+	border-bottom-right-radius: 40% 5%;
+	width: 100%;
+	z-index: -5555555;
+}
+
 /*****************************
 	img, title search bar and result container
 *****************************/
+
 #title{
 	font-family: var(--font-title-main);
 	font-weight: normal;
 	font-size: 45px;
 	display: block;
+	font-family: AbelRegular;
+
 }
 
 #search-box:focus, #search-form button{
@@ -125,8 +166,9 @@ a {
 	background: #f1f1f1;
 }
 
-#result-container {
-	font-size: 25px;
+#result-container{
+	margin-top: 10px;
+	padding: 7px;
 }
 
 /*****************************
@@ -235,7 +277,7 @@ a {
 	style for each movie, within the result container
 *****************************/
 
-#movie-container {
+.movie-container {
 	/*
 	this div, and only this div, is positioned above sidebar menu
 	even though sidebar menu has higher z-index
@@ -245,71 +287,162 @@ a {
 	fixed by adding z-index: 1; to sidebar
 	*/
 
-	width: 65%;
-	height: 165px;
+	/*width: 65%;*/
+	/*height: 165px;*/
+	/*background-color: var(--background-grey);*/
+	/*border-radius: 5px;*/
+	/*border: 1px solid grey;*/
+	/*margin: 15px auto 0;*/
+	/*text-align: left;*/
+
+	/*display: flex;*/
+	/*flex-direction: row;*/
+	/*justify-content: space-between;*/
+
+	/*box-shadow: 0 0 1px rgba(0, 0, 0, 0);*/
+	/*transition-duration: 0.3s;*/
+	/*transition-property: transform;*/
+
+	position: relative;
+	width: 100%;
+	height: 160px;
+	margin: 5px auto;
 	background-color: var(--background-grey);
-	border-radius: 5px;
-	border: 1px solid grey;
-	margin: 15px auto 0;
 	text-align: left;
 
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
-
-	box-shadow: 0 0 1px rgba(0, 0, 0, 0);
-	transition-duration: 0.3s;
-	transition-property: transform;
-
 }
 
-#movie-container img {
-	width: 105px;
+.movie-container img {
+	/*width: 105px;*/
+	/*height: 100%;*/
+	/*padding: 10px 0 10px 10px;*/
+	/*box-sizing: border-box;*/
+
 	height: 100%;
-	padding: 10px 0 10px 10px;
 	box-sizing: border-box;
+	width: 85px;
+
 }
-#movie-container #text {
-	flex-grow: 1;
+.movie-container .text {
+	/*flex-grow: 1;*/
+	/*box-sizing: border-box;*/
+	/*overflow-y: hidden;*/
+	/*margin: 10px 0 10px 10px;*/
+
+	margin: 0.5em;
 	box-sizing: border-box;
 	overflow-y: hidden;
-	margin: 10px 0 10px 10px;
+	font-size: var(--fontsize-text);
+	flex-grow: 1;
 }
-#movie-container #title-year {
-	font-size: 32px;
-	vertical-align: top;
+.movie-container .title-year {
+	/*font-size: 32px;*/
+
+	font-size: 25px;
+	font-family: AbelRegular;
+
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+	-webkit-line-clamp: 2; /*desktop = 4*/
+
 }
-#movie-container #actors, #movie-container #awards {
-	display: inline-block;
-	margin-top: 0;
-	font-size: 18px;
+.actors, .awards {
+	/*display: inline-block;*/
+	/*margin-top: 0;*/
+	/*font-size: 18px;*/
+
+	display: block;
+	font-size: 14px;
+	margin-top: 0.5em;
+
+
+	/*line-clamp hides the rows after n:th row*/
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+	-webkit-line-clamp: 3; /*desktop = 4*/
 }
-#movie-container #rating {
+
+.movie-container .rating-container {
+	position: relative;
+	top: 0px;
+	right: 0px;
+	height: 65px;
+	width: 65px;
+	text-align: center;
+	border-bottom-left-radius: 100% ;
+
 	background: var(--main-red);
-	padding: 0;
-	min-width: 11%;
 
 	flex-grow: 0;
 	flex-shrink: 0;
+}
+
+.movie-container .rating {
+	/*background: var(--main-red);*/
+	/*padding: 0;*/
+	/*min-width: 11%;*/
+
+	/*flex-grow: 0;*/
+	/*flex-shrink: 0;*/
+	/*display: flex;*/
+	/*!*allows centering*!*/
+	/*justify-content: center;*/
+	/*!* align horizontal *!*/
+	/*align-items: center;*/
+	/*!* align vertical *!*/
+
+	/*this adjusts the text to the center of div*/
+	margin-right: -5px;
+	margin-top: 15px;
+
 	display: flex;
 	/*allows centering*/
 	justify-content: center;
 	/* align horizontal */
 	align-items: center;
 	/* align vertical */
+
 }
-#movie-container #rating i {
-	font-size: 20px;
+.movie-container .rating i {
+	/*font-size: 20px;*/
+	/*color: #FFD700;*/
+	/*text-shadow: 0 0 3px #000;*/
+	/*margin-right: 5px;*/
+
+	font-size: 14px;
 	color: #FFD700;
 	text-shadow: 0 0 3px #000;
-	margin-right: 5px;
+	margin-right: var(--icon-distance-secondary);
 }
-#movie-container #rating #rating-score {
-	font-size: 30px;
-}
-#movie-container #rating #rating-max {
+.rating-score {
+	/*font-size: 30px;*/
+
 	font-size: 18px;
+
+}
+.rating-max {
+	/*font-size: 18px;*/
+	/*color: #696969;*/
+
 	color: #696969;
+	font-size: 15px;
+	display: none;
+}
+
+.save-to-favorites{
+	position: absolute;
+	bottom: 0px;
+	right: 0px;
+	padding: 5px;
+
+	font-size: 32px;
+	color: var(--secondary-red);
+	background-color: var(--background-grey);
 }
 
 /*****************************
@@ -574,6 +707,9 @@ design the hidden input node
 	font-family: var(--font-title-secondary);
 	font-weight: normal;
 	margin-top: 0;
+
+	font-size: 30px;
+	font-family: AbelRegular;
 }
 
 #icon-container{
@@ -653,11 +789,12 @@ hr {
 }
 
 #auth-status{
-	font-size: 22px;
 }
 
 #auth-welcome{
 	font-family: var(--font-title-main);
+	font-family: AbelRegular;
+	font-size: 24px;
 }
 #auth-welcome::before{
 	font-family: "Font Awesome 5 Free", serif;
@@ -727,7 +864,7 @@ hr {
 		/*transition: color 0.2s ease;*/
 		/*cursor: pointer;*/
 	}
-	#movie-container:hover {
+	.movie-container:hover {
 		cursor: pointer;
 
 		transform: scale(1.03);
@@ -741,7 +878,7 @@ hr {
 	}
 	.favourite-movie-anchor:hover {
 		cursor: pointer;
-		color: var(--main-yellow);
+		color: var(--dark-beige);
 		transition: color 0.2s ease;
 	}
 	#favourite-movie-li .fa-trash:hover {
@@ -775,7 +912,7 @@ hr {
 	#main-search-button{
 		font-size: 18px;
 	}
-	#movie-container {
+	.movie-container {
 		width: 94%;
 		height: 160px;
 		margin-top: 15px;
@@ -783,38 +920,38 @@ hr {
 		box-shadow: none;
 		transition-property: none;
 	}
-	#movie-container:hover, #movie-container:focus, #movie-container:active {-webkit-transform: none;
+	.movie-container:hover, .movie-container:focus, .movie-container:active {-webkit-transform: none;
 		transform: none;
 		-moz-transform: none;
 		-ms-transform: none;
 
 		/*is this necessary, now that i've used media query for selection of devices with cursors?*/
 	}
-	#movie-container img {
+	.movie-container img {
 		width: 85px;
 		height: 100%;
 	}
-	#movie-container #text {
+	.movie-container #text {
 		margin: 5px 0 0 5px;
 	}
-	#movie-container #text #title-year {
+	.movie-container #text #title-year {
 		font-size: 22px;
 	}
-	#movie-container #text #actors, #movie-container #text #awards {
+	.movie-container #text #actors, .movie-container #text #awards {
 		font-size: 14px;
 	}
-	#movie-container #rating {
+	.movie-container #rating {
 		padding: 0 9px 0 9px;
 		flex-grow: 0.1;
 		min-width: 13%
 	}
-	#movie-container #rating i {
+	.movie-container #rating i {
 		font-size: 15px;
 	}
-	#movie-container #rating #rating-score {
+	.movie-container #rating #rating-score {
 		font-size: 22px;
 	}
-	#movie-container #rating #rating-max {
+	.movie-container #rating #rating-max {
 		font-size: 15px;
 		display: none;
 	}
@@ -857,3 +994,4 @@ hr {
 	}
 }
 /*https://www.canva.com/colors/color-palette-generator/*/
+/*https://coolors.co/f2c886-ffe4b3-e94f37-ece2d0-f48660*/
