@@ -1,0 +1,188 @@
+/*****************************
+	variables and .hide
+*****************************/
+
+:root {
+    /*variables*/
+    --main-yellow: #f4cb84;
+    --main-red: #f38363;
+    --secondary-red: #ec344a;
+    --secondary-red-alt: #f07563;
+    --accept-green: #00e500;
+    --background-grey: #e7d2cc;
+    --gold: #FFD700;
+
+    --icon-distance: 0.5em;
+    --icon-distance-secondary: 0.2em;
+
+    --font-title-main: 'Limelight', cursive;
+    --font-title-secondary: 'Calistoga', cursive;
+
+    --fontsize-title: 46px;
+    --fontsize-title-small: 36px;
+    --fontsize-title-smaller: 28px;
+    --fontsize-title-smallest: 22px;
+    --fontsize-text-large: 16px;
+    --fontsize-text: 13px;
+}
+
+.hide{
+    display: none;
+}
+
+/*****************************
+	reset/general
+*****************************/
+
+html {
+    background-repeat: no-repeat;
+    background-position: right top;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    color: black;
+    font-family: 'Montserrat', sans-serif;
+    background-color: var(--main-yellow);
+    text-align: center;
+    margin: 0;
+    font-size: var(--fontsize-text);
+}
+html, body, #container, #result-container {
+    height: 100%;
+    margin-top: 0;
+}
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/*****************************
+	style for each movie, within the result container
+*****************************/
+
+.movie-container {
+    /*
+    this div, and only this div, is positioned above sidebar menu
+    even though sidebar menu has higher z-index
+    unsure why
+    could be something within this card itself, or the parents
+
+    fixed by adding z-index: 1; to sidebar
+    */
+
+    width: 65%;
+    height: 165px;
+    background-color: var(--background-grey);
+    margin: 15px auto 0;
+    text-align: left;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.movie-container img {
+    width: 105px;
+    height: 100%;
+    padding: 10px 0 10px 10px;
+    box-sizing: border-box;
+}
+.movie-container .text {
+    margin: 0.5em;
+    box-sizing: border-box;
+    overflow-y: hidden;
+    font-size: var(--fontsize-text-large);
+    flex-grow: 1;
+
+}
+.movie-container .title-year {
+    font-size: var(--fontsize-title-small);
+}
+.movie-container .actors, .movie-container .awards {
+    display: block;
+    margin-top: 0.2em;
+
+    /*line-clamp hides the rows after n:th row*/
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+.movie-container .rating {
+    background: var(--main-red);
+    min-width: 11%;
+
+    flex-grow: 0;
+    flex-shrink: 0;
+    display: flex;
+    /*allows centering*/
+    justify-content: center;
+    /* align horizontal */
+    align-items: center;
+    /* align vertical */
+}
+.movie-container .rating i {
+    font-size: var(--fontsize-title-smallest);
+    color: #FFD700;
+    text-shadow: 0 0 3px #000;
+    margin-right: var(--icon-distance-secondary);
+;
+}
+.movie-container .rating .rating-score {
+    font-size: var(--fontsize-title-smaller);
+}
+.movie-container .rating .rating-max {
+    font-size: var(--fontsize-text-large);
+    color: #696969;
+}
+
+/*****************************
+	responsive design
+ *****************************/
+@media screen and (max-width: 1300px) {
+    .movie-container {
+        width: 94%;
+        height: 160px;
+        margin-top: 15px;
+
+        box-shadow: none;
+        transition-property: none;
+        font-size: var(--fontsize-text);
+    }
+    .movie-container:hover, .movie-container:focus, .movie-container:active {-webkit-transform: none;
+        transform: none;
+        -moz-transform: none;
+        -ms-transform: none;
+
+        /*is this necessary, now that i've used media query for selection of devices with cursors?*/
+    }
+    .movie-container img {
+        width: 85px;
+        height: 100%;
+    }
+    .movie-container #text {
+        margin: 5px 0 0 5px;
+    }
+    .movie-container #text #title-year {
+        font-size: 22px;
+    }
+    .movie-container #text #actors, .movie-container #text #awards {
+        font-size: 14px;
+    }
+    .movie-container #rating {
+        padding: 0 9px 0 9px;
+        flex-grow: 0.1;
+        min-width: 13%
+    }
+    .movie-container #rating i {
+        font-size: 15px;
+    }
+    .movie-container #rating #rating-score {
+        font-size: 22px;
+    }
+    .movie-container #rating #rating-max {
+        font-size: 15px;
+        display: none;
+    }
+}

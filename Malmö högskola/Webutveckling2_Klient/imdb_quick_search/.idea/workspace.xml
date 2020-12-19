@@ -44,6 +44,19 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
   </component>
+  <component name="RunManager">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -88,6 +101,8 @@
       <workItem from="1607421634174" duration="6938000" />
       <workItem from="1607446810660" duration="2058000" />
       <workItem from="1607978244520" duration="4072000" />
+      <workItem from="1608286695407" duration="10000" />
+      <workItem from="1608377285877" duration="4750000" />
     </task>
     <servers />
   </component>
@@ -144,11 +159,11 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="752" y="383" key="scopes/-1920.0.1536.840/0.0.1920.1050@0.0.1920.1050" timestamp="1602335718995" />
-    <state x="623" y="227" width="672" height="678" key="search.everywhere.popup" timestamp="1607358631462">
-      <screen x="0" y="0" width="1920" height="1050" />
+    <state x="498" y="180" width="672" height="539" key="search.everywhere.popup" timestamp="1608380305163">
+      <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="-1422" y="182" width="672" height="543" key="search.everywhere.popup/-1920.0.1536.840/0.0.1920.1050@-1920.0.1536.840" timestamp="1602072333066" />
     <state x="623" y="227" width="672" height="678" key="search.everywhere.popup/-1920.0.1536.840/0.0.1920.1050@0.0.1920.1050" timestamp="1607358631462" />
-    <state x="498" y="180" width="672" height="539" key="search.everywhere.popup/0.0.1536.834@0.0.1536.834" timestamp="1606662891720" />
+    <state x="498" y="180" width="672" height="539" key="search.everywhere.popup/0.0.1536.834@0.0.1536.834" timestamp="1608380305163" />
   </component>
 </project>
