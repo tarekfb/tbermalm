@@ -110,8 +110,6 @@ function submitFormListener() {
 			apiHandlerByTitle(encodeURI(queryText));
 
 			event.preventDefault();
-
-
 		}
 	});
 }

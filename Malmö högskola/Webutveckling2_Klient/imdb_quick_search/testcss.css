@@ -32,17 +32,6 @@
     display: none;
 }
 
-.curved {
-    position: absolute;
-    top: 0;
-    background: var(--light-beige);
-    height: 55vh;
-    border-bottom-left-radius: 40% 5%;
-    border-bottom-right-radius: 40% 5%;
-    width: 100%;
-    z-index: -5;
-}
-
 
 /*****************************
 	reset/general
@@ -74,6 +63,18 @@ a {
 /*****************************
 	img, title search bar and result container
 *****************************/
+
+
+.curved {
+    position: absolute;
+    top: 0;
+    background: var(--light-beige);
+    height: 55vh;
+    border-bottom-left-radius: 40% 5%;
+    border-bottom-right-radius: 40% 5%;
+    width: 100%;
+    z-index: -5;
+}
 
 #title{
     font-family: var(--font-title-main);
@@ -110,11 +111,12 @@ a {
 }
 
 #result-container{
-    background-color: var(--dark-beige);
 
     margin-top: 10px;
     padding: 7px;
 }
+
+
 
 /*****************************
 	style for each movie, within the result container
