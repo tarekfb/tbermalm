@@ -1,5 +1,5 @@
 /*****************************
-	variables and .hide
+	variables
 *****************************/
 
 :root {
@@ -28,8 +28,14 @@
 	--fontsize-text: 13px;
 }
 
-.hide{
-	display: none;
+@font-face {
+	font-family: AbelRegular;
+	src: url("fonts/abel/Abel-Regular.ttf");
+}
+
+@font-face {
+	font-family: UbuntuRegular;
+	src: url("fonts/ubuntu/Ubuntu-Regular.ttf");
 }
 
 /*****************************
@@ -48,6 +54,9 @@ html {
 	background-color: var(--dark-beige);
 	text-align: center;
 	margin: 0;
+
+	font-family: UbuntuRegular;
+
 }
 html, body, #container, #result-container {
 	height: 100%;
@@ -88,6 +97,7 @@ a {
 			transparent 100%
 	);
 }
+
 /*TODO: style these divs
    	#favourite-movie-li .fa-trash:hover
    	*/
@@ -95,6 +105,10 @@ a {
 	box-shadow: 0 0 .3em rgba(0, 0, 0, 0.25);
 	background-position: 0;
 	color: #fff;
+}
+
+.hide{
+	display: none;
 }
 
 /*****************************
@@ -121,6 +135,8 @@ a {
 	font-weight: normal;
 	font-size: 45px;
 	display: block;
+	font-family: AbelRegular;
+
 }
 
 #search-box:focus, #search-form button{
@@ -325,7 +341,14 @@ a {
 .movie-container .title-year {
 	/*font-size: 32px;*/
 
-	font-size: var(--fontsize-text-large);
+	font-size: 25px;
+	font-family: AbelRegular;
+
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+	-webkit-line-clamp: 2; /*desktop = 4*/
+
 }
 .actors, .awards {
 	/*display: inline-block;*/
@@ -684,6 +707,9 @@ design the hidden input node
 	font-family: var(--font-title-secondary);
 	font-weight: normal;
 	margin-top: 0;
+
+	font-size: 30px;
+	font-family: AbelRegular;
 }
 
 #icon-container{
@@ -763,11 +789,12 @@ hr {
 }
 
 #auth-status{
-	font-size: 22px;
 }
 
 #auth-welcome{
 	font-family: var(--font-title-main);
+	font-family: AbelRegular;
+	font-size: 24px;
 }
 #auth-welcome::before{
 	font-family: "Font Awesome 5 Free", serif;
