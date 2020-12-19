@@ -386,10 +386,15 @@ a {
 
 }
 .movie-container .rating i {
-	font-size: 20px;
+	/*font-size: 20px;*/
+	/*color: #FFD700;*/
+	/*text-shadow: 0 0 3px #000;*/
+	/*margin-right: 5px;*/
+
+	font-size: 14px;
 	color: #FFD700;
 	text-shadow: 0 0 3px #000;
-	margin-right: 5px;
+	margin-right: var(--icon-distance-secondary);
 }
 .rating-score {
 	/*font-size: 30px;*/

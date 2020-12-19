@@ -279,6 +279,7 @@ function generateMovieCard(apiCallResult) {
 	let movieContainer = document.createElement('div');
 	movieContainer.classList.add('movie-container'); //TODO: fix. this assigning a unique ID to many divs. shouldnt be possible
 	movieContainer.style.zIndex = "-1"; //this fixes the movie card being infront of sidebar menu
+	// TODO WHY DID I ASSIGN ZINDEX HERE? CHANGE
 	resultContainer.appendChild(movieContainer);
 
 	//adding hyperlink, the movie's imdb-page, to movie poster
@@ -296,25 +297,24 @@ function generateMovieCard(apiCallResult) {
 		img.src = apiCallResult.Poster;
 	}
 	//using this to avoid modal box when clicking the movie poster
+	//TODO: change to class
 	img.id = "movie-poster-anchor";
 
 	a.appendChild(img);
 
 	let text = document.createElement('div');
-	text.id = "text";
+	text.classList.add("text");
 	movieContainer.appendChild(text);
 
 	let titleYear = document.createElement("span");
-	titleYear.id = "title-year";
+	titleYear.classList.add("title-year");
 	titleYear.appendChild(document.createTextNode(apiCallResult.Title + " (" + String(apiCallResult.Year) + ")"));
 	text.appendChild(titleYear);
 
 	let actors = document.createElement("span");
-	actors.id = "actors";
+	actors.classList.add("actors");
 	actors.appendChild(document.createTextNode(apiCallResult.Actors));
 	text.appendChild(actors);
-	//insert linebreak for styling
-	text.insertBefore(document.createElement("br"), actors);
 
 	if (apiCallResult.Awards == "N/A"){
 		apiCallResult.Awards = "No awards.";
@@ -328,30 +328,40 @@ function generateMovieCard(apiCallResult) {
 	}
 
 	let awards = document.createElement("span");
-	awards.id = "awards";
+	awards.classList.add("awards");
 	awards.appendChild(document.createTextNode(apiCallResult.Awards));
 	text.appendChild(awards);
-	//insert linebreak for styling
-	text.insertBefore(document.createElement("br"), awards);
+
+	let ratingContainer = document.createElement('div');
+	ratingContainer.classList.add("rating-container");
+	movieContainer.appendChild(ratingContainer);
 
 	let ratingDiv = document.createElement('div');
-	ratingDiv.id = "rating";
-	movieContainer.appendChild(ratingDiv);
+	ratingDiv.classList.add("rating");
+	ratingContainer.appendChild(ratingDiv);
 
 	if (apiCallResult.imdbRating == "N/A"){
 		ratingDiv.style.display = "none";
 	} else {
 		ratingDiv.innerHTML = '<i class="fa fa-star" aria-hidden="true"></i>';
 		let ratingScore = document.createElement("span");
-		ratingScore.id = "rating-score";
+		ratingScore.classList.add("rating-score");
 		ratingScore.appendChild(document.createTextNode(apiCallResult.imdbRating));
 		ratingDiv.appendChild(ratingScore);
 	}
 
 	let ratingMax = document.createElement("span");
-	ratingMax.id = "rating-max";
+	ratingMax.classList.add("rating-max");
 	ratingMax.appendChild(document.createTextNode("/10"));
 	ratingDiv.appendChild(ratingMax);
+
+	let saveToFavourites = document.createElement("span");
+	saveToFavourites.classList.add("save-to-favorites");
+	let saveIcon = document.createElement('i');
+	saveIcon.innerHTML = '<i class="fas fa-save" aria-hidden="true"></i>';
+
+	saveToFavourites.appendChild(saveIcon);
+	movieContainer.appendChild(saveToFavourites);
 
 	movieContainer.addEventListener("click", function (event){
 		if (event.target.id == "movie-poster-anchor"){
