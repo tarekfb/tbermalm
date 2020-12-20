@@ -120,7 +120,7 @@ a {
 	position: absolute;
 	top: 0;
 	background: var(--light-beige);
-	height: 55vh; /*need to change for mobile too*/
+	height: 550px; /*need to change for mobile too*/
 	border-bottom-left-radius: 40% 5%;
 	border-bottom-right-radius: 40% 5%;
 	width: 100%;
@@ -855,6 +855,7 @@ hr {
 #favourite-movie-li .fa-star {
 	color: var(--gold);
 	margin-left: 8px;
+	text-shadow: 0 0 3px #000;
 }
 
 #favourite-movie-li .fa-trash{
@@ -911,6 +912,9 @@ hr {
 		box-shadow: 0 .2em .3em rgba(0, 0, 0, 0.15);
 		background-position: 0;
 		color: black;
+	}
+	.curved {
+		height: 450px; /*need to change for mobile too*/
 	}
 	#title{
 		font-size: 30px;
@@ -980,9 +984,6 @@ hr {
 		also cant scroll this div
 		width: 100vw;*/
 	}
-	#favourite-movies-container{
-
-	}
 
 	/*
 	makes the hamburger menu display: none (and not slide) on mobile devices
@@ -1009,4 +1010,5 @@ hr {
 	}
 }
 /*https://www.canva.com/colors/color-palette-generator/*/
-/*https://coolors.co/f2c886-ffe4b3-e94f37-ece2d0-f48660*/
+/*https://coolors.co/f2c886-ffe4b3-e94f37-ece2d0-f48660   light mode*/
+/*https://coolors.co/d7d0c8-c8c6af-95a78d-bd897e-f87666    dark mode*/
