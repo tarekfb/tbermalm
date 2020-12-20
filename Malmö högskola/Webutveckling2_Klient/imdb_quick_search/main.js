@@ -10,14 +10,30 @@ favouriteMoviesIconListener();
 
 navbarListeners();
 function navbarListeners() {
+
 	let	dbToggleContainer = document.getElementById("db-toggle-container");
 	dbToggleContainer.addEventListener("click", function (event) {
-		let dbContent = document.getElementById("db-content");
-		//dbContent.classList.toggle("hide");
 
 		let sidebar = document.getElementById("favourite-movies-container");
 		sidebar.classList.toggle("hide");
 	});
+
+	let darkModeToggleContainer = document.getElementById("dark-mode-toggle-container");
+	darkModeToggleContainer.addEventListener("click", function () {
+		toggleDarkMode();
+	});
+
+}
+
+function toggleDarkMode() {
+
+	let darkModeToggleContainer = document.getElementById("dark-mode-toggle-container");
+	darkModeToggleContainer.classList.toggle("light-mode");
+
+	let root = document.documentElement;
+	root.style.setProperty('--mouse-x', e.clientX + "px");
+	root.style.setProperty('--mouse-y', e.clientY + "px");
+
 }
 
 let show = "show";

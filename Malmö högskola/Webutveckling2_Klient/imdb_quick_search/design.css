@@ -3,7 +3,6 @@
 *****************************/
 
 :root {
-	/*variables*/
 	--dark-beige: #f4cb84;
 	--main-red: #f38363;
 	--strong-red: #ec344a;
@@ -116,7 +115,6 @@ a {
 	display: unset;
 }
 
-
 /*****************************
  	section divider
 *****************************/
@@ -153,6 +151,41 @@ a {
 	align-items: center;
 }
 
+.fa-database{
+	font-size: 24px;
+	margin-right: var(--icon-distance-secondary);
+	cursor: pointer;
+}
+
+#edit-favourite-movies-icon::before{
+	/*edit icon, for starting to deleting favourites*/
+	font-family: "Font Awesome 5 Free", serif;
+	content: "\f304";
+	font-style: normal;
+	font-weight: bold;
+	font-size: 20px;
+}
+
+#edit-favourite-movies-icon.confirm-favourite-movies::before{
+	/*confirm icon, for exiting the edit mode*/
+	content: "\f00c";
+}
+
+#dark-mode-toggle-container::before{
+	/*edit icon, for starting to deleting favourites*/
+	font-family: "Font Awesome 5 Free", serif;
+	content: "\f186";
+	font-style: normal;
+	font-weight: bold;
+	font-size: 20px;
+}
+
+#dark-mode-toggle-container.light-mode::before{
+	/*change moon to sun*/
+	content: "\f185";
+
+}
+
 /*****************************
 	img, title search bar and result container
 *****************************/
@@ -165,7 +198,7 @@ a {
 
 #subtitle{
 	font-size: var(--fontsize-title-smallest);
-	margin: 0.5em 0;
+	margin: 0.6em 0;
 }
 
 #search-box:focus, #search-form button{
@@ -572,25 +605,23 @@ a {
 	should have done that a long time ago
 *****************************/
 
-/*****************************
-*****************************/
+#wrapper{
+	display: flex;
+	flex-direction: column;
+}
 
 #favourite-movies-container{
-	position: absolute;
 	background-color: var(--puke-green);
-	overflow: auto;
-
 	padding: 25px;
-
-	/*height: 100vh;*/
-	/*height: auto;*/
-
+	width: 35%;
 	min-height: 100vh;
 
-	width: 275px;
-	/*if i set the width of the sidebar menu at the parent container
-	it blocks the content behind the sidebar, even when input-hamburger.unchecked
-	however, if i set the width here it doesn't block any content*/
+	position: absolute;
+	left: 0;
+	top: 43px;
+	/*navbar-height + navbar-border-width = top*/
+
+	overflow-y: auto;
 }
 
 #favourite-movies-flex-container{
@@ -598,8 +629,8 @@ a {
 	flex-direction: column;
 	align-items: center;
 	justify-content: start;
-}
 
+}
 
 /*
 pulse grey on save to list
@@ -781,13 +812,8 @@ hr {
  *****************************/
 
 @media (hover: hover) {
-	#show-favourite-movies:hover, #cancel:hover, #save:hover, #sign-out:hover {
+	#show-favourite-movies:hover, #cancel:hover, #save:hover, #sign-out:hover, #favourite-movie-li .fa-trash:hover {
 		cursor: pointer;
-	}
-	#edit-favourite-movies-icon:hover {
-		/*color: grey;*/
-		/*transition: color 0.2s ease;*/
-		/*cursor: pointer;*/
 	}
 	.close:hover{
 		color: black;
@@ -796,13 +822,8 @@ hr {
 	}
 	.favourite-movie-anchor:hover {
 		cursor: pointer;
-		color: var(--dark-beige);
-		transition: color 0.2s ease;
-	}
-	#favourite-movie-li .fa-trash:hover {
-		cursor: pointer;
-		/*color: grey;*/
-		/*transition: color 0.2s ease;*/
+		/*background-color: var(--main-red);*/
+		/*transition: color 0.4s ease;*/
 	}
 
 }
@@ -887,26 +908,15 @@ hr {
 		margin-top: 0;
 		font-size: 20px;
 	}
-	#favourite-movies-content-container{
-		/*
-		this sets width to 100% of vp
-		but it makes it so trashcan goes outside of list
-		also cant scroll this div
-		width: 100vw;*/
-	}
-
-	/*
-	makes the hamburger menu display: none (and not slide) on mobile devices
-	so it doesn't block content underneath
-	*/
 	.modal-content{
 		height: 90px;
 	}
-
 	#save{
 		font-size: var(--fontsize-text);
 	}
-
+	#favourite-movies-container{
+		width: 100%;
+	}
 	#favourite-movie-li .fa-trash{
 		font-size: 25px;
 	}
