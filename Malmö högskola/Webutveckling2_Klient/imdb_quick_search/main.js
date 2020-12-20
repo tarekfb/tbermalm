@@ -8,6 +8,58 @@ showFavouriteMoviesListener();
 favouriteMoviesHamburgerListener();
 favouriteMoviesIconListener();
 
+navbarListeners();
+function navbarListeners() {
+
+	let dbToggleContainer = document.getElementById("db-toggle-container");
+	dbToggleContainer.addEventListener("click", function (event) {
+
+		let favouriteMoviesContainer = document.getElementById("favourite-movies-container");
+		favouriteMoviesContainer.classList.toggle("hide");
+
+	});
+
+	// this line stops the the children from triggering the click function
+	document.getElementById('favourite-movies-container').addEventListener('click', e => e.stopPropagation());
+
+
+	let darkModeToggleContainer = document.getElementById("dark-mode-toggle-container");
+	darkModeToggleContainer.addEventListener("click", toggleDarkMode);
+
+}
+function toggleDarkMode() {
+
+	let darkModeToggleContainer = document.getElementById("dark-mode-toggle-container");
+	darkModeToggleContainer.classList.toggle("light-mode");
+
+	let logo = document.getElementById("logo").querySelector('img');
+	let root = document.documentElement;
+
+	if (!darkModeToggleContainer.classList.contains("light-mode")) {
+		logo.src = "https://www.tbdevstuff.live/Webutveckling2_Klient/popcorn-1614707.png";
+
+		root.style.setProperty('--color-background-main', "#f4cb84");
+		root.style.setProperty('--color-background-secondary', "#ffe4b3");
+		root.style.setProperty('--color-background-third', "#eedebd");
+		root.style.setProperty('--color-background-grey', "#e7d2cc");
+		root.style.setProperty('--color-accent-main', "#f38363");
+		root.style.setProperty('--color-accent-secondary', "#ec344a");
+		root.style.setProperty('--color-accent-whiteblack', "black");
+
+	} else {
+		logo.src = "popcorn-1614707-inverted.png";
+
+		root.style.setProperty('--color-background-main', "#131D2F");
+		root.style.setProperty('--color-background-secondary', "#0D3779");
+		root.style.setProperty('--color-background-third', "#001B4C");
+		root.style.setProperty('--color-background-grey', "#182d33");
+		root.style.setProperty('--color-accent-main', "#0B799F");
+		root.style.setProperty('--color-accent-secondary', "#16B0C8");
+		root.style.setProperty('--color-accent-whiteblack', "white");
+	}
+
+}
+
 let show = "show";
 handleSidebarLoadingAnimation(show);
 
@@ -119,9 +171,10 @@ function displayResult(result) {
 
 	//this code will make the sidebar retract itself
 	//if mobile user
-	if (/Mobi|Android/i.test(navigator.userAgent) && document.getElementById("input-hamburger").checked) {
-		document.getElementById("input-hamburger").checked = false;
-	}
+
+	// if (/Mobi|Android/i.test(navigator.userAgent) && document.getElementById("input-hamburger").checked) {
+	// 	document.getElementById("input-hamburger").checked = false;
+	// }
 
 	let resultContainerList = document.getElementsByClassName("result-container");
 	let resultContainer = resultContainerList[0];
@@ -452,18 +505,19 @@ function saveMovieToFavourite(entryFromAJAX) {
 		if (boolean){
 			showAlreadyAddedModalBox();
 		} else {
-			let favouriteMoviesUL = document.getElementById("favourite-movies-list");
+			// let favouriteMoviesUL = document.getElementById("favourite-movies-list");
+			//
+			// if (!document.getElementById("input-hamburger").checked && favouriteMoviesUL.childElementCount == 0){
+			// 	document.getElementById("slice1").classList.add("pulse-grey-animation");
+			// 	document.getElementById("slice2").classList.add("pulse-grey-animation");
+			// 	document.getElementById("slice3").classList.add("pulse-grey-animation");
+			// }
+			//
+			// if (document.getElementById("input-hamburger").checked){
+			// 	//favouriteMoviesUL.lastElementChild.classList.add("pulse-grey-animation");
+			// }
 
-			if (!document.getElementById("input-hamburger").checked && favouriteMoviesUL.childElementCount == 0){
-				document.getElementById("slice1").classList.add("pulse-grey-animation");
-				document.getElementById("slice2").classList.add("pulse-grey-animation");
-				document.getElementById("slice3").classList.add("pulse-grey-animation");
-			}
-
-			if (document.getElementById("input-hamburger").checked){
-				//favouriteMoviesUL.lastElementChild.classList.add("pulse-grey-animation");
-			}
-
+			// in this case we are certain the list is not empty
 			let statusOfList = "notEmpty";
 			handlePlaceholderSpan(statusOfList);
 
@@ -533,15 +587,17 @@ function favouriteMoviesHamburgerListener() {
 	// this will update list with values from db
 	// necessary to call every time because -->
 	// --> user could've added favourites while closed
-	let inputHamburgerCheckbox = document.getElementById("input-hamburger");
 
-	inputHamburgerCheckbox.addEventListener( 'change', function() {
-		if (this.checked) {
-			if (getFirebaseAuth().currentUser != null){
-				readFavouriteMoviesList().then(snapshot => populateFavouriteMoviesList(snapshot));
-			}
-		}
-	});
+	//TODO update to work with navbar instead of input-hamburger
+	// let inputHamburgerCheckbox = document.getElementById("input-hamburger");
+	//
+	// inputHamburgerCheckbox.addEventListener( 'change', function() {
+	// 	if (this.checked) {
+	// 		if (getFirebaseAuth().currentUser != null){
+	// 			readFavouriteMoviesList().then(snapshot => populateFavouriteMoviesList(snapshot));
+	// 		}
+	// 	}
+	// });
 }
 
 function handlePlaceholderSpan(statusOfList) {
@@ -709,8 +765,8 @@ function authStateChanged(firebaseUser) {
 	let authName = document.getElementById("auth-name");
 	let signOutContainer =  document.getElementById('sign-out-container');
 	let titleAndListContainer =  document.getElementById("title-and-list-container");
-	let favouriteMovieContentContainer = document.getElementById('favourite-movies-content-container');
-	let hr = favouriteMovieContentContainer.querySelectorAll('hr');
+	let favouriteMoviesContainer = document.getElementById('favourite-movies-container');
+	let hr = favouriteMoviesContainer.querySelectorAll('hr');
 
 	if (firebaseUser){
 		firebaseUISignupContainer.style.display = "none";
@@ -792,8 +848,6 @@ let handleEndlessScroll = debounce(function(queryText) {
 
 	let movieContainerList = resultContainer.getElementsByClassName("movie-container");
 
-	console.log(movieContainerList.length);
-
 	// every page from the AJAX call holds max 10 movies
 	// therefore, as long as the length is evenly divisible by 10,
 	// there are further pages to load
@@ -841,39 +895,6 @@ function requestNewPage(queryText) {
  'unwanted-but-possibly-useful-down-the-line' lines of code
  be kept
  ********************************************************************/
-
-function toggleHideFavouriteMovies() {
-	//TODO: delete if fav-movies sidebar is working as intended
-	// //trying to make it so the sidebar doesn't cover container div, even when not clicked
-	// let inputToggleFavouriteMovies = document.getElementById("input-hamburger");
-	// let favouriteMoviesContainer = document.getElementById("favourite-movies-container");
-	//
-	// if (inputToggleFavouriteMovies.checked){
-	// 	favouriteMoviesContainer.style.zIndex = "95";
-	// } else {
-	// 	document.getElementById("container").style.zIndex = "5";
-	// 	favouriteMoviesContainer.style.zIndex = "1";
-	// 	// i think it odesnt work bcus body is covering input
-	// }
-	//
-	// document.getElementById("slice1").style.zIndex = "-5";
-	// document.getElementById("slice2").style.zIndex = "-5";
-	// document.getElementById("slice3").style.zIndex = "-5";
-	//
-	// inputToggleFavouriteMovies.style.zIndex = "15010";
-
-	// if (inputToggleFavouriteMovies.checked){
-	// 	document.getElementById('favourite-movies-container').style.display = "block";
-	// 	document.getElementById("search-box").style.backgroundColor = "blue";
-	// } else {
-	// 	document.getElementById('favourite-movies-container').style.display = "none";
-	// 	document.getElementById("search-box").style.backgroundColor = "white";
-	// }
-	//if i can make the span and input be positioned outside out of the div
-	//i can hide the container of fav movs on click
-	//and use the flexbox pattern
-
-}
 
 /*leaving some notes from programming diary
 

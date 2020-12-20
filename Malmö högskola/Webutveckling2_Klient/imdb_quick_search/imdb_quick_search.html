@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 
-	<title>Simple IMDB Search</title>
+	<title>Quix.</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width,initial-scale=1.0">
 
@@ -20,49 +20,55 @@
 
 	<div id="container">
 
-		<section class="curved"></section>
+		<nav id="navbar">
 
-		<!-- HTML for favourite movies list -->
-		<div id="favourite-movies-container">
-			<!--
-			  A hidden checkbox is used as click receiver,
-			  so you can use the :checked selector on it.
-			-->
-			<input id="input-hamburger" type="checkbox" onchange="toggleHideFavouriteMovies()"/>
+			<div id="db-toggle-container">
+				<i class="fas fa-database"></i> DB
 
-			<!--Some spans to act as a hamburger.-->
-			<span id="slice1"></span>
-			<span id="slice2"></span>
-			<span id="slice3"></span>
-
-			<div id="favourite-movies-content-container">
-
-				<div id="loading-sidebar" class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
-
-				<div id="firebase-auth-container">
-					<div id="firebaseui-signup-container"></div>
-					<div id="auth-status">
-						<span id="auth-welcome"></span><span id="auth-name"></span>
+				<!-- HTML for favourite movies list -->
+				<div id="wrapper"></div>
+				<div id="favourite-movies-container" class="hide">
+					<div id="favourite-movies-flex-container">
+						<div id="loading-sidebar" class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+						<div id="firebase-auth-container">
+							<div id="firebaseui-signup-container"></div>
+							<div id="auth-status">
+								<span id="auth-welcome"></span><span id="auth-name"></span>
+							</div>
+							<button id="sign-out-container" class="btn">
+								<span id="sign-out">Log out</span>
+							</button>
+						</div>
+						<hr>
+						<div id="title-and-list-container">
+							<h3>Your favourites</h3><span id="icon-container"><span id="edit-favourite-movies-icon" class="btn"></span></span>
+							<span id="empty-list-placeholder">No favourites. Try adding one by clicking on a movie!</span>
+							<div id="favourite-movies-list"></div>
+							<button type="button" id="show-favourite-movies" class="btn">Show</button>
+						</div>
 					</div>
-					<button id="sign-out-container" class="btn">
-						<span id="sign-out">Log out</span>
-					</button>
 				</div>
-				<hr>
-				<div id="title-and-list-container">
-					<h3>Your favourites</h3><span id="icon-container"><span id="edit-favourite-movies-icon" class="btn"></span></span>
-					<span id="empty-list-placeholder">No favourites. Try adding one by clicking on a movie!</span>
-					<div id="favourite-movies-list"></div>
-					<button type="button" id="show-favourite-movies" class="btn">Show</button>
-				</div>
+			</div>
+
+			<span id="name">Quix.</span>
+
+			<div id="dark-mode-toggle-container">
 
 			</div>
-		</div>
+
+			<div id="return-to-top-container">
+				<i class="fas fa-arrow-up"></i>
+			</div>
+
+		</nav>
+
+		<section class="curved"></section>
 
 		<!--Main content: search bar and results-->
 		<div id="main-content-container">
 			<a href="/index.html" id="logo"><img src="https://www.tbdevstuff.live/Webutveckling2_Klient/popcorn-1614707.png" alt="Popcorn logo"></a>
-			<h1 id="title">Simple IMDB Search</h1>
+			<div id="title">Quix.</div>
+			<div id="subtitle">Quickly index IMDB</div>
 			<form id="search-form" method="get" name="search-form" autocomplete="off">
 				<input id="search-box" name="query" type="text" placeholder="Enter movie title..." autofocus><button  id="main-search-button" type="submit" class="btn"><i class="fa fa-search"></i></button>
 			</form>

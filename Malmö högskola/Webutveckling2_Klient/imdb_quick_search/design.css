@@ -3,23 +3,22 @@
 *****************************/
 
 :root {
-	/*variables*/
-	--dark-beige: #f4cb84;
-	--main-red: #f38363;
-	--strong-red: #ec344a;
-	--secondary-red-alt: #f07563;
-	--accept-green: #00e500;
-	--background-grey: #e7d2cc;
-	--puke-green: #eedebd;
-	--gold: #FFD700;
+	--color-background-main: #f4cb84;
+	--color-background-secondary: #ffe4b3;
+	--color-background-third: #eedebd;
+	--color-background-grey: #e7d2cc;
+	--color-accent-main: #f38363;
+	--color-accent-secondary: #ec344a;
+	--color-accent-whiteblack: black;
 
-	--light-beige: #ffe4b3;
+	--accept-green: #00e500;
+	--gold: #FFD700;
 
 	--icon-distance: 0.5em;
 	--icon-distance-secondary: 0.2em;
 
-	--font-title-main: 'Limelight', cursive;
-	--font-title-secondary: 'Calistoga', cursive;
+	--fontface-title: AbelRegular;
+	--fontface-standard: UbuntuRegular;
 
 	--fontsize-title: 46px;
 	--fontsize-title-small: 36px;
@@ -50,9 +49,9 @@ html {
 	-moz-background-size: cover;
 	-o-background-size: cover;
 	background-size: cover;
-	color: black;
+	color: var(--color-accent-whiteblack);
 	font-family: 'Montserrat', sans-serif;
-	background-color: var(--dark-beige);
+	background-color: var(--color-background-main);
 	text-align: center;
 	margin: 0;
 
@@ -88,12 +87,12 @@ a {
 	box-shadow: 0 .2em .3em rgba(0, 0, 0, 0.15);
 	background-color: transparent;
 	background-position: 100%;
-	border: 3px solid var(--main-red);
+	border: 3px solid var(--color-accent-main);
 	transition: all .4s ease-out;
 	background-image: linear-gradient(
 			90deg,
-			var(--main-red) 0%,
-			var(--main-red) 50%,
+			var(--color-accent-main) 0%,
+			var(--color-accent-main) 50%,
 			transparent 50%,
 			transparent 100%
 	);
@@ -112,6 +111,10 @@ a {
 	display: none;
 }
 
+.show{
+	display: unset;
+}
+
 /*****************************
  	section divider
 *****************************/
@@ -119,7 +122,7 @@ a {
 .curved {
 	position: absolute;
 	top: 0;
-	background: var(--light-beige);
+	background: var(--color-background-secondary);
 	height: 550px; /*need to change for mobile too*/
 	border-bottom-left-radius: 40% 5%;
 	border-bottom-right-radius: 40% 5%;
@@ -128,16 +131,74 @@ a {
 }
 
 /*****************************
+	navbar
+*****************************/
+
+#navbar{
+	position: fixed;
+	background-color: var(--color-accent-main);
+	width: 100%;
+	height: 40px;
+	z-index: 1;
+
+	border-bottom-color: var(--color-accent-whiteblack);
+	border-bottom-style: solid;
+	border-bottom-width: 3px;
+
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	align-items: center;
+}
+
+.fa-database{
+	font-size: 24px;
+	margin-right: var(--icon-distance-secondary);
+	cursor: pointer;
+}
+
+#edit-favourite-movies-icon::before{
+	/*edit icon, for starting to deleting favourites*/
+	font-family: "Font Awesome 5 Free", serif;
+	content: "\f304";
+	font-style: normal;
+	font-weight: bold;
+	font-size: 20px;
+}
+
+#edit-favourite-movies-icon.confirm-favourite-movies::before{
+	/*confirm icon, for exiting the edit mode*/
+	content: "\f00c";
+}
+
+#dark-mode-toggle-container::before{
+	/*edit icon, for starting to deleting favourites*/
+	font-family: "Font Awesome 5 Free", serif;
+	content: "\f186";
+	font-style: normal;
+	font-weight: bold;
+	font-size: 20px;
+}
+
+#dark-mode-toggle-container.light-mode::before{
+	/*change moon to sun*/
+	content: "\f185";
+
+}
+
+/*****************************
 	img, title search bar and result container
 *****************************/
 
 #title{
-	font-family: var(--font-title-main);
-	font-weight: normal;
-	font-size: 45px;
-	display: block;
-	font-family: AbelRegular;
+	font-family: var(--fontface-title);
+	font-weight: bold;
+	font-size: 60px;
+}
 
+#subtitle{
+	font-size: var(--fontsize-title-smallest);
+	margin: 0.6em 0;
 }
 
 #search-box:focus, #search-form button{
@@ -145,7 +206,7 @@ a {
 }
 
 #logo img {
-	margin-top: 35px;
+	margin-top: 75px;
 	width: 250px;
 	height: 250px;
 }
@@ -156,7 +217,7 @@ a {
 	font-size: 20px;
 	margin-left: var(--icon-distance);
 	box-shadow: 0 0 .3em rgba(0, 0, 0, 0.25);
-
+	color: var(--color-accent-whiteblack);
 }
 
 #search-form input {
@@ -205,7 +266,7 @@ a {
 	width: 7px;
 	height: 7px;
 	border-radius: 50%;
-	background: black;
+	background: var(--color-accent-whiteblack);
 	margin: -4px 0 0 -4px;
 }
 .lds-roller div:nth-child(1) {
@@ -308,7 +369,7 @@ a {
 	width: 100%;
 	height: 160px;
 	margin: 5px auto;
-	background-color: var(--background-grey);
+	background-color: var(--color-background-grey);
 	text-align: left;
 
 	display: flex;
@@ -377,7 +438,7 @@ a {
 	text-align: center;
 	border-bottom-left-radius: 100% ;
 
-	background: var(--main-red);
+	background: var(--color-accent-main);
 
 	flex-grow: 0;
 	flex-shrink: 0;
@@ -442,8 +503,8 @@ a {
 	right: 0px;
 	padding: 5px;
 	font-size: 32px;
-	color: var(--main-red);
-	background-color: var(--background-grey);
+	color: var(--color-accent-main);
+	background-color: var(--color-background-grey);
 	cursor: pointer;
 }
 
@@ -483,7 +544,7 @@ a {
 }
 
 .close {
-	color: var(--main-red);
+	color: var(--color-accent-main);
 	float: right;
 	font-size: 28px;
 	font-weight: bold;
@@ -529,63 +590,51 @@ a {
 }
 
 /*****************************
-	favourites movies list
-	using this as hamburger menu design
+	designing the div that hold favourite movies and its contents
+
+	using this as hamburger menu design //NOT USING ANYMORE, SEE COMMENTS BELOW
 	https://codepen.com/erikterwan/pen/EVzeRP
 
 	in hindsight, this design structure was a terrible choice
 	should've went with flexbox design
 	but rest of webpage sort of relies upon this, here and there
 	so it's a lesson learnt for future projects: dont use hacky solutions from the web
+
+	another update, a month or so after the comment above:
+	i finally got rid of the hacky input-toggle solution
+	should have done that a long time ago
 *****************************/
 
-/*
-this is the parent of the favourite movie sidebar
-*/
-#favourite-movies-container{
-	display: block;
-	position: fixed;
-
-	top: 30px;
-	left: 55px;
-
-	/*stops user from being able to select text here*/
-	-webkit-user-select: none;
-	user-select: none;
-
-	z-index: 1;
-	/*this is only to
-	prevent movie cards to be placed in front of sidebar
-	when a user hovers or focuses movie card*/
+#wrapper{
+	display: flex;
+	flex-direction: column;
 }
 
-/*
-designing the hamburger icon and transformation
-*/
+#favourite-movies-container{
+	background-color: var(--color-background-third);
+	padding: 25px;
+	width: 35%;
+	min-height: 100vh;
 
-#slice1, #slice2, #slice3{
-	position: relative;
-	display: block;
+	position: absolute;
+	left: 0;
+	top: 43px;
+	/*navbar-height + navbar-border-width = top*/
 
-	/*styles the spans into slices*/
-	width: 33px;
-	height: 4px;
-	margin-bottom: 5px;
-	background: black;
-	border-radius: 3px;
+	overflow-y: auto;
+}
 
-	/*this transforms the slices into an x shape*/
-	transform-origin: 4px 0;
-	transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
-	background 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
-	opacity 0.55s ease;
+#favourite-movies-flex-container{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: start;
 
-	/*makes it higher than the sidebar content, except for input toggle*/
-	z-index: 100;
 }
 
 /*
 pulse grey on save to list
+//TODO CHANGE TO PULSE MAIN RED
 */
 .pulse-grey-animation{
 	-webkit-animation: pulse 1.0s 3 ease-in-out;
@@ -595,133 +644,21 @@ pulse grey on save to list
 }
 
 @-webkit-keyframes pulse {
-	0% {background-color: black;}
+	0% {background-color: var(--color-accent-whiteblack);}
 	50% {background-color: #778899;}
-	100% {background-color: black;}
+	100% {background-color: var(--color-accent-whiteblack);}
 }
 
 @keyframes pulse {
-	0% {background-color: black;}
+	0% {background-color: var(--color-accent-whiteblack);}
 	50% {background-color: #778899;}
-	100% {background-color: black;}
-}
-
-/*slide sidebar in and out */
-#input-hamburger:checked ~ #favourite-movies-content-container {
-	transform: none;
-	/*
-	since there is no "display: none" when unchecked, it'll block any content underneath
-	circumvented by setting width on child container, instead of parent container
-	*/
-}
-
-@keyframes fade {
-	0% {
-		opacity: 0;
-	}
-
-	100% {
-		opacity: 1;
-	}
-}
-
-/*
- * Transform all the spans
- * into a crossmark.
- */
-#slice2{
-	transform-origin: 0 0;
-}
-
-#slice3{
-	transform-origin: 0 100%;
-}
-
-#input-hamburger:checked ~ #slice1, #input-hamburger:checked ~ #slice2, #input-hamburger:checked ~ #slice3{
-	opacity: 1;
-	transform: rotate(45deg) translate(-2px, -1px);
-	background: black;
-}
-
-/*
- * hide the middle span.
- */
-#input-hamburger:checked ~ #slice2 {
-	opacity: 0;
-	transform: rotate(0deg) scale(0.2, 0.2);
-}
-
-/*
-make last span go in other direction
- */
-#input-hamburger:checked ~ #slice3{
-	transform: rotate(-45deg) translate(0, -1px);
-}
-
-/*
-design the hidden input node
-*/
-#input-hamburger{
-	display: block;
-	position: absolute;
-
-	width: 40px;
-	height: 32px;
-	top: -7px;
-	left: -5px;
-	/*top: 30px;*/
-	/*left: 30px;*/
-
-	cursor: pointer;
-
-	opacity: 0; /* hide it */
-	z-index: 101; /* and place it over the hamburger */
-
-	/*removes ability for user to hold touch over a node and do things (see information?) */
-	-webkit-touch-callout: none;
-}
-
-/*****************************
-	designing the container for content
-*****************************/
-
-#favourite-movies-content-container{
-	margin: -100px 0 0 -55px;
-	padding: 25px;
-	padding-top: 90px;
-
-	/*height: 100vh;*/
-	/*height: auto;*/
-
-	min-height: 100vh;
-
-	width: 275px;
-	/*if i set the width of the sidebar menu at the parent container
-	it blocks the content behind the sidebar, even when input-hamburger.unchecked
-	however, if i set the width here it doesn't block any content*/
-
-	background-color: var(--puke-green);
-
-	-webkit-font-smoothing: antialiased;
-	/* to stop flickering of text in safari */
-
-	transform-origin: 0 0;
-	transform: translate(-100%, 0);
-
-	transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
-
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: start;
-	overflow-y: auto;
-	/*	not working scroll*/
+	100% {background-color: var(--color-accent-whiteblack);}
 }
 
 #favourite-movies-container h3{
 	display: inline-block;
 	font-size: 25px;
-	font-family: var(--font-title-secondary);
+	font-family: var(--fontface-standard);
 	font-weight: normal;
 	margin-top: 0;
 
@@ -779,7 +716,7 @@ hr {
 	display: block;
 	height: 2px;
 	border: 0;
-	border-top: 2px solid black;
+	border-top: 2px solid var(--color-accent-whiteblack);
 	margin: 1em 0;
 	margin-top: 1.5em;
 	padding: 0;
@@ -805,11 +742,8 @@ hr {
 	justify-content: space-between;
 }
 
-#auth-status{
-}
-
 #auth-welcome{
-	font-family: var(--font-title-main);
+	font-family: var(--fontface-title);
 	font-family: AbelRegular;
 	font-size: 24px;
 }
@@ -820,6 +754,10 @@ hr {
 	font-weight: bold;
 
 	margin-right: var(--icon-distance);
+}
+
+#sign-out{
+	color: var(--color-accent-whiteblack);
 }
 
 #sign-out-container{
@@ -862,7 +800,7 @@ hr {
 	margin-left: 8px;
 	float: right;
 	/*display: none;*/
-	color: var(--main-red);
+	color: var(--color-accent-main);
 }
 
 .favourites-list-rating-span{
@@ -875,28 +813,18 @@ hr {
  *****************************/
 
 @media (hover: hover) {
-	#show-favourite-movies:hover, #cancel:hover, #save:hover, #sign-out:hover {
+	#show-favourite-movies:hover, #cancel:hover, #save:hover, #sign-out:hover, #favourite-movie-li .fa-trash:hover {
 		cursor: pointer;
 	}
-	#edit-favourite-movies-icon:hover {
-		/*color: grey;*/
-		/*transition: color 0.2s ease;*/
-		/*cursor: pointer;*/
-	}
 	.close:hover{
-		color: black;
+		color: var(--color-accent-whiteblack);
 		text-decoration: none;
 		cursor: pointer;
 	}
 	.favourite-movie-anchor:hover {
 		cursor: pointer;
-		color: var(--dark-beige);
-		transition: color 0.2s ease;
-	}
-	#favourite-movie-li .fa-trash:hover {
-		cursor: pointer;
-		/*color: grey;*/
-		/*transition: color 0.2s ease;*/
+		/*background-color: var(--main-red);*/
+		/*transition: color 0.4s ease;*/
 	}
 
 }
@@ -907,18 +835,21 @@ hr {
 
 @media screen and (max-width: 1300px) {
 	.btn{
-		background-color: var(--main-red);
+		background-color: var(--color-accent-main);
 	}
 	.btn:hover {
 		box-shadow: 0 .2em .3em rgba(0, 0, 0, 0.15);
 		background-position: 0;
-		color: black;
+		color: var(--color-accent-whiteblack);
 	}
 	.curved {
 		height: 450px; /*need to change for mobile too*/
 	}
 	#title{
 		font-size: 30px;
+	}
+	#subtitle{
+		font-size: var(--fontsize-title-smallest);
 	}
 	#logo img {
 		width: 45vw;
@@ -978,38 +909,27 @@ hr {
 		margin-top: 0;
 		font-size: 20px;
 	}
-	#favourite-movies-content-container{
-		/*
-		this sets width to 100% of vp
-		but it makes it so trashcan goes outside of list
-		also cant scroll this div
-		width: 100vw;*/
-	}
-
-	/*
-	makes the hamburger menu display: none (and not slide) on mobile devices
-	so it doesn't block content underneath
-	*/
-	#input-hamburger:checked ~ #favourite-movies-content-container {
-		transform: none;
-	}
-	#input-hamburger:not(:checked) ~ #favourite-movies-content-container {
-		display: none;
-		opacity: 0;
-		visibility: hidden;
-	}
 	.modal-content{
 		height: 90px;
 	}
-
 	#save{
 		font-size: var(--fontsize-text);
 	}
-
+	#favourite-movies-container{
+		width: 100%;
+	}
 	#favourite-movie-li .fa-trash{
 		font-size: 25px;
 	}
 }
 /*https://www.canva.com/colors/color-palette-generator/*/
-/*https://coolors.co/f2c886-ffe4b3-e94f37-ece2d0-f48660   light mode*/
-/*https://coolors.co/d7d0c8-c8c6af-95a78d-bd897e-f87666    dark mode*/
+
+/*
+https://coolors.co/f2c886-ffe4b3-e94f37-ece2d0-f48660
+light mode
+*/
+
+/*
+https://coolors.co/131d2f-001b4c-0d3779-0b799f-16b0c8
+dark mode
+*/
