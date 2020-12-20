@@ -77,17 +77,23 @@
 				<!-- Modal content -->
 				<div class="modal-content">
 					<span class="close">&times;</span>
-					<p>Save to favourites?</p>
-					<button type="button" id="save" class="btn">Save</button> <button type="button" id="cancel">Cancel</button>
+					<div class="modal-flex-container">
+						<p>Save to favourites?</p>
+						<div class="modal-buttons-flex-container">
+							<button type="button" id="save" class="btn">Save</button> <button type="button" id="cancel">Cancel</button>
+						</div>
+					</div>
 				</div>
 			</div>
 
 			<!-- modal if movie already in favourites -->
 			<div id="modal-box-already-added" class="modal-box">
-				<div class="modal-content">
+				<div class="modal-content" id="already-in-favourites-modal-content">
 					<span class="close">&times;</span>
-					<p>This movie is already in your list of favourites.</p>
-					<button type="button" id="okay" class="btn">Okay</button>
+					<div class="modal-flex-container">
+						<p>This movie is already in your list of favourites.</p>
+							<button type="button" id="okay" class="btn">Okay</button>
+					</div>
 				</div>
 			</div>
 		</div>

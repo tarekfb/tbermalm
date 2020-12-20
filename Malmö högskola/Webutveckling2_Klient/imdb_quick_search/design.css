@@ -6,10 +6,11 @@
 	/*variables*/
 	--dark-beige: #f4cb84;
 	--main-red: #f38363;
-	--secondary-red: #ec344a;
+	--strong-red: #ec344a;
 	--secondary-red-alt: #f07563;
 	--accept-green: #00e500;
 	--background-grey: #e7d2cc;
+	--puke-green: #eedebd;
 	--gold: #FFD700;
 
 	--light-beige: #ffe4b3;
@@ -87,12 +88,12 @@ a {
 	box-shadow: 0 .2em .3em rgba(0, 0, 0, 0.15);
 	background-color: transparent;
 	background-position: 100%;
-	border: 3px solid var(--secondary-red);
+	border: 3px solid var(--main-red);
 	transition: all .4s ease-out;
 	background-image: linear-gradient(
 			90deg,
-			var(--secondary-red) 0%,
-			var(--secondary-red) 50%,
+			var(--main-red) 0%,
+			var(--main-red) 50%,
 			transparent 50%,
 			transparent 100%
 	);
@@ -434,15 +435,16 @@ a {
 	display: none;
 }
 
+/*icon in movie card*/
 .save-to-favorites{
 	position: absolute;
 	bottom: 0px;
 	right: 0px;
 	padding: 5px;
-
 	font-size: 32px;
-	color: var(--secondary-red);
+	color: var(--main-red);
 	background-color: var(--background-grey);
+	cursor: pointer;
 }
 
 /*****************************
@@ -463,25 +465,21 @@ a {
 
 .modal-content {
 	background-color: #fefefe;
-	margin: 15% auto; /* 15% from the top and centered */
+	margin: 20% auto;
 	padding: 20px;
 	border: 1px solid #888;
-	width: 40%;
+	min-width: 20%;
+	width: 20%;
 	height: 80px;
-	text-align: left;
+
 	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
 	animation-name: animatetop;
-	animation-duration: 0.5s
+	animation-duration: 0.5s;
 }
 
 @keyframes animatetop {
 	from {top: -300px; opacity: 0}
 	to {top: 0; opacity: 1}
-}
-
-.modal-content p{
-	margin-top: 0;
-	font-size: 25px;
 }
 
 .close {
@@ -491,19 +489,32 @@ a {
 	font-weight: bold;
 	margin-top: -20px;
 	margin-right: -10px;
+
+	/* this is such a minor detail
+	but float/margin isnt the best solution.
+	relative/absolute would be better	*/
 }
 
-#save{
-	/*border-radius: 4px;*/
-	/*border: solid 2px white;*/
-	/*background-color: var(--accept-green);*/
-	/*padding: 3px;*/
-	font-size: 15px;
+.modal-flex-container{
+	display: flex;
+	flex-direction: column;
+
+	justify-content: center;
+	/* align horizontal */
+	align-items: center;
+	/* align vertical */
+
 }
-#save:hover {
-	box-shadow: 0 0 .3em rgba(0, 0, 0, 0.25);
-	background-position: 0;
-	color: #fff;
+
+.modal-content p{
+	margin-top: 0px;
+	font-size: var(--fontsize-title-smallest);
+}
+
+.modal-buttons-flex-container{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
 }
 
 #cancel{
@@ -511,6 +522,10 @@ a {
 	border: none;
 	margin-left: 10px;
 	/*font-size: 16px; this line doesn't have any effect for some reason*/
+}
+
+#already-in-favourites-modal-content{
+	height: 120px;
 }
 
 /*****************************
@@ -677,6 +692,7 @@ design the hidden input node
 
 	/*height: 100vh;*/
 	/*height: auto;*/
+
 	min-height: 100vh;
 
 	width: 275px;
@@ -684,7 +700,8 @@ design the hidden input node
 	it blocks the content behind the sidebar, even when input-hamburger.unchecked
 	however, if i set the width here it doesn't block any content*/
 
-	background: var(--main-red);
+	background-color: var(--puke-green);
+
 	-webkit-font-smoothing: antialiased;
 	/* to stop flickering of text in safari */
 
@@ -864,13 +881,6 @@ hr {
 		/*transition: color 0.2s ease;*/
 		/*cursor: pointer;*/
 	}
-	.movie-container:hover {
-		cursor: pointer;
-
-		transform: scale(1.03);
-		-moz-transform: scale(1.03);
-		-ms-transform: scale(1.03);
-	}
 	.close:hover{
 		color: black;
 		text-decoration: none;
@@ -895,7 +905,7 @@ hr {
 
 @media screen and (max-width: 1300px) {
 	.btn{
-		background-color: var(--secondary-red);
+		background-color: var(--main-red);
 	}
 	.btn:hover {
 		box-shadow: 0 .2em .3em rgba(0, 0, 0, 0.15);
@@ -989,6 +999,11 @@ hr {
 	.modal-content{
 		height: 90px;
 	}
+
+	#save{
+		font-size: var(--fontsize-text);
+	}
+
 	#favourite-movie-li .fa-trash{
 		font-size: 25px;
 	}
