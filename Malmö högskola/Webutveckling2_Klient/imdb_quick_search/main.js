@@ -8,74 +8,10 @@ showFavouriteMoviesListener();
 favouriteMoviesHamburgerListener();
 favouriteMoviesIconListener();
 
- endlessScrollingListener();
-
-function endlessScrollingListener() {
-	window.addEventListener("scroll", function() {
-		//attempting to look if user scrolled to bottom of page
-		//and if resultcontainer has 10 children with "movie-container"
-
-		let resultContainer = document.getElementById("result-container");
-		let movieContainerList = resultContainer.getElementsByClassName("movie-container");
-
-		if (movieContainerList.length === 10){
-			let lastMovie = movieContainerList[movieContainerList.length - 1]; //= last movie in list somehow;
-			if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
-				console.log(lastMovie);
-			}
-		} //NEED TO DO BETTER HEIGHT PAGE CHECK
-
-		// document.addEventListener('scroll', function (event) {
-		// 	if (document.body.scrollHeight ===
-		// 		document.body.scrollTop +
-		// 		window.innerHeight) {
-		// 		console.log("Bottom!");
-		// 	}
-		// });
-
-
-
-		/*
-		look for all elements with classname == movie-container
-		choose last one in array
-		lastMovie = this one
-		perhaps not possible because can go past, bcus past is too low
-		also TODO: make press escape will escape modals
-		 */
-
-		//i need to only add this listener if length = 10
-		//but when do i check length?
-
-		/*
-		let resultContainer = document.getElementById("result-container");
-		let movieContainerList = resultContainer.getElementsByClassName("movie-container");
-		console.log(movieContainerList[movieContainerList.length]);
-
-		let lastMovie = movieContainerList[movieContainerList.length]; //= last movie in list somehow;
-
-
-		if (window.scrollY > (lastMovie.offsetTop + lastMovie.offsetHeight)) {
-			alert("You've scrolled past the last movie in results");
-		}
-		 */
-	});
-}
-
-/*
-let resultChildrenCounter = {
-	children: 0,
-
-	get children(){
-		return children;
-	},
-
-	set children (amount) {
-		this.children = amount; 
-	}
-};*/
-
 let show = "show";
 handleSidebarLoadingAnimation(show);
+
+/*TODO: make press escape will escape modals */
 
 function submitFormListener() {
 	let form = document.getElementById("search-form");
@@ -84,8 +20,11 @@ function submitFormListener() {
 	form.addEventListener("submit", function(event) {
 
 		// clear resultContainer to prevent stacking of results/response messages
-		let resultContainer = document.getElementById("result-container")
-		resultContainer.querySelectorAll('*').forEach(n => n.remove());
+		let resultContainerList = document.getElementsByClassName("result-container");
+
+		for (let i = 0; i < resultContainerList.length; i++) {
+			resultContainerList[i].querySelectorAll('*').forEach(n => n.remove());
+		}
 
 		// in this case the user didnt enter any text in the search box
 		if (searchBox.value.length === 0){
@@ -94,7 +33,7 @@ function submitFormListener() {
 			// generate p saying to enter some text
 			let p = document.createElement("p");
 			p.appendChild(document.createTextNode("Please type something first."));
-			resultContainer.appendChild(p);
+			resultContainerList[0].appendChild(p);
 
 			event.preventDefault();
 		} else {
@@ -119,7 +58,7 @@ function apiHandlerByTitle(queryText) {
 
 	//define api request variables
 	const omdbAPI = new XMLHttpRequest();
-	const omdbURL = `https://www.omdbapi.com/?&apikey=${API_KEY}&s=` + queryText;
+	const omdbURL = `https://www.omdbapi.com/?&apikey=${API_KEY}&s=${queryText}`;
 
 	//adding listener to request
 	omdbAPI.addEventListener("load", function() {
@@ -137,6 +76,11 @@ function apiHandlerByTitle(queryText) {
 			which contains more information than based on title
 			such as actors, cast, poster, awards
 			*/
+
+			//this code passes the result for the endlessScrolling function
+			window.addEventListener("scroll",function () {
+				handleEndlessScroll(queryText);
+			});
 
 			result.Search.forEach(function (entry){
 				apiHandlerByImdbID(entry.imdbID);
@@ -179,7 +123,8 @@ function displayResult(result) {
 		document.getElementById("input-hamburger").checked = false;
 	}
 
-	 let resultContainer = document.getElementById("result-container")
+	let resultContainerList = document.getElementsByClassName("result-container");
+	let resultContainer = resultContainerList[0];
 
 	//in this case something went wrong with the search
 	//this is communicated through p outputting string result.Error
@@ -196,6 +141,7 @@ function displayResult(result) {
 		let p = document.createElement("p");
 		p.appendChild(document.createTextNode(resultString));
 		resultContainer.appendChild(p);
+
 	} else if (result.Response == "True"){
 		if (result.Search == null){
 			//in this case a single movie is passed, through apiHandlerByImdbID
@@ -217,7 +163,7 @@ function displayResult(result) {
 				generateMovieCard(entry);
 			});
 
-			alert("problem :(");
+			alert("If this appears, the else case DID fire.");
 
 		}
 	}
@@ -274,12 +220,15 @@ function generateMovieCard(apiCallResult) {
 	then generates a movie card
 	*/
 
-	let resultContainer = document.getElementById("result-container");
+	// With endless scrolling, multiple resultContainers can exist simultaneously
+	// However, it's always the last resultContainer which is intended to be filled with movieCards
+	let resultContainerList = document.getElementsByClassName("result-container");
+	let resultContainer = resultContainerList[resultContainerList.length - 1];
+	//list index starts at 0, but length starts at 1. therefore -1
 
 	let movieContainer = document.createElement('div');
-	movieContainer.classList.add('movie-container'); //TODO: fix. this assigning a unique ID to many divs. shouldnt be possible
-	//movieContainer.style.zIndex = "-1"; //this fixes the movie card being infront of sidebar menu
-	// TODO WHY DID I ASSIGN ZINDEX HERE? CHANGE
+	movieContainer.classList.add('movie-container');
+	//movieContainer.style.zIndex = "-1"; //this fixes the movie card being infront of sidebar menu //not needed
 	resultContainer.appendChild(movieContainer);
 
 	//adding hyperlink, the movie's imdb-page, to movie poster
@@ -793,6 +742,99 @@ function authStateChanged(firebaseUser) {
 		});
 	}
 }
+
+/**********************
+	ENDLESS SCROLLING
+ *********************/
+
+// Returns a function, that, as long as it continues to be invoked, will not
+// be triggered. The function will be called after it stops being called for
+// N milliseconds. If `immediate` is passed, trigger the function on the
+// leading edge, instead of the trailing.
+function debounce(func, wait, immediate) {
+	var timeout;
+	return function() {
+		var context = this, args = arguments;
+		var later = function() {
+			timeout = null;
+			if (!immediate) func.apply(context, args);
+		};
+		var callNow = immediate && !timeout;
+		clearTimeout(timeout);
+		timeout = setTimeout(later, wait);
+		if (callNow) func.apply(context, args);
+	};
+};
+
+let currentPage = 1;
+//TODO: create function for resetting the resultcontainers
+// reset this counter
+
+let handleEndlessScroll = debounce(function(queryText) {
+	// What this code does:
+	// Determine if
+
+	/*
+	issue: im checking if collectoin of all elements with class "movie-container" === 10
+	if have >1 page, it will always true
+	but if the newly loaded page has <10 it should be false
+	therefore, need to look at the page (loaded set of moviecontainers)
+	which comes out to the last resultContainer,
+	because ill stack them, for every new page
+
+	genereateResultContainer
+	Look at last RC
+	do logic
+	 */
+
+	let resultContainerList = document.getElementsByClassName("result-container");
+	let resultContainer = resultContainerList[resultContainerList.length - 1];
+
+	let movieContainerList = resultContainer.getElementsByClassName("movie-container");
+
+	console.log(movieContainerList.length);
+
+	// every page from the AJAX call holds max 10 movies
+	// therefore, as long as the length is evenly divisible by 10,
+	// there are further pages to load
+	// this check evaluates to true if evenly divisible by 10
+	if (movieContainerList.length % 10 === 0) {
+
+		// -1 because index starts at 0, length start at 1
+		let lastMovie = movieContainerList[movieContainerList.length - 1];
+
+		if ((window.scrollY + window.innerHeight) > (lastMovie.offsetTop +  lastMovie.offsetHeight)) {
+			currentPage++;
+			requestNewPage(queryText);
+		}
+	}
+}, 500);
+
+function requestNewPage(queryText) {
+	// this code will fetch result from AJAX call based on currentPage
+
+	//define api request variables
+	const omdbAPI = new XMLHttpRequest();
+	const omdbURL = `https://www.omdbapi.com/?&apikey=${API_KEY}&s=${queryText}&page=${currentPage}`;
+
+	//adding listener to request
+	omdbAPI.addEventListener("load", function() {
+
+		//saving result
+		let result = JSON.parse(this.responseText);
+
+		result.Search.forEach(function (entry){
+			apiHandlerByImdbID(entry.imdbID);
+		});
+
+	});
+
+	//executing api request
+	omdbAPI.open("get", omdbURL, true);
+	omdbAPI.send();
+
+}
+
 
 /********************************************************************
  beneath this point shall all
