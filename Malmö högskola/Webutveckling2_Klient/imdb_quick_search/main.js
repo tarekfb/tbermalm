@@ -131,9 +131,10 @@ function displayResult(result) {
 
 	//this code will make the sidebar retract itself
 	//if mobile user
-	if (/Mobi|Android/i.test(navigator.userAgent) && document.getElementById("input-hamburger").checked) {
-		document.getElementById("input-hamburger").checked = false;
-	}
+
+	// if (/Mobi|Android/i.test(navigator.userAgent) && document.getElementById("input-hamburger").checked) {
+	// 	document.getElementById("input-hamburger").checked = false;
+	// }
 
 	let resultContainerList = document.getElementsByClassName("result-container");
 	let resultContainer = resultContainerList[0];
@@ -464,18 +465,19 @@ function saveMovieToFavourite(entryFromAJAX) {
 		if (boolean){
 			showAlreadyAddedModalBox();
 		} else {
-			let favouriteMoviesUL = document.getElementById("favourite-movies-list");
+			// let favouriteMoviesUL = document.getElementById("favourite-movies-list");
+			//
+			// if (!document.getElementById("input-hamburger").checked && favouriteMoviesUL.childElementCount == 0){
+			// 	document.getElementById("slice1").classList.add("pulse-grey-animation");
+			// 	document.getElementById("slice2").classList.add("pulse-grey-animation");
+			// 	document.getElementById("slice3").classList.add("pulse-grey-animation");
+			// }
+			//
+			// if (document.getElementById("input-hamburger").checked){
+			// 	//favouriteMoviesUL.lastElementChild.classList.add("pulse-grey-animation");
+			// }
 
-			if (!document.getElementById("input-hamburger").checked && favouriteMoviesUL.childElementCount == 0){
-				document.getElementById("slice1").classList.add("pulse-grey-animation");
-				document.getElementById("slice2").classList.add("pulse-grey-animation");
-				document.getElementById("slice3").classList.add("pulse-grey-animation");
-			}
-
-			if (document.getElementById("input-hamburger").checked){
-				//favouriteMoviesUL.lastElementChild.classList.add("pulse-grey-animation");
-			}
-
+			// in this case we are certain the list is not empty
 			let statusOfList = "notEmpty";
 			handlePlaceholderSpan(statusOfList);
 
@@ -545,15 +547,17 @@ function favouriteMoviesHamburgerListener() {
 	// this will update list with values from db
 	// necessary to call every time because -->
 	// --> user could've added favourites while closed
-	let inputHamburgerCheckbox = document.getElementById("input-hamburger");
 
-	inputHamburgerCheckbox.addEventListener( 'change', function() {
-		if (this.checked) {
-			if (getFirebaseAuth().currentUser != null){
-				readFavouriteMoviesList().then(snapshot => populateFavouriteMoviesList(snapshot));
-			}
-		}
-	});
+	//TODO update to work with navbar instead of input-hamburger
+	// let inputHamburgerCheckbox = document.getElementById("input-hamburger");
+	//
+	// inputHamburgerCheckbox.addEventListener( 'change', function() {
+	// 	if (this.checked) {
+	// 		if (getFirebaseAuth().currentUser != null){
+	// 			readFavouriteMoviesList().then(snapshot => populateFavouriteMoviesList(snapshot));
+	// 		}
+	// 	}
+	// });
 }
 
 function handlePlaceholderSpan(statusOfList) {
@@ -721,8 +725,8 @@ function authStateChanged(firebaseUser) {
 	let authName = document.getElementById("auth-name");
 	let signOutContainer =  document.getElementById('sign-out-container');
 	let titleAndListContainer =  document.getElementById("title-and-list-container");
-	let favouriteMovieContentContainer = document.getElementById('favourite-movies-content-container');
-	let hr = favouriteMovieContentContainer.querySelectorAll('hr');
+	let favouriteMoviesContainer = document.getElementById('favourite-movies-container');
+	let hr = favouriteMoviesContainer.querySelectorAll('hr');
 
 	if (firebaseUser){
 		firebaseUISignupContainer.style.display = "none";
@@ -853,39 +857,6 @@ function requestNewPage(queryText) {
  'unwanted-but-possibly-useful-down-the-line' lines of code
  be kept
  ********************************************************************/
-
-function toggleHideFavouriteMovies() {
-	//TODO: delete if fav-movies sidebar is working as intended
-	// //trying to make it so the sidebar doesn't cover container div, even when not clicked
-	// let inputToggleFavouriteMovies = document.getElementById("input-hamburger");
-	// let favouriteMoviesContainer = document.getElementById("favourite-movies-container");
-	//
-	// if (inputToggleFavouriteMovies.checked){
-	// 	favouriteMoviesContainer.style.zIndex = "95";
-	// } else {
-	// 	document.getElementById("container").style.zIndex = "5";
-	// 	favouriteMoviesContainer.style.zIndex = "1";
-	// 	// i think it odesnt work bcus body is covering input
-	// }
-	//
-	// document.getElementById("slice1").style.zIndex = "-5";
-	// document.getElementById("slice2").style.zIndex = "-5";
-	// document.getElementById("slice3").style.zIndex = "-5";
-	//
-	// inputToggleFavouriteMovies.style.zIndex = "15010";
-
-	// if (inputToggleFavouriteMovies.checked){
-	// 	document.getElementById('favourite-movies-container').style.display = "block";
-	// 	document.getElementById("search-box").style.backgroundColor = "blue";
-	// } else {
-	// 	document.getElementById('favourite-movies-container').style.display = "none";
-	// 	document.getElementById("search-box").style.backgroundColor = "white";
-	// }
-	//if i can make the span and input be positioned outside out of the div
-	//i can hide the container of fav movs on click
-	//and use the flexbox pattern
-
-}
 
 /*leaving some notes from programming diary
 
