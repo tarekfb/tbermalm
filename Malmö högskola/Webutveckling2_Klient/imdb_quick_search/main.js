@@ -37,8 +37,11 @@ function debounce(func, wait, immediate) {
 	};
 };
 
-let handleEndlessScroll = debounce(function() {
+let currentPage = 1;
+//TODO: create function for resetting the resultcontainers
+// reset this counter
 
+let handleEndlessScroll = debounce(function(result) {
 	// What this code does:
 	// Determine if
 
@@ -60,21 +63,41 @@ let handleEndlessScroll = debounce(function() {
 
 	let movieContainerList = resultContainer.getElementsByClassName("movie-container");
 
-	if (movieContainerList.length === 10){
+	console.log(movieContainerList.length);
+
+	if (movieContainerList.length % 10 === 0) {
+
 		let lastMovie = movieContainerList[movieContainerList.length - 1]; //= last movie in list somehow;
 
 		if ((window.scrollY + window.innerHeight) > (lastMovie.offsetTop +  lastMovie.offsetHeight)) {
-			console.log(`SCROLLED TO LAST MOVIE`);
-			console.log(lastMovie);
-
-			loadNextPage();
+			currentPage++;
+			requestNewPage(result);
 		}
 	}
 	}, 500);
 
-window.addEventListener("scroll", handleEndlessScroll);
+function requestNewPage(queryText) {
 
-loadNextPage
+	//define api request variables
+	const omdbAPI = new XMLHttpRequest();
+	const omdbURL = `https://www.omdbapi.com/?&apikey=${API_KEY}&s=${queryText}&page=${currentPage}`;
+
+	//adding listener to request
+	omdbAPI.addEventListener("load", function() {
+		//saving result
+		let result = JSON.parse(this.responseText);
+
+		result.Search.forEach(function (entry){
+			apiHandlerByImdbID(entry.imdbID);
+		});
+
+	});
+
+	//executing api request
+	omdbAPI.open("get", omdbURL, true);
+	omdbAPI.send();
+
+}
 
 /************
  MOVE THIS SECTION LATER, ENDLESS SCROLL
@@ -144,6 +167,11 @@ function apiHandlerByTitle(queryText) {
 			such as actors, cast, poster, awards
 			*/
 
+			//this code passes the result for the endlessScrolling function
+			window.addEventListener("scroll",function () {
+				handleEndlessScroll(queryText);
+			});
+
 			result.Search.forEach(function (entry){
 				apiHandlerByImdbID(entry.imdbID);
 			});
@@ -203,6 +231,7 @@ function displayResult(result) {
 		let p = document.createElement("p");
 		p.appendChild(document.createTextNode(resultString));
 		resultContainer.appendChild(p);
+
 	} else if (result.Response == "True"){
 		if (result.Search == null){
 			//in this case a single movie is passed, through apiHandlerByImdbID
