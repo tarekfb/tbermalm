@@ -13,96 +13,6 @@ handleSidebarLoadingAnimation(show);
 
 /*TODO: make press escape will escape modals */
 
-
-/************
- MOVE THIS SECTION LATER, ENDLESS SCROLL
- *********************/
-
-// Returns a function, that, as long as it continues to be invoked, will not
-// be triggered. The function will be called after it stops being called for
-// N milliseconds. If `immediate` is passed, trigger the function on the
-// leading edge, instead of the trailing.
-function debounce(func, wait, immediate) {
-	var timeout;
-	return function() {
-		var context = this, args = arguments;
-		var later = function() {
-			timeout = null;
-			if (!immediate) func.apply(context, args);
-		};
-		var callNow = immediate && !timeout;
-		clearTimeout(timeout);
-		timeout = setTimeout(later, wait);
-		if (callNow) func.apply(context, args);
-	};
-};
-
-let currentPage = 1;
-//TODO: create function for resetting the resultcontainers
-// reset this counter
-
-let handleEndlessScroll = debounce(function(result) {
-	// What this code does:
-	// Determine if
-
-	/*
-	issue: im checking if collectoin of all elements with class "movie-container" === 10
-	if have >1 page, it will always true
-	but if the newly loaded page has <10 it should be false
-	therefore, need to look at the page (loaded set of moviecontainers)
-	which comes out to the last resultContainer,
-	because ill stack them, for every new page
-
-	genereateResultContainer
-	Look at last RC
-	do logic
-	 */
-
-	let resultContainerList = document.getElementsByClassName("result-container");
-	let resultContainer = resultContainerList[resultContainerList.length - 1];
-
-	let movieContainerList = resultContainer.getElementsByClassName("movie-container");
-
-	console.log(movieContainerList.length);
-
-	if (movieContainerList.length % 10 === 0) {
-
-		let lastMovie = movieContainerList[movieContainerList.length - 1]; //= last movie in list somehow;
-
-		if ((window.scrollY + window.innerHeight) > (lastMovie.offsetTop +  lastMovie.offsetHeight)) {
-			currentPage++;
-			requestNewPage(result);
-		}
-	}
-	}, 500);
-
-function requestNewPage(queryText) {
-
-	//define api request variables
-	const omdbAPI = new XMLHttpRequest();
-	const omdbURL = `https://www.omdbapi.com/?&apikey=${API_KEY}&s=${queryText}&page=${currentPage}`;
-
-	//adding listener to request
-	omdbAPI.addEventListener("load", function() {
-		//saving result
-		let result = JSON.parse(this.responseText);
-
-		result.Search.forEach(function (entry){
-			apiHandlerByImdbID(entry.imdbID);
-		});
-
-	});
-
-	//executing api request
-	omdbAPI.open("get", omdbURL, true);
-	omdbAPI.send();
-
-}
-
-/************
- MOVE THIS SECTION LATER, ENDLESS SCROLL
- *********************/
-
 function submitFormListener() {
 	let form = document.getElementById("search-form");
 	let searchBox = document.getElementById("search-box");
@@ -148,7 +58,7 @@ function apiHandlerByTitle(queryText) {
 
 	//define api request variables
 	const omdbAPI = new XMLHttpRequest();
-	const omdbURL = `https://www.omdbapi.com/?&apikey=${API_KEY}&s=` + queryText;
+	const omdbURL = `https://www.omdbapi.com/?&apikey=${API_KEY}&s=${queryText}`;
 
 	//adding listener to request
 	omdbAPI.addEventListener("load", function() {
@@ -832,6 +742,99 @@ function authStateChanged(firebaseUser) {
 		});
 	}
 }
+
+/**********************
+	ENDLESS SCROLLING
+ *********************/
+
+// Returns a function, that, as long as it continues to be invoked, will not
+// be triggered. The function will be called after it stops being called for
+// N milliseconds. If `immediate` is passed, trigger the function on the
+// leading edge, instead of the trailing.
+function debounce(func, wait, immediate) {
+	var timeout;
+	return function() {
+		var context = this, args = arguments;
+		var later = function() {
+			timeout = null;
+			if (!immediate) func.apply(context, args);
+		};
+		var callNow = immediate && !timeout;
+		clearTimeout(timeout);
+		timeout = setTimeout(later, wait);
+		if (callNow) func.apply(context, args);
+	};
+};
+
+let currentPage = 1;
+//TODO: create function for resetting the resultcontainers
+// reset this counter
+
+let handleEndlessScroll = debounce(function(queryText) {
+	// What this code does:
+	// Determine if
+
+	/*
+	issue: im checking if collectoin of all elements with class "movie-container" === 10
+	if have >1 page, it will always true
+	but if the newly loaded page has <10 it should be false
+	therefore, need to look at the page (loaded set of moviecontainers)
+	which comes out to the last resultContainer,
+	because ill stack them, for every new page
+
+	genereateResultContainer
+	Look at last RC
+	do logic
+	 */
+
+	let resultContainerList = document.getElementsByClassName("result-container");
+	let resultContainer = resultContainerList[resultContainerList.length - 1];
+
+	let movieContainerList = resultContainer.getElementsByClassName("movie-container");
+
+	console.log(movieContainerList.length);
+
+	// every page from the AJAX call holds max 10 movies
+	// therefore, as long as the length is evenly divisible by 10,
+	// there are further pages to load
+	// this check evaluates to true if evenly divisible by 10
+	if (movieContainerList.length % 10 === 0) {
+
+		// -1 because index starts at 0, length start at 1
+		let lastMovie = movieContainerList[movieContainerList.length - 1];
+
+		if ((window.scrollY + window.innerHeight) > (lastMovie.offsetTop +  lastMovie.offsetHeight)) {
+			currentPage++;
+			requestNewPage(queryText);
+		}
+	}
+}, 500);
+
+function requestNewPage(queryText) {
+	// this code will fetch result from AJAX call based on currentPage
+
+	//define api request variables
+	const omdbAPI = new XMLHttpRequest();
+	const omdbURL = `https://www.omdbapi.com/?&apikey=${API_KEY}&s=${queryText}&page=${currentPage}`;
+
+	//adding listener to request
+	omdbAPI.addEventListener("load", function() {
+
+		//saving result
+		let result = JSON.parse(this.responseText);
+
+		result.Search.forEach(function (entry){
+			apiHandlerByImdbID(entry.imdbID);
+		});
+
+	});
+
+	//executing api request
+	omdbAPI.open("get", omdbURL, true);
+	omdbAPI.send();
+
+}
+
 
 /********************************************************************
  beneath this point shall all
