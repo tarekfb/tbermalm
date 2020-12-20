@@ -20,10 +20,28 @@
 
 	<div id="container">
 
+		<nav id="navbar">
+
+			<div id="db-toggle-container">
+				<i class="fas fa-database"></i> DB
+				<div id="db-content" class="hide">
+					favourites och så vidare
+				</div>
+			</div>
+			<span id="name">simple imdb search</span>
+			<div id="dark-mode-toggle-container">
+				<i class="fas fa-moon"></i>
+			</div>
+			<div id="return-to-top-container">
+				<i class="fas fa-arrow-up"></i>
+			</div>
+
+		</nav>
+
 		<section class="curved"></section>
 
 		<!-- HTML for favourite movies list -->
-		<div id="favourite-movies-container">
+		<div id="favourite-movies-container" class="hide">
 			<!--
 			  A hidden checkbox is used as click receiver,
 			  so you can use the :checked selector on it.

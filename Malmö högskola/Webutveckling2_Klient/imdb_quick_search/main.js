@@ -8,6 +8,18 @@ showFavouriteMoviesListener();
 favouriteMoviesHamburgerListener();
 favouriteMoviesIconListener();
 
+navbarListeners();
+function navbarListeners() {
+	let	dbToggleContainer = document.getElementById("db-toggle-container");
+	dbToggleContainer.addEventListener("click", function (event) {
+		let dbContent = document.getElementById("db-content");
+		//dbContent.classList.toggle("hide");
+
+		let sidebar = document.getElementById("favourite-movies-container");
+		sidebar.classList.toggle("hide");
+	});
+}
+
 let show = "show";
 handleSidebarLoadingAnimation(show);
 

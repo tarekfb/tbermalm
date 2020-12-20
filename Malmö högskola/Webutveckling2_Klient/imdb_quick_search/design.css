@@ -112,6 +112,11 @@ a {
 	display: none;
 }
 
+.show{
+	display: unset;
+}
+
+
 /*****************************
  	section divider
 *****************************/
@@ -128,6 +133,24 @@ a {
 }
 
 /*****************************
+	navbar
+*****************************/
+
+#navbar{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	background-color: lightslategrey;
+}
+
+.toggle-content{
+}
+
+#db-content{
+	cursor: pointer;
+}
+
+/*****************************
 	img, title search bar and result container
 *****************************/
 
@@ -137,6 +160,9 @@ a {
 	font-size: 45px;
 	display: block;
 	font-family: AbelRegular;
+
+	position: sticky;
+	top: 0;
 
 }
 
@@ -543,7 +569,7 @@ a {
 this is the parent of the favourite movie sidebar
 */
 #favourite-movies-container{
-	display: block;
+	/*display: block;*/
 	position: fixed;
 
 	top: 30px;
