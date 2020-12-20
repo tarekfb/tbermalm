@@ -134,6 +134,10 @@ a {
 	navbar
 *****************************/
 
+/*
+todo: reutrn top visiblity fade when not at top
+ */
+
 #navbar{
 	position: fixed;
 	background-color: var(--color-accent-main);
