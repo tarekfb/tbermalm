@@ -278,7 +278,7 @@ function generateMovieCard(apiCallResult) {
 
 	let movieContainer = document.createElement('div');
 	movieContainer.classList.add('movie-container'); //TODO: fix. this assigning a unique ID to many divs. shouldnt be possible
-	movieContainer.style.zIndex = "-1"; //this fixes the movie card being infront of sidebar menu
+	//movieContainer.style.zIndex = "-1"; //this fixes the movie card being infront of sidebar menu
 	// TODO WHY DID I ASSIGN ZINDEX HERE? CHANGE
 	resultContainer.appendChild(movieContainer);
 
@@ -363,14 +363,18 @@ function generateMovieCard(apiCallResult) {
 	saveToFavourites.appendChild(saveIcon);
 	movieContainer.appendChild(saveToFavourites);
 
-	movieContainer.addEventListener("click", function (event){
-		if (event.target.id == "movie-poster-anchor"){
-			//do nothing
-			//since we just want to avoid showing modalbox in this case
-		} else {
-			showAddToFavouritesModalBox(apiCallResult);
-		}
+	saveToFavourites.addEventListener("click", function (){
+		showAddToFavouritesModalBox(apiCallResult);
 	});
+
+	// movieContainer.addEventListener("click", function (event){
+	// 	if (event.target.id == "movie-poster-anchor"){
+	// 		//do nothing
+	// 		//since we just want to avoid showing modalbox in this case
+	// 	} else {
+	// 		showAddToFavouritesModalBox(apiCallResult);
+	// 	}
+	// });
 
 
 	//resultChildrenCounter.set = 5;
