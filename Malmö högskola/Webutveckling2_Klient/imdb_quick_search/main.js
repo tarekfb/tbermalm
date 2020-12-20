@@ -8,70 +8,15 @@ showFavouriteMoviesListener();
 favouriteMoviesHamburgerListener();
 favouriteMoviesIconListener();
 
- endlessScrollingListener();
+let show = "show";
+handleSidebarLoadingAnimation(show);
 
-function endlessScrollingListener() {
-	window.addEventListener("scroll", function() {
-		//attempting to look if user scrolled to bottom of page
-		//and if resultcontainer has 10 children with "movie-container"
-
-		let resultContainer = document.getElementById("result-container");
-		let movieContainerList = resultContainer.getElementsByClassName("movie-container");
-
-		if (movieContainerList.length === 10){
-			let lastMovie = movieContainerList[movieContainerList.length - 1]; //= last movie in list somehow;
-
-			if ((window.scrollY + window.innerHeight) > (lastMovie.offsetTop +  lastMovie.offsetHeight)) {
-				console.log(`SCROLLED TO LAST MOVIE`);
-				console.log(lastMovie);
-				alert(lastMovie);
-			}
-
-			// if (window.scrollY >= lastMovie.getBoundingClientRect().top) {
-			// 	console.log('I have been reached');
-			// 	console.log(lastMovie);
-			//
-			// 	console.log(`scrolly: ${window.scrollY} and lastMovie: ${lastMovie.getBoundingClientRect().top}`)
-			//
-			// }
-
-		} //NEED TO DO BETTER HEIGHT PAGE CHECK
-
-		// document.addEventListener('scroll', function (event) {
-		// 	if (document.body.scrollHeight ===
-		// 		document.body.scrollTop +
-		// 		window.innerHeight) {
-		// 		console.log("Bottom!");
-		// 	}
-		// });
+/*TODO: make press escape will escape modals */
 
 
-
-		/*
-		look for all elements with classname == movie-container
-		choose last one in array
-		lastMovie = this one
-		perhaps not possible because can go past, bcus past is too low
-		also TODO: make press escape will escape modals
-		 */
-
-		//i need to only add this listener if length = 10
-		//but when do i check length?
-
-		/*
-		let resultContainer = document.getElementById("result-container");
-		let movieContainerList = resultContainer.getElementsByClassName("movie-container");
-		console.log(movieContainerList[movieContainerList.length]);
-
-		let lastMovie = movieContainerList[movieContainerList.length]; //= last movie in list somehow;
-
-
-		if (window.scrollY > (lastMovie.offsetTop + lastMovie.offsetHeight)) {
-			alert("You've scrolled past the last movie in results");
-		}
-		 */
-	});
-}
+/************
+ MOVE THIS SECTION LATER, ENDLESS SCROLL
+ *********************/
 
 // Returns a function, that, as long as it continues to be invoked, will not
 // be triggered. The function will be called after it stops being called for
@@ -92,27 +37,48 @@ function debounce(func, wait, immediate) {
 	};
 };
 
-let myEfficientFn = debounce(function() {
-	// All the taxing stuff you do
-}, 250);
+let handleEndlessScroll = debounce(function() {
 
-window.addEventListener('resize', myEfficientFn);
+	// What this code does:
+	// Determine if
 
-/*
-let resultChildrenCounter = {
-	children: 0,
+	/*
+	issue: im checking if collectoin of all elements with class "movie-container" === 10
+	if have >1 page, it will always true
+	but if the newly loaded page has <10 it should be false
+	therefore, need to look at the page (loaded set of moviecontainers)
+	which comes out to the last resultContainer,
+	because ill stack them, for every new page
 
-	get children(){
-		return children;
-	},
+	genereateResultContainer
+	Look at last RC
+	do logic
+	 */
 
-	set children (amount) {
-		this.children = amount; 
+	let resultContainerList = document.getElementsByClassName("result-container");
+	let resultContainer = resultContainerList[resultContainerList.length - 1];
+
+	let movieContainerList = resultContainer.getElementsByClassName("movie-container");
+
+	if (movieContainerList.length === 10){
+		let lastMovie = movieContainerList[movieContainerList.length - 1]; //= last movie in list somehow;
+
+		if ((window.scrollY + window.innerHeight) > (lastMovie.offsetTop +  lastMovie.offsetHeight)) {
+			console.log(`SCROLLED TO LAST MOVIE`);
+			console.log(lastMovie);
+
+			loadNextPage();
+		}
 	}
-};*/
+	}, 500);
 
-let show = "show";
-handleSidebarLoadingAnimation(show);
+window.addEventListener("scroll", handleEndlessScroll);
+
+loadNextPage
+
+/************
+ MOVE THIS SECTION LATER, ENDLESS SCROLL
+ *********************/
 
 function submitFormListener() {
 	let form = document.getElementById("search-form");
@@ -121,8 +87,11 @@ function submitFormListener() {
 	form.addEventListener("submit", function(event) {
 
 		// clear resultContainer to prevent stacking of results/response messages
-		let resultContainer = document.getElementById("result-container")
-		resultContainer.querySelectorAll('*').forEach(n => n.remove());
+		let resultContainerList = document.getElementsByClassName("result-container");
+
+		for (let i = 0; i < resultContainerList.length; i++) {
+			resultContainerList[i].querySelectorAll('*').forEach(n => n.remove());
+		}
 
 		// in this case the user didnt enter any text in the search box
 		if (searchBox.value.length === 0){
@@ -131,7 +100,7 @@ function submitFormListener() {
 			// generate p saying to enter some text
 			let p = document.createElement("p");
 			p.appendChild(document.createTextNode("Please type something first."));
-			resultContainer.appendChild(p);
+			resultContainerList[0].appendChild(p);
 
 			event.preventDefault();
 		} else {
@@ -216,7 +185,8 @@ function displayResult(result) {
 		document.getElementById("input-hamburger").checked = false;
 	}
 
-	 let resultContainer = document.getElementById("result-container")
+	let resultContainerList = document.getElementsByClassName("result-container");
+	let resultContainer = resultContainerList[0];
 
 	//in this case something went wrong with the search
 	//this is communicated through p outputting string result.Error
@@ -254,7 +224,7 @@ function displayResult(result) {
 				generateMovieCard(entry);
 			});
 
-			alert("problem :(");
+			alert("If this appears, the else case DID fire.");
 
 		}
 	}
@@ -311,12 +281,15 @@ function generateMovieCard(apiCallResult) {
 	then generates a movie card
 	*/
 
-	let resultContainer = document.getElementById("result-container");
+	// With endless scrolling, multiple resultContainers can exist simultaneously
+	// However, it's always the last resultContainer which is intended to be filled with movieCards
+	let resultContainerList = document.getElementsByClassName("result-container");
+	let resultContainer = resultContainerList[resultContainerList.length - 1];
+	//list index starts at 0, but length starts at 1. therefore -1
 
 	let movieContainer = document.createElement('div');
-	movieContainer.classList.add('movie-container'); //TODO: fix. this assigning a unique ID to many divs. shouldnt be possible
-	//movieContainer.style.zIndex = "-1"; //this fixes the movie card being infront of sidebar menu
-	// TODO WHY DID I ASSIGN ZINDEX HERE? CHANGE
+	movieContainer.classList.add('movie-container');
+	//movieContainer.style.zIndex = "-1"; //this fixes the movie card being infront of sidebar menu //not needed
 	resultContainer.appendChild(movieContainer);
 
 	//adding hyperlink, the movie's imdb-page, to movie poster
