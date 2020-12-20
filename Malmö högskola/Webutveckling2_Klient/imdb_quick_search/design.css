@@ -3,16 +3,16 @@
 *****************************/
 
 :root {
-	--dark-beige: #f4cb84;
-	--main-red: #f38363;
-	--strong-red: #ec344a;
-	--secondary-red-alt: #f07563;
-	--accept-green: #00e500;
-	--background-grey: #e7d2cc;
-	--puke-green: #eedebd;
-	--gold: #FFD700;
+	--color-background-main: #f4cb84;
+	--color-background-secondary: #ffe4b3;
+	--color-background-third: #eedebd;
+	--color-background-grey: #e7d2cc;
+	--color-accent-main: #f38363;
+	--color-accent-secondary: #ec344a;
+	--color-accent-whiteblack: black;
 
-	--light-beige: #ffe4b3;
+	--accept-green: #00e500;
+	--gold: #FFD700;
 
 	--icon-distance: 0.5em;
 	--icon-distance-secondary: 0.2em;
@@ -49,9 +49,9 @@ html {
 	-moz-background-size: cover;
 	-o-background-size: cover;
 	background-size: cover;
-	color: black;
+	color: var(--color-accent-whiteblack);
 	font-family: 'Montserrat', sans-serif;
-	background-color: var(--dark-beige);
+	background-color: var(--color-background-main);
 	text-align: center;
 	margin: 0;
 
@@ -87,12 +87,12 @@ a {
 	box-shadow: 0 .2em .3em rgba(0, 0, 0, 0.15);
 	background-color: transparent;
 	background-position: 100%;
-	border: 3px solid var(--main-red);
+	border: 3px solid var(--color-accent-main);
 	transition: all .4s ease-out;
 	background-image: linear-gradient(
 			90deg,
-			var(--main-red) 0%,
-			var(--main-red) 50%,
+			var(--color-accent-main) 0%,
+			var(--color-accent-main) 50%,
 			transparent 50%,
 			transparent 100%
 	);
@@ -122,7 +122,7 @@ a {
 .curved {
 	position: absolute;
 	top: 0;
-	background: var(--light-beige);
+	background: var(--color-background-secondary);
 	height: 550px; /*need to change for mobile too*/
 	border-bottom-left-radius: 40% 5%;
 	border-bottom-right-radius: 40% 5%;
@@ -136,12 +136,12 @@ a {
 
 #navbar{
 	position: fixed;
-	background-color: var(--main-red);
+	background-color: var(--color-accent-main);
 	width: 100%;
 	height: 40px;
 	z-index: 1;
 
-	border-bottom-color: black;
+	border-bottom-color: var(--color-accent-whiteblack);
 	border-bottom-style: solid;
 	border-bottom-width: 3px;
 
@@ -266,7 +266,7 @@ a {
 	width: 7px;
 	height: 7px;
 	border-radius: 50%;
-	background: black;
+	background: var(--color-accent-whiteblack);
 	margin: -4px 0 0 -4px;
 }
 .lds-roller div:nth-child(1) {
@@ -369,7 +369,7 @@ a {
 	width: 100%;
 	height: 160px;
 	margin: 5px auto;
-	background-color: var(--background-grey);
+	background-color: var(--color-background-grey);
 	text-align: left;
 
 	display: flex;
@@ -438,7 +438,7 @@ a {
 	text-align: center;
 	border-bottom-left-radius: 100% ;
 
-	background: var(--main-red);
+	background: var(--color-accent-main);
 
 	flex-grow: 0;
 	flex-shrink: 0;
@@ -503,8 +503,8 @@ a {
 	right: 0px;
 	padding: 5px;
 	font-size: 32px;
-	color: var(--main-red);
-	background-color: var(--background-grey);
+	color: var(--color-accent-main);
+	background-color: var(--color-background-grey);
 	cursor: pointer;
 }
 
@@ -544,7 +544,7 @@ a {
 }
 
 .close {
-	color: var(--main-red);
+	color: var(--color-accent-main);
 	float: right;
 	font-size: 28px;
 	font-weight: bold;
@@ -611,7 +611,7 @@ a {
 }
 
 #favourite-movies-container{
-	background-color: var(--puke-green);
+	background-color: var(--color-background-third);
 	padding: 25px;
 	width: 35%;
 	min-height: 100vh;
@@ -644,15 +644,15 @@ pulse grey on save to list
 }
 
 @-webkit-keyframes pulse {
-	0% {background-color: black;}
+	0% {background-color: var(--color-accent-whiteblack);}
 	50% {background-color: #778899;}
-	100% {background-color: black;}
+	100% {background-color: var(--color-accent-whiteblack);}
 }
 
 @keyframes pulse {
-	0% {background-color: black;}
+	0% {background-color: var(--color-accent-whiteblack);}
 	50% {background-color: #778899;}
-	100% {background-color: black;}
+	100% {background-color: var(--color-accent-whiteblack);}
 }
 
 #favourite-movies-container h3{
@@ -716,7 +716,7 @@ hr {
 	display: block;
 	height: 2px;
 	border: 0;
-	border-top: 2px solid black;
+	border-top: 2px solid var(--color-accent-whiteblack);
 	margin: 1em 0;
 	margin-top: 1.5em;
 	padding: 0;
@@ -742,9 +742,6 @@ hr {
 	justify-content: space-between;
 }
 
-#auth-status{
-}
-
 #auth-welcome{
 	font-family: var(--fontface-title);
 	font-family: AbelRegular;
@@ -757,6 +754,10 @@ hr {
 	font-weight: bold;
 
 	margin-right: var(--icon-distance);
+}
+
+#sign-out{
+	color: var(--color-accent-whiteblack);
 }
 
 #sign-out-container{
@@ -799,7 +800,7 @@ hr {
 	margin-left: 8px;
 	float: right;
 	/*display: none;*/
-	color: var(--main-red);
+	color: var(--color-accent-main);
 }
 
 .favourites-list-rating-span{
@@ -816,7 +817,7 @@ hr {
 		cursor: pointer;
 	}
 	.close:hover{
-		color: black;
+		color: var(--color-accent-whiteblack);
 		text-decoration: none;
 		cursor: pointer;
 	}
@@ -834,12 +835,12 @@ hr {
 
 @media screen and (max-width: 1300px) {
 	.btn{
-		background-color: var(--main-red);
+		background-color: var(--color-accent-main);
 	}
 	.btn:hover {
 		box-shadow: 0 .2em .3em rgba(0, 0, 0, 0.15);
 		background-position: 0;
-		color: black;
+		color: var(--color-accent-whiteblack);
 	}
 	.curved {
 		height: 450px; /*need to change for mobile too*/
@@ -922,5 +923,13 @@ hr {
 	}
 }
 /*https://www.canva.com/colors/color-palette-generator/*/
-/*https://coolors.co/f2c886-ffe4b3-e94f37-ece2d0-f48660   light mode*/
-/*https://coolors.co/d7d0c8-c8c6af-95a78d-bd897e-f87666    dark mode*/
+
+/*
+https://coolors.co/f2c886-ffe4b3-e94f37-ece2d0-f48660
+light mode
+*/
+
+/*
+https://coolors.co/131d2f-001b4c-0d3779-0b799f-16b0c8
+dark mode
+*/

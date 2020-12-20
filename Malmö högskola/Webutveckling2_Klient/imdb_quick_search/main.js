@@ -11,7 +11,7 @@ favouriteMoviesIconListener();
 navbarListeners();
 function navbarListeners() {
 
-	let	dbToggleContainer = document.getElementById("db-toggle-container");
+	let dbToggleContainer = document.getElementById("db-toggle-container");
 	dbToggleContainer.addEventListener("click", function (event) {
 
 		let sidebar = document.getElementById("favourite-movies-container");
@@ -19,20 +19,39 @@ function navbarListeners() {
 	});
 
 	let darkModeToggleContainer = document.getElementById("dark-mode-toggle-container");
-	darkModeToggleContainer.addEventListener("click", function () {
-		toggleDarkMode();
-	});
+	darkModeToggleContainer.addEventListener("click", toggleDarkMode);
 
 }
-
 function toggleDarkMode() {
 
 	let darkModeToggleContainer = document.getElementById("dark-mode-toggle-container");
 	darkModeToggleContainer.classList.toggle("light-mode");
 
+	let logo = document.getElementById("logo").querySelector('img');
 	let root = document.documentElement;
-	root.style.setProperty('--mouse-x', e.clientX + "px");
-	root.style.setProperty('--mouse-y', e.clientY + "px");
+
+	if (!darkModeToggleContainer.classList.contains("light-mode")) {
+		logo.src = "https://www.tbdevstuff.live/Webutveckling2_Klient/popcorn-1614707.png";
+
+		root.style.setProperty('--color-background-main', "#f4cb84");
+		root.style.setProperty('--color-background-secondary', "#ffe4b3");
+		root.style.setProperty('--color-background-third', "#eedebd");
+		root.style.setProperty('--color-background-grey', "#e7d2cc");
+		root.style.setProperty('--color-accent-main', "#f38363");
+		root.style.setProperty('--color-accent-secondary', "#ec344a");
+		root.style.setProperty('--color-accent-whiteblack', "black");
+
+	} else {
+		logo.src = "popcorn-1614707-inverted.png";
+
+		root.style.setProperty('--color-background-main', "#131D2F");
+		root.style.setProperty('--color-background-secondary', "#0D3779");
+		root.style.setProperty('--color-background-third', "#001B4C");
+		root.style.setProperty('--color-background-grey', "#182d33");
+		root.style.setProperty('--color-accent-main', "#0B799F");
+		root.style.setProperty('--color-accent-secondary', "#16B0C8");
+		root.style.setProperty('--color-accent-whiteblack', "white");
+	}
 
 }
 
@@ -823,8 +842,6 @@ let handleEndlessScroll = debounce(function(queryText) {
 	let resultContainer = resultContainerList[resultContainerList.length - 1];
 
 	let movieContainerList = resultContainer.getElementsByClassName("movie-container");
-
-	console.log(movieContainerList.length);
 
 	// every page from the AJAX call holds max 10 movies
 	// therefore, as long as the length is evenly divisible by 10,
