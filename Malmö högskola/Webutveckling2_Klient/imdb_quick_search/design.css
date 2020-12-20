@@ -862,6 +862,7 @@ hr {
 	margin-left: 8px;
 	float: right;
 	/*display: none;*/
+	color: var(--main-red);
 }
 
 .favourites-list-rating-span{
@@ -894,8 +895,8 @@ hr {
 	}
 	#favourite-movie-li .fa-trash:hover {
 		cursor: pointer;
-		color: grey;
-		transition: color 0.2s ease;
+		/*color: grey;*/
+		/*transition: color 0.2s ease;*/
 	}
 
 }
