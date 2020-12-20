@@ -14,9 +14,14 @@ function navbarListeners() {
 	let dbToggleContainer = document.getElementById("db-toggle-container");
 	dbToggleContainer.addEventListener("click", function (event) {
 
-		let sidebar = document.getElementById("favourite-movies-container");
-		sidebar.classList.toggle("hide");
+		let favouriteMoviesContainer = document.getElementById("favourite-movies-container");
+		favouriteMoviesContainer.classList.toggle("hide");
+
 	});
+
+	// this line stops the the children from triggering the click function
+	document.getElementById('favourite-movies-container').addEventListener('click', e => e.stopPropagation());
+
 
 	let darkModeToggleContainer = document.getElementById("dark-mode-toggle-container");
 	darkModeToggleContainer.addEventListener("click", toggleDarkMode);
