@@ -643,10 +643,7 @@ todo: reutrn top visiblity fade when not at top
 	should have done that a long time ago
 *****************************/
 
-#wrapper{
-	display: flex;
-	flex-direction: column;
-}
+
 
 #favourite-movies-container{
 	background-color: var(--color-background-secondary);

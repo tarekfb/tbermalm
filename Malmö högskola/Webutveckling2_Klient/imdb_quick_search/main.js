@@ -7,7 +7,18 @@ submitFormListener();
 showFavouriteMoviesListener();
 favouriteMoviesHamburgerListener();
 favouriteMoviesIconListener();
+handleResponsiveChanges();
 
+function handleResponsiveChanges() {
+	//if mobile user
+
+	if (/Mobi|Android/i.test(navigator.userAgent)){
+		let yourFavouritesSpan = document.getElementById("db-styling-container").querySelector("span");
+		yourFavouritesSpan.classList.add("hide");
+		console.log(yourFavouritesSpan);
+		//TODO: NOT TRIGGERING
+	}
+}
 navbarListeners();
 function navbarListeners() {
 
