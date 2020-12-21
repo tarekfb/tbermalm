@@ -26,6 +26,8 @@
 	--fontsize-title-smallest: 22px;
 	--fontsize-text-large: 16px;
 	--fontsize-text: 13px;
+
+	--fontweight-title: 900;
 }
 
 @font-face {
@@ -77,9 +79,9 @@ a {
 	cursor: pointer;
 
 	/*style text*/
-	font-weight: 700;
+	font-weight: normal;
 	letter-spacing: 2px;
-	font-size: 15px;
+	font-size: var(--fontsize-text-large);
 	text-transform: uppercase;
 
 	/*style the sliding background*/
@@ -104,7 +106,6 @@ a {
 .btn:hover {
 	box-shadow: 0 0 .3em rgba(0, 0, 0, 0.25);
 	background-position: 0;
-	color: #fff;
 }
 
 .hide{
@@ -140,14 +141,11 @@ todo: reutrn top visiblity fade when not at top
 
 #navbar{
 	position: fixed;
-	background-color: var(--color-accent-main);
+	top: 0;
+	background-color: var(--color-background-secondary);
 	width: 100%;
-	height: 40px;
+	height: 80px;
 	z-index: 1;
-
-	border-bottom-color: var(--color-accent-whiteblack);
-	border-bottom-style: solid;
-	border-bottom-width: 3px;
 
 	display: flex;
 	flex-direction: row;
@@ -155,33 +153,57 @@ todo: reutrn top visiblity fade when not at top
 	align-items: center;
 }
 
+#site-name{
+	font-family: var(--fontface-title);
+	font-size: var(--fontsize-title-smaller);
+	font-weight: var(--fontweight-title);
+
+	margin-right: auto;
+	margin-left: var(--icon-distance);
+
+}
+
 .fa-database{
 	font-size: 24px;
-	margin-right: var(--icon-distance-secondary);
-	cursor: pointer;
+	margin-right: var(--icon-distance);
 }
 
-#edit-favourite-movies-icon::before{
-	/*edit icon, for starting to deleting favourites*/
+#db-styling-container:before {
 	font-family: "Font Awesome 5 Free", serif;
-	content: "\f304";
+	content: "\f004";
 	font-style: normal;
-	font-weight: bold;
 	font-size: 20px;
+	margin-right: var(--icon-distance-secondary);
 }
 
-#edit-favourite-movies-icon.confirm-favourite-movies::before{
-	/*confirm icon, for exiting the edit mode*/
-	content: "\f00c";
+#return-to-top-container{
+	margin-left: 30px;
 }
+
+#db-toggle-container {
+	margin-left: 30px;
+}
+
+#db-styling-container {
+	/*remove some of styling from .btn*/
+	padding: 9px 25px;
+	border-radius: 50px;
+	font-weight: normal;
+	letter-spacing: normal;
+	text-transform: none;
+}
+
+
 
 #dark-mode-toggle-container::before{
-	/*edit icon, for starting to deleting favourites*/
+	/*sets icon to moon*/
 	font-family: "Font Awesome 5 Free", serif;
 	content: "\f186";
 	font-style: normal;
 	font-weight: bold;
 	font-size: 20px;
+
+	margin-left: 30px;
 }
 
 #dark-mode-toggle-container.light-mode::before{
@@ -194,10 +216,21 @@ todo: reutrn top visiblity fade when not at top
 	img, title search bar and result container
 *****************************/
 
+#site-title{
+	margin: 25px 0 15px 0;
+}
+
 #title{
+	font-size: var(--fontsize-title);
 	font-family: var(--fontface-title);
-	font-weight: bold;
-	font-size: 60px;
+	font-weight: var(--fontweight-title);
+}
+
+#subtitle-flex-container {
+	display: inline-flex;
+	justify-content: center; /* align horizontal */
+	align-items: center; /* align vertical */
+	height: 46px;
 }
 
 #subtitle{
@@ -231,6 +264,7 @@ todo: reutrn top visiblity fade when not at top
 	width: 35%;
 	background: #f1f1f1;
 }
+
 
 .result-container{
 	margin-top: 10px;
@@ -615,15 +649,18 @@ todo: reutrn top visiblity fade when not at top
 }
 
 #favourite-movies-container{
-	background-color: var(--color-background-third);
-	padding: 25px;
+	background-color: var(--color-background-secondary);
+	padding: 0 25px;
 	width: 35%;
 	min-height: 100vh;
 
+	border-top: black solid 3px;
+	border-left: black solid 3px;
+
 	position: absolute;
-	left: 0;
-	top: 43px;
-	/*navbar-height + navbar-border-width = top*/
+	right: 0;
+	top: 80px;
+	/*#navbar height: x. x = top*/
 
 	overflow-y: auto;
 }
@@ -724,7 +761,7 @@ hr {
 	margin: 1em 0;
 	margin-top: 1.5em;
 	padding: 0;
-	width: calc(275px / 1.2);
+	width: 75%;
 }
 
 /*****************************
@@ -737,7 +774,6 @@ hr {
 */
 
 #firebase-auth-container{
-	margin-top: 40px;
 	font-size: 18px;
 
 	display: flex;
@@ -758,10 +794,6 @@ hr {
 	font-weight: bold;
 
 	margin-right: var(--icon-distance);
-}
-
-#sign-out{
-	color: var(--color-accent-whiteblack);
 }
 
 #sign-out-container{
@@ -817,7 +849,7 @@ hr {
  *****************************/
 
 @media (hover: hover) {
-	#show-favourite-movies:hover, #cancel:hover, #save:hover, #sign-out:hover, #favourite-movie-li .fa-trash:hover {
+	#show-favourite-movies:hover, #cancel:hover, #save:hover, #sign-out:hover, #favourite-movie-li .fa-trash:hover, #return-to-top-container, #dark-mode-toggle-container, #db-toggle-container {
 		cursor: pointer;
 	}
 	.close:hover{
@@ -838,91 +870,132 @@ hr {
  *****************************/
 
 @media screen and (max-width: 1300px) {
-	.btn{
+	.btn {
 		background-color: var(--color-accent-main);
 	}
+
 	.btn:hover {
 		box-shadow: 0 .2em .3em rgba(0, 0, 0, 0.15);
 		background-position: 0;
 		color: var(--color-accent-whiteblack);
 	}
+
 	.curved {
-		height: 450px; /*need to change for mobile too*/
+		height: 450px;
+		/*need to change for mobile too*/
 	}
-	#title{
-		font-size: 30px;
-	}
-	#subtitle{
+
+	#title {
 		font-size: var(--fontsize-title-smallest);
 	}
+
+	#subtitle {
+		font-size: var(--fontsize-text-large);
+		vertical-align: center;
+	}
+
 	#logo img {
+		margin-top: 90px;
+
 		width: 45vw;
 		height: 45vw;
+
+		/*center, prevent #title same line*/
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
 	}
-	#main-search-button{
+
+	#main-search-button {
 		font-size: 18px;
 	}
+
 	.movie-container {
 		width: 94%;
 		height: 160px;
 		margin-top: 15px;
-
 		box-shadow: none;
 		transition-property: none;
 	}
-	.movie-container:hover, .movie-container:focus, .movie-container:active {-webkit-transform: none;
+
+	.movie-container:hover,
+	.movie-container:focus,
+	.movie-container:active {
+		-webkit-transform: none;
 		transform: none;
 		-moz-transform: none;
 		-ms-transform: none;
-
 		/*is this necessary, now that i've used media query for selection of devices with cursors?*/
 	}
+
 	.movie-container img {
 		width: 85px;
 		height: 100%;
 	}
+
 	.movie-container #text {
 		margin: 5px 0 0 5px;
 	}
+
 	.movie-container #text #title-year {
 		font-size: 22px;
 	}
-	.movie-container #text #actors, .movie-container #text #awards {
+
+	.movie-container #text #actors,
+	.movie-container #text #awards {
 		font-size: 14px;
 	}
+
 	.movie-container #rating {
 		padding: 0 9px 0 9px;
 		flex-grow: 0.1;
 		min-width: 13%
 	}
+
 	.movie-container #rating i {
 		font-size: 15px;
 	}
+
 	.movie-container #rating #rating-score {
 		font-size: 22px;
 	}
+
 	.movie-container #rating #rating-max {
 		font-size: 15px;
 		display: none;
 	}
-	.modal-content{
+
+	.modal-content {
 		height: 60px;
 		width: 45%;
 	}
-	.modal-content p{
+
+	.modal-content p {
 		margin-top: 0;
 		font-size: 20px;
 	}
-	.modal-content{
+
+	.modal-content {
 		height: 90px;
 	}
-	#save{
+
+	#save {
 		font-size: var(--fontsize-text);
 	}
-	#favourite-movies-container{
+
+	#favourite-movies-container {
 		width: 100%;
+		border: none;
+		top: 80px;
+
+		left: 0;
+		right: 0;
+		margin-left: auto;
+		margin-right: auto;
+
 	}
-	#favourite-movie-li .fa-trash{
+
+	#favourite-movie-li .fa-trash {
 		font-size: 25px;
 	}
 }

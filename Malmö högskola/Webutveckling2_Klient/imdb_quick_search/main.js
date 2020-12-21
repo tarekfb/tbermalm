@@ -34,9 +34,11 @@ function toggleDarkMode() {
 
 	let logo = document.getElementById("logo").querySelector('img');
 	let root = document.documentElement;
+	let navbar = document.getElementById("navbar");
 
 	if (!darkModeToggleContainer.classList.contains("light-mode")) {
 		logo.src = "https://www.tbdevstuff.live/Webutveckling2_Klient/popcorn-1614707.png";
+		navbar.style.borderColor = "black";
 
 		root.style.setProperty('--color-background-main', "#f4cb84");
 		root.style.setProperty('--color-background-secondary', "#ffe4b3");
@@ -49,10 +51,11 @@ function toggleDarkMode() {
 	} else {
 		logo.src = "popcorn-1614707-inverted.png";
 
+
 		root.style.setProperty('--color-background-main', "#131D2F");
 		root.style.setProperty('--color-background-secondary', "#0D3779");
 		root.style.setProperty('--color-background-third', "#001B4C");
-		root.style.setProperty('--color-background-grey', "#182d33");
+		root.style.setProperty('--color-background-grey', "black");
 		root.style.setProperty('--color-accent-main', "#0B799F");
 		root.style.setProperty('--color-accent-secondary', "#16B0C8");
 		root.style.setProperty('--color-accent-whiteblack', "white");
@@ -298,9 +301,6 @@ function generateMovieCard(apiCallResult) {
 	} else {
 		img.src = apiCallResult.Poster;
 	}
-	//using this to avoid modal box when clicking the movie poster
-	//TODO: change to class
-	img.id = "movie-poster-anchor";
 
 	a.appendChild(img);
 
