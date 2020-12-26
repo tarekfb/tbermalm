@@ -21,12 +21,19 @@
 	<div id="container">
 
 		<nav id="navbar">
+			<span id="site-name">Quix.</span>
+
+			<div id="dark-mode-toggle-container"></div>
+
+			<div id="return-to-top-container">
+				<i class="fas fa-arrow-up"></i>
+			</div>
 
 			<div id="db-toggle-container">
-				<i class="fas fa-database"></i> DB
-
-				<!-- HTML for favourite movies list -->
-				<div id="wrapper"></div>
+				<div id="db-styling-container" class="btn">
+					<span>Your favourites</span>
+				</div>
+				<!-- content for favourite movies list -->
 				<div id="favourite-movies-container" class="hide">
 					<div id="favourite-movies-flex-container">
 						<div id="loading-sidebar" class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
@@ -50,16 +57,6 @@
 				</div>
 			</div>
 
-			<span id="name">Quix.</span>
-
-			<div id="dark-mode-toggle-container">
-
-			</div>
-
-			<div id="return-to-top-container">
-				<i class="fas fa-arrow-up"></i>
-			</div>
-
 		</nav>
 
 		<section class="curved"></section>
@@ -67,8 +64,14 @@
 		<!--Main content: search bar and results-->
 		<div id="main-content-container">
 			<a href="/index.html" id="logo"><img src="https://www.tbdevstuff.live/Webutveckling2_Klient/popcorn-1614707.png" alt="Popcorn logo"></a>
-			<div id="title">Quix.</div>
-			<div id="subtitle">Quickly index IMDB</div>
+
+			<div id="site-title">
+				<span id="title">Quix.</span>
+				<div id="subtitle-flex-container">
+					<span id="subtitle">Quickly index IMDB</span>
+				</div>
+			</div>
+
 			<form id="search-form" method="get" name="search-form" autocomplete="off">
 				<input id="search-box" name="query" type="text" placeholder="Enter movie title..." autofocus><button  id="main-search-button" type="submit" class="btn"><i class="fa fa-search"></i></button>
 			</form>
