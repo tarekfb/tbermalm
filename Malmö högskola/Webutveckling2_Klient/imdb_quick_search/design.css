@@ -52,13 +52,10 @@ html {
 	-o-background-size: cover;
 	background-size: cover;
 	color: var(--color-accent-whiteblack);
-	font-family: 'Montserrat', sans-serif;
-	background-color: var(--color-background-main);
+	font-family: var(--fontface-standard);
+	background-color: var(--color-background-secondary);
 	text-align: center;
 	margin: 0;
-
-	font-family: UbuntuRegular;
-
 }
 html, body, #container, .result-container {
 	height: 100%;
@@ -116,6 +113,11 @@ a {
 
 .show{
 	display: unset;
+}
+
+#container {
+	background: rgb(255,228,179);
+	background: linear-gradient(180deg, rgba(255,228,179,1) 59%, rgba(244,203,132,1) 84%);
 }
 
 /*****************************
@@ -849,6 +851,12 @@ hr {
  *****************************/
 
 @media screen and (max-width: 1300px) {
+	#container {
+		/*this selection lowers the gradient so the upper section is covered by var(bg-sec)*/
+		background: rgb(255, 228, 179);
+		background: linear-gradient(180deg, rgba(255,228,179,1) 51%, rgba(244,203,132,1) 69%);
+
+	}
 	.btn {
 		background-color: var(--color-accent-main);
 	}
