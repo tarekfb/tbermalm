@@ -180,7 +180,7 @@ todo: reutrn top visiblity fade when not at top
 	margin-right: var(--icon-distance-secondary);
 }
 
-#return-to-top-container:before {
+#scroll-to-top-container:before {
 	margin-left: 30px;
 
 	font-family: "Font Awesome 5 Free", serif;
@@ -545,7 +545,7 @@ todo: reutrn top visiblity fade when not at top
 }
 
 .modal-content {
-	background-color: #fefefe;
+	background-color: var(--color-background-secondary);
 	margin: 20% auto;
 	padding: 20px;
 	border: 1px solid #888;
@@ -831,7 +831,7 @@ hr {
  *****************************/
 
 @media (hover: hover) {
-	#show-favourite-movies:hover, #cancel:hover, #save:hover, #sign-out:hover, #favourite-movie-li .fa-trash:hover, #return-to-top-container, #dark-mode-toggle-container, #db-toggle-container {
+	#scroll-to-top-container, #show-favourite-movies:hover, #cancel:hover, #save:hover, #sign-out:hover, #favourite-movie-li .fa-trash:hover, #scroll-to-top-container, #dark-mode-toggle-container, #db-toggle-container {
 		cursor: pointer;
 	}
 	.close:hover{
@@ -880,7 +880,7 @@ hr {
 		font-size: 20px;
 	}
 
-	#return-to-top-container:before {
+	#scroll-to-top-container:before {
 		font-size: 35px;
 	}
 
@@ -979,6 +979,7 @@ hr {
 	.modal-content p {
 		margin-top: 0;
 		font-size: 20px;
+		color: var(--color-accent-whiteblack);
 	}
 
 	.modal-content {
