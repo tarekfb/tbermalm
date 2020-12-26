@@ -163,7 +163,7 @@ todo: reutrn top visiblity fade when not at top
 	font-weight: var(--fontweight-title);
 
 	margin-right: auto;
-	margin-left: var(--icon-distance);
+	margin-left: 3.5%;
 
 }
 
