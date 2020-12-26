@@ -52,13 +52,10 @@ html {
 	-o-background-size: cover;
 	background-size: cover;
 	color: var(--color-accent-whiteblack);
-	font-family: 'Montserrat', sans-serif;
+	font-family: var(--fontface-standard);
 	background-color: var(--color-background-main);
 	text-align: center;
 	margin: 0;
-
-	font-family: UbuntuRegular;
-
 }
 html, body, #container, .result-container {
 	height: 100%;
@@ -118,6 +115,11 @@ a {
 	display: unset;
 }
 
+#container {
+	background: var(--color-background-main);
+	background: linear-gradient(180deg, var(--color-background-secondary) 59%, var(--color-background-main) 84%);
+}
+
 /*****************************
  	section divider
 *****************************/
@@ -157,7 +159,7 @@ todo: reutrn top visiblity fade when not at top
 
 #site-name{
 	font-family: var(--fontface-title);
-	font-size: var(--fontsize-title-smaller);
+	font-size: var(--fontsize-title);
 	font-weight: var(--fontweight-title);
 
 	margin-right: auto;
@@ -165,26 +167,27 @@ todo: reutrn top visiblity fade when not at top
 
 }
 
-.fa-database{
-	font-size: 24px;
-	margin-right: var(--icon-distance);
+#db-toggle-container {
+	margin-left: 30px;
+	margin-right: 30px;
 }
 
 #db-styling-container:before {
 	font-family: "Font Awesome 5 Free", serif;
 	content: "\f004";
 	font-style: normal;
-	font-size: 20px;
+	font-size: 30px;
 	margin-right: var(--icon-distance-secondary);
 }
 
-#return-to-top-container{
+#return-to-top-container:before {
 	margin-left: 30px;
-}
 
-#db-toggle-container {
-	margin-left: 30px;
-	margin-right: 30px;
+	font-family: "Font Awesome 5 Free", serif;
+	content: "\f35b";
+	font-style: normal;
+	font-weight: normal;
+	font-size: 40px;
 }
 
 #db-styling-container {
@@ -201,8 +204,8 @@ todo: reutrn top visiblity fade when not at top
 	font-family: "Font Awesome 5 Free", serif;
 	content: "\f186";
 	font-style: normal;
-	font-weight: bold;
-	font-size: 20px;
+	font-weight: normal;
+	font-size: 40px;
 
 	margin-left: 30px;
 }
@@ -627,7 +630,7 @@ todo: reutrn top visiblity fade when not at top
 #favourite-movies-container{
 
 	/*gradient background, top matching navbar color*/
-	background: var(--color-background-secondary);
+	background: var(--color-background-main);
 	background: linear-gradient(180deg, var(--color-background-secondary) 15%, var(--color-background-main) 54%);
 
 	width: 35%;
@@ -849,6 +852,11 @@ hr {
  *****************************/
 
 @media screen and (max-width: 1300px) {
+	#container {
+		/*this selection lowers the gradient so the upper section is covered by var(bg-sec)*/
+		background: var(--color-background-main);
+		background: linear-gradient(180deg, var(--color-background-secondary) 30%, var(--color-background-main) 58%);
+	}
 	.btn {
 		background-color: var(--color-accent-main);
 	}
@@ -864,6 +872,22 @@ hr {
 		/*need to change for mobile too*/
 	}
 
+	#site-name {
+		font-size: var(--fontsize-title-small);
+	}
+
+	#db-styling-container:before {
+		font-size: 20px;
+	}
+
+	#return-to-top-container:before {
+		font-size: 35px;
+	}
+
+	#dark-mode-toggle-container::before{
+		font-size: 30px;
+	}
+
 	#title {
 		font-size: var(--fontsize-title-smallest);
 	}
@@ -874,8 +898,6 @@ hr {
 	}
 
 	#logo img {
-		margin-top: 90px;
-
 		width: 45vw;
 		height: 45vw;
 

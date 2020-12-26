@@ -11,12 +11,11 @@ handleResponsiveChanges();
 
 function handleResponsiveChanges() {
 	//if mobile user
+	//make "<3 your favourites" in navbar shorten to "<3"
 
 	if (/Mobi|Android/i.test(navigator.userAgent)){
 		let yourFavouritesSpan = document.getElementById("db-styling-container").querySelector("span");
 		yourFavouritesSpan.classList.add("hide");
-		console.log(yourFavouritesSpan);
-		//TODO: NOT TRIGGERING
 	}
 }
 navbarListeners();
