@@ -39,6 +39,7 @@ function navbarListeners() {
 	scrollToTopContainer.addEventListener("click", function () {
 		document.body.scrollTop = 0; // For Safari
 		document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+		window.pageYOffset = 0; // Mobile, some browsers
 	});
 
 }
@@ -50,11 +51,9 @@ function toggleDarkMode() {
 
 	let logo = document.getElementById("logo").querySelector('img');
 	let root = document.documentElement;
-	let cancel = document.getElementById("cancel");
 
 	if (!darkModeToggleContainer.classList.contains("light-mode")) {
 		logo.src = "popcorn-1614707.png";
-		//cancel.style.backgroundColor = "white";
 
 		root.style.setProperty('--color-background-main', "#f4cb84");
 		root.style.setProperty('--color-background-secondary', "#ffe4b3");
@@ -66,7 +65,6 @@ function toggleDarkMode() {
 
 	} else {
 		logo.src = "popcorn-1614707-inverted.png";
-		//cancel.style.backgroundColor = "black";
 
 		root.style.setProperty('--color-background-main', "#131D2F");
 		root.style.setProperty('--color-background-secondary', "#0d3779");
@@ -404,7 +402,15 @@ function generateMovieCard(apiCallResult) {
 	movieContainer.appendChild(saveToFavourites);
 
 	saveToFavourites.addEventListener("click", function (){
-		showAddToFavouritesModalBox(apiCallResult);
+		let signOutContainer =  document.getElementById('sign-out-container');
+
+		if (signOutContainer.style.display === "none"){
+			showDefaultModalBox();
+			console.log("if");
+		} else {
+			console.log("else");
+			showAddToFavouritesModalBox(apiCallResult);
+		}
 	});
 
 	/*
@@ -470,25 +476,36 @@ function showAddToFavouritesModalBox(entryFromAJAX) {
 
 }
 
-function showAlreadyAddedModalBox() {
-	//all of these vars have terrible names
+function showDefaultModalBox() {
 
-	let okay = document.getElementById("okay");
-	let alreadyAdded = document.getElementById("modal-box-already-added");
-	let close = alreadyAdded.getElementsByClassName("close")[0];
+	let okayButton = document.getElementById("okay");
+	let defaultModal = document.getElementById("default-modal");
+	let defaultModalContent = document.getElementById("default-modal-content");
+	let closeButton = defaultModalContent.getElementsByClassName("close")[0];
 
-	alreadyAdded.style.display = "unset";
+	defaultModal.style.display = "unset";
 
-	close.onclick = function() {
-		alreadyAdded.style.display = "none";
+	closeButton.onclick = function() {
+		defaultModal.style.display = "none";da
 	}
 	window.onclick = function(event){
-		if (event.target == alreadyAdded){
-			alreadyAdded.style.display = "none";
+		if (event.target == defaultModal){
+			defaultModal.style.display = "none";
 		}
 	}
-	okay.onclick = function (){
-		alreadyAdded.style.display = "none";
+	okayButton.onclick = function (){
+		defaultModal.style.display = "none";
+	}
+
+	let p = defaultModalContent.querySelector("p");
+	let signOutContainer =  document.getElementById('sign-out-container');
+
+	// these conditions can be adapted to allow for more modals to use this function
+	if (signOutContainer.style.display === "none"){
+		// the div for logging out is set to "none" when user is NOT signed in
+		p.innerHTML = "You are not logged in."
+	} else {
+		p.innerHTML = "This movie is already in your list of favourites.";
 	}
 }
 
@@ -499,7 +516,7 @@ function saveMovieToFavourite(entryFromAJAX) {
 
 	checkIfMovieAlreadyInFavourites(entryFromAJAX).then(function (boolean) {
 		if (boolean){
-			showAlreadyAddedModalBox();
+			showDefaultModalBox();
 		} else {
 			// let favouriteMoviesUL = document.getElementById("favourite-movies-list");
 			//
@@ -513,14 +530,13 @@ function saveMovieToFavourite(entryFromAJAX) {
 			// 	//favouriteMoviesUL.lastElementChild.classList.add("pulse-grey-animation");
 			// }
 
-			// in this case we are certain the list is not empty
+			// in this case we are certain the list is NOT empty
 			let statusOfList = "notEmpty";
 			handlePlaceholderSpan(statusOfList);
 
 			pushFavouriteMovie(entryFromAJAX);
 			readFavouriteMoviesList().then(snapshot => populateFavouriteMoviesList(snapshot));
 		}
-
 	});
 
 }

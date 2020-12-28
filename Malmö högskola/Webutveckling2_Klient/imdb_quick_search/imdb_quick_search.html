@@ -91,15 +91,23 @@
 			</div>
 
 			<!-- modal if movie already in favourites -->
-			<div id="modal-box-already-added" class="modal-box">
-				<div class="modal-content" id="already-in-favourites-modal-content">
+			<div id="default-modal" class="modal-box">
+				<div class="modal-content" id="default-modal-content">
 					<span class="close">&times;</span>
-					<div class="modal-flex-container">
-						<p>This movie is already in your list of favourites.</p>
-							<button type="button" id="okay" class="btn">Okay</button>
-					</div>
+					<p>Something has gone wrong.</p>
+					<button type="button" id="okay" class="btn">Okay</button>
 				</div>
 			</div>
+
+			<!-- modal if user not logged in -->
+			<div id="modal-box-not-logged in" class="modal-box">
+				<div class="modal-content" id="not-logged-in-modal-content">
+					<span class="close">&times;</span>
+					<p>This movie is already in your list of favourites.</p>
+					<button type="button" class="btn">Okay</button>
+				</div>
+			</div>
+
 		</div>
 
 	</div>

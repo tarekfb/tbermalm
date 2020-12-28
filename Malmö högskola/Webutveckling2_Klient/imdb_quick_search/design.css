@@ -595,6 +595,7 @@ todo: reutrn top visiblity fade when not at top
 
 .modal-content p{
 	margin-top: 0px;
+	margin-bottom: 1em;
 	font-size: var(--fontsize-title-smallest);
 }
 
@@ -615,7 +616,7 @@ todo: reutrn top visiblity fade when not at top
 	/*this line doesn't have any effect for some reason*/
 }
 
-#already-in-favourites-modal-content{
+#default-modal-content{
 	height: 120px;
 }
 
@@ -990,8 +991,9 @@ hr {
 
 	.modal-content p {
 		margin-top: 0;
-		font-size: var(--fontsize-text-large)
+		font-size: var(--fontsize-text-large);
 		color: var(--color-accent-whiteblack);
+		margin-bottom: 2em;
 	}
 
 	.modal-buttons-flex-container{
