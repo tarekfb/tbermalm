@@ -546,13 +546,22 @@ todo: reutrn top visiblity fade when not at top
 }
 
 .modal-content {
+	position: relative;
 	background-color: var(--color-background-secondary);
 	margin: 20% auto;
 	padding: 20px;
+	overflow: hidden;
 	border: 1px solid #888;
 	min-width: 20%;
 	width: 20%;
 	height: 80px;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	/* align horizontal */
+	align-items: center;
+	/* align vertical */
 
 	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
 	animation-name: animatetop;
@@ -564,28 +573,24 @@ todo: reutrn top visiblity fade when not at top
 	to {top: 0; opacity: 1}
 }
 
+
 .close {
+	position: absolute;
+	top: 5px;
+	right: 15px;
+
 	color: var(--color-accent-main);
-	float: right;
-	font-size: 28px;
 	font-weight: bold;
-	margin-top: -20px;
-	margin-right: -10px;
+	font-size: 28px;
+
+
+	/*float: right;*/
+	/*margin-top: -20px;*/
+	/*margin-right: -10px;*/
 
 	/* this is such a minor detail
 	but float/margin isnt the best solution.
 	relative/absolute would be better	*/
-}
-
-.modal-flex-container{
-	display: flex;
-	flex-direction: column;
-
-	justify-content: center;
-	/* align horizontal */
-	align-items: center;
-	/* align vertical */
-
 }
 
 .modal-content p{
@@ -594,16 +599,20 @@ todo: reutrn top visiblity fade when not at top
 }
 
 .modal-buttons-flex-container{
+	width: 75%;
+
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
 }
 
 #cancel{
-	background-color: #fefefe;
+	background-color: var(--color-background-secondary);
 	border: none;
-	margin-left: 10px;
-	/*font-size: 16px; this line doesn't have any effect for some reason*/
+	/*margin-left: 3em;*/
+	color: var(--color-accent-whiteblack);
+	font-size: var(--fontsize-text-large);
+	/*this line doesn't have any effect for some reason*/
 }
 
 #already-in-favourites-modal-content{
@@ -852,12 +861,14 @@ hr {
 	responsive design
  *****************************/
 
-@media screen and (max-width: 1300px) {
+@media only screen and (max-width: 767px) and (orientation: portrait) {
+
 	#container {
 		/*this selection lowers the gradient so the upper section is covered by var(bg-sec)*/
 		background: var(--color-background-main);
 		background: linear-gradient(180deg, var(--color-background-secondary) 30%, var(--color-background-main) 58%);
 	}
+
 	.btn {
 		background-color: var(--color-accent-main);
 	}
@@ -979,8 +990,12 @@ hr {
 
 	.modal-content p {
 		margin-top: 0;
-		font-size: 20px;
+		font-size: var(--fontsize-text-large)
 		color: var(--color-accent-whiteblack);
+	}
+
+	.modal-buttons-flex-container{
+		width: 95%;
 	}
 
 	.modal-content {

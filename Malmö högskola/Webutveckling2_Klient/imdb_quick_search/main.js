@@ -42,6 +42,7 @@ function navbarListeners() {
 	});
 
 }
+
 function toggleDarkMode() {
 
 	let darkModeToggleContainer = document.getElementById("dark-mode-toggle-container");
@@ -49,9 +50,11 @@ function toggleDarkMode() {
 
 	let logo = document.getElementById("logo").querySelector('img');
 	let root = document.documentElement;
+	let cancel = document.getElementById("cancel");
 
 	if (!darkModeToggleContainer.classList.contains("light-mode")) {
 		logo.src = "popcorn-1614707.png";
+		//cancel.style.backgroundColor = "white";
 
 		root.style.setProperty('--color-background-main', "#f4cb84");
 		root.style.setProperty('--color-background-secondary', "#ffe4b3");
@@ -63,9 +66,10 @@ function toggleDarkMode() {
 
 	} else {
 		logo.src = "popcorn-1614707-inverted.png";
+		//cancel.style.backgroundColor = "black";
 
 		root.style.setProperty('--color-background-main', "#131D2F");
-		root.style.setProperty('--color-background-secondary', "#0D3779");
+		root.style.setProperty('--color-background-secondary', "#0d3779");
 		root.style.setProperty('--color-background-third', "#001B4C");
 		root.style.setProperty('--color-background-grey', "black");
 		root.style.setProperty('--color-accent-main', "#0B799F");
