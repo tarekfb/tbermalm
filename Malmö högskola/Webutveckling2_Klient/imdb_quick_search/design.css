@@ -382,6 +382,7 @@ todo: reutrn top visiblity fade when not at top
 *****************************/
 
 .movie-container {
+	position: relative;
 	width: 65%;
 	height: 165px;
 	background-color: var(--color-background-grey);

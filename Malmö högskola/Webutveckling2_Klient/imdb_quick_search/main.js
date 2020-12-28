@@ -235,7 +235,7 @@ function displayResult(result) {
 
 			// does case never fires, can probably safely remove
 
-			alert("If this appears, the else case DID fire.");
+			console.log("Well, this isn't suppose to happen...");
 
 		}
 	}
