@@ -163,7 +163,7 @@ todo: reutrn top visiblity fade when not at top
 	font-weight: var(--fontweight-title);
 
 	margin-right: auto;
-	margin-left: var(--icon-distance);
+	margin-left: 3.5%;
 
 }
 
@@ -180,7 +180,7 @@ todo: reutrn top visiblity fade when not at top
 	margin-right: var(--icon-distance-secondary);
 }
 
-#return-to-top-container:before {
+#scroll-to-top-container:before {
 	margin-left: 30px;
 
 	font-family: "Font Awesome 5 Free", serif;
@@ -382,6 +382,7 @@ todo: reutrn top visiblity fade when not at top
 *****************************/
 
 .movie-container {
+	position: relative;
 	width: 65%;
 	height: 165px;
 	background-color: var(--color-background-grey);
@@ -545,13 +546,22 @@ todo: reutrn top visiblity fade when not at top
 }
 
 .modal-content {
-	background-color: #fefefe;
+	position: relative;
+	background-color: var(--color-background-secondary);
 	margin: 20% auto;
 	padding: 20px;
+	overflow: hidden;
 	border: 1px solid #888;
 	min-width: 20%;
 	width: 20%;
 	height: 80px;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	/* align horizontal */
+	align-items: center;
+	/* align vertical */
 
 	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
 	animation-name: animatetop;
@@ -563,49 +573,50 @@ todo: reutrn top visiblity fade when not at top
 	to {top: 0; opacity: 1}
 }
 
+
 .close {
+	position: absolute;
+	top: 5px;
+	right: 15px;
+
 	color: var(--color-accent-main);
-	float: right;
-	font-size: 28px;
 	font-weight: bold;
-	margin-top: -20px;
-	margin-right: -10px;
+	font-size: 28px;
+
+
+	/*float: right;*/
+	/*margin-top: -20px;*/
+	/*margin-right: -10px;*/
 
 	/* this is such a minor detail
 	but float/margin isnt the best solution.
 	relative/absolute would be better	*/
 }
 
-.modal-flex-container{
-	display: flex;
-	flex-direction: column;
-
-	justify-content: center;
-	/* align horizontal */
-	align-items: center;
-	/* align vertical */
-
-}
-
 .modal-content p{
 	margin-top: 0px;
+	margin-bottom: 1em;
 	font-size: var(--fontsize-title-smallest);
 }
 
 .modal-buttons-flex-container{
+	width: 75%;
+
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
 }
 
 #cancel{
-	background-color: #fefefe;
+	background-color: var(--color-background-secondary);
 	border: none;
-	margin-left: 10px;
-	/*font-size: 16px; this line doesn't have any effect for some reason*/
+	/*margin-left: 3em;*/
+	color: var(--color-accent-whiteblack);
+	font-size: var(--fontsize-text-large);
+	/*this line doesn't have any effect for some reason*/
 }
 
-#already-in-favourites-modal-content{
+#default-modal-content{
 	height: 120px;
 }
 
@@ -831,7 +842,7 @@ hr {
  *****************************/
 
 @media (hover: hover) {
-	#show-favourite-movies:hover, #cancel:hover, #save:hover, #sign-out:hover, #favourite-movie-li .fa-trash:hover, #return-to-top-container, #dark-mode-toggle-container, #db-toggle-container {
+	#scroll-to-top-container, #show-favourite-movies:hover, #cancel:hover, #save:hover, #sign-out:hover, #favourite-movie-li .fa-trash:hover, #scroll-to-top-container, #dark-mode-toggle-container, #db-toggle-container {
 		cursor: pointer;
 	}
 	.close:hover{
@@ -851,12 +862,14 @@ hr {
 	responsive design
  *****************************/
 
-@media screen and (max-width: 1300px) {
+@media only screen and (max-width: 767px) and (orientation: portrait) {
+
 	#container {
 		/*this selection lowers the gradient so the upper section is covered by var(bg-sec)*/
 		background: var(--color-background-main);
 		background: linear-gradient(180deg, var(--color-background-secondary) 30%, var(--color-background-main) 58%);
 	}
+
 	.btn {
 		background-color: var(--color-accent-main);
 	}
@@ -880,7 +893,7 @@ hr {
 		font-size: 20px;
 	}
 
-	#return-to-top-container:before {
+	#scroll-to-top-container:before {
 		font-size: 35px;
 	}
 
@@ -978,7 +991,13 @@ hr {
 
 	.modal-content p {
 		margin-top: 0;
-		font-size: 20px;
+		font-size: var(--fontsize-text-large);
+		color: var(--color-accent-whiteblack);
+		margin-bottom: 2em;
+	}
+
+	.modal-buttons-flex-container{
+		width: 95%;
 	}
 
 	.modal-content {

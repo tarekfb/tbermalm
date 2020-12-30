@@ -32,11 +32,18 @@ function navbarListeners() {
 	// this line stops the the children from triggering the click function
 	document.getElementById('favourite-movies-container').addEventListener('click', e => e.stopPropagation());
 
-
 	let darkModeToggleContainer = document.getElementById("dark-mode-toggle-container");
 	darkModeToggleContainer.addEventListener("click", toggleDarkMode);
 
+	let scrollToTopContainer = document.getElementById("scroll-to-top-container");
+	scrollToTopContainer.addEventListener("click", function () {
+		document.body.scrollTop = 0; // For Safari
+		document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+		window.pageYOffset = 0; // Mobile, some browsers
+	});
+
 }
+
 function toggleDarkMode() {
 
 	let darkModeToggleContainer = document.getElementById("dark-mode-toggle-container");
@@ -44,11 +51,9 @@ function toggleDarkMode() {
 
 	let logo = document.getElementById("logo").querySelector('img');
 	let root = document.documentElement;
-	let navbar = document.getElementById("navbar");
 
 	if (!darkModeToggleContainer.classList.contains("light-mode")) {
-		logo.src = "https://www.tbdevstuff.live/Webutveckling2_Klient/popcorn-1614707.png";
-		navbar.style.borderColor = "black";
+		logo.src = "popcorn-1614707.png";
 
 		root.style.setProperty('--color-background-main', "#f4cb84");
 		root.style.setProperty('--color-background-secondary', "#ffe4b3");
@@ -61,9 +66,8 @@ function toggleDarkMode() {
 	} else {
 		logo.src = "popcorn-1614707-inverted.png";
 
-
 		root.style.setProperty('--color-background-main', "#131D2F");
-		root.style.setProperty('--color-background-secondary', "#0D3779");
+		root.style.setProperty('--color-background-secondary', "#0d3779");
 		root.style.setProperty('--color-background-third', "#001B4C");
 		root.style.setProperty('--color-background-grey', "black");
 		root.style.setProperty('--color-accent-main', "#0B799F");
@@ -76,15 +80,13 @@ function toggleDarkMode() {
 let show = "show";
 handleSidebarLoadingAnimation(show);
 
-/*TODO: make press escape will escape modals */
-
 function submitFormListener() {
 	let form = document.getElementById("search-form");
 	let searchBox = document.getElementById("search-box");
 
 	form.addEventListener("submit", function(event) {
 
-		// clear resultContainer to prevent stacking of results/response messages
+		// this clears resultContainer to prevent stacking of results/response messages
 		let resultContainerList = document.getElementsByClassName("result-container");
 
 		for (let i = 0; i < resultContainerList.length; i++) {
@@ -109,8 +111,12 @@ function submitFormListener() {
 			let loadingResults = document.getElementById("loading-results");
 			loadingResults.style.display = "inline-block";
 
-			//pass whatever the user entered into the search box as a query to the apiHandler
+			// this passes whatever the user entered into the search box as a query to the apiHandler
 			let queryText = form.elements.query.value;
+
+			// cleaning up search text (atm only from unwanted spaces)
+			queryText = cleanSearchText(queryText);
+
 			apiHandlerByTitle(encodeURI(queryText));
 
 			event.preventDefault();
@@ -221,19 +227,39 @@ function displayResult(result) {
 
 			generateMovieCard(result);
 		} else {
-			//in this case the search came through and is a list of movies
-			//we display result properties
+			// //in this case the search came through and is a list of movies
+			// //we display result properties
+			//
+			// //executed for every item in array: Result.Search
+			// result.Search.forEach(function(entry) {
+			// 	generateMovieCard(entry);
+			// });
 
-			//executed for every item in array: Result.Search
-			result.Search.forEach(function(entry) {
-				generateMovieCard(entry);
-			});
+			// does case never fires, can probably safely remove
 
-			alert("If this appears, the else case DID fire.");
+			console.log("Well, this isn't suppose to happen...");
 
 		}
 	}
 
+}
+
+function cleanSearchText(text) {
+
+	// this checks if first char is space
+	if (text[0] === " "){
+		text = text.substring(1);
+	}
+
+	// this checks checks if last character is a space
+	if (text[text.length - 1] === " "){
+		text = text.substring(0, text.length - 1);
+	}
+
+	// regex to delete multiple white spaces in a row
+	text = text.replace(/\s{2,}/g,' ');
+
+	return text;
 }
 function handleSidebarLoadingAnimation(hideShow){
 	// there are currently two issues with this function
@@ -376,50 +402,16 @@ function generateMovieCard(apiCallResult) {
 	movieContainer.appendChild(saveToFavourites);
 
 	saveToFavourites.addEventListener("click", function (){
-		showAddToFavouritesModalBox(apiCallResult);
-	});
+		let signOutContainer =  document.getElementById('sign-out-container');
 
-	// movieContainer.addEventListener("click", function (event){
-	// 	if (event.target.id == "movie-poster-anchor"){
-	// 		//do nothing
-	// 		//since we just want to avoid showing modalbox in this case
-	// 	} else {
-	// 		showAddToFavouritesModalBox(apiCallResult);
-	// 	}
-	// });
-
-
-	//resultChildrenCounter.set = 5;
-	//console.log(Math.random() + " and " + resultChildrenCounter.get);
-
-	/*
-	console.log(Math.random() + " and " + resultChildrenCounter.children);
-	//is it setting counter to 0 every time i call it?
-
-	let intVar = 5;
-	let something = {
-		x : 10,
-		y : function() {
-			x = 15;
-			console.log(`från inuti ${x}`);
+		if (signOutContainer.style.display === "none"){
+			showDefaultModalBox();
+			console.log("if");
+		} else {
+			console.log("else");
+			showAddToFavouritesModalBox(apiCallResult);
 		}
-	};
-	something.y;
-		console.log(`från utanför XXXX ${something.x}`);
-	*/
-
-
-	//TODO: wip
-	//what I want to do is make sure the height of the sidebar menu matches the page height
-	//this is one of the times where page height is changed
-	//which means i can use tihs to test:
-	//the page height get increased by each movie card
-	//then match height of sidebar to parent (#container)
-	//do this for each card. but doesn't work atm.
-	//might be because sidebar div is absolute, so the background-color doesn't render where there is no content
-
-	let favouriteMovieContainer = document.getElementById('favourite-movies-container')
-	favouriteMovieContainer.style.height = favouriteMovieContainer.parentNode.offsetHeight+"px";
+	});
 
 	/*
 	when I wrote this function I initially had some really awkward design
@@ -484,25 +476,36 @@ function showAddToFavouritesModalBox(entryFromAJAX) {
 
 }
 
-function showAlreadyAddedModalBox() {
-	//all of these vars have terrible names
+function showDefaultModalBox() {
 
-	let okay = document.getElementById("okay");
-	let alreadyAdded = document.getElementById("modal-box-already-added");
-	let close = alreadyAdded.getElementsByClassName("close")[0];
+	let okayButton = document.getElementById("okay");
+	let defaultModal = document.getElementById("default-modal");
+	let defaultModalContent = document.getElementById("default-modal-content");
+	let closeButton = defaultModalContent.getElementsByClassName("close")[0];
 
-	alreadyAdded.style.display = "unset";
+	defaultModal.style.display = "unset";
 
-	close.onclick = function() {
-		alreadyAdded.style.display = "none";
+	closeButton.onclick = function() {
+		defaultModal.style.display = "none";da
 	}
 	window.onclick = function(event){
-		if (event.target == alreadyAdded){
-			alreadyAdded.style.display = "none";
+		if (event.target == defaultModal){
+			defaultModal.style.display = "none";
 		}
 	}
-	okay.onclick = function (){
-		alreadyAdded.style.display = "none";
+	okayButton.onclick = function (){
+		defaultModal.style.display = "none";
+	}
+
+	let p = defaultModalContent.querySelector("p");
+	let signOutContainer =  document.getElementById('sign-out-container');
+
+	// these conditions can be adapted to allow for more modals to use this function
+	if (signOutContainer.style.display === "none"){
+		// the div for logging out is set to "none" when user is NOT signed in
+		p.innerHTML = "You are not logged in."
+	} else {
+		p.innerHTML = "This movie is already in your list of favourites.";
 	}
 }
 
@@ -513,7 +516,7 @@ function saveMovieToFavourite(entryFromAJAX) {
 
 	checkIfMovieAlreadyInFavourites(entryFromAJAX).then(function (boolean) {
 		if (boolean){
-			showAlreadyAddedModalBox();
+			showDefaultModalBox();
 		} else {
 			// let favouriteMoviesUL = document.getElementById("favourite-movies-list");
 			//
@@ -527,14 +530,13 @@ function saveMovieToFavourite(entryFromAJAX) {
 			// 	//favouriteMoviesUL.lastElementChild.classList.add("pulse-grey-animation");
 			// }
 
-			// in this case we are certain the list is not empty
+			// in this case we are certain the list is NOT empty
 			let statusOfList = "notEmpty";
 			handlePlaceholderSpan(statusOfList);
 
 			pushFavouriteMovie(entryFromAJAX);
 			readFavouriteMoviesList().then(snapshot => populateFavouriteMoviesList(snapshot));
 		}
-
 	});
 
 }
@@ -750,11 +752,17 @@ function displayFavouriteMovies(snapshot) {
 	//this fun takes the movies that the user saved to favourites -->
 	// --> and displays them in the main result container
 
-	//this clears whatever result is previously displayed
-	let resultContainer = document.getElementById('result-container');
-	resultContainer.innerHTML = "";
+	// this clears resultContainer to prevent stacking of results/response messages
+	let resultContainerList = document.getElementsByClassName("result-container");
+	for (let i = 0; i < resultContainerList.length; i++) {
+		resultContainerList[i].querySelectorAll('*').forEach(n => n.remove());
+	}
 
-	//this generates a list of movies in the main result container, based on imdbID
+	let favouriteMoviesContainer = document.getElementById("favourite-movies-container");
+	favouriteMoviesContainer.classList.toggle("hide");
+
+
+	// this generates a list of movies in the main result container, based on imdbID
 	snapshot.forEach(function (snapshot) {
 		let key = snapshot.key;
 		apiHandlerByImdbID(key);

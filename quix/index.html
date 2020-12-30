@@ -25,7 +25,7 @@
 
 			<div id="dark-mode-toggle-container"></div>
 
-			<div id="return-to-top-container">
+			<div id="scroll-to-top-container">
 			</div>
 
 			<div id="db-toggle-container">
@@ -62,7 +62,7 @@
 
 		<!--Main content: search bar and results-->
 		<div id="main-content-container">
-			<a href="/index.html" id="logo"><img src="https://www.tbdevstuff.live/Webutveckling2_Klient/popcorn-1614707.png" alt="Popcorn logo"></a>
+			<a href="/index.html" id="logo"><img src="/images/popcorn-1614707.png" alt="Logo"></a>
 
 			<div id="site-title">
 				<span id="title">Quix.</span>
@@ -81,28 +81,33 @@
 
 			<!-- modal to allow for saving a movie -->
 			<div id="modal-box" class="modal-box">
-				<!-- Modal content -->
 				<div class="modal-content">
 					<span class="close">&times;</span>
-					<div class="modal-flex-container">
-						<p>Save to favourites?</p>
-						<div class="modal-buttons-flex-container">
-							<button type="button" id="save" class="btn">Save</button> <button type="button" id="cancel">Cancel</button>
-						</div>
+					<p>Save to favourites?</p>
+					<div class="modal-buttons-flex-container">
+						<button type="button" id="save" class="btn">Save</button> <button type="button" id="cancel">Cancel</button>
 					</div>
 				</div>
 			</div>
 
 			<!-- modal if movie already in favourites -->
-			<div id="modal-box-already-added" class="modal-box">
-				<div class="modal-content" id="already-in-favourites-modal-content">
+			<div id="default-modal" class="modal-box">
+				<div class="modal-content" id="default-modal-content">
 					<span class="close">&times;</span>
-					<div class="modal-flex-container">
-						<p>This movie is already in your list of favourites.</p>
-							<button type="button" id="okay" class="btn">Okay</button>
-					</div>
+					<p>Something has gone wrong.</p>
+					<button type="button" id="okay" class="btn">Okay</button>
 				</div>
 			</div>
+
+			<!-- modal if user not logged in -->
+			<div id="modal-box-not-logged in" class="modal-box">
+				<div class="modal-content" id="not-logged-in-modal-content">
+					<span class="close">&times;</span>
+					<p>This movie is already in your list of favourites.</p>
+					<button type="button" class="btn">Okay</button>
+				</div>
+			</div>
+
 		</div>
 
 	</div>
