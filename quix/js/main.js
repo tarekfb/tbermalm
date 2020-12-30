@@ -461,39 +461,6 @@ function displayFavouriteMovies(snapshot) {
 
 }
 
-function toggleDarkMode() {
-
-  let darkModeToggleContainer = document.getElementById("dark-mode-toggle-container");
-  darkModeToggleContainer.classList.toggle("light-mode");
-
-  let logo = document.getElementById("logo-container").querySelector('img');
-  let root = document.documentElement;
-
-  if (!darkModeToggleContainer.classList.contains("light-mode")) {
-    logo.src = "img/popcorn-1614707.png";
-
-    root.style.setProperty('--color-background-main', "#f4cb84");
-    root.style.setProperty('--color-background-secondary', "#ffe4b3");
-    root.style.setProperty('--color-background-third', "#eedebd");
-    root.style.setProperty('--color-background-grey', "#e7d2cc");
-    root.style.setProperty('--color-accent-main', "#f38363");
-    root.style.setProperty('--color-accent-secondary', "#ec344a");
-    root.style.setProperty('--color-accent-whiteblack', "black");
-
-  } else {
-    logo.src = "img/popcorn-1614707-inverted.png";
-
-    root.style.setProperty('--color-background-main', "#131D2F");
-    root.style.setProperty('--color-background-secondary', "#0d3779");
-    root.style.setProperty('--color-background-third', "#001B4C");
-    root.style.setProperty('--color-background-grey', "black");
-    root.style.setProperty('--color-accent-main', "#0B799F");
-    root.style.setProperty('--color-accent-secondary', "#16B0C8");
-    root.style.setProperty('--color-accent-whiteblack', "white");
-  }
-
-}
-
 /*******************************************
  * Functions for modal boxes
  *******************************************/
@@ -686,56 +653,72 @@ function saveMovieToFavourite(entryFromAJAX) {
 }
 
 function populateFavouriteMoviesList(snapshot) {
-  // this function populates the favmovieslist in the sidebar
-  // it takes a snapshot of the current user's branch that was passed from readFavouriteMoviesList() in dataAccessLayer.js
-  // it then creates the html elements
-
-  let favouriteMoviesUL = document.getElementById("favourite-movies-list");
-  favouriteMoviesUL.querySelectorAll('*').forEach(n => n.remove());
-
-  snapshot.forEach(function (snapshot){
-
-    let movieObj = snapshot.val();
-
-    let li = document.createElement("li");
-    li.id = 'favourite-movie-li';
-    favouriteMoviesUL.appendChild(li);
-
-    let a = document.createElement("a");
-    let url = "https://www.imdb.com/title/" + snapshot.key + "/";
-    a.href = url;
-    a.classList.add("favourite-movie-anchor");
-    li.appendChild(a);
-
-    a.appendChild(document.createTextNode(
-      movieObj.title + " (" + movieObj.year + ")"
-    ));
-
-    //this span displays rating-star and rating
-    let ratingSpan = document.createElement("span");
-    ratingSpan.innerHTML = "<i class=\"fa fa-star\" aria-hidden=\"true\"></i>";
-    ratingSpan.appendChild(document.createTextNode(" " + movieObj.rating));
-    ratingSpan.classList.add("favourites-list-rating-span");
-
-    a.appendChild(ratingSpan);
-
-    let deleteSpan = document.createElement("span");
-    deleteSpan.innerHTML = "<i class=\"fas fa-trash\"></i>";
-    deleteSpan.classList.add("delete-span");
-    //TODO: add this span next to the entire list item, instead of inside the list item?
-    //to avoid it jumping rows when no space left
-
-    if (deleteSpan.style.display != "none"){
-      deleteSpan.style.display = "none";
-    }
-
-    deleteSpan.addEventListener("click", function (event){
-      deleteMovie(snapshot.key, event);
-    });
-
-    li.appendChild(deleteSpan);
-
-  });
+  // // this function populates the favmovieslist in the sidebar
+  // // it takes a snapshot of the current user's branch that was passed from readFavouriteMoviesList() in dataAccessLayer.js
+  // // it then creates the html elements
+  //
+  // let favouriteMoviesUL = document.getElementById("favourite-movies-list");
+  // favouriteMoviesUL.querySelectorAll('*').forEach(n => n.remove());
+  //
+  // snapshot.forEach(function (snapshot){
+  //
+  //   let movieObj = snapshot.val();
+  //
+  //   let flexContainerDiv = document.createElement("div");
+  //   flexContainerDiv.classList.add("list-flex-container");
+  //   favouriteMoviesUL.appendChild(flexContainerDiv);
+  //
+  //   // following code is for listing of movie
+  //
+  //   let li = document.createElement("li");
+  //   li.classList.add('favourite-movie-li');
+  //   flexContainerDiv.appendChild(li);
+  //
+  //   let a = document.createElement("a");
+  //   let url = "https://www.imdb.com/title/" + snapshot.key + "/";
+  //   a.href = url;
+  //   a.classList.add("favourite-movie-anchor");
+  //   li.appendChild(a);
+  //
+  //   a.appendChild(document.createTextNode(
+  //     movieObj.title + " (" + movieObj.year + ")"
+  //   ));
+  //
+  //   // this span displays rating-star and rating
+  //   let ratingSpan = document.createElement("span");
+  //   ratingSpan.innerHTML = "<i class=\"fa fa-star\" aria-hidden=\"true\"></i>";
+  //   ratingSpan.appendChild(document.createTextNode(" " + movieObj.rating));
+  //   ratingSpan.classList.add("favourites-list-rating-span");
+  //
+  //   a.appendChild(ratingSpan);
+  //
+  //   // following code is for the delete functionality
+  //
+  //   let deleteSpanContainerDiv = document.createElement("div");
+  //   deleteSpanContainerDiv.classList.add("delete-span-container");
+  //   flexContainerDiv.appendChild(deleteSpanContainerDiv);
+  //
+  //   let deleteSpan = document.createElement("span");
+  //   deleteSpan.innerHTML = "<i class=\"fas fa-trash\"></i>";
+  //   deleteSpan.classList.add("delete-span");
+  //
+  //   if (!deleteSpan.classList.contains("invisible")){
+  //     deleteSpan.classList.add("invisible");
+  //   }
+  //   //TODO: add this span next to the entire list item, instead of inside the list item?
+  //   //to avoid it jumping rows when no space left
+  //   //
+  //   // if (deleteSpan.style.visibility != "hidden"){
+  //   //   deleteSpan.style.display = "hidden";
+  //   // }
+  //
+  //   deleteSpan.addEventListener("click", function (event){
+  //     deleteMovie(snapshot.key, event);
+  //   });
+  //
+  //   deleteSpanContainerDiv.appendChild(deleteSpan);
+  //
+  // });
 }
 
 function handlePlaceholderSpan(statusOfList) {
@@ -795,16 +778,16 @@ function editOrConfirmStateChange() {
   let editFavouriteMovies = document.getElementById("edit-favourite-movies-icon");
   editFavouriteMovies.classList.toggle("confirm-favourite-movies");
 
-  let favouriteMoviesUL = document.getElementById("favourite-movies-list");
-  let deleteSpanList = favouriteMoviesUL.getElementsByClassName("delete-span");
-  for (let i = 0; i < deleteSpanList.length; i++) {
-    if (deleteSpanList[i].style.display == "none"){
-      deleteSpanList[i].style.display = "unset";
-    } else {
-      deleteSpanList[i].style.display = "none";
-      readFavouriteMoviesList().then(snapshot => populateFavouriteMoviesList(snapshot));
-    }
+  let deleteSpanList = document.getElementsByClassName("delete-span-container");
+    for (let i = 0; i < deleteSpanList.length; i++) {
+
+      deleteSpanList[i].classList.toggle("invisible");
+
+      if (!deleteSpanList[i].classList.contains("invisible")){
+       //readFavouriteMoviesList().then(snapshot => populateFavouriteMoviesList(snapshot));
+      }
   }
+
 
 }
 
@@ -814,7 +797,7 @@ function deleteMovie(imdbID, event) {
   //this is faster than repopulating
   //and if we repopulate, it'll reset the trashcan state (hide vs show)
 
-  //in future, can implement a successfull/failure check in dal
+  //in future, can implement a successful/failure check in dal
   //and then return true/false to deletemovie, and call deleteFromFav.then
 
   deleteFromFavouriteMovies(imdbID);
@@ -918,6 +901,43 @@ function requestNewPage(queryText) {
   //executing api request
   omdbAPI.open("get", omdbURL, true);
   omdbAPI.send();
+
+}
+
+/*******************************************
+ * Other
+ *******************************************/
+
+function toggleDarkMode() {
+
+  let darkModeToggleContainer = document.getElementById("dark-mode-toggle-container");
+  darkModeToggleContainer.classList.toggle("light-mode");
+
+  let logo = document.getElementById("logo-container").querySelector('img');
+  let root = document.documentElement;
+
+  if (!darkModeToggleContainer.classList.contains("light-mode")) {
+    logo.src = "img/popcorn-1614707.png";
+
+    root.style.setProperty('--color-background-main', "#f4cb84");
+    root.style.setProperty('--color-background-secondary', "#ffe4b3");
+    root.style.setProperty('--color-background-third', "#eedebd");
+    root.style.setProperty('--color-background-grey', "#e7d2cc");
+    root.style.setProperty('--color-accent-main', "#f38363");
+    root.style.setProperty('--color-accent-secondary', "#ec344a");
+    root.style.setProperty('--color-accent-whiteblack', "black");
+
+  } else {
+    logo.src = "img/popcorn-1614707-inverted.png";
+
+    root.style.setProperty('--color-background-main', "#131D2F");
+    root.style.setProperty('--color-background-secondary', "#0d3779");
+    root.style.setProperty('--color-background-third', "#001B4C");
+    root.style.setProperty('--color-background-grey', "black");
+    root.style.setProperty('--color-accent-main', "#0B799F");
+    root.style.setProperty('--color-accent-secondary', "#16B0C8");
+    root.style.setProperty('--color-accent-whiteblack', "white");
+  }
 
 }
 

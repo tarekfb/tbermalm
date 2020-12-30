@@ -679,14 +679,18 @@ todo: reutrn top visiblity fade when not at top
   background: linear-gradient(180deg, var(--color-background-secondary) 15%, var(--color-background-main) 54%);
 
   width: 35%;
-  min-height: 100vh;
-
   position: absolute;
   right: 0;
   top: 80px;
   /*#navbar height: top*/
 
+  /*
+  this code allows for scrolling
+  height is needed, for code to know when to overflow
+  */
+  height: calc(100vh - 80px);
   overflow-y: auto;
+  overflow-x: hidden;
 }
 
 #favourite-movies-flex-container{
@@ -696,8 +700,6 @@ todo: reutrn top visiblity fade when not at top
   justify-content: start;
 
   padding: 0px 25px;
-
-/*  todo: insert abs pos div saying "quix."*/
 
 }
 
@@ -786,6 +788,8 @@ pulse grey on save to list
   /*background-color: var(--main-yellow);*/
   /*padding: 3px;*/
   font-size: 18px;
+
+  margin-bottom: 1em;
 }
 #show-favourite-movies::before{
   font-family: "Font Awesome 5 Free", serif;
@@ -860,25 +864,41 @@ hr {
 /*https://www.youtube.com/watch?v=dhLcyBCJ0r4*/
 
 #favourite-movies-list{
-  list-style-type: none;
   font-size: 18px;
 }
 
-#favourite-movie-li{
+.list-flex-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
   margin-bottom: 20px;
-  text-align: left;
+  min-width: 85%;
+  width: auto;
+
+/*  todo, stop width overflow*/
 }
 
-#favourite-movie-li .fa-star {
+.favourite-movie-li{
+  /*margin-bottom: 20px;*/
+  margin-right: auto;
+}
+
+.delete-span-container {
+  margin-left: auto;
+  /*flex-basis: 33%;*/
+  /*flex-shrink: 0;*/
+}
+
+.favourite-movie-li .fa-star {
   color: var(--gold);
   margin-left: 8px;
   text-shadow: 0 0 3px #000;
 }
 
-#favourite-movie-li .fa-trash{
-  margin-left: 8px;
-  float: right;
-  /*display: none;*/
+.favourite-movie-li .fa-trash{
+  /*margin-left: 8px;*/
   color: var(--color-accent-main);
 }
 
@@ -892,7 +912,7 @@ hr {
    ========================================================================== */
 
 @media (hover: hover) {
-  .favourite-movie-anchor:hover, #scroll-to-top-container, #show-favourite-movies:hover, #cancel:hover, #save:hover, #sign-out:hover, #favourite-movie-li .fa-trash:hover, #scroll-to-top-container, #dark-mode-toggle-container, #db-toggle-container {
+  .favourite-movie-anchor:hover, #scroll-to-top-container, #show-favourite-movies:hover, #cancel:hover, #save:hover, #sign-out:hover, .favourite-movie-li .fa-trash:hover, #scroll-to-top-container, #dark-mode-toggle-container, #db-toggle-container {
     cursor: pointer;
   }
   .close:hover{
@@ -1061,7 +1081,7 @@ hr {
 
   }
 
-  #favourite-movie-li .fa-trash {
+  .favourite-movie-li .fa-trash {
     font-size: 25px;
   }
 }
