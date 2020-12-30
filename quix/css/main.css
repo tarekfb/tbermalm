@@ -234,7 +234,7 @@ todo: reutrn top visiblity fade when not at top
 
 #title-container {
   position: sticky;
-  top: 15px;
+  top: 20px;
   z-index: 1;
   display: inline-block;
   margin-top: 1em;
@@ -732,7 +732,7 @@ pulse grey on save to list
   position: fixed;
   left: 50%;
   transform: translate(-50%, 0);
-  top: 15px;
+  top: 20px;
   /*margin-top: 1em;*/
 }
 
