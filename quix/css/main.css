@@ -133,6 +133,29 @@ video {
   vertical-align: middle;
 }
 
+/*
+scrollbar
+ */
+
+body::-webkit-scrollbar {
+  width: 12px;               /* width of the entire scrollbar */
+}
+
+body::-webkit-scrollbar-track {
+  background: orange;        /* color of the tracking area */
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: #0000ff;    /* color of the scroll thumb */
+  border-radius: 20px;       /* roundness of the scroll thumb */
+  border: 3px solid orange;  /* creates padding around scroll thumb */
+}
+
+body {
+  scrollbar-width: thin;          /* "auto" or "thin" */
+  scrollbar-color: blue orange;   /* scroll thumb and track */
+}
+
 /* ==========================================================================
    Helper classes
    ========================================================================== */
@@ -640,22 +663,6 @@ todo: reutrn top visiblity fade when not at top
   height: 120px;
 }
 
-/*****************************
-	designing the div that hold favourite movies and its contents
-
-	using this as hamburger menu design //NOT USING ANYMORE, SEE COMMENTS BELOW
-	https://codepen.com/erikterwan/pen/EVzeRP
-
-	in hindsight, this design structure was a terrible choice
-	should've went with flexbox design
-	but rest of webpage sort of relies upon this, here and there
-	so it's a lesson learnt for future projects: dont use hacky solutions from the web
-
-	another update, a month or so after the comment above:
-	i finally got rid of the hacky input-toggle solution
-	should have done that a long time ago
-*****************************/
-
 /* ==========================================================================
   Designing the div that hold favourite movies and its contents
 
@@ -688,6 +695,7 @@ todo: reutrn top visiblity fade when not at top
   this code allows for scrolling
   height is needed, for code to know when to overflow
   */
+
   height: calc(100vh - 80px);
   overflow-y: auto;
   overflow-x: hidden;
@@ -700,7 +708,6 @@ todo: reutrn top visiblity fade when not at top
   justify-content: start;
 
   padding: 0px 25px;
-
 }
 
 /*
@@ -812,6 +819,65 @@ hr {
 }
 
 /* ==========================================================================
+   Designing the list
+   ========================================================================== */
+
+/*https://www.youtube.com/watch?v=dhLcyBCJ0r4*/
+
+#title-and-list-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#favourite-movies-list{
+  font-size: 18px;
+
+}
+
+.list-flex-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 20px;
+  min-width: 100%;
+
+  background-color: var(--color-background-grey);
+  padding: 15px;
+
+/*  todo, stop width overflow*/
+}
+
+.favourite-movie-li{
+  /*margin-bottom: 20px;*/
+  margin-right: auto;
+  text-align: left;
+}
+
+.delete-span-container {
+  margin-left: auto;
+  /*flex-basis: 33%;*/
+  /*flex-shrink: 0;*/
+}
+
+.favourite-movie-li .fa-star {
+  color: var(--gold);
+  margin-left: 8px;
+  text-shadow: 0 0 3px #000;
+}
+
+.favourite-movie-li .fa-trash{
+  /*margin-left: 8px;*/
+  color: var(--color-accent-main);
+}
+
+.favourites-list-rating-span{
+  white-space: nowrap;
+}
+
+/* ==========================================================================
    FirebaseAuth
    ========================================================================== */
 
@@ -855,55 +921,6 @@ hr {
   content: "\f2f5";
 
   margin-right: var(--icon-distance);
-}
-
-/* ==========================================================================
-   Designing the list
-   ========================================================================== */
-
-/*https://www.youtube.com/watch?v=dhLcyBCJ0r4*/
-
-#favourite-movies-list{
-  font-size: 18px;
-}
-
-.list-flex-container{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-
-  margin-bottom: 20px;
-  min-width: 85%;
-  width: auto;
-
-/*  todo, stop width overflow*/
-}
-
-.favourite-movie-li{
-  /*margin-bottom: 20px;*/
-  margin-right: auto;
-}
-
-.delete-span-container {
-  margin-left: auto;
-  /*flex-basis: 33%;*/
-  /*flex-shrink: 0;*/
-}
-
-.favourite-movie-li .fa-star {
-  color: var(--gold);
-  margin-left: 8px;
-  text-shadow: 0 0 3px #000;
-}
-
-.favourite-movie-li .fa-trash{
-  /*margin-left: 8px;*/
-  color: var(--color-accent-main);
-}
-
-.favourites-list-rating-span{
-  white-space: nowrap;
 }
 
 /* ==========================================================================
