@@ -1,132 +1,153 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html class="no-js" lang="">
+
 <head>
+  <meta charset="utf-8">
+  <title>Quix.</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<title>Quix.</title>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <meta property="og:title" content="">
+  <meta property="og:type" content="">
+  <meta property="og:url" content="">
+  <meta property="og:image" content="">
 
-	<link href="design.css" rel="stylesheet" type="text/css">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
-	<link rel="preconnect" href="https://fonts.gstatic.com">
-	<link href="https://fonts.googleapis.com/css2?family=Limelight&display=swap" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css2?family=Calistoga&display=swap" rel="stylesheet">
-	<link rel="shortcut icon" href="popcorn-1614707.ico">
-	<link rel="shortcut icon" href="#" />
-	<link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.7.1/firebase-ui-auth.css" />
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="apple-touch-icon" href="icon.png">
+  <link rel="shortcut icon" href="popcorn-1614707.ico">
 
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.7.1/firebase-ui-auth.css" />
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Limelight&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Calistoga&display=swap" rel="stylesheet">
+
+  <meta name="theme-color" content="#fafafa">
 </head>
+
 <body>
 
-	<div id="container">
+  <!-- Content -->
+  <div id="container">
 
-		<nav id="navbar">
-			<span id="site-name">Quix.</span>
+    <nav id="navbar">
+      <span id="site-name">Quix.</span>
+      <div id="dark-mode-toggle-container"></div>
+      <div id="scroll-to-top-container">
+      </div>
+      <div id="db-toggle-container">
+        <div id="db-styling-container" class="btn">
+          <span>Your favourites</span>
+        </div>
+        <!-- content for favourite movies list -->
+        <div id="favourite-movies-container" class="hide">
+          <div id="favourite-movies-flex-container">
+            <div id="loading-sidebar" class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+            <div id="firebase-auth-container">
+              <div id="firebaseui-signup-container"></div>
+              <div id="auth-status">
+                <span id="auth-welcome"></span><span id="auth-name"></span>
+              </div>
+              <button id="sign-out-container" class="btn">
+                <span id="sign-out">Log out</span>
+              </button>
+            </div>
+            <hr>
+            <div id="title-and-list-container">
+              <h3>Your favourites</h3><span id="icon-container"><span id="edit-favourite-movies-icon" class="btn"></span></span>
+              <span id="empty-list-placeholder">No favourites. Try adding one by clicking on a movie!</span>
+              <div id="favourite-movies-list"></div>
+              <button type="button" id="show-favourite-movies" class="btn">Show</button>
+            </div>
+          </div>
+        </div>
+      </div>
 
-			<div id="dark-mode-toggle-container"></div>
+    </nav>
 
-			<div id="scroll-to-top-container">
-			</div>
+    <!--Main content: search bar and results-->
+    <div id="main-content-container">
+      <a href="/index.html" id="logo"><img src="/img/popcorn-1614707.png" alt="Logo"></a>
 
-			<div id="db-toggle-container">
-				<div id="db-styling-container" class="btn">
-					<span>Your favourites</span>
-				</div>
-				<!-- content for favourite movies list -->
-				<div id="favourite-movies-container" class="hide">
-					<div id="favourite-movies-flex-container">
-						<div id="loading-sidebar" class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
-						<div id="firebase-auth-container">
-							<div id="firebaseui-signup-container"></div>
-							<div id="auth-status">
-								<span id="auth-welcome"></span><span id="auth-name"></span>
-							</div>
-							<button id="sign-out-container" class="btn">
-								<span id="sign-out">Log out</span>
-							</button>
-						</div>
-						<hr>
-						<div id="title-and-list-container">
-							<h3>Your favourites</h3><span id="icon-container"><span id="edit-favourite-movies-icon" class="btn"></span></span>
-							<span id="empty-list-placeholder">No favourites. Try adding one by clicking on a movie!</span>
-							<div id="favourite-movies-list"></div>
-							<button type="button" id="show-favourite-movies" class="btn">Show</button>
-						</div>
-					</div>
-				</div>
-			</div>
+      <div id="site-title">
+        <span id="title">Quix.</span>
+        <div id="subtitle-flex-container">
+          <span id="subtitle">Quickly index IMDB</span>
+        </div>
+      </div>
 
-		</nav>
+      <form id="search-form" method="get" name="search-form" autocomplete="off">
+        <input id="search-box" name="query" type="text" placeholder="Enter movie title..." autofocus><button  id="main-search-button" type="submit" class="btn"><i class="fa fa-search"></i></button>
+      </form>
 
-<!--		<section class="curved"></section>-->
+      <div id="loading-results" class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
 
-		<!--Main content: search bar and results-->
-		<div id="main-content-container">
-			<a href="/index.html" id="logo"><img src="/images/popcorn-1614707.png" alt="Logo"></a>
+      <div class="result-container"></div>
 
-			<div id="site-title">
-				<span id="title">Quix.</span>
-				<div id="subtitle-flex-container">
-					<span id="subtitle">Quickly index IMDB</span>
-				</div>
-			</div>
+      <!-- modal to allow for saving a movie -->
+      <div id="modal-box" class="modal-box">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <p>Save to favourites?</p>
+          <div class="modal-buttons-flex-container">
+            <button type="button" id="save" class="btn">Save</button> <button type="button" id="cancel">Cancel</button>
+          </div>
+        </div>
+      </div>
 
-			<form id="search-form" method="get" name="search-form" autocomplete="off">
-				<input id="search-box" name="query" type="text" placeholder="Enter movie title..." autofocus><button  id="main-search-button" type="submit" class="btn"><i class="fa fa-search"></i></button>
-			</form>
+      <!-- modal if movie already in favourites -->
+      <div id="default-modal" class="modal-box">
+        <div class="modal-content" id="default-modal-content">
+          <span class="close">&times;</span>
+          <p>Something has gone wrong.</p>
+          <button type="button" id="okay" class="btn">Okay</button>
+        </div>
+      </div>
 
-			<div id="loading-results" class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+      <!-- modal if user not logged in -->
+      <div id="modal-box-not-logged in" class="modal-box">
+        <div class="modal-content" id="not-logged-in-modal-content">
+          <span class="close">&times;</span>
+          <p>This movie is already in your list of favourites.</p>
+          <button type="button" class="btn">Okay</button>
+        </div>
+      </div>
 
-			<div class="result-container"></div>
+    </div>
 
-			<!-- modal to allow for saving a movie -->
-			<div id="modal-box" class="modal-box">
-				<div class="modal-content">
-					<span class="close">&times;</span>
-					<p>Save to favourites?</p>
-					<div class="modal-buttons-flex-container">
-						<button type="button" id="save" class="btn">Save</button> <button type="button" id="cancel">Cancel</button>
-					</div>
-				</div>
-			</div>
+  </div>
 
-			<!-- modal if movie already in favourites -->
-			<div id="default-modal" class="modal-box">
-				<div class="modal-content" id="default-modal-content">
-					<span class="close">&times;</span>
-					<p>Something has gone wrong.</p>
-					<button type="button" id="okay" class="btn">Okay</button>
-				</div>
-			</div>
+  <!-- End of content -->
 
-			<!-- modal if user not logged in -->
-			<div id="modal-box-not-logged in" class="modal-box">
-				<div class="modal-content" id="not-logged-in-modal-content">
-					<span class="close">&times;</span>
-					<p>This movie is already in your list of favourites.</p>
-					<button type="button" class="btn">Okay</button>
-				</div>
-			</div>
+  <!-- Scripts -->
 
-		</div>
+  <script src="js/vendor/modernizr-3.11.2.min.js"></script>
+  <script src="js/plugins.js"></script>
+  <script async src="js/main.js" type="text/javascript" defer></script>
+  <script src="js/dataAccessLayer.js" type="text/javascript" defer></script>
 
-	</div>
+  <!--Firebase tags-->
+
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-app.js"></script>
+
+  <!-- Firebase products
+       https://firebase.google.com/docs/web/setup#available-libraries -->
+  <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-database.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-analytics.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/ui/4.7.1/firebase-ui-auth.js"></script>
+
+  <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
+  <script>
+    window.ga = function () { ga.q.push(arguments) }; ga.q = []; ga.l = +new Date;
+    ga('create', 'UA-XXXXX-Y', 'auto'); ga('set', 'anonymizeIp', true); ga('set', 'transport', 'beacon'); ga('send', 'pageview')
+  </script>
+  <script src="https://www.google-analytics.com/analytics.js" async></script>
 
 </body>
 
-<!--Firebase tags-->
-
-<!-- The core Firebase JS SDK is always required and must be listed first -->
-<script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-app.js"></script>
-
-<!-- Firebase products
-     https://firebase.google.com/docs/web/setup#available-libraries -->
-<script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-database.js"></script>
-<script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-analytics.js"></script>
-<script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-auth.js"></script>
-<script src="https://www.gstatic.com/firebasejs/ui/4.7.1/firebase-ui-auth.js"></script>
-
-<!--Custom scripts-->
-<script src="dataAccessLayer.js" type="text/javascript" defer></script>
-<script async src="main.js" type="text/javascript" defer></script>
 </html>
