@@ -470,7 +470,7 @@ function toggleDarkMode() {
   let root = document.documentElement;
 
   if (!darkModeToggleContainer.classList.contains("light-mode")) {
-    logo.src = "../img/popcorn-1614707.png";
+    logo.src = "img/popcorn-1614707.png";
 
     root.style.setProperty('--color-background-main', "#f4cb84");
     root.style.setProperty('--color-background-secondary', "#ffe4b3");
@@ -481,7 +481,7 @@ function toggleDarkMode() {
     root.style.setProperty('--color-accent-whiteblack', "black");
 
   } else {
-    logo.src = "../img/popcorn-1614707-inverted.png";
+    logo.src = "img/popcorn-1614707-inverted.png";
 
     root.style.setProperty('--color-background-main', "#131D2F");
     root.style.setProperty('--color-background-secondary', "#0d3779");
