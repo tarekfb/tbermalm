@@ -2,23 +2,19 @@
 
 const API_KEY = '5e65d4a0&s';
 
-//functions to init page
+/*******************************************
+ * Listeners and functions to init page
+ *******************************************/
+
 submitFormListener();
 showFavouriteMoviesListener();
-favouriteMoviesHamburgerListener();
 favouriteMoviesIconListener();
+navbarListeners();
 handleResponsiveChanges();
 
-function handleResponsiveChanges() {
-  //if mobile user
-  //make "<3 your favourites" in navbar shorten to "<3"
+let show = "show";
+handleSidebarLoadingAnimation(show);
 
-  if (/Mobi|Android/i.test(navigator.userAgent)){
-    let yourFavouritesSpan = document.getElementById("db-styling-container").querySelector("span");
-    yourFavouritesSpan.classList.add("hide");
-  }
-}
-navbarListeners();
 function navbarListeners() {
 
   let dbToggleContainer = document.getElementById("db-toggle-container");
@@ -27,6 +23,11 @@ function navbarListeners() {
     let favouriteMoviesContainer = document.getElementById("favourite-movies-container");
     favouriteMoviesContainer.classList.toggle("hide");
 
+    //if mobile user
+    if (/Mobi|Android/i.test(navigator.userAgent)) {
+      let title = document.getElementById("title");
+      title.classList.toggle("hide");
+    }
   });
 
   // this line stops the the children from triggering the click function
@@ -43,42 +44,6 @@ function navbarListeners() {
   });
 
 }
-
-function toggleDarkMode() {
-
-  let darkModeToggleContainer = document.getElementById("dark-mode-toggle-container");
-  darkModeToggleContainer.classList.toggle("light-mode");
-
-  let logo = document.getElementById("logo").querySelector('img');
-  let root = document.documentElement;
-
-  if (!darkModeToggleContainer.classList.contains("light-mode")) {
-    logo.src = "../img/popcorn-1614707.png";
-
-    root.style.setProperty('--color-background-main', "#f4cb84");
-    root.style.setProperty('--color-background-secondary', "#ffe4b3");
-    root.style.setProperty('--color-background-third', "#eedebd");
-    root.style.setProperty('--color-background-grey', "#e7d2cc");
-    root.style.setProperty('--color-accent-main', "#f38363");
-    root.style.setProperty('--color-accent-secondary', "#ec344a");
-    root.style.setProperty('--color-accent-whiteblack', "black");
-
-  } else {
-    logo.src = "../img/popcorn-1614707-inverted.png";
-
-    root.style.setProperty('--color-background-main', "#131D2F");
-    root.style.setProperty('--color-background-secondary', "#0d3779");
-    root.style.setProperty('--color-background-third', "#001B4C");
-    root.style.setProperty('--color-background-grey', "black");
-    root.style.setProperty('--color-accent-main', "#0B799F");
-    root.style.setProperty('--color-accent-secondary', "#16B0C8");
-    root.style.setProperty('--color-accent-whiteblack', "white");
-  }
-
-}
-
-let show = "show";
-handleSidebarLoadingAnimation(show);
 
 function submitFormListener() {
   let form = document.getElementById("search-form");
@@ -124,6 +89,65 @@ function submitFormListener() {
   });
 }
 
+function showFavouriteMoviesListener() {
+  //this function allows us to resolve the promise given by readFavMovList in dal
+  //and pass the snapshot to displayFavMovies
+
+  let showFavouriteMoviesBtn = document.getElementById("show-favourite-movies");
+  showFavouriteMoviesBtn.addEventListener("click", function (){
+
+    // this code shows the loading animation div
+    let loadingResults = document.getElementById("loading-results");
+    loadingResults.style.display = "inline-block";
+
+    readFavouriteMoviesList().then(snapshot => displayFavouriteMovies(snapshot));
+  });
+}
+
+function favouriteMoviesIconListener() {
+  let editFavouriteMovies = document.getElementById("edit-favourite-movies-icon");
+  editFavouriteMovies.addEventListener("click", editOrConfirmStateChange);
+
+  //following code was educational but can be replaced with one line
+  //therefore doing so, but leaving code here, in comments
+
+  //this code forces the 'edit' icon on page reload
+  //the sessionStorage will expire on each page reload
+
+  // editFavouriteMovies.classList.remove("confirm-favourite-movies");
+  // sessionStorage.setItem("notEditing", "true");
+
+  //localStorage does NOT expire on page reload
+
+  // window.onload = function() {
+  // 	let notEditing = localStorage.getItem('notEditing');
+  // 	if (notEditing === 'true'){
+  // 		editFavouriteMovies.classList.remove("confirm-favourite-movies");
+  // 		}
+  // 	}
+  // }
+
+  //this code forces the 'edit' icon on page reload
+  editFavouriteMovies.classList.remove("confirm-favourite-movies");
+}
+
+function handleResponsiveChanges() {
+  //if mobile user
+  //make "<3 your favourites" in navbar shorten to "<3"
+
+  if (/Mobi|Android/i.test(navigator.userAgent)){
+    let yourFavouritesSpan = document.getElementById("db-styling-container").querySelector("span");
+    yourFavouritesSpan.classList.add("hide");
+  } else {
+    let siteTitleFavouriteMovies = document.getElementById("site-title-favourite-movies");
+    siteTitleFavouriteMovies.classList.toggle("hide");
+  }
+}
+
+/*******************************************
+ * omdbAPI
+ *******************************************/
+
 function apiHandlerByTitle(queryText) {
   //this function queries the omdbAPI by title
 
@@ -164,6 +188,7 @@ function apiHandlerByTitle(queryText) {
   omdbAPI.send();
 
 }
+
 function apiHandlerByImdbID(imdbID) {
   //this function queries the omdbAPI by imdbID
 
@@ -182,6 +207,31 @@ function apiHandlerByImdbID(imdbID) {
   omdbAPI.open("get", omdbURL, true);
   omdbAPI.send();
 }
+
+function cleanSearchText(text) {
+  // this functions clears a string of unwanted space
+  // it is used when entering a movie title incorrectly, such as " batman"
+
+  // this checks if first char is space
+  if (text[0] === " "){
+    text = text.substring(1);
+  }
+
+  // this checks checks if last character is a space
+  if (text[text.length - 1] === " "){
+    text = text.substring(0, text.length - 1);
+  }
+
+  // regex to delete multiple white spaces in a row
+  text = text.replace(/\s{2,}/g,' ');
+
+  return text;
+
+}
+
+/*******************************************
+ * Functions for generating content in result-container
+ *******************************************/
 
 function displayResult(result) {
   //hiding the loading div
@@ -242,66 +292,6 @@ function displayResult(result) {
     }
   }
 
-}
-
-function cleanSearchText(text) {
-
-  // this checks if first char is space
-  if (text[0] === " "){
-    text = text.substring(1);
-  }
-
-  // this checks checks if last character is a space
-  if (text[text.length - 1] === " "){
-    text = text.substring(0, text.length - 1);
-  }
-
-  // regex to delete multiple white spaces in a row
-  text = text.replace(/\s{2,}/g,' ');
-
-  return text;
-}
-function handleSidebarLoadingAnimation(hideShow){
-  // there are currently two issues with this function
-  // first:
-  //	something is displaying the title-and-list-container
-  //	before this fun has a chance to display them
-  //	at an appreciate time (meaning, when the animation will hide)
-  //	therefore, it's showing both the loading anim and the container at the same time
-  //  need to locate whats (programmatically?) setting the container to display
-
-  // second:
-  //	the sidebar content is displayed upon page load
-  //  just after that, this fun is called, and hides them
-  //  so it shows --> hides bcus of this fun --> shows, when db finished loading
-  // let loadingSidebar = document.getElementById("loading-sidebar");
-  //
-  // let firebaseAuthContainer = document.getElementById("firebase-auth-container");
-  // let titleAndListContainer =  document.getElementById("title-and-list-container");
-  // let favouriteMovieContentContainer = document.getElementById('favourite-movies-content-container');
-  // let hr = favouriteMovieContentContainer.querySelectorAll('hr');
-  //
-  // if (hideShow === "show"){
-  // 	console.log("show");
-  //
-  // 	firebaseAuthContainer.style.display = "none";
-  // 	titleAndListContainer.style.display = "none";
-  // 	hr.forEach(function (n) {
-  // 		n.style.display = "none";
-  // 	});
-  // 	loadingSidebar.style.display = "block";
-  //
-  // } else if (hideShow === "hide"){
-  //
-  // 	console.log("hide");
-  // 	loadingSidebar.style.display = "none";
-  //
-  // 	firebaseAuthContainer.style.display = "unset";
-  // 	titleAndListContainer.style.display = "unset";
-  // 	hr.forEach(function (n) {
-  // 		n.style.display = "unset";
-  // 	});
-  // }
 }
 
 function generateMovieCard(apiCallResult) {
@@ -449,6 +439,65 @@ function generateMovieCard(apiCallResult) {
 
 }
 
+function displayFavouriteMovies(snapshot) {
+  //this fun takes the movies that the user saved to favourites -->
+  // --> and displays them in the main result container
+
+  // this clears resultContainer to prevent stacking of results/response messages
+  let resultContainerList = document.getElementsByClassName("result-container");
+  for (let i = 0; i < resultContainerList.length; i++) {
+    resultContainerList[i].querySelectorAll('*').forEach(n => n.remove());
+  }
+
+  let favouriteMoviesContainer = document.getElementById("favourite-movies-container");
+  favouriteMoviesContainer.classList.toggle("hide");
+
+
+  // this generates a list of movies in the main result container, based on imdbID
+  snapshot.forEach(function (snapshot) {
+    let key = snapshot.key;
+    apiHandlerByImdbID(key);
+  });
+
+}
+
+function toggleDarkMode() {
+
+  let darkModeToggleContainer = document.getElementById("dark-mode-toggle-container");
+  darkModeToggleContainer.classList.toggle("light-mode");
+
+  let logo = document.getElementById("logo-container").querySelector('img');
+  let root = document.documentElement;
+
+  if (!darkModeToggleContainer.classList.contains("light-mode")) {
+    logo.src = "../img/popcorn-1614707.png";
+
+    root.style.setProperty('--color-background-main', "#f4cb84");
+    root.style.setProperty('--color-background-secondary', "#ffe4b3");
+    root.style.setProperty('--color-background-third', "#eedebd");
+    root.style.setProperty('--color-background-grey', "#e7d2cc");
+    root.style.setProperty('--color-accent-main', "#f38363");
+    root.style.setProperty('--color-accent-secondary', "#ec344a");
+    root.style.setProperty('--color-accent-whiteblack', "black");
+
+  } else {
+    logo.src = "../img/popcorn-1614707-inverted.png";
+
+    root.style.setProperty('--color-background-main', "#131D2F");
+    root.style.setProperty('--color-background-secondary', "#0d3779");
+    root.style.setProperty('--color-background-third', "#001B4C");
+    root.style.setProperty('--color-background-grey', "black");
+    root.style.setProperty('--color-accent-main', "#0B799F");
+    root.style.setProperty('--color-accent-secondary', "#16B0C8");
+    root.style.setProperty('--color-accent-whiteblack', "white");
+  }
+
+}
+
+/*******************************************
+ * Functions for modal boxes
+ *******************************************/
+
 //showing the modal box for saving movies
 function showAddToFavouritesModalBox(entryFromAJAX) {
   let span = document.getElementsByClassName("close")[0];
@@ -508,6 +557,101 @@ function showDefaultModalBox() {
     p.innerHTML = "This movie is already in your list of favourites.";
   }
 }
+
+/*******************************************
+ * Google Firebase and favourite-movies-container
+ *******************************************/
+
+function authStateChanged(firebaseUser) {
+  //this fun is called when the fireBase user changes state (sign in or out)
+  //a fun in DAL is called at that point
+  //that fun calls this fun and passes either the firebaseUser
+  //the firebaseUser has properties on SIGN IN
+  //the firebaseUser is null on LOG OFF
+
+  let firebaseUISignupContainer = document.getElementById("firebaseui-signup-container");
+  let authStatus = document.getElementById("auth-status");
+  let authWelcome = document.getElementById('auth-welcome');
+  let authName = document.getElementById("auth-name");
+  let signOutContainer =  document.getElementById('sign-out-container');
+  let titleAndListContainer =  document.getElementById("title-and-list-container");
+  let favouriteMoviesContainer = document.getElementById('favourite-movies-container');
+  let hr = favouriteMoviesContainer.querySelectorAll('hr');
+
+  if (firebaseUser){
+    firebaseUISignupContainer.style.display = "none";
+    signOutContainer.onclick = firebaseSignOut;
+    signOutContainer.style.display = "unset";
+    titleAndListContainer.style.display = "unset";
+
+    if (firebaseUser.displayName == null){
+      authWelcome.innerHTML = 'Welcome, ';
+      authName.innerHTML = 'Guest';
+    } else{
+      authWelcome.innerHTML = 'Welcome, ';
+      authName.innerHTML = firebaseUser.displayName;
+    }
+    authStatus.style.display = "unset";
+
+    hr.forEach(function (n) {
+      n.style.display = "unset";
+    });
+
+  } else {
+    firebaseUISignupContainer.style.display = "unset";
+    authStatus.style.display = "none";
+    signOutContainer.style.display = "none";
+    titleAndListContainer.style.display = "none";
+
+    hr.forEach(function (n) {
+      n.style.display = "none";
+    });
+  }
+}
+
+function handleSidebarLoadingAnimation(hideShow){
+  // there are currently two issues with this function
+  // first:
+  //	something is displaying the title-and-list-container
+  //	before this fun has a chance to display them
+  //	at an appreciate time (meaning, when the animation will hide)
+  //	therefore, it's showing both the loading anim and the container at the same time
+  //  need to locate whats (programmatically?) setting the container to display
+
+  // second:
+  //	the sidebar content is displayed upon page load
+  //  just after that, this fun is called, and hides them
+  //  so it shows --> hides bcus of this fun --> shows, when db finished loading
+  // let loadingSidebar = document.getElementById("loading-sidebar");
+  //
+  // let firebaseAuthContainer = document.getElementById("firebase-auth-container");
+  // let titleAndListContainer =  document.getElementById("title-and-list-container");
+  // let favouriteMovieContentContainer = document.getElementById('favourite-movies-content-container');
+  // let hr = favouriteMovieContentContainer.querySelectorAll('hr');
+  //
+  // if (hideShow === "show"){
+  // 	console.log("show");
+  //
+  // 	firebaseAuthContainer.style.display = "none";
+  // 	titleAndListContainer.style.display = "none";
+  // 	hr.forEach(function (n) {
+  // 		n.style.display = "none";
+  // 	});
+  // 	loadingSidebar.style.display = "block";
+  //
+  // } else if (hideShow === "hide"){
+  //
+  // 	console.log("hide");
+  // 	loadingSidebar.style.display = "none";
+  //
+  // 	firebaseAuthContainer.style.display = "unset";
+  // 	titleAndListContainer.style.display = "unset";
+  // 	hr.forEach(function (n) {
+  // 		n.style.display = "unset";
+  // 	});
+  // }
+}
+
 
 function saveMovieToFavourite(entryFromAJAX) {
   //TODO: update to work with firebase db, see below
@@ -594,24 +738,6 @@ function populateFavouriteMoviesList(snapshot) {
   });
 }
 
-function favouriteMoviesHamburgerListener() {
-  // whenever the user opens the sidebar menu with favourite movies
-  // this will update list with values from db
-  // necessary to call every time because -->
-  // --> user could've added favourites while closed
-
-  //TODO update to work with navbar instead of input-hamburger
-  // let inputHamburgerCheckbox = document.getElementById("input-hamburger");
-  //
-  // inputHamburgerCheckbox.addEventListener( 'change', function() {
-  // 	if (this.checked) {
-  // 		if (getFirebaseAuth().currentUser != null){
-  // 			readFavouriteMoviesList().then(snapshot => populateFavouriteMoviesList(snapshot));
-  // 		}
-  // 	}
-  // });
-}
-
 function handlePlaceholderSpan(statusOfList) {
   // this fun takes a string that indicates whether the favlist is empty, !empty, or unknown
   // in the case of empty || !empty, hide/show divs etc
@@ -660,34 +786,6 @@ function handlePlaceholderSpan(statusOfList) {
 
 }
 
-function favouriteMoviesIconListener() {
-  let editFavouriteMovies = document.getElementById("edit-favourite-movies-icon");
-  editFavouriteMovies.addEventListener("click", editOrConfirmStateChange);
-
-  //following code was educational but can be replaced with one line
-  //therefore doing so, but leaving code here, in comments
-
-  //this code forces the 'edit' icon on page reload
-  //the sessionStorage will expire on each page reload
-
-  // editFavouriteMovies.classList.remove("confirm-favourite-movies");
-  // sessionStorage.setItem("notEditing", "true");
-
-  //localStorage does NOT expire on page reload
-
-  // window.onload = function() {
-  // 	let notEditing = localStorage.getItem('notEditing');
-  // 	if (notEditing === 'true'){
-  // 		editFavouriteMovies.classList.remove("confirm-favourite-movies");
-  // 		}
-  // 	}
-  // }
-
-  //this code forces the 'edit' icon on page reload
-  editFavouriteMovies.classList.remove("confirm-favourite-movies");
-
-}
-
 function editOrConfirmStateChange() {
   //this fun changes whether the user is currently editing their favouriteMovieList -->
   // --> or if they already confirmed edits
@@ -733,93 +831,9 @@ function deleteMovie(imdbID, event) {
 
 }
 
-function showFavouriteMoviesListener() {
-  //this function allows us to resolve the promise given by readFavMovList in dal
-  //and pass the snapshot to displayFavMovies
-
-  let showFavouriteMoviesBtn = document.getElementById("show-favourite-movies");
-  showFavouriteMoviesBtn.addEventListener("click", function (){
-
-    // this code shows the loading animation div
-    let loadingResults = document.getElementById("loading-results");
-    loadingResults.style.display = "inline-block";
-
-    readFavouriteMoviesList().then(snapshot => displayFavouriteMovies(snapshot));
-  });
-}
-
-function displayFavouriteMovies(snapshot) {
-  //this fun takes the movies that the user saved to favourites -->
-  // --> and displays them in the main result container
-
-  // this clears resultContainer to prevent stacking of results/response messages
-  let resultContainerList = document.getElementsByClassName("result-container");
-  for (let i = 0; i < resultContainerList.length; i++) {
-    resultContainerList[i].querySelectorAll('*').forEach(n => n.remove());
-  }
-
-  let favouriteMoviesContainer = document.getElementById("favourite-movies-container");
-  favouriteMoviesContainer.classList.toggle("hide");
-
-
-  // this generates a list of movies in the main result container, based on imdbID
-  snapshot.forEach(function (snapshot) {
-    let key = snapshot.key;
-    apiHandlerByImdbID(key);
-  });
-
-}
-
-function authStateChanged(firebaseUser) {
-  //this fun is called when the fireBase user changes state (sign in or out)
-  //a fun in DAL is called at that point
-  //that fun calls this fun and passes either the firebaseUser
-  //the firebaseUser has properties on SIGN IN
-  //the firebaseUser is null on LOG OFF
-
-  let firebaseUISignupContainer = document.getElementById("firebaseui-signup-container");
-  let authStatus = document.getElementById("auth-status");
-  let authWelcome = document.getElementById('auth-welcome');
-  let authName = document.getElementById("auth-name");
-  let signOutContainer =  document.getElementById('sign-out-container');
-  let titleAndListContainer =  document.getElementById("title-and-list-container");
-  let favouriteMoviesContainer = document.getElementById('favourite-movies-container');
-  let hr = favouriteMoviesContainer.querySelectorAll('hr');
-
-  if (firebaseUser){
-    firebaseUISignupContainer.style.display = "none";
-    signOutContainer.onclick = firebaseSignOut;
-    signOutContainer.style.display = "unset";
-    titleAndListContainer.style.display = "unset";
-
-    if (firebaseUser.displayName == null){
-      authWelcome.innerHTML = 'Welcome, ';
-      authName.innerHTML = 'Guest';
-    } else{
-      authWelcome.innerHTML = 'Welcome, ';
-      authName.innerHTML = firebaseUser.displayName;
-    }
-    authStatus.style.display = "unset";
-
-    hr.forEach(function (n) {
-      n.style.display = "unset";
-    });
-
-  } else {
-    firebaseUISignupContainer.style.display = "unset";
-    authStatus.style.display = "none";
-    signOutContainer.style.display = "none";
-    titleAndListContainer.style.display = "none";
-
-    hr.forEach(function (n) {
-      n.style.display = "none";
-    });
-  }
-}
-
-/**********************
- ENDLESS SCROLLING
- *********************/
+/*******************************************
+ * Endless scrolling
+ *******************************************/
 
 // Returns a function, that, as long as it continues to be invoked, will not
 // be triggered. The function will be called after it stops being called for
@@ -907,11 +921,9 @@ function requestNewPage(queryText) {
 
 }
 
-
 /********************************************************************
- beneath this point shall all
- 'unwanted-but-possibly-useful-down-the-line' lines of code
- be kept
+  END OF CODE
+  below is notes and comments
  ********************************************************************/
 
 /*leaving some notes from programming diary

@@ -34,7 +34,7 @@
   <div id="container">
 
     <nav id="navbar">
-      <span id="site-name">Quix.</span>
+<!--      <span id="site-name">Quix.</span>-->
       <div id="dark-mode-toggle-container"></div>
       <div id="scroll-to-top-container">
       </div>
@@ -57,6 +57,7 @@
             </div>
             <hr>
             <div id="title-and-list-container">
+              <div id="site-title-favourite-movies">Quix.</div>
               <h3>Your favourites</h3><span id="icon-container"><span id="edit-favourite-movies-icon" class="btn"></span></span>
               <span id="empty-list-placeholder">No favourites. Try adding one by clicking on a movie!</span>
               <div id="favourite-movies-list"></div>
@@ -70,14 +71,15 @@
 
     <!--Main content: search bar and results-->
     <div id="main-content-container">
-      <a href="/index.html" id="logo"><img src="/img/popcorn-1614707.png" alt="Logo"></a>
+      <div id="logo-container"><img src="img/popcorn-1614707.png" alt="Logo"></div>
 
-      <div id="site-title">
-        <span id="title">Quix.</span>
+        <div id="title-container">
+          <span id="title">Quix.</span>
+        </div>
         <div id="subtitle-flex-container">
           <span id="subtitle">Quickly index IMDB</span>
         </div>
-      </div>
+
 
       <form id="search-form" method="get" name="search-form" autocomplete="off">
         <input id="search-box" name="query" type="text" placeholder="Enter movie title..." autofocus><button  id="main-search-button" type="submit" class="btn"><i class="fa fa-search"></i></button>
