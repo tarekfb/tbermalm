@@ -1,6 +1,9 @@
-Malmö högskola/Webutveckling2_Klient/imdb_quick_search/.idea/workspace.xml
-Malmö högskola/Webutveckling2_Klient/imdb_quick_search/.idea/workspace.xml
-Malmö högskola/Webutveckling2_Klient/imdb_quick_search/.idea/workspace.xml
+# Include your project-specific ignores in this file
+# Read about how to use .gitignore: https://help.github.com/articles/ignoring-files
+# Useful .gitignore templates: https://github.com/github/gitignore
+node_modules
+dist
+.cache
 
 # Created by https://www.toptal.com/developers/gitignore/api/intellij,windows,sublimetext
 # Edit at https://www.toptal.com/developers/gitignore?templates=intellij,windows,sublimetext
@@ -167,3 +170,4 @@ $RECYCLE.BIN/
 *.lnk
 
 # End of https://www.toptal.com/developers/gitignore/api/intellij,windows,sublimetext
+tbermalm.iml
