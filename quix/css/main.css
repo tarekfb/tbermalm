@@ -141,9 +141,12 @@ video {
  * Hide visually and from screen readers
  */
 
-.hide,
-[hide] {
+.hide {
   display: none !important;
+}
+
+.show {
+  display: unset !important;
 }
 
 /*
@@ -176,37 +179,36 @@ todo: reutrn top visiblity fade when not at top
   align-items: center;
 }
 
-#site-name{
-  font-family: var(--fontface-title);
-  font-size: var(--fontsize-title);
-  font-weight: var(--fontweight-title);
+#dark-mode-toggle-container::before{
+  /*sets icon to moon*/
+  font-family: "Font Awesome 5 Free", serif;
+  content: "\f186";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 40px;
 
   margin-right: auto;
-  margin-left: 3.5%;
-
+  margin-left: .5em;
 }
 
-#db-toggle-container {
-  margin-left: 30px;
-  margin-right: 30px;
-}
-
-#db-styling-container:before {
-  font-family: "Font Awesome 5 Free", serif;
-  content: "\f004";
-  font-style: normal;
-  font-size: 30px;
-  margin-right: var(--icon-distance-secondary);
+#dark-mode-toggle-container.light-mode::before{
+  /*change moon to sun*/
+  content: "\f185";
 }
 
 #scroll-to-top-container:before {
-  margin-left: 30px;
+  margin-left: .5em;
 
   font-family: "Font Awesome 5 Free", serif;
   content: "\f35b";
   font-style: normal;
   font-weight: normal;
   font-size: 40px;
+}
+
+#db-toggle-container {
+  margin-left: auto;
+  margin-right: 30px;
 }
 
 #db-styling-container {
@@ -218,21 +220,12 @@ todo: reutrn top visiblity fade when not at top
   text-transform: none;
 }
 
-#dark-mode-toggle-container::before{
-  /*sets icon to moon*/
+#db-styling-container:before {
   font-family: "Font Awesome 5 Free", serif;
-  content: "\f186";
+  content: "\f004";
   font-style: normal;
-  font-weight: normal;
-  font-size: 40px;
-
-  margin-left: 30px;
-}
-
-#dark-mode-toggle-container.light-mode::before{
-  /*change moon to sun*/
-  content: "\f185";
-
+  font-size: 30px;
+  margin-right: var(--icon-distance-secondary);
 }
 
 /* ==========================================================================
@@ -241,10 +234,9 @@ todo: reutrn top visiblity fade when not at top
 
 #title-container {
   position: sticky;
-  top: 1em;
+  top: 15px;
   z-index: 1;
   display: inline-block;
-
   margin-top: 1em;
 }
 
@@ -272,11 +264,11 @@ todo: reutrn top visiblity fade when not at top
   outline: none;
 }
 
-#logo {
+#logo-container {
   display: block;
 }
 
-#logo img {
+#logo-container img {
   margin-top: 75px;
   width: 250px;
   height: 250px;
@@ -301,7 +293,7 @@ todo: reutrn top visiblity fade when not at top
 
 
 .result-container{
-  margin-top: 10px;
+  margin: 10px 0;
   padding: 7px;
 }
 
@@ -318,7 +310,6 @@ todo: reutrn top visiblity fade when not at top
 #loading-sidebar{
   margin-top: 50px;
   display: none;
-
 }
 
 .lds-roller {
@@ -695,7 +686,6 @@ todo: reutrn top visiblity fade when not at top
   top: 80px;
   /*#navbar height: top*/
 
-  z-index: 1;
   overflow-y: auto;
 }
 
@@ -707,6 +697,7 @@ todo: reutrn top visiblity fade when not at top
 
   padding: 0px 25px;
 
+/*  todo: insert abs pos div saying "quix."*/
 
 }
 
@@ -731,6 +722,21 @@ pulse grey on save to list
   0% {background-color: var(--color-accent-whiteblack);}
   50% {background-color: #778899;}
   100% {background-color: var(--color-accent-whiteblack);}
+}
+
+#site-title-favourite-movies {
+  font-family: var(--fontface-title);
+  font-size: var(--fontsize-title);
+  font-weight: var(--fontweight-title);
+
+  position: fixed;
+  left: 50%;
+  transform: translate(-50%, 0);
+  top: 15px;
+  /*margin-top: 1em;*/
+}
+
+#title-and-list-container {
 }
 
 #favourite-movies-container h3{
@@ -880,15 +886,13 @@ hr {
   white-space: nowrap;
 }
 
-
-
 /* ==========================================================================
-   all hover selects below
+   hover selects below
 	 this media query only includes devices that have hover (ie. cursor) support
    ========================================================================== */
 
 @media (hover: hover) {
-  #scroll-to-top-container, #show-favourite-movies:hover, #cancel:hover, #save:hover, #sign-out:hover, #favourite-movie-li .fa-trash:hover, #scroll-to-top-container, #dark-mode-toggle-container, #db-toggle-container {
+  .favourite-movie-anchor:hover, #scroll-to-top-container, #show-favourite-movies:hover, #cancel:hover, #save:hover, #sign-out:hover, #favourite-movie-li .fa-trash:hover, #scroll-to-top-container, #dark-mode-toggle-container, #db-toggle-container {
     cursor: pointer;
   }
   .close:hover{
@@ -896,12 +900,6 @@ hr {
     text-decoration: none;
     cursor: pointer;
   }
-  .favourite-movie-anchor:hover {
-    cursor: pointer;
-    /*background-color: var(--main-red);*/
-    /*transition: color 0.4s ease;*/
-  }
-
 }
 
 /* ==========================================================================
@@ -931,10 +929,6 @@ hr {
     /*need to change for mobile too*/
   }
 
-  #site-name {
-    font-size: var(--fontsize-title-small);
-  }
-
   #db-styling-container:before {
     font-size: 20px;
   }
@@ -950,13 +944,19 @@ hr {
   #title {
     font-size: var(--fontsize-title-small);
   }
+  #site-title-favourite-movies {
+    font-size: var(--fontsize-title-small);
+  /*this is a bit of a hacky solution
+    this selection needs to match #title selection
+    so it looks identical*/
+  }
 
   #subtitle {
     font-size: var(--fontsize-title-smallest);
     /*vertical-align: center;*/
   }
 
-  #logo img {
+  #logo-container img {
     width: 45vw;
     height: 45vw;
   }
