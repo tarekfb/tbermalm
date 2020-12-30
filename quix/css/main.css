@@ -677,16 +677,21 @@ todo: reutrn top visiblity fade when not at top
   /*gradient background, top matching navbar color*/
   background: var(--color-background-main);
   background: linear-gradient(180deg, var(--color-background-secondary) 15%, var(--color-background-main) 54%);
-
+ 
   width: 35%;
-  min-height: 100vh;
-
   position: absolute;
   right: 0;
   top: 80px;
   /*#navbar height: top*/
 
+  /*
+  this code allows for scrolling
+  height is needed, for code to know when to overflow
+  */
+  height: calc(100vh - 80px);
   overflow-y: auto;
+
+
 }
 
 #favourite-movies-flex-container{
@@ -696,8 +701,6 @@ todo: reutrn top visiblity fade when not at top
   justify-content: start;
 
   padding: 0px 25px;
-
-/*  todo: insert abs pos div saying "quix."*/
 
 }
 
@@ -786,6 +789,8 @@ pulse grey on save to list
   /*background-color: var(--main-yellow);*/
   /*padding: 3px;*/
   font-size: 18px;
+
+  margin-bottom: 1em;
 }
 #show-favourite-movies::before{
   font-family: "Font Awesome 5 Free", serif;
@@ -862,6 +867,7 @@ hr {
 #favourite-movies-list{
   list-style-type: none;
   font-size: 18px;
+
 }
 
 #favourite-movie-li{
