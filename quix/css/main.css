@@ -1086,6 +1086,7 @@ hr {
 
   #favourite-movies-container {
     width: 100%;
+    /*height: calc(100% - 80px);*/
 
     left: 0;
     right: 0;
@@ -1109,6 +1110,10 @@ hr {
 
   .favourite-movie-li .fa-trash {
     font-size: 25px;
+  }
+
+  #show-favourite-movies {
+    margin-bottom: 75px;
   }
 }
 /*https://www.canva.com/colors/color-palette-generator/*/

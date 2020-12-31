@@ -10,7 +10,7 @@ submitFormListener();
 showFavouriteMoviesListener();
 favouriteMoviesIconListener();
 navbarListeners();
-handleResponsiveChanges();
+handleInitChecks();
 
 let show = "show";
 handleSidebarLoadingAnimation(show);
@@ -131,7 +131,7 @@ function favouriteMoviesIconListener() {
   editFavouriteMovies.classList.remove("confirm-favourite-movies");
 }
 
-function handleResponsiveChanges() {
+function handleInitChecks() {
   //if mobile user
   //make "<3 your favourites" in navbar shorten to "<3"
 
@@ -142,6 +142,15 @@ function handleResponsiveChanges() {
     let siteTitleFavouriteMovies = document.getElementById("site-title-favourite-movies");
     siteTitleFavouriteMovies.classList.toggle("hide");
   }
+
+  // if users system is set to prefer dark
+  // toggle dark mode
+  if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    toggleDarkMode();
+  }
+
+  // if user system dark/light pref changes (for example, by schedule)
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', toggleDarkMode);
 }
 
 /*******************************************
