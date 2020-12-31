@@ -865,7 +865,7 @@ hr {
   text-shadow: 0 0 3px #000;
 }
 
-.favourite-movie-li .fa-trash{
+ .fa-trash{
   /*margin-left: 8px;*/
   color: var(--color-accent-main);
 }
