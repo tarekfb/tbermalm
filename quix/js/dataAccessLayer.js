@@ -122,7 +122,7 @@ function firebaseSignOut() {
     //it signs out, and then redirects user to homepage
     //redirected needed to reset firebaseui div
     firebase.auth().signOut();
-    window.location='https://www.tbdevstuff.live/webutveckling2_klient/imdb_quick_search/imdb_quick_search.html';
+    window.location='https://www.tbermalm.tech/quix/';
 }
 
 function getFirebaseAuth() {
