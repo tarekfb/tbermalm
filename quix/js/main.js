@@ -707,12 +707,6 @@ function populateFavouriteMoviesList(snapshot) {
     if (!editFavouriteMovies.classList.contains("confirm-favourite-movies")){
       deleteSpanContainerDiv.classList.add("invisible");
     }
-    //TODO: add this span next to the entire list item, instead of inside the list item?
-    //to avoid it jumping rows when no space left
-    //
-    // if (deleteSpan.style.visibility != "hidden"){
-    //   deleteSpan.style.display = "hidden";
-    // }
 
     deleteSpanContainerDiv.addEventListener("click", function (event){
       deleteMovie(snapshot.key, event);

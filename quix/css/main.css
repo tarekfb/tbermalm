@@ -599,8 +599,8 @@ todo: reutrn top visiblity fade when not at top
   overflow: hidden;
   border: 1px solid #888;
   min-width: 20%;
-  width: 20%;
-  height: 80px;
+  width: 30%;
+  height: 140px;
 
   display: flex;
   flex-direction: column;
@@ -1055,12 +1055,12 @@ hr {
   }
 
   .modal-content {
-    height: 60px;
-    width: 45%;
+    min-height: 135px;
+    min-width: 55%;
   }
 
   .modal-content p {
-    margin-top: 0;
+    margin-top: 10px;
     font-size: var(--fontsize-text-large);
     color: var(--color-accent-whiteblack);
     margin-bottom: 2em;
@@ -1068,10 +1068,16 @@ hr {
 
   .modal-buttons-flex-container{
     width: 95%;
+    margin-bottom: 10px;
   }
 
   .modal-content {
     height: 90px;
+  }
+
+  .close {
+    top: 0px;
+    right: 10px;
   }
 
   #save {
