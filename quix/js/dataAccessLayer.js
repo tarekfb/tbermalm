@@ -111,6 +111,7 @@ async function readFavouriteMoviesList() {
 
 }
 
+
 function deleteFromFavouriteMovies(imdbID) {
     const movieRef = userRef.child(imdbID);
     movieRef.remove();

@@ -396,9 +396,7 @@ function generateMovieCard(apiCallResult) {
 
     if (signOutContainer.style.display === "none"){
       showDefaultModalBox();
-      console.log("if");
     } else {
-      console.log("else");
       showAddToFavouritesModalBox(apiCallResult);
     }
   });
@@ -660,6 +658,7 @@ function populateFavouriteMoviesList(snapshot) {
   // it then creates the html elements
 
   let favouriteMoviesUL = document.getElementById("favourite-movies-list");
+
   favouriteMoviesUL.querySelectorAll('*').forEach(n => n.remove());
 
   snapshot.forEach(function (snapshot){
@@ -717,6 +716,7 @@ function populateFavouriteMoviesList(snapshot) {
 
     deleteSpanContainerDiv.addEventListener("click", function (event){
       deleteMovie(snapshot.key, event);
+      readFavouriteMoviesList().then(snapshot => populateFavouriteMoviesList(snapshot));
     });
 
     deleteSpanContainerDiv.appendChild(deleteSpan);
@@ -786,7 +786,7 @@ function editOrConfirmStateChange() {
 
       deleteSpanContainerList[i].classList.toggle("invisible");
 
-      if (!deleteSpanContainerList[i].classList.contains("invisible")){
+      if (!editFavouriteMovies.classList.contains("confirm-favourite-movies")){
        readFavouriteMoviesList().then(snapshot => populateFavouriteMoviesList(snapshot));
       }
   }
