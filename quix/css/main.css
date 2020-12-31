@@ -45,6 +45,9 @@
    Base styles/general
    ========================================================================== */
 
+* {
+  box-sizing: border-box;
+}
 html {
   background-repeat: no-repeat;
   background-position: right top;
@@ -137,24 +140,24 @@ video {
 scrollbar
  */
 
-body::-webkit-scrollbar {
-  width: 12px;               /* width of the entire scrollbar */
-}
+/*body::-webkit-scrollbar {*/
+/*  width: 12px;               !* width of the entire scrollbar *!*/
+/*}*/
 
-body::-webkit-scrollbar-track {
-  background: orange;        /* color of the tracking area */
-}
+/*body::-webkit-scrollbar-track {*/
+/*  background: orange;        !* color of the tracking area *!*/
+/*}*/
 
-body::-webkit-scrollbar-thumb {
-  background-color: #0000ff;    /* color of the scroll thumb */
-  border-radius: 20px;       /* roundness of the scroll thumb */
-  border: 3px solid orange;  /* creates padding around scroll thumb */
-}
+/*body::-webkit-scrollbar-thumb {*/
+/*  background-color: #0000ff;    !* color of the scroll thumb *!*/
+/*  border-radius: 20px;       !* roundness of the scroll thumb *!*/
+/*  border: 3px solid orange;  !* creates padding around scroll thumb *!*/
+/*}*/
 
-body {
-  scrollbar-width: thin;          /* "auto" or "thin" */
-  scrollbar-color: blue orange;   /* scroll thumb and track */
-}
+/*body {*/
+/*  scrollbar-width: thin;          !* "auto" or "thin" *!*/
+/*  scrollbar-color: blue orange;   !* scroll thumb and track *!*/
+/*}*/
 
 /* ==========================================================================
    Helper classes
@@ -745,18 +748,22 @@ pulse grey on save to list
   /*margin-top: 1em;*/
 }
 
-#title-and-list-container {
+#title-and-list-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 #favourite-movies-container h3{
   display: inline-block;
-  font-size: 25px;
-  font-family: var(--fontface-standard);
+  font-size: var(--fontsize-title-small);
+  font-family: var(--fontface-title);
   font-weight: normal;
   margin-top: 0;
 
-  font-size: 30px;
-  font-family: AbelRegular;
+  /*font-size: 30px;*/
+  /*font-family: AbelRegular;*/
 }
 
 #icon-container{
@@ -798,6 +805,7 @@ pulse grey on save to list
 
   margin-bottom: 1em;
 }
+
 #show-favourite-movies::before{
   font-family: "Font Awesome 5 Free", serif;
   content: "\f06e";
@@ -815,7 +823,7 @@ hr {
   margin: 1em 0;
   margin-top: 1.5em;
   padding: 0;
-  width: 75%;
+  width: 85%;
 }
 
 /* ==========================================================================
@@ -823,12 +831,6 @@ hr {
    ========================================================================== */
 
 /*https://www.youtube.com/watch?v=dhLcyBCJ0r4*/
-
-#title-and-list-container{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 
 #favourite-movies-list{
   font-size: 18px;
@@ -838,28 +840,23 @@ hr {
 .list-flex-container{
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: start;
   align-items: center;
 
   margin-bottom: 20px;
-  min-width: 100%;
-
-  background-color: var(--color-background-grey);
   padding: 15px;
+  background-color: var(--color-background-grey);
 
-/*  todo, stop width overflow*/
+  flex-grow: 0;
 }
 
 .favourite-movie-li{
-  /*margin-bottom: 20px;*/
-  margin-right: auto;
+  margin-right: 10px;
   text-align: left;
 }
 
 .delete-span-container {
   margin-left: auto;
-  /*flex-basis: 33%;*/
-  /*flex-shrink: 0;*/
 }
 
 .favourite-movie-li .fa-star {
@@ -959,11 +956,6 @@ hr {
     box-shadow: 0 .2em .3em rgba(0, 0, 0, 0.15);
     background-position: 0;
     color: var(--color-accent-whiteblack);
-  }
-
-  .curved {
-    height: 450px;
-    /*need to change for mobile too*/
   }
 
   #db-styling-container:before {
@@ -1088,14 +1080,25 @@ hr {
 
   #favourite-movies-container {
     width: 100%;
-    border: none;
-    top: 80px;
 
     left: 0;
     right: 0;
     margin-left: auto;
     margin-right: auto;
 
+    /*right: unset;*/
+
+    /*!*right: 50%;*!*/
+    /*!*transform: translateX(-50%);*!*/
+
+    /*min-width: 100vw;*/
+    /*position: unset;*/
+    /*margin-top: 80px;*/
+    /*text-align: center;*/
+    /*margin :0 auto;*/
+
+    /*left: 50%;*/
+    /*transform: translate(-50%, 0);*/
   }
 
   .favourite-movie-li .fa-trash {

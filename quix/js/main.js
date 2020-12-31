@@ -549,7 +549,8 @@ function authStateChanged(firebaseUser) {
     firebaseUISignupContainer.style.display = "none";
     signOutContainer.onclick = firebaseSignOut;
     signOutContainer.style.display = "unset";
-    titleAndListContainer.style.display = "unset";
+
+    titleAndListContainer.classList.remove("hide");
 
     if (firebaseUser.displayName == null){
       authWelcome.innerHTML = 'Welcome, ';
@@ -568,7 +569,8 @@ function authStateChanged(firebaseUser) {
     firebaseUISignupContainer.style.display = "unset";
     authStatus.style.display = "none";
     signOutContainer.style.display = "none";
-    titleAndListContainer.style.display = "none";
+
+    titleAndListContainer.classList.add("hide");
 
     hr.forEach(function (n) {
       n.style.display = "none";
@@ -653,72 +655,73 @@ function saveMovieToFavourite(entryFromAJAX) {
 }
 
 function populateFavouriteMoviesList(snapshot) {
-  // // this function populates the favmovieslist in the sidebar
-  // // it takes a snapshot of the current user's branch that was passed from readFavouriteMoviesList() in dataAccessLayer.js
-  // // it then creates the html elements
-  //
-  // let favouriteMoviesUL = document.getElementById("favourite-movies-list");
-  // favouriteMoviesUL.querySelectorAll('*').forEach(n => n.remove());
-  //
-  // snapshot.forEach(function (snapshot){
-  //
-  //   let movieObj = snapshot.val();
-  //
-  //   let flexContainerDiv = document.createElement("div");
-  //   flexContainerDiv.classList.add("list-flex-container");
-  //   favouriteMoviesUL.appendChild(flexContainerDiv);
-  //
-  //   // following code is for listing of movie
-  //
-  //   let li = document.createElement("li");
-  //   li.classList.add('favourite-movie-li');
-  //   flexContainerDiv.appendChild(li);
-  //
-  //   let a = document.createElement("a");
-  //   let url = "https://www.imdb.com/title/" + snapshot.key + "/";
-  //   a.href = url;
-  //   a.classList.add("favourite-movie-anchor");
-  //   li.appendChild(a);
-  //
-  //   a.appendChild(document.createTextNode(
-  //     movieObj.title + " (" + movieObj.year + ")"
-  //   ));
-  //
-  //   // this span displays rating-star and rating
-  //   let ratingSpan = document.createElement("span");
-  //   ratingSpan.innerHTML = "<i class=\"fa fa-star\" aria-hidden=\"true\"></i>";
-  //   ratingSpan.appendChild(document.createTextNode(" " + movieObj.rating));
-  //   ratingSpan.classList.add("favourites-list-rating-span");
-  //
-  //   a.appendChild(ratingSpan);
-  //
-  //   // following code is for the delete functionality
-  //
-  //   let deleteSpanContainerDiv = document.createElement("div");
-  //   deleteSpanContainerDiv.classList.add("delete-span-container");
-  //   flexContainerDiv.appendChild(deleteSpanContainerDiv);
-  //
-  //   let deleteSpan = document.createElement("span");
-  //   deleteSpan.innerHTML = "<i class=\"fas fa-trash\"></i>";
-  //   deleteSpan.classList.add("delete-span");
-  //
-  //   if (!deleteSpan.classList.contains("invisible")){
-  //     deleteSpan.classList.add("invisible");
-  //   }
-  //   //TODO: add this span next to the entire list item, instead of inside the list item?
-  //   //to avoid it jumping rows when no space left
-  //   //
-  //   // if (deleteSpan.style.visibility != "hidden"){
-  //   //   deleteSpan.style.display = "hidden";
-  //   // }
-  //
-  //   deleteSpan.addEventListener("click", function (event){
-  //     deleteMovie(snapshot.key, event);
-  //   });
-  //
-  //   deleteSpanContainerDiv.appendChild(deleteSpan);
-  //
-  // });
+  // this function populates the favmovieslist in the sidebar
+  // it takes a snapshot of the current user's branch that was passed from readFavouriteMoviesList() in dataAccessLayer.js
+  // it then creates the html elements
+
+  let favouriteMoviesUL = document.getElementById("favourite-movies-list");
+  favouriteMoviesUL.querySelectorAll('*').forEach(n => n.remove());
+
+  snapshot.forEach(function (snapshot){
+
+    let movieObj = snapshot.val();
+
+    let flexContainerDiv = document.createElement("div");
+    flexContainerDiv.classList.add("list-flex-container");
+    favouriteMoviesUL.appendChild(flexContainerDiv);
+
+    // following code is for listing of movie
+
+    let movieDiv = document.createElement("div");
+    movieDiv.classList.add('favourite-movie-li');
+    flexContainerDiv.appendChild(movieDiv);
+
+    let a = document.createElement("a");
+    let url = "https://www.imdb.com/title/" + snapshot.key + "/";
+    a.href = url;
+    a.classList.add("favourite-movie-anchor");
+    movieDiv.appendChild(a);
+
+    a.appendChild(document.createTextNode(
+      movieObj.title + " (" + movieObj.year + ")"
+    ));
+
+    // this span displays rating-star and rating
+    let ratingSpan = document.createElement("span");
+    ratingSpan.innerHTML = "<i class=\"fa fa-star\" aria-hidden=\"true\"></i>";
+    ratingSpan.appendChild(document.createTextNode(" " + movieObj.rating));
+    ratingSpan.classList.add("favourites-list-rating-span");
+
+    a.appendChild(ratingSpan);
+
+    // following code is for the delete functionality
+
+    let deleteSpanContainerDiv = document.createElement("div");
+    deleteSpanContainerDiv.classList.add("delete-span-container");
+    flexContainerDiv.appendChild(deleteSpanContainerDiv);
+
+    let deleteSpan = document.createElement("span");
+    deleteSpan.innerHTML = "<i class=\"fas fa-trash\"></i>";
+    deleteSpan.classList.add("delete-span");
+
+    let editFavouriteMovies = document.getElementById("edit-favourite-movies-icon");
+    if (!editFavouriteMovies.classList.contains("confirm-favourite-movies")){
+      deleteSpanContainerDiv.classList.add("invisible");
+    }
+    //TODO: add this span next to the entire list item, instead of inside the list item?
+    //to avoid it jumping rows when no space left
+    //
+    // if (deleteSpan.style.visibility != "hidden"){
+    //   deleteSpan.style.display = "hidden";
+    // }
+
+    deleteSpanContainerDiv.addEventListener("click", function (event){
+      deleteMovie(snapshot.key, event);
+    });
+
+    deleteSpanContainerDiv.appendChild(deleteSpan);
+
+  });
 }
 
 function handlePlaceholderSpan(statusOfList) {
@@ -778,16 +781,15 @@ function editOrConfirmStateChange() {
   let editFavouriteMovies = document.getElementById("edit-favourite-movies-icon");
   editFavouriteMovies.classList.toggle("confirm-favourite-movies");
 
-  let deleteSpanList = document.getElementsByClassName("delete-span-container");
-    for (let i = 0; i < deleteSpanList.length; i++) {
+  let deleteSpanContainerList = document.getElementsByClassName("delete-span-container");
+    for (let i = 0; i < deleteSpanContainerList.length; i++) {
 
-      deleteSpanList[i].classList.toggle("invisible");
+      deleteSpanContainerList[i].classList.toggle("invisible");
 
-      if (!deleteSpanList[i].classList.contains("invisible")){
-       //readFavouriteMoviesList().then(snapshot => populateFavouriteMoviesList(snapshot));
+      if (!deleteSpanContainerList[i].classList.contains("invisible")){
+       readFavouriteMoviesList().then(snapshot => populateFavouriteMoviesList(snapshot));
       }
   }
-
 
 }
 
