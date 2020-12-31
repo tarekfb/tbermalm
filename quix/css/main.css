@@ -45,6 +45,9 @@
    Base styles/general
    ========================================================================== */
 
+* {
+  box-sizing: border-box;
+}
 html {
   background-repeat: no-repeat;
   background-position: right top;
@@ -132,6 +135,29 @@ svg,
 video {
   vertical-align: middle;
 }
+
+/*
+scrollbar
+ */
+
+/*body::-webkit-scrollbar {*/
+/*  width: 12px;               !* width of the entire scrollbar *!*/
+/*}*/
+
+/*body::-webkit-scrollbar-track {*/
+/*  background: orange;        !* color of the tracking area *!*/
+/*}*/
+
+/*body::-webkit-scrollbar-thumb {*/
+/*  background-color: #0000ff;    !* color of the scroll thumb *!*/
+/*  border-radius: 20px;       !* roundness of the scroll thumb *!*/
+/*  border: 3px solid orange;  !* creates padding around scroll thumb *!*/
+/*}*/
+
+/*body {*/
+/*  scrollbar-width: thin;          !* "auto" or "thin" *!*/
+/*  scrollbar-color: blue orange;   !* scroll thumb and track *!*/
+/*}*/
 
 /* ==========================================================================
    Helper classes
@@ -573,8 +599,8 @@ todo: reutrn top visiblity fade when not at top
   overflow: hidden;
   border: 1px solid #888;
   min-width: 20%;
-  width: 20%;
-  height: 80px;
+  width: 30%;
+  height: 140px;
 
   display: flex;
   flex-direction: column;
@@ -640,22 +666,6 @@ todo: reutrn top visiblity fade when not at top
   height: 120px;
 }
 
-/*****************************
-	designing the div that hold favourite movies and its contents
-
-	using this as hamburger menu design //NOT USING ANYMORE, SEE COMMENTS BELOW
-	https://codepen.com/erikterwan/pen/EVzeRP
-
-	in hindsight, this design structure was a terrible choice
-	should've went with flexbox design
-	but rest of webpage sort of relies upon this, here and there
-	so it's a lesson learnt for future projects: dont use hacky solutions from the web
-
-	another update, a month or so after the comment above:
-	i finally got rid of the hacky input-toggle solution
-	should have done that a long time ago
-*****************************/
-
 /* ==========================================================================
   Designing the div that hold favourite movies and its contents
 
@@ -688,6 +698,7 @@ todo: reutrn top visiblity fade when not at top
   this code allows for scrolling
   height is needed, for code to know when to overflow
   */
+
   height: calc(100vh - 80px);
   overflow-y: auto;
   overflow-x: hidden;
@@ -700,7 +711,6 @@ todo: reutrn top visiblity fade when not at top
   justify-content: start;
 
   padding: 0px 25px;
-
 }
 
 /*
@@ -738,18 +748,22 @@ pulse grey on save to list
   /*margin-top: 1em;*/
 }
 
-#title-and-list-container {
+#title-and-list-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 #favourite-movies-container h3{
   display: inline-block;
-  font-size: 25px;
-  font-family: var(--fontface-standard);
+  font-size: var(--fontsize-title-small);
+  font-family: var(--fontface-title);
   font-weight: normal;
   margin-top: 0;
 
-  font-size: 30px;
-  font-family: AbelRegular;
+  /*font-size: 30px;*/
+  /*font-family: AbelRegular;*/
 }
 
 #icon-container{
@@ -791,6 +805,7 @@ pulse grey on save to list
 
   margin-bottom: 1em;
 }
+
 #show-favourite-movies::before{
   font-family: "Font Awesome 5 Free", serif;
   content: "\f06e";
@@ -808,7 +823,55 @@ hr {
   margin: 1em 0;
   margin-top: 1.5em;
   padding: 0;
-  width: 75%;
+  width: 85%;
+}
+
+/* ==========================================================================
+   Designing the list
+   ========================================================================== */
+
+/*https://www.youtube.com/watch?v=dhLcyBCJ0r4*/
+
+#favourite-movies-list{
+  font-size: 18px;
+
+}
+
+.list-flex-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+
+  margin-bottom: 20px;
+  padding: 15px;
+  background-color: var(--color-background-grey);
+
+  flex-grow: 0;
+}
+
+.favourite-movie-li{
+  margin-right: 10px;
+  text-align: left;
+}
+
+.delete-span-container {
+  margin-left: auto;
+}
+
+.favourite-movie-li .fa-star {
+  color: var(--gold);
+  margin-left: 8px;
+  text-shadow: 0 0 3px #000;
+}
+
+.favourite-movie-li .fa-trash{
+  /*margin-left: 8px;*/
+  color: var(--color-accent-main);
+}
+
+.favourites-list-rating-span{
+  white-space: nowrap;
 }
 
 /* ==========================================================================
@@ -858,55 +921,6 @@ hr {
 }
 
 /* ==========================================================================
-   Designing the list
-   ========================================================================== */
-
-/*https://www.youtube.com/watch?v=dhLcyBCJ0r4*/
-
-#favourite-movies-list{
-  font-size: 18px;
-}
-
-.list-flex-container{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-
-  margin-bottom: 20px;
-  min-width: 85%;
-  width: auto;
-
-/*  todo, stop width overflow*/
-}
-
-.favourite-movie-li{
-  /*margin-bottom: 20px;*/
-  margin-right: auto;
-}
-
-.delete-span-container {
-  margin-left: auto;
-  /*flex-basis: 33%;*/
-  /*flex-shrink: 0;*/
-}
-
-.favourite-movie-li .fa-star {
-  color: var(--gold);
-  margin-left: 8px;
-  text-shadow: 0 0 3px #000;
-}
-
-.favourite-movie-li .fa-trash{
-  /*margin-left: 8px;*/
-  color: var(--color-accent-main);
-}
-
-.favourites-list-rating-span{
-  white-space: nowrap;
-}
-
-/* ==========================================================================
    hover selects below
 	 this media query only includes devices that have hover (ie. cursor) support
    ========================================================================== */
@@ -942,11 +956,6 @@ hr {
     box-shadow: 0 .2em .3em rgba(0, 0, 0, 0.15);
     background-position: 0;
     color: var(--color-accent-whiteblack);
-  }
-
-  .curved {
-    height: 450px;
-    /*need to change for mobile too*/
   }
 
   #db-styling-container:before {
@@ -1046,12 +1055,12 @@ hr {
   }
 
   .modal-content {
-    height: 60px;
-    width: 45%;
+    min-height: 135px;
+    min-width: 55%;
   }
 
   .modal-content p {
-    margin-top: 0;
+    margin-top: 10px;
     font-size: var(--fontsize-text-large);
     color: var(--color-accent-whiteblack);
     margin-bottom: 2em;
@@ -1059,10 +1068,16 @@ hr {
 
   .modal-buttons-flex-container{
     width: 95%;
+    margin-bottom: 10px;
   }
 
   .modal-content {
     height: 90px;
+  }
+
+  .close {
+    top: 0px;
+    right: 10px;
   }
 
   #save {
@@ -1071,14 +1086,25 @@ hr {
 
   #favourite-movies-container {
     width: 100%;
-    border: none;
-    top: 80px;
 
     left: 0;
     right: 0;
     margin-left: auto;
     margin-right: auto;
 
+    /*right: unset;*/
+
+    /*!*right: 50%;*!*/
+    /*!*transform: translateX(-50%);*!*/
+
+    /*min-width: 100vw;*/
+    /*position: unset;*/
+    /*margin-top: 80px;*/
+    /*text-align: center;*/
+    /*margin :0 auto;*/
+
+    /*left: 50%;*/
+    /*transform: translate(-50%, 0);*/
   }
 
   .favourite-movie-li .fa-trash {
