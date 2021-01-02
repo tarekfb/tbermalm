@@ -2,6 +2,7 @@ initializeFireBase();
 const DATABASE = firebase.database();
 const ROOT_REF = DATABASE.ref();
 let userRef = null;
+const HOME_PAGE = "https://www.tbermalm.tech/quix/"
 
 function initializeFireBase() {
     // The Firebase configuration
@@ -30,7 +31,7 @@ function initFirebaseUI() {
         // signInSuccess: function(currentUser, credential, redirectUrl) {
         //     return false; //this will stop the signinsuccessurl from being used
         //     },
-       // signInSuccessUrl: 'https://www.tbdevstuff.live/webutveckling2_klient/imdb_quick_search/imdb_quick_search.html',
+       // signInSuccessUrl: HOME_PAGE,
         signInOptions: [
             // Leave the lines as is for the providers you want to offer your users.
             firebase.auth.EmailAuthProvider.PROVIDER_ID,
@@ -53,7 +54,7 @@ function initFirebaseUI() {
     ui.start('#firebaseui-signup-container', uiConfig);
 }
 
-firebase.auth().onAuthStateChanged(function(firebaseUser) {
+firebase.auth().onAuthStateChanged(firebaseUser => {
     // if the user signs out or in
     // define firebaseUser properties
     // pass firebaseUser to main.js (front end)
@@ -111,7 +112,6 @@ async function readFavouriteMoviesList() {
 
 }
 
-
 function deleteFromFavouriteMovies(imdbID) {
     const movieRef = userRef.child(imdbID);
     movieRef.remove();
@@ -122,7 +122,7 @@ function firebaseSignOut() {
     //it signs out, and then redirects user to homepage
     //redirected needed to reset firebaseui div
     firebase.auth().signOut();
-    window.location='https://www.tbermalm.tech/quix/';
+    window.location = HOME_PAGE;
 }
 
 function getFirebaseAuth() {
