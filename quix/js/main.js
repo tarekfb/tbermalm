@@ -570,6 +570,7 @@ function authStateChanged(firebaseUser) {
   // style = none created lots of issues (who could've seen that coming...)
   // this is the reason for both methods being present, atm
   if (firebaseUser){
+    // Logged in
     firebaseUISignupContainer.classList.add("hide");
     signOutContainer.onclick = firebaseSignOut;
     signOutContainer.style.display = "unset";
@@ -577,22 +578,22 @@ function authStateChanged(firebaseUser) {
     titleAndListContainer.classList.remove("hide");
 
     if (firebaseUser.displayName == null){
+      // Anon account
       authWelcome.innerHTML = 'Welcome, ';
       authName.innerHTML = 'Guest';
       handleAnonUser();
       hr[0].style.display = "unset";
       hr[1].style.display = "unset";
-
     } else{
+      // Permanent account
       authWelcome.innerHTML = 'Welcome, ';
       authName.innerHTML = firebaseUser.displayName;
       hr[0].style.display = "unset";
     }
     authStatus.style.display = "unset";
 
-
-
   } else {
+    // Not logged in
     firebaseUISignupContainer.classList.remove("hide");
     authStatus.style.display = "none";
     signOutContainer.style.display = "none";
