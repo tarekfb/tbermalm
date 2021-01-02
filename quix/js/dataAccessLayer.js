@@ -59,7 +59,6 @@ let ui = new firebaseui.auth.AuthUI(firebase.auth());
 
 ui.start('#firebaseui-signup-container', uiConfig);
 
-
 function convertAccount(){
   // Temp variable to hold the anonymous user data if needed.
   let data = null;

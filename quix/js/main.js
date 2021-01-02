@@ -167,6 +167,13 @@ function handleInitChecks() {
 
   // if user system dark/light pref changes (for example, by schedule)
   window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', toggleDarkMode);
+
+  // this is here because some browsers uses cookies to keep user logged in
+  // therefore, upon page init, the authStateChange function won't fire
+  // this forces the function to fire
+  getFirebaseAuth().then(auth => {
+    authStateChanged(auth.currentUser);
+  });
 }
 
 /*******************************************
