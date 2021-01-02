@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="no-js" lang="">
+<html class="no-js" lang="" xmlns="http://www.w3.org/1999/html">
 
 <head>
   <meta charset="utf-8">
@@ -14,7 +14,7 @@
 
   <link rel="manifest" href="site.webmanifest">
   <link rel="apple-touch-icon" href="icon.png">
-  <link rel="shortcut icon" href="popcorn-1614707.ico">
+  <link rel="shortcut icon" href="favico.ico">
 
   <link rel="stylesheet" href="css/normalize.css">
   <link rel="stylesheet" href="css/main.css">
@@ -55,47 +55,38 @@
                 <span id="sign-out">Log out</span>
               </button>
             </div>
+<!--            <div id="-description-favourite-movies-container">-->
+<!--              <div id="description"></div>-->
+<!--            </div>-->
+            <hr>
+            <div id="convert-acc-container" class="hide">
+              <p id="convert-acc-description">
+                Do you want to keep using Quix? You can upgrade your account to a permanent one by pressing the button below. Any saved movies will transfer to your new account.
+              </p>
+              <button id="convert-acc-btn" class="btn">Upgrade account</button>
+              <div id="convert-acc-registration" class="hide">
+<!--                <form id="convert-acc-form">-->
+<!--                  <div class="input-box">-->
+<!--                    <input id="input-email" type="email" value="" required="" autocomplete="off">-->
+<!--                    <label>Username</label>-->
+<!--                  </div>-->
+<!--                  <div class="input-box">-->
+<!--                    <input id="input-pw" type="password"  value="" required="" autocomplete="off">-->
+<!--                    <label>Password</label>-->
+<!--                  </div>-->
+<!--                  <button class="btn" id="convert-acc-register" type="submit" onsubmit="convertAccount(event)" form="convert-acc-form">Register</button>-->
+<!--                </form>-->
+              </div>
+            </div>
             <hr>
             <div id="title-and-list-container">
-              <div id="site-title-favourite-movies">Quix.</div>
               <div id="list-title">
                 <h3>Your favourites</h3><span id="icon-container"><span id="edit-favourite-movies-icon" class="btn"></span></span>
               </div>
 
               <span id="empty-list-placeholder">You have no saved favourites.</span>
 
-              <div id="favourite-movies-list">
-
-<!--                <div class="list-flex-container">-->
-<!--                  <div class="favourite-movie-li">-->
-<!--                    <a class="favourite-movie-anchor" href="https://www.imdb.com/title/tt2316204/">Aliennenant (2017)<span class="favourites-list-rating-span"><i aria-hidden="true" class="fa fa-star"></i> 6.4</span></a>-->
-<!--                  </div>-->
-<!--                  <div class="delete-span-container">-->
-<!--                    <span class="delete-span"><i class="fas fa-trash"></i></span>-->
-<!--                  </div>-->
-<!--                </div>-->
-<!--                <div class="list-flex-container">-->
-<!--                  <div class="favourite-movie-li">-->
-<!--                    <a class="favourite-movie-anchor" href="https://www.imdb.com/title/tt2316204/">Alien:dddddddd-->
-<!--                      dddddddCoasddddd-->
-<!--                      dddddddddddddd ddddddddddd ddddddddddd ddddddddddd dasdddd ddddddddddd ddddddddddddd-->
-<!--                      dddddd dddddddasavenant-->
-<!--                      Coasdddddddddddddddddddddddd dddasaven antdddddddddddddddddddddddd dddddddddddddasavenant (2017)<span class="favourites-list-rating-span"><i aria-hidden="true" class="fa fa-star"></i> 6.4</span></a>-->
-<!--                  </div>-->
-<!--                  <div class="delete-span-container">-->
-<!--                    <span class="delete-span"><i class="fas fa-trash"></i></span>-->
-<!--                  </div>-->
-<!--                </div>-->
-<!--                  <div class="favourite-movie-li">-->
-<!--                    <a class="favourite-movie-anchor" href="https://www.imdb.com/title/tt2316204/">Alien: Covenant (2017)<span class="favourites-list-rating-span"><i aria-hidden="true" class="fa fa-star"></i> 6.4</span></a>-->
-<!--                  </div>-->
-<!--                  <div class="delete-span-container">-->
-<!--                    <span class="delete-span"><i class="fas fa-trash"></i></span>-->
-<!--                  </div>-->
-
-
-
-              </div>
+              <div id="favourite-movies-list"></div>
               <button type="button" id="show-favourite-movies" class="btn">Show</button>
 
 

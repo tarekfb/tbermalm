@@ -272,6 +272,15 @@ todo: reutrn top visiblity fade when not at top
   font-weight: var(--fontweight-title);
 }
 
+.mobile-site-title {
+  position: fixed;
+  left: 50%;
+  transform: translate(-50%, 0);
+  top: 20px;
+/*  this class changes the title to top of page
+  activated on mobile browser & db toggle click*/
+}
+
 #subtitle-flex-container {
   margin: 5px 0 15px 0;
 
@@ -680,6 +689,8 @@ todo: reutrn top visiblity fade when not at top
 	another update, a month or so after the comment above:
 	i finally got rid of the hacky input-toggle solution
 	should have done that a long time ago
+
+	ctrl + f keyword: sidebar
    ========================================================================== */
 
 #favourite-movies-container{
@@ -702,6 +713,9 @@ todo: reutrn top visiblity fade when not at top
   height: calc(100vh - 80px);
   overflow-y: auto;
   overflow-x: hidden;
+
+  z-index: 100;
+  /*fixes some scrolling issues*/
 }
 
 #favourite-movies-flex-container{
@@ -736,18 +750,6 @@ pulse grey on save to list
   100% {background-color: var(--color-accent-whiteblack);}
 }
 
-#site-title-favourite-movies {
-  font-family: var(--fontface-title);
-  font-size: var(--fontsize-title);
-  font-weight: var(--fontweight-title);
-
-  position: fixed;
-  left: 50%;
-  transform: translate(-50%, 0);
-  top: 20px;
-  /*margin-top: 1em;*/
-}
-
 #title-and-list-container{
   display: flex;
   flex-direction: column;
@@ -761,9 +763,6 @@ pulse grey on save to list
   font-family: var(--fontface-title);
   font-weight: normal;
   margin-top: 0;
-
-  /*font-size: 30px;*/
-  /*font-family: AbelRegular;*/
 }
 
 #icon-container{
@@ -911,7 +910,6 @@ hr {
 }
 
 #sign-out::before{
-  speak: none;
   font-family: "Font Awesome 5 Free", serif;
   font-style: normal;
   font-weight: bold;
@@ -972,12 +970,6 @@ hr {
 
   #title {
     font-size: var(--fontsize-title-small);
-  }
-  #site-title-favourite-movies {
-    font-size: var(--fontsize-title-small);
-  /*this is a bit of a hacky solution
-    this selection needs to match #title selection
-    so it looks identical*/
   }
 
   #subtitle {

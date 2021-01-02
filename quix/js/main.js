@@ -10,6 +10,7 @@ submitFormListener();
 showFavouriteMoviesListener();
 favouriteMoviesIconListener();
 navbarListeners();
+convertAccListener();
 handleInitChecks();
 
 let show = "show";
@@ -23,10 +24,10 @@ function navbarListeners() {
     let favouriteMoviesContainer = document.getElementById("favourite-movies-container");
     favouriteMoviesContainer.classList.toggle("hide");
 
-    //if mobile user
+    //if mobile user, change title to top of page when
     if (/Mobi|Android/i.test(navigator.userAgent)) {
       let title = document.getElementById("title");
-      title.classList.toggle("hide");
+      title.classList.toggle("mobile-site-title");
     }
   });
 
@@ -49,7 +50,7 @@ function submitFormListener() {
   let form = document.getElementById("search-form");
   let searchBox = document.getElementById("search-box");
 
-  form.addEventListener("submit", function(event) {
+  form.addEventListener("submit", event => {
 
     // this clears resultContainer to prevent stacking of results/response messages
     let resultContainerList = document.getElementsByClassName("result-container");
@@ -104,6 +105,22 @@ function showFavouriteMoviesListener() {
   });
 }
 
+function convertAccListener() {
+  let convertBtn = document.getElementById("convert-acc-btn");
+  let convertAccRegistration = document.getElementById("convert-acc-registration");
+  let convertAccDescr = document.getElementById("convert-acc-description")
+
+  convertBtn.addEventListener("click", function () {
+
+    convertBtn.classList.toggle("hide");
+    convertAccRegistration.classList.toggle("hide");
+    convertAccDescr.classList.toggle("hide");
+    convertAccount();
+
+  });
+
+}
+
 function favouriteMoviesIconListener() {
   let editFavouriteMovies = document.getElementById("edit-favourite-movies-icon");
   editFavouriteMovies.addEventListener("click", editOrConfirmStateChange);
@@ -139,8 +156,7 @@ function handleInitChecks() {
     let yourFavouritesSpan = document.getElementById("db-styling-container").querySelector("span");
     yourFavouritesSpan.classList.add("hide");
   } else {
-    let siteTitleFavouriteMovies = document.getElementById("site-title-favourite-movies");
-    siteTitleFavouriteMovies.classList.toggle("hide");
+
   }
 
   // if users system is set to prefer dark
@@ -247,13 +263,6 @@ function displayResult(result) {
   let loadingResults = document.getElementById("loading-results");
   loadingResults.style.display = "none";
 
-  //this code will make the sidebar retract itself
-  //if mobile user
-
-  // if (/Mobi|Android/i.test(navigator.userAgent) && document.getElementById("input-hamburger").checked) {
-  // 	document.getElementById("input-hamburger").checked = false;
-  // }
-
   let resultContainerList = document.getElementsByClassName("result-container");
   let resultContainer = resultContainerList[0];
 
@@ -294,7 +303,7 @@ function displayResult(result) {
       // 	generateMovieCard(entry);
       // });
 
-      // does case never fires, can probably safely remove
+      // this case never fires, can probably safely remove
 
       console.log("Well, this isn't suppose to happen...");
 
@@ -317,9 +326,9 @@ function generateMovieCard(apiCallResult) {
   let resultContainer = resultContainerList[resultContainerList.length - 1];
   //list index starts at 0, but length starts at 1. therefore -1
 
+  // should use class, not id
   let movieContainer = document.createElement('div');
   movieContainer.classList.add('movie-container');
-  //movieContainer.style.zIndex = "-1"; //this fixes the movie card being infront of sidebar menu //not needed
   resultContainer.appendChild(movieContainer);
 
   //adding hyperlink, the movie's imdb-page, to movie poster
@@ -534,6 +543,11 @@ function showDefaultModalBox() {
 
 /*******************************************
  * Google Firebase and favourite-movies-container
+ *
+ * in the future, the vars and function names should not contain the name of the db provider
+ * currently, i'd have to refactor if I change provider
+ *
+ * ctrl f keyword: sidebar
  *******************************************/
 
 function authStateChanged(firebaseUser) {
@@ -552,8 +566,11 @@ function authStateChanged(firebaseUser) {
   let favouriteMoviesContainer = document.getElementById('favourite-movies-container');
   let hr = favouriteMoviesContainer.querySelectorAll('hr');
 
+  // halfway through the project I started using ".hide" instead of "style.display = "none"
+  // style = none created lots of issues (who could've seen that coming...)
+  // this is the reason for both methods being present, atm
   if (firebaseUser){
-    firebaseUISignupContainer.style.display = "none";
+    firebaseUISignupContainer.classList.add("hide");
     signOutContainer.onclick = firebaseSignOut;
     signOutContainer.style.display = "unset";
 
@@ -562,18 +579,21 @@ function authStateChanged(firebaseUser) {
     if (firebaseUser.displayName == null){
       authWelcome.innerHTML = 'Welcome, ';
       authName.innerHTML = 'Guest';
+      handleAnonUser();
+      hr[0].style.display = "unset";
+      hr[1].style.display = "unset";
+
     } else{
       authWelcome.innerHTML = 'Welcome, ';
       authName.innerHTML = firebaseUser.displayName;
+      hr[0].style.display = "unset";
     }
     authStatus.style.display = "unset";
 
-    hr.forEach(function (n) {
-      n.style.display = "unset";
-    });
+
 
   } else {
-    firebaseUISignupContainer.style.display = "unset";
+    firebaseUISignupContainer.classList.remove("hide");
     authStatus.style.display = "none";
     signOutContainer.style.display = "none";
 
@@ -584,6 +604,22 @@ function authStateChanged(firebaseUser) {
     });
   }
 }
+
+function handleAnonUser() {
+  let convertAccContainer = document.getElementById("convert-acc-container");
+  convertAccContainer.classList.toggle("hide");
+}
+
+// function convertAccount(event){
+//  //  event.preventDefault();
+//  //  let convertAccContainer = document.getElementById("convert-acc-container");
+//  // // convertAccContainer.classList.toggle("hide");
+//  //
+//  //  convertAccContainer.style.backgroundColor = "red";
+//  //
+//  //
+//  //  return false;
+// }
 
 function handleSidebarLoadingAnimation(hideShow){
   // there are currently two issues with this function
@@ -912,6 +948,18 @@ function requestNewPage(queryText) {
 /*******************************************
  * Other
  *******************************************/
+
+function moveChoiceTo(elem_choice, direction) {
+  // this div moves an element up (-1) or down (1) one increment within the parent div
+  let elem = elem_choice.parentNode
+  let parentNode = elem.parentNode;
+
+  if (direction === -1 && elem.previousElementSibling) {
+    parentNode.insertBefore(elem, elem.previousElementSibling);
+  } else if (direction === 1 && elem.nextElementSibling) {
+    parentNode.insertBefore(elem, elem.nextElementSibling.nextElementSibling)
+  }
+}
 
 function toggleDarkMode() {
 
