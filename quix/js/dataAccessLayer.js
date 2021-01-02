@@ -20,38 +20,83 @@ function initializeFireBase() {
     // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
     firebase.analytics();
-
-    initFirebaseUI();
 }
 
-function initFirebaseUI() {
+// FirebaseUI config.
+let uiConfig = {
+  callbacks: {
+    /*
+       uiShown: function() {
+    // The widget is rendered.
+    // Hide the loader.
+    document.getElementById('loader').style.display = 'none';
+  }
 
-    // FirebaseUI config.
-    let uiConfig = {
-        // signInSuccess: function(currentUser, credential, redirectUrl) {
-        //     return false; //this will stop the signinsuccessurl from being used
-        //     },
-       // signInSuccessUrl: HOME_PAGE,
-        signInOptions: [
-            // Leave the lines as is for the providers you want to offer your users.
-            firebase.auth.EmailAuthProvider.PROVIDER_ID,
-            firebaseui.auth.AnonymousAuthProvider.PROVIDER_ID
-        ],
-        // tosUrl and privacyPolicyUrl accept either url string or a callback
-        // function.
-        // Terms of service url/callback.
-        tosUrl: '<your-tos-url>',
-        // Privacy policy url/callback.
-        privacyPolicyUrl: function() {
-            window.location.assign('<your-privacy-policy-url>');
+     */
+  },
+    // signInSuccess: function(currentUser, credential, redirectUrl) {
+    //     return false; //this will stop the signinsuccessurl from being used
+    //     },
+   // signInSuccessUrl: HOME_PAGE,
+    signInOptions: [
+        // Leave the lines as is for the providers you want to offer your users.
+        firebase.auth.EmailAuthProvider.PROVIDER_ID,
+        firebaseui.auth.AnonymousAuthProvider.PROVIDER_ID
+    ],
+    // tosUrl and privacyPolicyUrl accept either url string or a callback
+    // function.
+    // Terms of service url/callback.
+    tosUrl: '<your-tos-url>',
+    // Privacy policy url/callback.
+    privacyPolicyUrl: function() {
+        window.location.assign('<your-privacy-policy-url>');
+    }
+};
+
+// Initialize the FirebaseUI Widget using Firebase.
+let ui = new firebaseui.auth.AuthUI(firebase.auth());
+// The start method will wait until the DOM is loaded.
+
+ui.start('#firebaseui-signup-container', uiConfig);
+
+
+function convertAccount(){
+  // Temp variable to hold the anonymous user data if needed.
+  let data = null;
+  // Hold a reference to the anonymous current user.
+  let anonymousUser = firebase.auth().currentUser;
+
+  // Initialize the FirebaseUI Widget using Firebase.
+
+  ui.start('#convert-acc-registration', {
+    // Whether to upgrade anonymous users should be explicitly provided.
+    // The user must already be signed in anonymously before FirebaseUI is
+    // rendered.
+    autoUpgradeAnonymousUsers: true,
+    signInSuccessUrl: HOME_PAGE,
+    signInOptions: [
+      firebase.auth.EmailAuthProvider.PROVIDER_ID,
+    ],
+    callbacks: {
+      // signInFailure callback must be provided to handle merge conflicts which
+      // occur when an existing credential is linked to an anonymous user.
+      signInFailure: function(error) {
+        // For merge conflicts, the error.code will be
+        // 'firebaseui/anonymous-upgrade-merge-conflict'.
+        if (error.code != 'firebaseui/anonymous-upgrade-merge-conflict') {
+          return Promise.resolve();
         }
-    };
+        // The credential the user tried to sign in with.
+        let cred = error.credential;
+        // Copy data from anonymous user to permanent user and delete anonymous
+        // user.
+        // ...
+        // Finish sign-in after data is copied.
+        return firebase.auth().signInWithCredential(cred);
+      }
+    }
+  });
 
-    // Initialize the FirebaseUI Widget using Firebase.
-    let ui = new firebaseui.auth.AuthUI(firebase.auth());
-    // The start method will wait until the DOM is loaded.
-
-    ui.start('#firebaseui-signup-container', uiConfig);
 }
 
 firebase.auth().onAuthStateChanged(firebaseUser => {
@@ -122,10 +167,15 @@ function firebaseSignOut() {
     //it signs out, and then redirects user to homepage
     //redirected needed to reset firebaseui div
     firebase.auth().signOut();
+
+  firebase.auth().signOut().then(() => {
     window.location = HOME_PAGE;
+  }).catch((error) => {
+    console.log(error);
+  });
 }
 
-function getFirebaseAuth() {
+async function getFirebaseAuth() {
     return firebase.auth();
 }
 

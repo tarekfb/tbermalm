@@ -910,7 +910,6 @@ hr {
 }
 
 #sign-out::before{
-  speak: none;
   font-family: "Font Awesome 5 Free", serif;
   font-style: normal;
   font-weight: bold;

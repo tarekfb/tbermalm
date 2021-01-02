@@ -10,6 +10,7 @@ submitFormListener();
 showFavouriteMoviesListener();
 favouriteMoviesIconListener();
 navbarListeners();
+convertAccListener();
 handleInitChecks();
 
 let show = "show";
@@ -49,7 +50,7 @@ function submitFormListener() {
   let form = document.getElementById("search-form");
   let searchBox = document.getElementById("search-box");
 
-  form.addEventListener("submit", function(event) {
+  form.addEventListener("submit", event => {
 
     // this clears resultContainer to prevent stacking of results/response messages
     let resultContainerList = document.getElementsByClassName("result-container");
@@ -104,6 +105,22 @@ function showFavouriteMoviesListener() {
   });
 }
 
+function convertAccListener() {
+  let convertBtn = document.getElementById("convert-acc-btn");
+  let convertAccRegistration = document.getElementById("convert-acc-registration");
+  let convertAccDescr = document.getElementById("convert-acc-description")
+
+  convertBtn.addEventListener("click", function () {
+
+    convertBtn.classList.toggle("hide");
+    convertAccRegistration.classList.toggle("hide");
+    convertAccDescr.classList.toggle("hide");
+    convertAccount();
+
+  });
+
+}
+
 function favouriteMoviesIconListener() {
   let editFavouriteMovies = document.getElementById("edit-favourite-movies-icon");
   editFavouriteMovies.addEventListener("click", editOrConfirmStateChange);
@@ -139,8 +156,7 @@ function handleInitChecks() {
     let yourFavouritesSpan = document.getElementById("db-styling-container").querySelector("span");
     yourFavouritesSpan.classList.add("hide");
   } else {
-    let siteTitleFavouriteMovies = document.getElementById("site-title-favourite-movies");
-    siteTitleFavouriteMovies.classList.toggle("hide");
+
   }
 
   // if users system is set to prefer dark
@@ -246,13 +262,6 @@ function displayResult(result) {
   //hiding the loading div
   let loadingResults = document.getElementById("loading-results");
   loadingResults.style.display = "none";
-
-  //this code will make the sidebar retract itself
-  //if mobile user
-
-  // if (/Mobi|Android/i.test(navigator.userAgent) && document.getElementById("input-hamburger").checked) {
-  // 	document.getElementById("input-hamburger").checked = false;
-  // }
 
   let resultContainerList = document.getElementsByClassName("result-container");
   let resultContainer = resultContainerList[0];
@@ -571,15 +580,17 @@ function authStateChanged(firebaseUser) {
       authWelcome.innerHTML = 'Welcome, ';
       authName.innerHTML = 'Guest';
       handleAnonUser();
+      hr[0].style.display = "unset";
+      hr[1].style.display = "unset";
+
     } else{
       authWelcome.innerHTML = 'Welcome, ';
       authName.innerHTML = firebaseUser.displayName;
+      hr[0].style.display = "unset";
     }
     authStatus.style.display = "unset";
 
-    hr.forEach(function (n) {
-      n.style.display = "unset";
-    });
+
 
   } else {
     firebaseUISignupContainer.classList.remove("hide");
@@ -595,12 +606,20 @@ function authStateChanged(firebaseUser) {
 }
 
 function handleAnonUser() {
-    let signUpContainer = document.getElementById("firebaseui-signup-container");
-    //signUpContainer.classList.remove("hide");
-  //   moveChoiceTo(signUpContainer, 1);
-  // moveChoiceTo(signUpContainer, 1);
-
+  let convertAccContainer = document.getElementById("convert-acc-container");
+  convertAccContainer.classList.toggle("hide");
 }
+
+// function convertAccount(event){
+//  //  event.preventDefault();
+//  //  let convertAccContainer = document.getElementById("convert-acc-container");
+//  // // convertAccContainer.classList.toggle("hide");
+//  //
+//  //  convertAccContainer.style.backgroundColor = "red";
+//  //
+//  //
+//  //  return false;
+// }
 
 function handleSidebarLoadingAnimation(hideShow){
   // there are currently two issues with this function
