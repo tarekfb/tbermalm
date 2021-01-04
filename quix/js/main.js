@@ -19,17 +19,7 @@ handleSidebarLoadingAnimation(show);
 function navbarListeners() {
 
   let dbToggleContainer = document.getElementById("db-toggle-container");
-  dbToggleContainer.addEventListener("click", function (event) {
-
-    let favouriteMoviesContainer = document.getElementById("favourite-movies-container");
-    favouriteMoviesContainer.classList.toggle("hide");
-
-    //if mobile user, change title to top of page when
-    if (/Mobi|Android/i.test(navigator.userAgent)) {
-      let title = document.getElementById("title");
-      title.classList.toggle("mobile-site-title");
-    }
-  });
+  dbToggleContainer.addEventListener("click", toggleFavouriteMoviesContainer);
 
   // this line stops the the children from triggering the click function
   document.getElementById('favourite-movies-container').addEventListener('click', e => e.stopPropagation());
@@ -44,6 +34,17 @@ function navbarListeners() {
     window.pageYOffset = 0; // Mobile, some browsers
   });
 
+}
+
+function toggleFavouriteMoviesContainer() {
+  let favouriteMoviesContainer = document.getElementById("favourite-movies-container");
+  favouriteMoviesContainer.classList.toggle("hide");
+
+  //if mobile user, change title to top of page when favmovcont is showing
+  if (/Mobi|Android/i.test(navigator.userAgent)) {
+    let title = document.getElementById("title");
+    title.classList.toggle("mobile-site-title");
+  }
 }
 
 function submitFormListener() {
@@ -91,8 +92,8 @@ function submitFormListener() {
 }
 
 function showFavouriteMoviesListener() {
-  //this function allows us to resolve the promise given by readFavMovList in dal
-  //and pass the snapshot to displayFavMovies
+  // this function allows us to resolve the promise given by readFavMovList in dal
+  // and use the snapshot to display fav movies
 
   let showFavouriteMoviesBtn = document.getElementById("show-favourite-movies");
   showFavouriteMoviesBtn.addEventListener("click", function (){
@@ -101,7 +102,25 @@ function showFavouriteMoviesListener() {
     let loadingResults = document.getElementById("loading-results");
     loadingResults.style.display = "inline-block";
 
-    readFavouriteMoviesList().then(snapshot => displayFavouriteMovies(snapshot));
+    toggleFavouriteMoviesContainer();
+
+    readFavouriteMoviesList().then(snapshot => {
+      //this fun takes the movies that the user saved to favourites -->
+      // --> and displays them in the main result container
+
+      // this clears every resultContainer to prevent duplication of results/response messages
+      let resultContainerList = document.getElementsByClassName("result-container");
+      for (let i = 0; i < resultContainerList.length; i++) {
+        resultContainerList[i].querySelectorAll('*').forEach(n => n.remove());
+      }
+
+      // this generates a list of movies in the main result container, based on imdbID
+      snapshot.forEach(function (snapshot) {
+        let key = snapshot.key;
+        apiHandlerByImdbID(key);
+      });
+    });
+
   });
 }
 
@@ -462,28 +481,6 @@ function generateMovieCard(apiCallResult) {
 
 }
 
-function displayFavouriteMovies(snapshot) {
-  //this fun takes the movies that the user saved to favourites -->
-  // --> and displays them in the main result container
-
-  // this clears resultContainer to prevent stacking of results/response messages
-  let resultContainerList = document.getElementsByClassName("result-container");
-  for (let i = 0; i < resultContainerList.length; i++) {
-    resultContainerList[i].querySelectorAll('*').forEach(n => n.remove());
-  }
-
-  let favouriteMoviesContainer = document.getElementById("favourite-movies-container");
-  favouriteMoviesContainer.classList.toggle("hide");
-
-
-  // this generates a list of movies in the main result container, based on imdbID
-  snapshot.forEach(function (snapshot) {
-    let key = snapshot.key;
-    apiHandlerByImdbID(key);
-  });
-
-}
-
 /*******************************************
  * Functions for modal boxes
  *******************************************/
@@ -558,11 +555,11 @@ function showDefaultModalBox() {
  *******************************************/
 
 function authStateChanged(firebaseUser) {
-  //this fun is called when the fireBase user changes state (sign in or out)
-  //a fun in DAL is called at that point
-  //that fun calls this fun and passes either the firebaseUser
-  //the firebaseUser has properties on SIGN IN
-  //the firebaseUser is null on LOG OFF
+  // this fun is called when the fireBase user changes state (sign in or out)
+  // a fun in DAL is called at that point
+  // that fun calls this fun and passes either the firebaseUser
+  // the firebaseUser has properties on SIGN IN
+  // the firebaseUser is null on LOG OFF
 
   let firebaseUISignupContainer = document.getElementById("firebaseui-signup-container");
   let authStatus = document.getElementById("auth-status");
@@ -570,18 +567,19 @@ function authStateChanged(firebaseUser) {
   let authName = document.getElementById("auth-name");
   let signOutContainer =  document.getElementById('sign-out-container');
   let titleAndListContainer =  document.getElementById("title-and-list-container");
-  let favouriteMoviesContainer = document.getElementById('favourite-movies-container');
-  let hr = favouriteMoviesContainer.querySelectorAll('hr');
+  let favouriteMoviesDescription = document.getElementById("favourite-movies-description");
+  let hrAuth = document.getElementById("hr-auth");
+  let hrConvert = document.getElementById("hr-convert");
 
   // halfway through the project I started using ".hide" instead of "style.display = "none"
   // style = none created lots of issues (who could've seen that coming...)
   // this is the reason for both methods being present, atm
+
   if (firebaseUser){
     // Logged in
     firebaseUISignupContainer.classList.add("hide");
     signOutContainer.onclick = firebaseSignOut;
     signOutContainer.style.display = "unset";
-
     titleAndListContainer.classList.remove("hide");
 
     if (firebaseUser.displayName == null){
@@ -589,13 +587,15 @@ function authStateChanged(firebaseUser) {
       authWelcome.innerHTML = 'Welcome, ';
       authName.innerHTML = 'Guest';
       handleAnonUser();
-      hr[0].style.display = "unset";
-      hr[1].style.display = "unset";
+      hrAuth.classList.toggle("hide");
+      hrConvert.classList.toggle("hide");
+      favouriteMoviesDescription.classList.toggle("hide");
     } else{
       // Permanent account
       authWelcome.innerHTML = 'Welcome, ';
       authName.innerHTML = firebaseUser.displayName;
-      hr[0].style.display = "unset";
+      // [0hr].style.display = "unset";
+      hrAuth.classList.toggle("hide");
     }
     authStatus.style.display = "unset";
 
@@ -604,12 +604,11 @@ function authStateChanged(firebaseUser) {
     firebaseUISignupContainer.classList.remove("hide");
     authStatus.style.display = "none";
     signOutContainer.style.display = "none";
-
     titleAndListContainer.classList.add("hide");
+    favouriteMoviesDescription.classList.add("hide");
+    hrAuth.classList.add("hide");
+    hrConvert.classList.add("hide");
 
-    hr.forEach(function (n) {
-      n.style.display = "none";
-    });
   }
 }
 

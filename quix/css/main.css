@@ -454,55 +454,38 @@ todo: reutrn top visiblity fade when not at top
 }
 
 .movie-container img {
-  /*width: 105px;*/
-  /*height: 100%;*/
-  /*padding: 10px 0 10px 10px;*/
-  /*box-sizing: border-box;*/
-
+  width: 105px;
   height: 100%;
   box-sizing: border-box;
-  width: 85px;
-
 }
-.movie-container .text {
-  /*flex-grow: 1;*/
-  /*box-sizing: border-box;*/
-  /*overflow-y: hidden;*/
-  /*margin: 10px 0 10px 10px;*/
 
+.movie-container .text {
   margin: 0.5em;
-  box-sizing: border-box;
   overflow-y: hidden;
-  font-size: var(--fontsize-text);
+  font-size: var(--fontsize-text-large);
   flex-grow: 1;
 }
+
 .movie-container .title-year {
-  /*font-size: 32px;*/
-
-  font-size: 25px;
-  font-family: AbelRegular;
-
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  -webkit-line-clamp: 2; /*desktop = 4*/
-
-}
-.actors, .awards {
-  /*display: inline-block;*/
-  /*margin-top: 0;*/
-  /*font-size: 18px;*/
-
-  display: block;
-  font-size: 14px;
-  margin-top: 0.5em;
-
+  font-family: var(--fontface-title);
+  font-size: var(--fontsize-title-smaller);
 
   /*line-clamp hides the rows after n:th row*/
   display: -webkit-box;
   -webkit-box-orient: vertical;
   overflow: hidden;
-  -webkit-line-clamp: 3; /*desktop = 4*/
+  -webkit-line-clamp: 4;
+
+}
+.actors, .awards {
+  display: block;
+  margin-top: 0.5em;
+
+  /*line-clamp hides the rows after n:th row*/
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  -webkit-line-clamp: 4;
 }
 
 .movie-container .rating-container {
@@ -521,52 +504,25 @@ todo: reutrn top visiblity fade when not at top
 }
 
 .movie-container .rating {
-  /*background: var(--main-red);*/
-  /*padding: 0;*/
-  /*min-width: 11%;*/
-
-  /*flex-grow: 0;*/
-  /*flex-shrink: 0;*/
-  /*display: flex;*/
-  /*!*allows centering*!*/
-  /*justify-content: center;*/
-  /*!* align horizontal *!*/
-  /*align-items: center;*/
-  /*!* align vertical *!*/
-
   /*this adjusts the text to the center of div*/
   margin-right: -5px;
   margin-top: 15px;
 
   display: flex;
-  /*allows centering*/
   justify-content: center;
-  /* align horizontal */
   align-items: center;
-  /* align vertical */
-
 }
 .movie-container .rating i {
-  /*font-size: 20px;*/
-  /*color: #FFD700;*/
-  /*text-shadow: 0 0 3px #000;*/
-  /*margin-right: 5px;*/
-
   font-size: 14px;
   color: #FFD700;
   text-shadow: 0 0 3px #000;
   margin-right: var(--icon-distance-secondary);
 }
+
 .rating-score {
-  /*font-size: 30px;*/
-
   font-size: 18px;
-
 }
 .rating-max {
-  /*font-size: 18px;*/
-  /*color: #696969;*/
-
   color: #696969;
   font-size: 15px;
   display: none;
@@ -637,15 +593,6 @@ todo: reutrn top visiblity fade when not at top
   color: var(--color-accent-main);
   font-weight: bold;
   font-size: 28px;
-
-
-  /*float: right;*/
-  /*margin-top: -20px;*/
-  /*margin-right: -10px;*/
-
-  /* this is such a minor detail
-  but float/margin isnt the best solution.
-  relative/absolute would be better	*/
 }
 
 .modal-content p{
@@ -665,10 +612,8 @@ todo: reutrn top visiblity fade when not at top
 #cancel{
   background-color: var(--color-background-secondary);
   border: none;
-  /*margin-left: 3em;*/
   color: var(--color-accent-whiteblack);
   font-size: var(--fontsize-text-large);
-  /*this line doesn't have any effect for some reason*/
 }
 
 #default-modal-content{
@@ -821,7 +766,7 @@ hr {
   border-top: 2px solid var(--color-accent-whiteblack);
   margin: 1em 0;
   margin-top: 1.5em;
-  padding: 0;
+  padding: 0  ;
   width: 85%;
 }
 
@@ -871,6 +816,11 @@ hr {
 
 .favourites-list-rating-span{
   white-space: nowrap;
+}
+
+#favourite-movies-description {
+  margin-bottom: 0;
+  padding-bottom: 0;
 }
 
 /* ==========================================================================
@@ -989,8 +939,8 @@ hr {
   .movie-container {
     position: relative;
     width: 100%;
-    height: 160px;
-    margin: 5px auto;
+    height: 155px;
+    margin: 10px auto;
     background-color: var(--color-background-grey);
     text-align: left;
 
@@ -1014,41 +964,24 @@ hr {
     height: 100%;
   }
 
-  .movie-container #text {
-    margin: 5px 0 0 5px;
+  .movie-container .text {
+    font-size: var(--fontsize-text);
   }
 
-  .movie-container #text #title-year {
-    font-size: 22px;
+  .movie-container .title-year {
+    font-size: var(--fontsize-title-smallest);
+    -webkit-line-clamp: 2;
   }
 
-  .movie-container #text #actors,
-  .movie-container #text #awards {
-    font-size: 14px;
-  }
-
-  .movie-container #rating {
-    padding: 0 9px 0 9px;
-    flex-grow: 0.1;
-    min-width: 13%
-  }
-
-  .movie-container #rating i {
-    font-size: 15px;
-  }
-
-  .movie-container #rating #rating-score {
-    font-size: 22px;
-  }
-
-  .movie-container #rating #rating-max {
-    font-size: 15px;
-    display: none;
+  .actors, .awards {
+    font-size: var(--fontsize-text);
+    -webkit-line-clamp: 3;
   }
 
   .modal-content {
     min-height: 135px;
     min-width: 55%;
+    padding: 10px;
   }
 
   .modal-content p {

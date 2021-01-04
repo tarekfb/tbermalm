@@ -54,19 +54,6 @@
       <recent name="C:\Users\deduu\IdeaProjects\tbermalm\quix" />
     </key>
   </component>
-  <component name="RunManager">
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -76,7 +63,8 @@
       <option name="presentableId" value="Default" />
       <updated>1609429345287</updated>
       <workItem from="1609429346531" duration="964000" />
-      <workItem from="1609589599987" duration="21313000" />
+      <workItem from="1609589599987" duration="21703000" />
+      <workItem from="1609756365919" duration="4823000" />
     </task>
     <servers />
   </component>
@@ -100,10 +88,10 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="249" y="0" key="SettingsEditor/0.0.1536.834@0.0.1536.834" timestamp="1609594288039" />
-    <state x="425" y="189" key="run.anything.popup" timestamp="1609603550177">
+    <state x="425" y="189" key="run.anything.popup" timestamp="1609760380092">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="425" y="189" key="run.anything.popup/0.0.1536.834@0.0.1536.834" timestamp="1609603550177" />
+    <state x="425" y="189" key="run.anything.popup/0.0.1536.834@0.0.1536.834" timestamp="1609760380092" />
     <state x="431" y="155" width="672" height="678" key="search.everywhere.popup" timestamp="1609599976505">
       <screen x="0" y="0" width="1536" height="834" />
     </state>

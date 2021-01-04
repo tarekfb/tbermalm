@@ -13,8 +13,8 @@
   <meta property="og:image" content="">
 
   <link rel="manifest" href="site.webmanifest">
-  <link rel="apple-touch-icon" href="/quix/icon.png">
-  <link rel="shortcut icon" href="/quix/favicon.ico">
+  <link rel="apple-touch-icon" href="../quix/icon.png">
+  <link rel="shortcut icon" href="../quix/favicon.ico">
 
   <link rel="stylesheet" href="css/normalize.css">
   <link rel="stylesheet" href="css/main.css">
@@ -34,7 +34,6 @@
   <div id="container">
 
     <nav id="navbar">
-<!--      <span id="site-name">Quix.</span>-->
       <div id="dark-mode-toggle-container"></div>
       <div id="scroll-to-top-container">
       </div>
@@ -55,30 +54,19 @@
                 <span id="sign-out">Log out</span>
               </button>
             </div>
-<!--            <div id="-description-favourite-movies-container">-->
-<!--              <div id="description"></div>-->
-<!--            </div>-->
-            <hr>
+            <p id="favourite-movies-description" class="hide">
+              Any movies you save to Quix will be displayed on this page. To save a movie, do a search and then press the save icon in the bottom right corner of each movie.
+            </p>
+            <hr id="hr-auth" class="hide">
             <div id="convert-acc-container" class="hide">
               <p id="convert-acc-description">
-                Do you want to keep using Quix? You can upgrade your account to a permanent one by pressing the button below. Any saved movies will transfer to your new account.
+                Do you want to keep using Quix? Upgrade your temporary login to a personal account and permanently access your saved movies.
               </p>
               <button id="convert-acc-btn" class="btn">Upgrade account</button>
               <div id="convert-acc-registration" class="hide">
-<!--                <form id="convert-acc-form">-->
-<!--                  <div class="input-box">-->
-<!--                    <input id="input-email" type="email" value="" required="" autocomplete="off">-->
-<!--                    <label>Username</label>-->
-<!--                  </div>-->
-<!--                  <div class="input-box">-->
-<!--                    <input id="input-pw" type="password"  value="" required="" autocomplete="off">-->
-<!--                    <label>Password</label>-->
-<!--                  </div>-->
-<!--                  <button class="btn" id="convert-acc-register" type="submit" onsubmit="convertAccount(event)" form="convert-acc-form">Register</button>-->
-<!--                </form>-->
               </div>
             </div>
-            <hr>
+            <hr id="hr-convert" class="hide">
             <div id="title-and-list-container">
               <div id="list-title">
                 <h3>Your favourites</h3><span id="icon-container"><span id="edit-favourite-movies-icon" class="btn"></span></span>
@@ -88,7 +76,6 @@
 
               <div id="favourite-movies-list"></div>
               <button type="button" id="show-favourite-movies" class="btn">Show</button>
-
 
             </div>
           </div>
@@ -130,7 +117,7 @@
       <!-- modal if movie already in favourites -->
       <div id="default-modal" class="modal-box">
         <div class="modal-content" id="default-modal-content">
-          <span class="close">&times;</span>
+          <span class="close"></span>
           <p>Something has gone wrong.</p>
           <button type="button" id="okay" class="btn">Okay</button>
         </div>
@@ -139,7 +126,7 @@
       <!-- modal if user not logged in -->
       <div id="modal-box-not-logged in" class="modal-box">
         <div class="modal-content" id="not-logged-in-modal-content">
-          <span class="close">&times;</span>
+          <span class="close"></span>
           <p>This movie is already in your list of favourites.</p>
           <button type="button" class="btn">Okay</button>
         </div>
