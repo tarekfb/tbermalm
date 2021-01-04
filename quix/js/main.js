@@ -190,9 +190,12 @@ function handleInitChecks() {
   // this is here because some browsers uses cookies to keep user logged in
   // therefore, upon page init, the authStateChange function won't fire
   // this forces the function to fire
-  getFirebaseAuth().then(auth => {
-    authStateChanged(auth.currentUser);
-  });
+  
+  // getFirebaseAuth().then(auth => {
+  //   authStateChanged(auth.currentUser);
+  // });
+
+  // but perhaps not needed
 }
 
 /*******************************************
@@ -430,7 +433,7 @@ function generateMovieCard(apiCallResult) {
   let saveToFavourites = document.createElement("span");
   saveToFavourites.classList.add("save-to-favorites");
   let saveIcon = document.createElement('i');
-  saveIcon.innerHTML = '<i class="fas fa-save" aria-hidden="true"></i>';
+  saveIcon.innerHTML = '<i class="fas fa-heart" aria-hidden="true"></i>';
 
   saveToFavourites.appendChild(saveIcon);
   movieContainer.appendChild(saveToFavourites);

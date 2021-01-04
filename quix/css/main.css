@@ -528,7 +528,7 @@ todo: reutrn top visiblity fade when not at top
   display: none;
 }
 
-/*icon in movie card*/
+/*save icon in movie card*/
 .save-to-favorites{
   position: absolute;
   bottom: 0px;
