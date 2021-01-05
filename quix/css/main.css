@@ -249,6 +249,7 @@ todo: reutrn top visiblity fade when not at top
   letter-spacing: normal;
   text-transform: none;
 
+  /*used to vertically center text*/
   display: inline-table;
 }
 
@@ -261,6 +262,7 @@ todo: reutrn top visiblity fade when not at top
 }
 
 #db-styling-container span {
+  /*used to vertically center text*/
   display:table-cell;
   vertical-align:middle;
 }
@@ -311,13 +313,14 @@ todo: reutrn top visiblity fade when not at top
 }
 
 #logo-container {
-  display: block;
 }
 
-#logo-container img {
-  margin-top: 75px;
+#logo {
+  display: block;
   width: 250px;
   height: 250px;
+  margin: 0 auto;
+  margin-top: 75px;
 }
 
 #main-search-button{
@@ -919,7 +922,7 @@ hr {
 
   #db-styling-container:before {
     font-size: 20px;
-    margin-right: var(--icon-distance);
+    margin-right: 0;
   }
 
   #scroll-to-top-container:before {
@@ -939,7 +942,7 @@ hr {
     /*vertical-align: center;*/
   }
 
-  #logo-container img {
+  #logo {
     width: 45vw;
     height: 45vw;
   }
@@ -1023,26 +1026,10 @@ hr {
 
   #favourite-movies-container {
     width: 100%;
-    /*height: calc(100% - 80px);*/
-
     left: 0;
     right: 0;
     margin-left: auto;
     margin-right: auto;
-
-    /*right: unset;*/
-
-    /*!*right: 50%;*!*/
-    /*!*transform: translateX(-50%);*!*/
-
-    /*min-width: 100vw;*/
-    /*position: unset;*/
-    /*margin-top: 80px;*/
-    /*text-align: center;*/
-    /*margin :0 auto;*/
-
-    /*left: 50%;*/
-    /*transform: translate(-50%, 0);*/
   }
 
   .favourite-movie-li .fa-trash {
