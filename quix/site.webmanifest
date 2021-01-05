@@ -1,6 +1,7 @@
 {
-    "name": "",
-    "short_name": "",
+    "name": "Quix - quickly index IMDB",
+    "short_name": "Quix.",
+    "description": "A website that lets you conveniently browse movies and their IMDB-ratings. Additionally, you can save your favourites permanently.",
     "icons": [
         {
             "src": "/quix/android-chrome-192x192.png",
@@ -13,7 +14,9 @@
             "type": "image/png"
         }
     ],
-    "theme_color": "#ffffff",
-    "background_color": "#ffffff",
-    "display": "standalone"
+    "theme_color": "#f38363",
+    "background_color": "#ffe4b3",
+    "display": "browser",
+    "start_url": "/",
+    "scope": "/"
 }
