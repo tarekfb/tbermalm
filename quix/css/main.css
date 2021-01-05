@@ -244,6 +244,8 @@ todo: reutrn top visiblity fade when not at top
   font-weight: normal;
   letter-spacing: normal;
   text-transform: none;
+
+  display: inline-table;
 }
 
 #db-styling-container:before {
@@ -251,7 +253,12 @@ todo: reutrn top visiblity fade when not at top
   content: "\f004";
   font-style: normal;
   font-size: 30px;
-  margin-right: var(--icon-distance-secondary);
+  margin-right: var(--icon-distance);
+}
+
+#db-styling-container span {
+  display:table-cell;
+  vertical-align:middle;
 }
 
 /* ==========================================================================
