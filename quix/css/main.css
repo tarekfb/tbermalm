@@ -33,11 +33,15 @@
 @font-face {
   font-family: AbelRegular;
   src: url("../fonts/abel/Abel-Regular.ttf");
+
+  /*this allows for rendering of system font, until this font loads*/
+  font-display: swap
 }
 
 @font-face {
   font-family: UbuntuRegular;
   src: url("../fonts/ubuntu/Ubuntu-Regular.ttf");
+  font-display: swap
 }
 
 
@@ -253,7 +257,7 @@ todo: reutrn top visiblity fade when not at top
   content: "\f004";
   font-style: normal;
   font-size: 30px;
-  margin-right: var(--icon-distance);
+  margin-right: var(--icon-distance-secondary);
 }
 
 #db-styling-container span {
@@ -915,6 +919,7 @@ hr {
 
   #db-styling-container:before {
     font-size: 20px;
+    margin-right: var(--icon-distance);
   }
 
   #scroll-to-top-container:before {
