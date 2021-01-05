@@ -190,7 +190,7 @@ function handleInitChecks() {
   // this is here because some browsers uses cookies to keep user logged in
   // therefore, upon page init, the authStateChange function won't fire
   // this forces the function to fire
-  
+
   // getFirebaseAuth().then(auth => {
   //   authStateChanged(auth.currentUser);
   // });
@@ -959,24 +959,12 @@ function requestNewPage(queryText) {
  * Other
  *******************************************/
 
-function moveChoiceTo(elem_choice, direction) {
-  // this div moves an element up (-1) or down (1) one increment within the parent div
-  let elem = elem_choice.parentNode
-  let parentNode = elem.parentNode;
-
-  if (direction === -1 && elem.previousElementSibling) {
-    parentNode.insertBefore(elem, elem.previousElementSibling);
-  } else if (direction === 1 && elem.nextElementSibling) {
-    parentNode.insertBefore(elem, elem.nextElementSibling.nextElementSibling)
-  }
-}
-
 function toggleDarkMode() {
 
   let darkModeToggleContainer = document.getElementById("dark-mode-toggle-container");
   darkModeToggleContainer.classList.toggle("light-mode");
 
-  let logo = document.getElementById("logo-container").querySelector('img');
+  let logo = document.getElementById("logo");
   let root = document.documentElement;
 
   if (!darkModeToggleContainer.classList.contains("light-mode")) {
