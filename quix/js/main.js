@@ -168,15 +168,6 @@ function favouriteMoviesIconListener() {
 }
 
 function handleInitChecks() {
-  //if mobile user
-  //make "<3 your favourites" in navbar shorten to "<3"
-
-  if (/Mobi|Android/i.test(navigator.userAgent)){
-    let yourFavouritesSpan = document.getElementById("db-styling-container").querySelector("span");
-    yourFavouritesSpan.classList.add("hide");
-  } else {
-
-  }
 
   // if users system is set to prefer dark
   // toggle dark mode
@@ -195,7 +186,9 @@ function handleInitChecks() {
   //   authStateChanged(auth.currentUser);
   // });
 
-  // but perhaps not needed
+  // commented out, because it caused some issues
+  // iirc, getFirebaseAuth() is undefined
+  // because this fun attempts to call the fun from dal.js before dal.js is loaded
 }
 
 /*******************************************
@@ -204,6 +197,8 @@ function handleInitChecks() {
 
 function apiHandlerByTitle(queryText) {
   //this function queries the omdbAPI by title
+
+  // in hindsight, all omdbAPI functionality should've been implemented in a separate js class
 
   //define api request variables
   const omdbAPI = new XMLHttpRequest();

@@ -265,6 +265,13 @@ todo: reutrn top visiblity fade when not at top
   /*used to vertically center text*/
   display:table-cell;
   vertical-align:middle;
+
+  font-family: var(--fontface-title);
+  font-size: var(--fontsize-title-smallest);
+}
+
+#db-styling-container span:after {
+  content: "Your favourites";
 }
 
 /* ==========================================================================
@@ -923,6 +930,10 @@ hr {
   #db-styling-container:before {
     font-size: 20px;
     margin-right: 0;
+  }
+
+  #db-styling-container span:after {
+    content: "";
   }
 
   #scroll-to-top-container:before {
