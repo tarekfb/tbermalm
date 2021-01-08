@@ -41,7 +41,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/.." />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
@@ -68,6 +68,7 @@
       <workItem from="1609870085172" duration="1195000" />
       <workItem from="1609871423354" duration="361000" />
       <workItem from="1610009542995" duration="2436000" />
+      <workItem from="1610103016977" duration="16000" />
     </task>
     <servers />
   </component>
@@ -87,10 +88,10 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="549" y="172" key="FileChooserDialogImpl" timestamp="1609871431407">
+    <state x="549" y="172" key="FileChooserDialogImpl" timestamp="1610103030444">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="549" y="172" key="FileChooserDialogImpl/0.0.1536.834@0.0.1536.834" timestamp="1609871431407" />
+    <state x="549" y="172" key="FileChooserDialogImpl/0.0.1536.834@0.0.1536.834" timestamp="1610103030444" />
     <state x="249" y="0" key="SettingsEditor" timestamp="1609594288039">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
