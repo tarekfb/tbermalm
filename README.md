@@ -8,5 +8,9 @@ Additionally, I wanted to teach myself web technologies through starting _and fi
 
 ## Tech
 More specifically, this project used the following technologies:
-- The omdbAPI (http://www.omdbapi.com/)
-As an introduction to API's, it was rather convienient to use. However, the documentation didn't consist of anything more than a few tables with parameter functionality and two query examples. As this was a first look at APIs in general, I resorted to experimenting with different parameter values and inspecting the object which the API call returned. This led to me having to reformat my structure once or twice. For example, once I realised 
+
+#### The omdbAPI (http://www.omdbapi.com/)
+As an introduction to API's, it was rather convienient to use. However, the documentation didn't consist of anything more than a few tables with parameter functionality and two query examples. As this was a first look at APIs in general, I resorted to experimenting with different parameter values and inspecting the object which the API call returned. This led to me having to reformat my structure once or twice. For example, once I realised one of the two indexing methods (by imdbID and query by title) contain different properties (such as rating, poster and cast), I restructred the information so that every search would gather a complete set of movie properties. This caused inefficiency (two api calls, although asynchronously) but seemed to be a necessary solution since every search required properties from both indexing methods.
+
+#### HTML/CSS/JS
+Nothing fancy. I purposefully decided to avoid any frameworks or libraries, as learning 
