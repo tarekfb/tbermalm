@@ -16,6 +16,16 @@ As an introduction to API's, it was rather convienient to use. However, the docu
 I purposefully decided to avoid any frameworks or libraries as learning the foundations of vanilla html/css/js is a much better first-step than going straight to React, for example. Once I learn a frameowork, this will allow me to better understand and utilize the frameworks for their strengths - in situations where they are advantageous.  I now have a much better grip on the languages, as well as their strengths and weaknesses. For example, generating html through js was an extremely verbose and awkward process. As far as I know, React also allows you to write HTML, CSS and JS in once place. This would be of use, since locating where I manipulated a certain element quickly got confusing since it was potentially handled in through any of the three languages. 
 
 #### Firebase Realtime Database
-This database service worked perfectly. It was also my first interaction with the JSON format, which was nice to get familiar with since it's so commonly used. I've previously worked with relational databases (MSSQL, mainly). Therefore, working with a NoSQL database served as a rewarding oppurtunity to explore another approach to databases and its functionalities.
-Accessible from Client Devices
+This database service worked perfectly. It was also my first interaction with the JSON format, which was nice to get familiar with since it's so commonly used. I've previously worked with relational databases (MSSQL, mainly). Therefore, working with a NoSQL database served as a rewarding oppurtunity to explore another approach to databases and its functionalities. Firebase Realtime Databases is also accessible from client devices which of course is a must, given that the user will read the database from their own device.
+
+#### Other
+Version control is Git & Github Desktop. Developed from IntelliJ IDEA and Firefox Developer Edition, but it's built to work on all modern browsers and devices.
+
+## Lessons learned
+#### Mobile first
+In hindisgt, it's evident that I should've employed a mobile first approach, mainly because the website is primarily used from mobile devies. Currently, it's written with desktops as a primary case and breakpoints for responsiveness. However, scaling up from mobile is a lot more sustainable than scaling down from desktop. Especially when the primary use case is from mobile devices.
+
+#### Do more planning and researching
+As this was more or less my first interaction with the technologies mentioned above, it wasn't sensible to start developing the website without having considered, at least in some detail, the core information flow, layout, use case and most features.
+
 
