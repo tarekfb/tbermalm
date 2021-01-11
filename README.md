@@ -25,7 +25,8 @@ Version control is Git & Github Desktop. Developed from IntelliJ IDEA and Firefo
 #### Throroughly reasearch and plan the project
 As this was more or less my first interaction with the technologies mentioned above, it wasn't sensible to start developing the website without having considered, at least in some detail, the core information flow, layout, use case and most features. However, having an idea of how you want things to work within a collections of tools you are not familiar with is not an easy thing. With these things in mind, what I'd do for the next project is to start writing code but treat it as a first revision. When I would've achieved some sense of familiary with the project and the tools, I'd throw the first revision out the window then research, plan and then come up with a more robust and sustainable project outline.
 
+#### Take breaks
+I have to some extent run into this valuable lesson before, but it was much clearer just how important this is. With other skills or hobbies, it's entirely grind it ouytThe second you start to blindly stare at the characters, make funny mistakes or make no progress towards a problem you need to take a break. Leaving your computer for five minutes to take a walk and a snack will pay you back tenfold in terms of code quality and efficiency. 
+
 #### Mobile first
 In hindsight, it's evident that I should've employed a mobile first approach, mainly because the website is primarily used from mobile devies. Currently, it's written with desktops as a primary case and breakpoints for responsiveness. However, scaling up from mobile is a lot more sustainable than scaling down from desktop. Especially when the primary use case is from mobile devices.
-
-#### Take breaks
