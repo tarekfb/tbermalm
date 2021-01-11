@@ -22,10 +22,10 @@ This database service worked perfectly. It was also my first interaction with th
 Version control is Git & Github Desktop. Developed from IntelliJ IDEA and Firefox Developer Edition, but it's built to work on all modern browsers and devices.
 
 ## Lessons learned
+#### Throroughly reasearch and plan the project
+As this was more or less my first interaction with the technologies mentioned above, it wasn't sensible to start developing the website without having considered, at least in some detail, the core information flow, layout, use case and most features. However, having an idea of how you want things to work within a collections of tools you are not familiar with is not an easy thing. With these things in mind, what I'd do for the next project is to start writing code but treat it as a first revision. When I would've achieved some sense of familiary with the project and the tools, I'd throw the first revision out the window then research, plan and then come up with a more robust and sustainable project outline.
+
 #### Mobile first
-In hindisgt, it's evident that I should've employed a mobile first approach, mainly because the website is primarily used from mobile devies. Currently, it's written with desktops as a primary case and breakpoints for responsiveness. However, scaling up from mobile is a lot more sustainable than scaling down from desktop. Especially when the primary use case is from mobile devices.
+In hindsight, it's evident that I should've employed a mobile first approach, mainly because the website is primarily used from mobile devies. Currently, it's written with desktops as a primary case and breakpoints for responsiveness. However, scaling up from mobile is a lot more sustainable than scaling down from desktop. Especially when the primary use case is from mobile devices.
 
-#### Do more planning and researching
-As this was more or less my first interaction with the technologies mentioned above, it wasn't sensible to start developing the website without having considered, at least in some detail, the core information flow, layout, use case and most features.
-
-
+#### Take breaks
