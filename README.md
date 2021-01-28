@@ -2,7 +2,7 @@
 This is a tool for indexing IMDB ratings by movie titles. There is also support for storing selected movies in a database, which is accessed through a personal account.
 
 ## Why
-Primarily, I wanted to teach myself web technologies through starting _and finishing_ a personal project involving an api, css, html, js and database functionality.
+Primarily, I wanted to teach myself web technologies through starting _and finishing_ a personal project involving api technology, css, html, js and database functionality.
 
 Additionally, I wanted to build something I have use for and can enjoy. Therefore, it's meant to adress that specific moment (which I very often find myself in) when you're trying to find a movie with a decent rating to watch with a group of people. You liked one of the titles, but the rest  didn't? Save to favourites, move on.
 
