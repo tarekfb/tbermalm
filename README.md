@@ -1,4 +1,4 @@
-# Quix
+# Quix - https://tbermalm.tech/quix/
 This is a tool for indexing IMDB ratings by movie titles. There is also support for storing selected movies in a database, which is accessed through a personal account.
 
 ## Why
