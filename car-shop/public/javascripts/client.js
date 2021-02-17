@@ -35,7 +35,7 @@ $(document).ready(function() {
     $.ajax({
       url: window.location.href + "employees",
       type: 'GET',
-      success: (response) => handleGetAllEmployees(response),
+      success: (response) => populateEmployeesTable(response),
       error: function (xhr, status, error) {
         console.log(`Error: ${error}`);
         $('#response').html('Error');
@@ -55,8 +55,17 @@ $(document).ready(function() {
     //   }});
   }
 
-  function handleGetAllEmployees(response) {
-    console.log(response);
+  function populateEmployeesTable(response) {
+    let tableBody = $("#employees-table").find("tbody");
+
+    // Empty previous data
+    tableBody.html("");
+
+    // Populate data
+    for (let i = 0; i < response.length; i++) {
+      let row = `<tr><td>${response[i].id}</td><td>${response[i].name}</td><tr>`;
+      tableBody.append(row);
+    }
   }
 
 

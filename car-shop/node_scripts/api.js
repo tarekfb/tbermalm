@@ -15,7 +15,7 @@ app.use("/carmodels", carmodelsRouter);
 app.use("/employees", employeesRouter);
 
 // Setting up server
-const port = process.env.PORT || 4000
+const port = process.env.PORT || 4001
 let server = app.listen(port, () => {
   let port = server.address().port;
   console.log("Listening on port", port);
