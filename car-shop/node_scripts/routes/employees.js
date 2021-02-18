@@ -12,6 +12,7 @@ router
     res.sendFile(path.join(__dirname, "..", "..", "public", "views", "employees.html"));
    // res.render(path.join(__dirname, "..", "..", "public", "views", "employees.html"));
     //res.end();
+    //html serving path routing issue: https://stackoverflow.com/questions/35896820/expressjs-router-based-on-content-type-header
   });
 
 // AJAX requests at root for employees
