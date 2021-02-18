@@ -63,6 +63,7 @@ router
     .delete(((req, res) => {
       firebase.database().ref(`carshop/carmodels/${req.params.id}`).remove().then(result => {
         res.send(result);
+        // const twoRef = rootRef.child("users").orderByChild("email").equalTo("alice@email.com");
       });
 
 
