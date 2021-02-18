@@ -1,9 +1,18 @@
 const express = require("express");
 const path = require("path");
-const dbOperations = require(path.join(".", "..", "db-operations"));
-const fetch = require('node-fetch');
-let router = express.Router();
+const fetch = require("node-fetch");
+const router = express.Router();
 router.use(express.json());
+
+// Serve html file
+router
+  .route("/index")
+  .get((req, res) => {
+    res.setHeader('Content-Type', 'text/html');
+    res.sendFile(path.join(__dirname, "..", "..", "public", "views", "employees.html"));
+   // res.render(path.join(__dirname, "..", "..", "public", "views", "employees.html"));
+    //res.end();
+  });
 
 // AJAX requests at root for employees
 router
