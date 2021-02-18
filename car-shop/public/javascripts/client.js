@@ -6,8 +6,10 @@ $(document).ready(function() {
    * CRUD frontend interactions
    ****************************************/
 
+
   $("#refresh-list").on("click", function () {
-    getAllEmployees();
+    //getAllEmployees();
+    getAllCarModels();
   });
 
   $("#get-item").on("click", () => {
@@ -15,16 +17,13 @@ $(document).ready(function() {
   });
 
   $("#add-item").on("click", () => {
-    //let memberInfo = [$("#id-input").val(), "Kalle", "Kula", 880421, "Lund"];
-    //registerMember(memberInfo);
+    let itemParameters = {brand: "Saab", id: null, model: "S5", price: 25000};
+    addCarModel(itemParameters);
   });
 
   $("#delete-item").on("click", () => {
-   // deleteMember($("#id-input").val());
-  });
-
-  $("#update-item").on("click", () => {
-   // updateMember($("#id-input").val());
+    console.log($("#id-input").val());
+    deleteCarModel($("#id-input").val());
   });
 
   /***************************************
@@ -33,30 +32,79 @@ $(document).ready(function() {
 
   function getAllEmployees(){
     $.ajax({
-      url: window.location.href + "employees",
+      url: "http://" + window.location.host + "/employees", // In prod env, change url
       type: 'GET',
-      success: (response) => handleGetAllEmployees(response),
+      success: (response) => populateEmployeesTable(response),
       error: function (xhr, status, error) {
         console.log(`Error: ${error}`);
         $('#response').html('Error');
       }});
   }
 
-  function registerMember(memberInfo){
-    // $.ajax({
-    //   url: window.location.href + "member",
-    //   type: 'POST',
-    //   success: response => onSuccess(response),
-    //   contentType:"application/json",
-    //   data: JSON.stringify(memberInfo),
-    //   error: function (xhr, status, error) {
-    //     console.log(`Error: ${error}`);
-    //     $('#response').html('Error');
-    //   }});
+  function getAllCarModels(){
+    $.ajax({
+      url: "http://" + window.location.host + "/carmodels", // In prod env, change url
+      type: 'GET',
+      success: (response) => populateCarModelsTable(response),
+      error: function (xhr, status, error) {
+        console.log(`Error: ${error}`);
+        $('#response').html('Error');
+      }});
   }
 
-  function handleGetAllEmployees(response) {
-    console.log(response);
+  function deleteCarModel(carModelID){
+    $.ajax({
+      url: "http://" + window.location.host + "/carmodels/" + carModelID, // In prod env, change url
+      type: "DELETE",
+      success: (response) => {
+        $("#response").text("Item was deleted: " + response);
+      },
+      error: function (xhr, status, error) {
+        console.log(`Error: ${error}`);
+        $('#response').html('Error');
+      }});
+  }
+
+  function addCarModel(carModelParameters){
+    $.ajax({
+      url: "http://" + window.location.host + "/carmodels", // In prod env, change url
+      type: 'POST',
+      success: (response) => {
+        console.log(response);
+      },
+      contentType:"application/json",
+      data: JSON.stringify(carModelParameters),
+      error: function (xhr, status, error) {
+        console.log(`Error: ${error}`);
+        $('#response').html('Error');
+      }});
+  }
+
+  function populateCarModelsTable(response) {
+    let tableBody = $("#car-models-table").find("tbody");
+
+    // Empty previous data
+    tableBody.html("");
+
+    // Populate data
+    for (let i = 0; i < response.length; i++) {
+      let row = `<tr><td>${response[i].brand}</td><td>${response[i].id}</td><td>${response[i].model}</td><td>${response[i].price}</td><tr>`;
+      tableBody.append(row);
+    }
+  }
+
+  function populateEmployeesTable(response) {
+    let tableBody = $("#employees-table").find("tbody");
+
+    // Empty previous data
+    tableBody.html("");
+
+    // Populate data
+    for (let i = 0; i < response.length; i++) {
+      let row = `<tr><td>${response[i].id}</td><td>${response[i].name}</td><tr>`;
+      tableBody.append(row);
+    }
+
   }
 
 
