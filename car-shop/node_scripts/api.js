@@ -2,10 +2,11 @@ const express = require('express');
 const path = require("path");
 const carmodelsRouter = require('./routes/carmodels');
 const employeesRouter = require('./routes/employees');
-
+const viewsRouter = require('./routes/views');
 const app = express();
 
 // Use respective router js file to handle all the specific endpoints
+app.use("/views", viewsRouter);
 app.use("/carmodels", carmodelsRouter);
 app.use("/employees", employeesRouter);
 app.use("/sales", employeesRouter);

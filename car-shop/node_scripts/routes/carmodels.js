@@ -1,8 +1,6 @@
 const express = require("express");
 const path = require("path");
-const fetch = require('node-fetch');
 const firebase = require(path.join("./..", "firebase"));
-
 
 let router = express.Router();
 router.use(express.json());
@@ -40,12 +38,19 @@ router
       let key = Object.keys(snapshotObj)[0];
       key++;
 
+      req.body.id = key + 1;
+
       // Create new item, for the new key
       firebase.database().ref(`carshop/carmodels/${key}`).set(req.body).then(result => {
          res.send(result);
       });
 
     });
+    // TODO: for upgraded functionality, rewrite to using push()
+    // This will generate a unique key for each new child
+    // It will also help avoid issues when multiple users are adding items simultaneously
+    // Can change the key afterwards
+    // Although having auto-generated key for every child would be better, specs say 0, 1, 2, etc
 
   });
   router.
@@ -56,9 +61,10 @@ router
       });
     })
     .delete(((req, res) => {
-      firebase.database().ref(`carshop/carmodels/${req.params.id}`).remove(result => {
+      firebase.database().ref(`carshop/carmodels/${req.params.id}`).remove().then(result => {
         res.send(result);
       });
+
 
     }));
 
