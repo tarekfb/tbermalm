@@ -22,7 +22,6 @@ $(document).ready(function() {
   });
 
   $("#delete-item").on("click", () => {
-    console.log($("#id-input").val());
     deleteCarModel($("#id-input").val());
   });
 
@@ -56,9 +55,7 @@ $(document).ready(function() {
     $.ajax({
       url: "http://" + window.location.host + "/carmodels/" + carModelID, // In prod env, change url
       type: "DELETE",
-      success: (response) => {
-        $("#response").text("Item was deleted: " + response);
-      },
+      success: response => getAllCarModels(),
       error: function (xhr, status, error) {
         console.log(`Error: ${error}`);
         $('#response').html('Error');
@@ -69,9 +66,7 @@ $(document).ready(function() {
     $.ajax({
       url: "http://" + window.location.host + "/carmodels", // In prod env, change url
       type: 'POST',
-      success: (response) => {
-        console.log(response);
-      },
+      success: response => getAllCarModels(),
       contentType:"application/json",
       data: JSON.stringify(carModelParameters),
       error: function (xhr, status, error) {
