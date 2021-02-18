@@ -66,6 +66,7 @@ $(document).ready(function() {
       let row = `<tr><td>${response[i].id}</td><td>${response[i].name}</td><tr>`;
       tableBody.append(row);
     }
+
   }
 
   /***************************************
