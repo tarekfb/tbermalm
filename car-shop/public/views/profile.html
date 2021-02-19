@@ -53,26 +53,27 @@
 
   <div class="container my-3">
 
-    <form id="auth-form">
-      <div class="form-group">
-        <label for="username">Email</label>
-        <input type="email" class="form-control" id="username" placeholder="jane@doe.com...">
-      </div>
-      <div class="form-group">
-        <label for="password">Password</label>
-        <input type="password" class="form-control" id="password" placeholder="A secure password...">
-      </div>
-      <button class="btn btn-dark" id="login-button" type="submit">login</button>
-      <button class="btn btn-dark mx-2" id="signup-button" type="submit">signup</button>
-    </form>
+    <div id="not-authed-container" class="container">
+      <form id="auth-form">
+        <div class="form-group">
+          <label for="username">Email</label>
+          <input type="email" class="form-control" id="username" placeholder="jane@doe.com...">
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" class="form-control" id="password" placeholder="A secure password...">
+        </div>
+        <button class="btn btn-dark" id="login-button" type="submit">login</button>
+        <button class="btn btn-dark mx-2" id="signup-button" type="submit">signup</button>
+      </form>
+    </div>
 
-    <button class="btn btn-dark my-2" id="logout-button" type="submit">logout</button>
-
-    <ul class="list-group">
-      <li class="list-group-item"><strong>Name: </strong></li>
-      <li class="list-group-item"><strong>Email: </strong></li>
-    </ul>
-
+    <div id="authed-container" class="container d-none">
+      <ul id="user-info" class="list-group my-2">
+        <li id="email-field" class="list-group-item w-50"><strong>Email: </strong><span></span></li>
+      </ul>
+      <button class="btn btn-dark my-2" id="logout-button" type="submit">logout</button>
+      <button class="btn btn-dark my-2" id="reset-password" type="submit">reset password</button>
     </div>
 
   </div>
