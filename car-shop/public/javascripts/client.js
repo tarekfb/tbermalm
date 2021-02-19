@@ -6,24 +6,28 @@ $(document).ready(function() {
    * CRUD frontend interactions
    ****************************************/
 
+  $("#delete-carmodel").on('submit', (e) => {
+    e.preventDefault();
+    deleteCarModel($("#id-input-delete").val());
+  });
+
+  $("#add-carmodel").on('submit', (e) => {
+    e.preventDefault();
+    let brand = $("#brand-input-add").val();
+    let model = $("#model-input-add").val();
+    let price = $("#price-input-add").val();
+
+    // ID is null because it is automatically generated in backend
+    let itemParameters = {brand: brand, id: null, model: model, price: price};
+
+    addCarModel(itemParameters);
+  });
 
   $("#refresh-list").on("click", function () {
     //getAllEmployees();
     getAllCarModels();
   });
 
-  $("#get-item").on("click", () => {
-    //getMember($("#id-input").val());
-  });
-
-  $("#add-item").on("click", () => {
-    let itemParameters = {brand: "Saab", id: null, model: "S5", price: 25000};
-    addCarModel(itemParameters);
-  });
-
-  $("#delete-item").on("click", () => {
-    deleteCarModel($("#id-input").val());
-  });
 
   /***************************************
    * HTTP requests and related functions
@@ -35,7 +39,7 @@ $(document).ready(function() {
       type: 'GET',
       success: (response) => populateEmployeesTable(response),
       error: function (xhr, status, error) {
-        console.log(`Error: ${error}`);
+        console.log(`Error getallemp: ${error}`);
         $('#response').html('Error');
       }});
   }
@@ -46,7 +50,7 @@ $(document).ready(function() {
       type: 'GET',
       success: (response) => populateCarModelsTable(response),
       error: function (xhr, status, error) {
-        console.log(`Error: ${error}`);
+        console.log(`Error getallcar: ${error}`);
         $('#response').html('Error');
       }});
   }
@@ -57,7 +61,8 @@ $(document).ready(function() {
       type: "DELETE",
       success: response => getAllCarModels(),
       error: function (xhr, status, error) {
-        console.log(`Error: ${error}`);
+        console.log("http://" + window.location.host + "/carmodels/" + carModelID);
+        console.log(`Error delcar: ${xhr.status} : ${xhr.statusText}`);
         $('#response').html('Error');
       }});
   }
@@ -70,7 +75,7 @@ $(document).ready(function() {
       contentType:"application/json",
       data: JSON.stringify(carModelParameters),
       error: function (xhr, status, error) {
-        console.log(`Error: ${error}`);
+        console.log(`Error addcar: ${error}`);
         $('#response').html('Error');
       }});
   }
