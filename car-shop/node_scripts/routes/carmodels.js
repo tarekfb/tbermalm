@@ -61,9 +61,26 @@ router
       });
     })
     .delete(((req, res) => {
-      firebase.database().ref(`carshop/carmodels/${req.params.id}`).remove().then(result => {
-        res.send(result);
+      // This code deletes on key
+
+      //let root = firebase.database().ref();
+      // firebase.database().ref(`carshop/carmodels/${req.params.id}`).remove().then(result => {
+      //   res.send(result);
+      //   // const twoRef = rootRef.child("users").orderByChild("email").equalTo("alice@email.com");
+      // });
+
+      // This code deletes on JSON value of ID key
+      firebase.database().ref("carshop/carmodels").orderByChild("id").equalTo(parseInt(req.params.id)).once("value").then(snapshot => {
+        console.log(snapshot.val());
+        let promises = [];
+        snapshot.forEach(child => {
+          promises.push(child.ref.remove());
+        });
+        Promise.all(promises).then(() => res.send(200));
       });
+      // TODO: rewrite to only delete the single item in JSON object
+      // Foreach not needed, since there will always be just one item with the ID
+
 
 
     }));

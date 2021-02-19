@@ -36,6 +36,7 @@
 
   <link rel="stylesheet" href="../stylesheets/main.css">
 
+  <link rel="stylesheet" href="  https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
 </head>
@@ -44,13 +45,13 @@
 
 <!-- Content -->
 
-<nav class="navbar navbar-dark bg-dark fixed-top">
-  <a class="navbar-brand" href="http://localhost:4001/">CarShop</a>
-  <a class="navbar-brand" href="http://localhost:4001/views/employees">Employees</a>
-  <a class="navbar-brand" href="http://localhost:4001/views/carmodels">Car models</a>
-</nav>
+  <nav class="navbar navbar-dark bg-dark fixed-top">
+    <a class="navbar-brand" href="http://localhost:4001/">CarShop</a>
+    <a class="navbar-brand" href="http://localhost:4001/views/employees">Employees</a>
+    <a class="navbar-brand" href="http://localhost:4001/views/carmodels">Car models</a>
+  </nav>
 
-<div class="container my-5">
+  <div class="container my-3">
 
     <table id="car-models-table" class="table table-hover">
       <thead class="thead-dark">
@@ -62,25 +63,37 @@
       </tr>
       </thead>
       <tbody>
-
       </tbody>
     </table>
 
-    <div class="d-flex flex-row justify-content-center flex-wrap">
-      <button id="refresh-list" class="btn btn-dark mx-3 my-2">refresh list</button>
-      <button id="delete-item"class="btn btn-dark mx-3 my-2">remove item</button>
-      <button id="add-item" class="btn btn-dark mx-3 my-2">add item</button>
+    <button id="refresh-list" class="btn btn-dark mx-3 my-2"><i class="fas fa-sync-alt" aria-label="refresh"></i></button>
+
+    <div class="d-flex justify-content-between">
+      <form id="delete-carmodel" class="p-2">
+        <div class="form-group">
+          <label for="id-input-delete">ID</label>
+          <input type="text" class="form-control" id="id-input-delete" placeholder="Such as &quot;1&quot;">
+        </div>
+        <button id="delete-item"class="btn btn-dark" type="submit">remove item</button>
+      </form>
+      <form id="add-carmodel" class="p-2">
+        <div class="form-group">
+          <label for="brand-input-add">Brand</label>
+          <input type="text" class="form-control" id="brand-input-add" placeholder="Such as &quot;Volvo&quot;">
+        </div>
+        <div class="form-group">
+          <label for="model-input-add">Model</label>
+          <input type="text" class="form-control" id="model-input-add" placeholder="Such as &quot;V70&quot;">
+        </div>
+        <div class="form-group">
+          <label for="price-input-add">Price</label>
+          <input type="text" class="form-control" id="price-input-add" placeholder="Such as &quot;30000&quot;">
+        </div>
+        <button id="add-item" class="btn btn-dark" type="submit">add item</button>
+      </form>
     </div>
 
-
-    <form>
-      <div class="form-group">
-        <label for="id-input">ID</label>
-        <input type="text" class="form-control" id="id-input" placeholder="Such as &quot;1&quot;">
-      </div>
-    </form>
-
-    <div id="response" class="alert alert-secondary d-md-none" role="alert"></div>
+    <div id="response" class="alert alert-secondary" role="alert"></div>
 
 </div>
 
