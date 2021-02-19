@@ -25,4 +25,11 @@ router
     res.sendFile(path.join(__dirname, "..", "..", "public", "views", "sales.html"));
   });
 
+router
+  .route("/profile")
+  .get((req, res) => {
+    res.setHeader('Content-Type', 'text/html');
+    res.sendFile(path.join(__dirname, "..", "..", "public", "views", "profile.html"));
+  });
+
 module.exports = router;

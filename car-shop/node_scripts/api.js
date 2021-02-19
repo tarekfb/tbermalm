@@ -3,13 +3,17 @@ const path = require("path");
 const carmodelsRouter = require('./routes/carmodels');
 const employeesRouter = require('./routes/employees');
 const viewsRouter = require('./routes/views');
+const salesRouter = require('./routes/sales');
+const profileRouter = require('./routes/profile');
+
 const app = express();
 
 // Use respective router js file to handle all the specific endpoints
 app.use("/views", viewsRouter);
 app.use("/carmodels", carmodelsRouter);
 app.use("/employees", employeesRouter);
-app.use("/sales", employeesRouter);
+app.use("/sales", salesRouter);
+app.use("/profile", profileRouter);
 
 // Handle static files in public dir
 app.use(express.static(path.join(__dirname, "..", 'public')));

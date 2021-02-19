@@ -81,27 +81,7 @@ router
       // TODO: rewrite to only delete the single item in JSON object
       // Foreach not needed, since there will always be just one item with the ID
 
-
-
     }));
 
-
-// router.post('/',
-//   (req, res, next) => {
-//
-//     const body = { brand: "Toyota", id: 4, model: "tFake2000", price: "50000" };
-//
-//     fetch('https://carshop-4c88f-default-rtdb.europe-west1.firebasedatabase.app/carshop/carmodels.json', {
-//       method: 'post',
-//       body:    JSON.stringify(body),
-//       headers: { 'Content-Type': 'application/json' },
-//     })
-//       .then(res => res.json())
-//       .then(next());
-//   },
-//   (req, res) => {
-//
-//   }
-// );
 
 module.exports = router;
