@@ -48,6 +48,7 @@
     <a class="navbar-brand btn btn-primary" href="http://localhost:4001/">CarShop</a>
     <a class="navbar-brand" href="http://localhost:4001/views/employees">Employees</a>
     <a class="navbar-brand" href="http://localhost:4001/views/carmodels">Car models</a>
+    <a class="navbar-brand" href="http://localhost:4001/views/sales">Sales</a>
     <a class="navbar-brand" href="http://localhost:4001/views/profile">Profile</a>
   </nav>
 
@@ -60,6 +61,10 @@
           <input type="email" class="form-control" id="username" placeholder="jane@doe.com...">
         </div>
         <div class="form-group">
+          <label for="employee-id">Employee ID</label>
+          <input type="text" class="form-control" id="employee-id" placeholder="Such as &quot;1&quot;">
+        </div>
+        <div class="form-group">
           <label for="password">Password</label>
           <input type="password" class="form-control" id="password" placeholder="A secure password...">
         </div>
@@ -70,7 +75,9 @@
 
     <div id="authed-container" class="container d-none">
       <ul id="user-info" class="list-group my-2">
+        <li id="name-field" class="list-group-item w-50"><strong>Name: </strong><span></span></li>
         <li id="email-field" class="list-group-item w-50"><strong>Email: </strong><span></span></li>
+        <li id="employee-id-field" class="list-group-item w-50"><strong>Employee ID: </strong><span></span></li>
       </ul>
       <button class="btn btn-dark my-2" id="logout-button" type="submit">logout</button>
       <button class="btn btn-dark my-2" id="reset-password" type="submit">reset password</button>
