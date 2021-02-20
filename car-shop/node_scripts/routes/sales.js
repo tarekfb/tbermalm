@@ -1,34 +1,51 @@
 const express = require("express");
 const path = require("path");
-const fetch = require('node-fetch');
+const firebase = require(path.join("./..", "firebase"));
 
 let router = express.Router();
 router.use(express.json());
 
-// AJAX requests at root for carmodels
 router
   .route("/")
   .get((req, res) => {
-    /*
-    What this request should return:
-    all employees + their respective properties
-    As well as an extra property for each emp with their total sales sum
 
-    How to accomplish:
-    - foreach employee_id emp, consider each occurance of emp in sales (sales/i) s
-      - get carmodel_id c
-      - for c, get price p (in carmodels/i/price)
-      - let priceSum += p;
+    // Sending the snapshot through GET http call
+    // will change hierarchical structure of json
+    // Therefore this code unwraps one layer ( childDataArray.push(element) );
+    // And then pass to frontend
 
-    - get employees.json
-    - modify json object:
-      - search json for emp
-      - foreach (emp in employees.json)
-        - add key value pair: totalSalesAmount: priceSum
-     */
+    // We also want to include the total sales amount
+    // So we fetch this property by traversing the json objects using primary keys
+    // And finally add priceSum to the json object
 
-    
+    firebase.database().ref("carshop/employees/").once("value").then(snapshot => {
+        async function generateTotalSalesForEmployee() {
+          let childDataArray = [];
+          for (const emp of snapshot.val()) {
+            let priceSum = 0;
+            let salesSnapshot = await firebase.database().ref("carshop/sales").orderByChild("employee_id").equalTo(emp.id).once("value");
+
+            for (let i in salesSnapshot.val()) {
+              let carmodelID = salesSnapshot.val()[i].carmodel_id;
+              let carmodelSnapshot = await firebase.database().ref("carshop/carmodels").orderByChild("id").equalTo(carmodelID).once("value")
+              for (let i in carmodelSnapshot.val()) {
+                priceSum += carmodelSnapshot.val()[i].price;
+              }
+
+            }
+            emp["total_sales"] = priceSum;
+            childDataArray.push(emp)
+          }
+          return childDataArray;
+        }
+
+        generateTotalSalesForEmployee().then((childDataArray) => {
+          res.status(200)
+          res.send(childDataArray);
+        });
+    });
 
   });
+
 
 module.exports = router;

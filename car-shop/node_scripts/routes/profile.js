@@ -38,31 +38,29 @@ router
   .route("/signup")
   .post((req, res) => {
 
-    let name = "";
-
     firebase.database().ref("carshop/employees").orderByChild("id").equalTo(parseInt(req.body.employee_id)).once("value").then(snapshot => {
+      let empName = "";
       snapshot.val().forEach(employee => {
-        name = employee.name;
+        // Only one item in foreach, will never be multiple
+        empName = employee.name;
       });
-    }).then(() => {
-      firebase.auth().createUserWithEmailAndPassword(req.body.username, req.body.password).then((userCredential) => {
 
+      firebase.auth().createUserWithEmailAndPassword(req.body.username, req.body.password).then((userCredential) => {
         let user = userCredential.user;
         let userProfile = {
           uid: user.uid,
-          name: name,
+          name: empName,
           email: user.email,
           employee_id: req.body.employee_id
         };
-
+        return userProfile
+      }).then(userProfile => {
         // Create a child in db at users, attaching the relevant information
         // This information can then be used at profile page
         // Every firebase user has a unique UID, which is attached as well
         firebase.database().ref("carshop/users").push(userProfile);
-
         res.status(200);
         res.send(userProfile);
-
       });
     }).catch((error) => {
       let errorCode = error.code;
@@ -75,15 +73,19 @@ router
 
 router
   .route("/login")
-  .post((req, res) => {
-    firebase.auth().signInWithEmailAndPassword(req.body.username, req.body.password).then((userCredential) => {
-        // Signed in
-        //let user = userCredential.user;
-        //res.status(200);
-        //res.send(user);
-        return userCredential.user;
-      }).then((user) => firebase.database().ref("carshop/users").orderByChild("uid").equalTo(user.uid).once("value").then(snapshot => {
-        // In this callback we are returning the user profile to the client
+  .post((req, res, next) => {
+      firebase.auth().signInWithEmailAndPassword(req.body.username, req.body.password).then((userCredential) => {
+        res.locals.user = userCredential.user;
+        next();
+      }).catch((error) => {
+        let errorCode = error.code;
+        let errorMessage = error.message;
+        res.status(400);
+        res.send(error);
+      })
+  },(req, res) => {
+      firebase.database().ref("carshop/users").orderByChild("uid").equalTo(res.locals.user.uid).once("value").then(snapshot => {
+        // In this code we are returning the user profile to the client
         // If the program reached this point, there will be exactly 1 user with the UID (not 0, because the login was successful)
         for(let index in snapshot.val()){
           res.status(200);
@@ -92,11 +94,10 @@ router
       }).catch((error) => {
         let errorCode = error.code;
         let errorMessage = error.message;
-        console.log(errorMessage + errorCode);
         res.status(400);
         res.send(error);
-      }));
-  });
+      })
+    });
 
 router
   .route("/logout")
@@ -110,9 +111,6 @@ router
   });
 
 router.get("/reset-password", (req, res) => {
-  let auth = firebase.auth();
-  let emailAddress = "user@example.com";
-
   firebase.auth().sendPasswordResetEmail(firebase.auth().currentUser.email).then(function() {
     res.sendStatus(200);
   }).catch((error) => {

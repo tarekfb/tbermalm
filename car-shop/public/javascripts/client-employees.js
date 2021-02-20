@@ -24,15 +24,15 @@ $(document).ready(function() {
     $.ajax({
       url: "http://" + window.location.host + "/employees", // In prod env, change url
       type: 'GET',
-      success: (response) => populateEmployeesTable(response),
+      success: (response) => populateTable(response),
       error: function (xhr, status, error) {
         console.log(`Error getallemp: ${error}`);
         $('#response').html('Error');
       }});
   }
 
-  function populateEmployeesTable(response) {
-    let tableBody = $("#employees-table").find("tbody");
+  function populateTable(response) {
+    let tableBody = $("table").find("tbody");
 
     // Empty previous data
     tableBody.html("");
