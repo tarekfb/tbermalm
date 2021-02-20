@@ -16,8 +16,9 @@ $(document).ready(() => {
     e.preventDefault();
 
     let username = $("#username").val();
+    let employeeID = $("#employee-id").val();
     let password = $("#password").val();
-    let userCredentials = {username: username, password: password};
+    let userCredentials = {username: username, employee_id: employeeID, password: password};
 
     if (event.submitter.id === "signup-button")
       initSignup(userCredentials);
@@ -112,6 +113,9 @@ $(document).ready(() => {
     $("#not-authed-container").addClass("d-none");
 
     $("#email-field").find("span").text(user.email);
+    $("#employee-id-field").find("span").text(user.employee_id);
+    $("#name-field").find("span").text(user.name);
+
   }
 
   function onLoggedOut() {

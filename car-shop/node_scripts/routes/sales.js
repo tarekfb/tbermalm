@@ -21,15 +21,14 @@ router
       - let priceSum += p;
 
     - get employees.json
-    - modify employees:
+    - modify json object:
       - search json for emp
       - foreach (emp in employees.json)
         - add key value pair: totalSalesAmount: priceSum
      */
 
-    fetch('https://carshop-4c88f-default-rtdb.europe-west1.firebasedatabase.app/carshop/sales.json')
-      .then(res => res.json())
-      .then(json => res.send(json));
+    
+
   });
 
 module.exports = router;

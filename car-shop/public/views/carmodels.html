@@ -44,12 +44,13 @@
 <body>
 
 <!-- Content -->
-<nav class="navbar navbar-dark bg-dark fixed-top d-flex justify-content-start">
-  <a class="navbar-brand btn btn-primary" href="http://localhost:4001/">CarShop</a>
-  <a class="navbar-brand" href="http://localhost:4001/views/employees">Employees</a>
-  <a class="navbar-brand" href="http://localhost:4001/views/carmodels">Car models</a>
-  <a class="navbar-brand" href="http://localhost:4001/views/profile">Profile</a>
-</nav>
+  <nav class="navbar navbar-dark bg-dark fixed-top d-flex justify-content-start">
+    <a class="navbar-brand btn btn-primary" href="http://localhost:4001/">CarShop</a>
+    <a class="navbar-brand" href="http://localhost:4001/views/employees">Employees</a>
+    <a class="navbar-brand" href="http://localhost:4001/views/carmodels">Car models</a>
+    <a class="navbar-brand" href="http://localhost:4001/views/sales">Sales</a>
+    <a class="navbar-brand" href="http://localhost:4001/views/profile">Profile</a>
+  </nav>
 
 <div class="container my-3">
   <table class="table table-hover" id="car-models-table">
@@ -69,7 +70,8 @@
 
     <form class="p-2" id="delete-carmodel" name="delete-carmodel">
       <div class="form-group">
-        <label for="id-input-delete">ID</label> <input class="form-control" id="id-input-delete" placeholder="Such as &quot;1&quot;" type="text">
+        <label for="id-input-delete">ID</label>
+        <input class="form-control" id="id-input-delete" placeholder="Such as &quot;1&quot;" type="text">
       </div>
       <button class="btn btn-dark" id="delete-item" type="submit">remove item</button>
     </form>

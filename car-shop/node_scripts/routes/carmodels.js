@@ -12,7 +12,7 @@ router
     firebase.database().ref("carshop/carmodels/").once("value").then(snapshot => {
 
       // This structure is necessary because sending the snapshot through GET http call
-      // will change structure of json
+      // will change hierarchical structure of json
       // unable to perform this operation in frontend
       // so we rebuild to array with children here
       // and pass to frontend
