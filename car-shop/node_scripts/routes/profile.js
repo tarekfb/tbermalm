@@ -77,10 +77,6 @@ router
   .route("/login")
   .post((req, res) => {
     firebase.auth().signInWithEmailAndPassword(req.body.username, req.body.password).then((userCredential) => {
-        // Signed in
-        //let user = userCredential.user;
-        //res.status(200);
-        //res.send(user);
         return userCredential.user;
       }).then((user) => firebase.database().ref("carshop/users").orderByChild("uid").equalTo(user.uid).once("value").then(snapshot => {
         // In this callback we are returning the user profile to the client
@@ -110,9 +106,6 @@ router
   });
 
 router.get("/reset-password", (req, res) => {
-  let auth = firebase.auth();
-  let emailAddress = "user@example.com";
-
   firebase.auth().sendPasswordResetEmail(firebase.auth().currentUser.email).then(function() {
     res.sendStatus(200);
   }).catch((error) => {

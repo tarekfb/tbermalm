@@ -39,7 +39,7 @@ $(document).ready(function() {
 
     // Populate data
     for (let i = 0; i < response.length; i++) {
-      let row = `<tr><td>${response[i].id}</td><td>${response[i].name}</td><tr>`;
+      let row = `<tr><td>${response[i].id}</td><td>${response[i].name}</td><td>${response[i].total_sales}</td><tr>`;
       tableBody.append(row);
     }
 

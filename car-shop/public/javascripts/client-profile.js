@@ -55,7 +55,7 @@ $(document).ready(() => {
       type: 'POST',
       data: JSON.stringify(userCredentials),
       contentType:"application/json",
-      success: (response) => onLoggedIn(response), //TODO: change to response.user
+      success: (response) => onLoggedIn(response.user), //TODO: change to response.user
       error: function (xhr, status, error) {
         console.log(`Error signup: ${error}`);
         $('#response').html('Error');
