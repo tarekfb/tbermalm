@@ -24,11 +24,14 @@ router.use("/reset-password", (req, res, next) => {
   }
 });
 
-
 router.get("/", (req, res) => {
   if (firebase.auth().currentUser){
-    let user = firebase.auth().currentUser;
-    res.send({"result": true, "user": user});
+    let authUser = firebase.auth().currentUser;
+    firebase.database().ref("carshop/users").orderByChild(authUser.uid).once("value").then(snapshot => {
+      for(let i in snapshot.val()){
+        res.send({"result": true, "user": snapshot.val()[i]});
+      }
+    });
   } else {
     res.send({"result": false});
   }
@@ -37,13 +40,6 @@ router.get("/", (req, res) => {
 router
   .route("/signup")
   .post((req, res) => {
-
-    // firebase.database().ref("carshop/employees").orderByChild("id").equalTo(parseInt(req.body.employee_id)).once("value").then(snapshot => {
-    //   let empName = "";
-    //   snapshot.val().forEach(employee => {
-    //     // Only one item in this foreach, will never be multiple
-    //     empName = employee.name;
-    //   });
 
     firebase.auth().createUserWithEmailAndPassword(req.body.username, req.body.password).then((userCredential) => {
       let user = userCredential.user;
@@ -66,7 +62,6 @@ router
       res.send(JSON.stringify(error.message));
     });
   });
-
 
 router
   .route("/login")
@@ -110,6 +105,30 @@ router.get("/reset-password", (req, res) => {
     res.status(400);
     res.send(JSON.stringify(error.message));
   });
+});
+
+router.post("/set-employee-id", (req, res) => {
+
+  async function getUserInfo() {
+    let snapshot = await firebase.database().ref("carshop/employees").orderByChild("id").equalTo(parseInt(req.body.id)).once("value");
+    for(let i in snapshot.val()) {
+        return (snapshot.val()[i]);
+      }
+  }
+
+  getUserInfo().then(userInfo => {
+    firebase.database().ref("carshop/users").orderByChild("email").equalTo(req.body.email).once("value").then(snapshot => {
+      snapshot.forEach((child) => {
+        child.ref.update(userInfo);
+      });
+      res.status(200);
+      res.send(userInfo);
+    }).catch((error) => {
+        res.status(400);
+        res.send(JSON.stringify(error.message));
+      });
+  });
+
 });
 
 module.exports = router;

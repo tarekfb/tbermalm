@@ -18,6 +18,7 @@ $(document).ready(() => {
     let username = $("#username").val();
     let employeeID = $("#employee-id").val();
     let password = $("#password").val();
+
     let userCredentials = {username: username, employee_id: employeeID, password: password};
 
     if (event.submitter.id === "signup-button")
@@ -34,6 +35,13 @@ $(document).ready(() => {
     initPasswordReset();
   });
 
+  $("#change-employee-id").on("click", () => {
+    let employeeID = parseInt($("#employee-id-input").val());
+    let email = $("#email-field").find("span").text();
+    setEmployeeID({id: employeeID, email: email});
+
+  });
+
   function handleModal(message) {
    // $('.modal').modal('toggle');
     let modal = $("#response-modal");
@@ -48,7 +56,7 @@ $(document).ready(() => {
   function isLoggedIn() {
     $.ajax({
       url: "http://" + window.location.host + "/profile/", // In prod env, change url
-      type: 'GET',
+      method: 'GET',
       contentType:"application/json",
       success: (response) => handleAuthState(response),
       error: (jqXHR, textStatus, errorThrown) => {
@@ -63,7 +71,7 @@ $(document).ready(() => {
   function initSignup(userCredentials){
     $.ajax({
       url: "http://" + window.location.host + "/profile/signup", // In prod env, change url
-      type: 'POST',
+      method: 'POST',
       data: JSON.stringify(userCredentials),
       contentType: "application/json",
       dataType: "json",
@@ -80,7 +88,7 @@ $(document).ready(() => {
   function initLogin(userCredentials){
     $.ajax({
       url: "http://" + window.location.host + "/profile/login", // In prod env, change url
-      type: 'POST',
+      method: 'POST',
       data: JSON.stringify(userCredentials),
       contentType:"application/json",
       success: (user) => onLoggedIn(user),
@@ -93,11 +101,10 @@ $(document).ready(() => {
       }});
   }
 
-  function initLogOut(userCredentials) {
+  function initLogOut() {
     $.ajax({
       url: "http://" + window.location.host + "/profile/logout", // In prod env, change url
-      type: 'POST',
-      data: JSON.stringify(userCredentials),
+      method: 'POST',
       contentType: "application/json",
       success: (response) => onLoggedOut(response),
       error: (jqXHR, textStatus, errorThrown) => {
@@ -112,15 +119,35 @@ $(document).ready(() => {
   function initPasswordReset() {
     $.ajax({
       url: "http://" + window.location.host + "/profile/reset-password", // In prod env, change url
-      type: 'GET',
-      success: (response) => console.log(response),
+      method: 'GET',
+      success: (response) => console.log(response), //TODO: display modal with "successfull" if response === "OK"
       error: (jqXHR, textStatus, errorThrown) => {
         if (jqXHR.responseText != null){
           handleModal(JSON.parse(jqXHR.responseText));
         } else {
           handleModal("Unexpected error. Try again");
         }
-      }});
+      }
+    });
+  }
+
+  function setEmployeeID(empInfo){
+    $.ajax({
+      url: "http://" + window.location.host + "/profile/set-employee-id", // In prod env, change url
+      method: 'POST',
+      data: JSON.stringify(empInfo),
+      dataType: "json",
+      contentType: "application/json",
+      success: (userInfo) => isLoggedIn(userInfo),
+      error: (jqXHR, textStatus, errorThrown) => {
+        if (jqXHR.responseText != null) {
+          handleModal(JSON.parse(jqXHR.responseText));
+        } else {
+          handleModal("Unexpected error. Try again");
+        }
+      }
+    });
+
   }
 
   function handleAuthState(response) {
@@ -132,23 +159,22 @@ $(document).ready(() => {
   }
 
   function onLoggedIn(user) {
+    console.log(user.id);
     $("#authed-container").removeClass("d-none");
     $("#not-authed-container").addClass("d-none");
 
-    if (user.employee_id){
+    if (user.id){
       $("#email-field").find("span").text(user.email);
-      $("#employee-id-field").find("span").text(user.employee_id);
+      $("#employee-id-field").find("span").text(user.id);
       $("#name-field").find("span").text(user.name);
 
       $("#set-employee-id").addClass("d-none");
     } else {
-
       $("#email-field").find("span").text(user.email);
       $("#employee-id-field").find("span").text("unset");
-      $("#name-field").find("span").text("");
+      $("#name-field").find("span").text("unset");
 
       $("#set-employee-id").removeClass("d-none");
-
     }
 
   }
