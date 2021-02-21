@@ -16,6 +16,13 @@ $(document).ready(function() {
     getAllEmployees();
   });
 
+  function handleModal(message) {
+    // $('.modal').modal('toggle');
+    let modal = $("#response-modal");
+    modal.find(".modal-body").text(message);
+    modal.modal('toggle'); // object.Modal is Bootstrap js namespace for accessing modal functions
+  }
+
   /***************************************
    * HTTP requests and related functions
    ****************************************/
@@ -25,9 +32,18 @@ $(document).ready(function() {
       url: "http://" + window.location.host + "/employees", // In prod env, change url
       type: 'GET',
       success: (response) => populateTable(response),
-      error: function (xhr, status, error) {
-        console.log(`Error getallemp: ${error}`);
-        $('#response').html('Error');
+      error: (jqXHR, textStatus, errorThrown) => {
+        if (jqXHR.responseText != null){
+          try {
+            console.log(jqXHR.responseText);
+            handleModal(JSON.parse(jqXHR.responseText));
+          } catch(e){
+            handleModal("Unexpected error. Try again");
+          }
+
+        } else {
+          handleModal("Unexpected error. Try again");
+        }
       }});
   }
 

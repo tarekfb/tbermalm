@@ -38,38 +38,35 @@ router
   .route("/signup")
   .post((req, res) => {
 
-    firebase.database().ref("carshop/employees").orderByChild("id").equalTo(parseInt(req.body.employee_id)).once("value").then(snapshot => {
-      let empName = "";
-      snapshot.val().forEach(employee => {
-        // Only one item in foreach, will never be multiple
-        empName = employee.name;
-      });
+    // firebase.database().ref("carshop/employees").orderByChild("id").equalTo(parseInt(req.body.employee_id)).once("value").then(snapshot => {
+    //   let empName = "";
+    //   snapshot.val().forEach(employee => {
+    //     // Only one item in this foreach, will never be multiple
+    //     empName = employee.name;
+    //   });
 
-      firebase.auth().createUserWithEmailAndPassword(req.body.username, req.body.password).then((userCredential) => {
-        let user = userCredential.user;
-        let userProfile = {
-          uid: user.uid,
-          name: empName,
-          email: user.email,
-          employee_id: req.body.employee_id
-        };
-        return userProfile
-      }).then(userProfile => {
-        // Create a child in db at users, attaching the relevant information
-        // This information can then be used at profile page
-        // Every firebase user has a unique UID, which is attached as well
-        firebase.database().ref("carshop/users").push(userProfile);
-        res.status(200);
-        res.send(userProfile);
-      });
+    firebase.auth().createUserWithEmailAndPassword(req.body.username, req.body.password).then((userCredential) => {
+      let user = userCredential.user;
+      let userProfile = {
+        uid: user.uid,
+        name: null,
+        email: user.email,
+        employee_id: null
+      };
+      return userProfile
+    }).then(userProfile => {
+      // Create a child in db at users, attaching the relevant information
+      // This information can then be used at profile page
+      // Every firebase user has a unique UID, which is attached as well
+      firebase.database().ref("carshop/users").push(userProfile);
+      res.status(200);
+      res.send(userProfile);
     }).catch((error) => {
-      let errorCode = error.code;
-      let errorMessage = error.message;
       res.status(400);
-      res.send(error);
-    })
-
+      res.send(JSON.stringify(error.message));
+    });
   });
+
 
 router
   .route("/login")
@@ -78,10 +75,8 @@ router
         res.locals.user = userCredential.user;
         next();
       }).catch((error) => {
-        let errorCode = error.code;
-        let errorMessage = error.message;
-        res.status(400);
-        res.send(error);
+        res.status(401);
+        res.send(JSON.stringify(error.message));
       })
   },(req, res) => {
       firebase.database().ref("carshop/users").orderByChild("uid").equalTo(res.locals.user.uid).once("value").then(snapshot => {
@@ -92,10 +87,8 @@ router
           res.send(snapshot.val()[index]);
         }
       }).catch((error) => {
-        let errorCode = error.code;
-        let errorMessage = error.message;
         res.status(400);
-        res.send(error);
+        res.send(JSON.stringify(error.message));
       })
     });
 
@@ -106,7 +99,7 @@ router
       res.sendStatus(200);
     }).catch((error) => {
       res.status(400);
-      res.send(error);
+      res.send(JSON.stringify(error.message));
     });
   });
 
@@ -115,7 +108,7 @@ router.get("/reset-password", (req, res) => {
     res.sendStatus(200);
   }).catch((error) => {
     res.status(400);
-    res.send(error);
+    res.send(JSON.stringify(error.message));
   });
 });
 

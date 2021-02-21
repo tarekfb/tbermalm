@@ -29,9 +29,17 @@ $(document).ready(() => {
   $("#logout-button").on("click", () => {
     initLogOut();
   });
+
   $("#reset-password").on("click", () => {
     initPasswordReset();
   });
+
+  function handleModal(message) {
+   // $('.modal').modal('toggle');
+    let modal = $("#response-modal");
+    modal.find(".modal-body").text(message);
+    modal.modal('toggle'); // object.Modal is Bootstrap js namespace for accessing modal functions
+  }
 
   /***************************************
    * HTTP requests and related functions
@@ -43,9 +51,12 @@ $(document).ready(() => {
       type: 'GET',
       contentType:"application/json",
       success: (response) => handleAuthState(response),
-      error: function (xhr, status, error) {
-        console.log(`Error signup: ${error}`);
-        $('#response').html('Error');
+      error: (jqXHR, textStatus, errorThrown) => {
+        if (jqXHR.responseText != null){
+          handleModal(JSON.parse(jqXHR.responseText));
+        } else {
+          handleModal("Unexpected error. Try again");
+        }
       }});
   }
 
@@ -54,11 +65,15 @@ $(document).ready(() => {
       url: "http://" + window.location.host + "/profile/signup", // In prod env, change url
       type: 'POST',
       data: JSON.stringify(userCredentials),
-      contentType:"application/json",
+      contentType: "application/json",
+      dataType: "json",
       success: (user) => onLoggedIn(user), //TODO: change to response.user
-      error: function (xhr, status, error) {
-        console.log(`Error signup: ${error}`);
-        $('#response').html('Error');
+      error: (jqXHR, textStatus, errorThrown) => {
+        if (jqXHR.responseText != null){
+          handleModal(JSON.parse(jqXHR.responseText));
+        } else {
+          handleModal("Unexpected error. Try again");
+        }
       }});
   }
 
@@ -69,11 +84,15 @@ $(document).ready(() => {
       data: JSON.stringify(userCredentials),
       contentType:"application/json",
       success: (user) => onLoggedIn(user),
-      error: function (xhr, status, error) {
-        console.log(`Error login: ${error}`);
-        $('#response').html('Error');
+      error: (jqXHR, textStatus, errorThrown) => {
+        if (jqXHR.responseText != null){
+          handleModal(JSON.parse(jqXHR.responseText));
+        } else {
+          handleModal("Unexpected error. Try again");
+        }
       }});
   }
+
   function initLogOut(userCredentials) {
     $.ajax({
       url: "http://" + window.location.host + "/profile/logout", // In prod env, change url
@@ -81,11 +100,13 @@ $(document).ready(() => {
       data: JSON.stringify(userCredentials),
       contentType: "application/json",
       success: (response) => onLoggedOut(response),
-      error: function (xhr, status, error) {
-        console.log(`Error login: ${error}`);
-        $('#response').html('Error');
-      }
-    });
+      error: (jqXHR, textStatus, errorThrown) => {
+        if (jqXHR.responseText != null){
+          handleModal(JSON.parse(jqXHR.responseText));
+        } else {
+          handleModal("Unexpected error. Try again");
+        }
+      }});
   }
 
   function initPasswordReset() {
@@ -93,11 +114,13 @@ $(document).ready(() => {
       url: "http://" + window.location.host + "/profile/reset-password", // In prod env, change url
       type: 'GET',
       success: (response) => console.log(response),
-      error: function (xhr, status, error) {
-      console.log(`Error signup: ${error}`);
-      $('#response').html('Error');
-    }});
-
+      error: (jqXHR, textStatus, errorThrown) => {
+        if (jqXHR.responseText != null){
+          handleModal(JSON.parse(jqXHR.responseText));
+        } else {
+          handleModal("Unexpected error. Try again");
+        }
+      }});
   }
 
   function handleAuthState(response) {
@@ -112,9 +135,21 @@ $(document).ready(() => {
     $("#authed-container").removeClass("d-none");
     $("#not-authed-container").addClass("d-none");
 
-    $("#email-field").find("span").text(user.email);
-    $("#employee-id-field").find("span").text(user.employee_id);
-    $("#name-field").find("span").text(user.name);
+    if (user.employee_id){
+      $("#email-field").find("span").text(user.email);
+      $("#employee-id-field").find("span").text(user.employee_id);
+      $("#name-field").find("span").text(user.name);
+
+      $("#set-employee-id").addClass("d-none");
+    } else {
+
+      $("#email-field").find("span").text(user.email);
+      $("#employee-id-field").find("span").text("unset");
+      $("#name-field").find("span").text("");
+
+      $("#set-employee-id").removeClass("d-none");
+
+    }
 
   }
 

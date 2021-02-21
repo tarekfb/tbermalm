@@ -23,6 +23,9 @@ router
         childDataArray.push(childData);
       });
       res.send(childDataArray);
+    }).catch((error) => {
+      res.status(400);
+      res.send(JSON.stringify(error.message));
     });
   })
   .post((req, res) => {
@@ -77,6 +80,10 @@ router
           promises.push(child.ref.remove());
         });
         Promise.all(promises).then(() => res.send(200));
+      }).catch((error) => {
+        console.log(error.message);
+        res.status(400);
+        res.send(JSON.stringify(error.message));
       });
       // TODO: rewrite to only delete the single item in JSON object
       // Foreach not needed, since there will always be just one item with the ID

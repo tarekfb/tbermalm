@@ -49,7 +49,7 @@
     <a class="navbar-brand" href="http://localhost:4001/views/employees">Employees</a>
     <a class="navbar-brand" href="http://localhost:4001/views/carmodels">Car models</a>
     <a class="navbar-brand" href="http://localhost:4001/views/sales">Sales</a>
-    <a class="navbar-brand" href="http://localhost:4001/views/profile">Profile</a>
+    <a class="navbar-brand ml-auto" href="http://localhost:4001/views/profile">Profile</a>
   </nav>
 
   <div class="container my-3">
@@ -65,11 +65,32 @@
     </table>
     <button class="btn btn-dark my-2" id="refresh-list"><i aria-label="refresh" class="fas fa-sync-alt"></i></button>
 
+    <!-- Modal -->
+    <div class="modal" id="response-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenteredLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalCenteredLabel">Something went wrong.</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Okay</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
   <!-- End of content -->
 
   <!-- Scripts -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   <script src="../javascripts/client-employees.js" type="text/javascript"></script>
 </body>
 
