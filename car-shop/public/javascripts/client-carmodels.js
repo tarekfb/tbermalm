@@ -67,7 +67,7 @@ $(document).ready(function() {
 
   function deleteCarModel(carModelID){
     $.ajax({
-      url: "http://" + window.location.host + "/carmodels/" + carModelID, // In prod env, change url
+      url: "http://" + window.location.host + "/carmodels/" + carModelID,
       type: "DELETE",
       dataType: "json",
       success: response => getAllCarModels(),

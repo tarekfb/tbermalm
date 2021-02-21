@@ -5,7 +5,7 @@ const firebase = require(path.join("./..", "firebase"));
 let router = express.Router();
 router.use(express.json());
 
-// AJAX requests at root for carmodels
+// This endpoint is for getting all carmodels, or adding a new car
 router
   .route("/")
   .get((req, res) => {
@@ -56,39 +56,39 @@ router
     // Although having auto-generated key for every child would be better, specs say 0, 1, 2, etc
 
   });
-  router.
-    route("/:id")
-    .get((req, res) => {
-      firebase.database().ref(`carshop/carmodels/${req.params.id}`).once("value").then(snapshot => {
-        res.send(snapshot);
+
+// This endpoint is for getting a specific car (not needed atm) or deleting a specific car
+router.
+  route("/:id")
+  .get((req, res) => {
+    firebase.database().ref(`carshop/carmodels/${req.params.id}`).once("value").then(snapshot => {
+      res.send(snapshot);
+    });
+  })
+  .delete(((req, res) => {
+    // This code deletes on key
+
+    //let root = firebase.database().ref();
+    // firebase.database().ref(`carshop/carmodels/${req.params.id}`).remove().then(result => {
+    //   res.send(result);
+    //   // const twoRef = rootRef.child("users").orderByChild("email").equalTo("alice@email.com");
+    // });
+
+    // This code deletes on JSON value of ID key
+    firebase.database().ref("carshop/carmodels").orderByChild("id").equalTo(parseInt(req.params.id)).once("value").then(snapshot => {
+      console.log(snapshot.val());
+      let promises = [];
+      snapshot.forEach(child => {
+        promises.push(child.ref.remove());
       });
-    })
-    .delete(((req, res) => {
-      // This code deletes on key
-
-      //let root = firebase.database().ref();
-      // firebase.database().ref(`carshop/carmodels/${req.params.id}`).remove().then(result => {
-      //   res.send(result);
-      //   // const twoRef = rootRef.child("users").orderByChild("email").equalTo("alice@email.com");
-      // });
-
-      // This code deletes on JSON value of ID key
-      firebase.database().ref("carshop/carmodels").orderByChild("id").equalTo(parseInt(req.params.id)).once("value").then(snapshot => {
-        console.log(snapshot.val());
-        let promises = [];
-        snapshot.forEach(child => {
-          promises.push(child.ref.remove());
-        });
-        Promise.all(promises).then(() => res.send(200));
-      }).catch((error) => {
-        console.log(error.message);
-        res.status(400);
-        res.send(JSON.stringify(error.message));
-      });
-      // TODO: rewrite to only delete the single item in JSON object
-      // Foreach not needed, since there will always be just one item with the ID
-
-    }));
-
+      Promise.all(promises).then(() => res.send(200));
+    }).catch((error) => {
+      console.log(error.message);
+      res.status(400);
+      res.send(JSON.stringify(error.message));
+    });
+    // TODO: rewrite to only delete the single item in JSON object
+    // Foreach not needed, since there will always be just one item with the ID
+  }));
 
 module.exports = router;

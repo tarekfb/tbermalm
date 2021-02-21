@@ -23,6 +23,20 @@ $(document).ready(function() {
     modal.modal('toggle'); // object.Modal is Bootstrap js namespace for accessing modal functions
   }
 
+  function populateTable(response) {
+    let tableBody = $("table").find("tbody");
+
+    // Empty previous data
+    tableBody.html("");
+
+    // Populate data
+    for (let i = 0; i < response.length; i++) {
+      let row = `<tr><td>${response[i].id}</td><td>${response[i].name}</td><tr>`;
+      tableBody.append(row);
+    }
+
+  }
+
   /***************************************
    * HTTP requests and related functions
    ****************************************/
@@ -40,25 +54,11 @@ $(document).ready(function() {
           } catch(e){
             handleModal("Unexpected error. Try again");
           }
-
         } else {
           handleModal("Unexpected error. Try again");
         }
-      }});
-  }
-
-  function populateTable(response) {
-    let tableBody = $("table").find("tbody");
-
-    // Empty previous data
-    tableBody.html("");
-
-    // Populate data
-    for (let i = 0; i < response.length; i++) {
-      let row = `<tr><td>${response[i].id}</td><td>${response[i].name}</td><tr>`;
-      tableBody.append(row);
-    }
-
+      }
+    });
   }
 
 });

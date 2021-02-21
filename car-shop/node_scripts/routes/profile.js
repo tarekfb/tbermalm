@@ -126,9 +126,45 @@ router.post("/set-employee-id", (req, res) => {
     }).catch((error) => {
         res.status(400);
         res.send(JSON.stringify(error.message));
-      });
+    });
   });
 
+});
+
+router.get("/sales-for-employee/:employee-id", ((req, res) => {
+  console.log(req.params.id);
+
+  res.sendStatus(200);
+  //res.sendStatus(200);
+
+}));
+
+router.post("/sales-for-employee", (req, res) => {
+  firebase.database().ref(`carshop/sales/`).orderByChild("employee_id").equalTo(parseInt(req.body.id)).once("value").then(result => {
+    let allSales = [];
+
+    for(let i in result.val()){
+      let jsonSale = {
+        carmodel_id: result.val()[i].carmodel_id,
+        sale_id: result.val()[i].id
+      };
+      allSales.push(jsonSale);
+    }
+
+    // result.val().forEach(sale => {
+    //   let jsonSale = {
+    //     carmodel_id: sale.carmodel_id,
+    //     sale_id: sale.id
+    //   };
+    //   allSales.push(jsonSale);
+    // });
+
+    res.send(allSales);
+
+  }).catch((error) => {
+    res.status(400);
+    res.send(JSON.stringify(error.message));
+  });
 });
 
 module.exports = router;

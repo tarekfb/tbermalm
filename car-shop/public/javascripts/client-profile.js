@@ -39,14 +39,36 @@ $(document).ready(() => {
     let employeeID = parseInt($("#employee-id-input").val());
     let email = $("#email-field").find("span").text();
     setEmployeeID({id: employeeID, email: email});
+  });
 
+  $("#refresh-list").on("click", function () {
+    let empID = $("#employee-id-field").find("span").text()
+
+    if (empID === "unset"){
+      handleModal("There is no Employee ID linked to this user. Please set your Employee ID before loading sales");
+    } else {
+      getAllSalesForEmployee({id: empID});
+    }
   });
 
   function handleModal(message) {
-   // $('.modal').modal('toggle');
     let modal = $("#response-modal");
     modal.find(".modal-body").text(message);
     modal.modal('toggle'); // object.Modal is Bootstrap js namespace for accessing modal functions
+  }
+
+  function populateTable(response) {
+    let tableBody = $("table").find("tbody");
+
+    // Empty previous data
+    tableBody.html("");
+
+    // Populate data
+    for (let i = 0; i < response.length; i++) {
+      let row = `<tr><td>${response[i].carmodel_id}</td><td>${response[i].sale_id}</td><tr>`;
+      tableBody.append(row);
+    }
+
   }
 
   /***************************************
@@ -85,6 +107,8 @@ $(document).ready(() => {
       }});
   }
 
+  // THIS WILL LOG IN USER BUT FAILS TO CALL ONLOGGEDIN PROPERLY
+  // TODO: fix
   function initLogin(userCredentials){
     $.ajax({
       url: "http://" + window.location.host + "/profile/login", // In prod env, change url
@@ -120,10 +144,10 @@ $(document).ready(() => {
     $.ajax({
       url: "http://" + window.location.host + "/profile/reset-password", // In prod env, change url
       method: 'GET',
-      success: (response) => console.log(response), //TODO: display modal with "successfull" if response === "OK"
+      success: handleModal("Mail has been sent."), //TODO: display modal with "successfull" if response === "OK"
       error: (jqXHR, textStatus, errorThrown) => {
         if (jqXHR.responseText != null){
-          handleModal(JSON.parse(jqXHR.responseText));
+         // handleModal(JSON.parse(jqXHR.responseText));
         } else {
           handleModal("Unexpected error. Try again");
         }
@@ -150,6 +174,26 @@ $(document).ready(() => {
 
   }
 
+  function getAllSalesForEmployee(employeeID) {
+    $.ajax({
+      url:  `http://${window.location.host}/profile/sales-for-employee`,
+      method: 'POST',
+      data: JSON.stringify(employeeID),
+      dataType: "json",
+      contentType: "application/json",
+      success: (response) => populateTable(response),
+      error: (jqXHR, textStatus, errorThrown) => {
+        if (jqXHR.responseText != null) {
+          //handleModal(JSON.parse(jqXHR.responseText));
+          console.log(jqXHR.responseText);
+        } else {
+          handleModal("Unexpected error. Try again");
+        }
+      }
+    });
+
+  }
+
   function handleAuthState(response) {
     if (response.result){
       onLoggedIn(response.user);
@@ -159,16 +203,20 @@ $(document).ready(() => {
   }
 
   function onLoggedIn(user) {
-    console.log(user.id);
+
     $("#authed-container").removeClass("d-none");
     $("#not-authed-container").addClass("d-none");
 
+    // If user.id !null (if user hasnt linked empid to their profile yet)
     if (user.id){
       $("#email-field").find("span").text(user.email);
       $("#employee-id-field").find("span").text(user.id);
       $("#name-field").find("span").text(user.name);
 
       $("#set-employee-id").addClass("d-none");
+
+      getAllSalesForEmployee(user.id);
+
     } else {
       $("#email-field").find("span").text(user.email);
       $("#employee-id-field").find("span").text("unset");
