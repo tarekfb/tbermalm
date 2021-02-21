@@ -2,6 +2,11 @@ body {
   padding-top: 60px;
 /*this prevents navbar from blocking content at top of page*/
 }
+
+.navbar:last-child {
+  /*margin-left: auto;*/
+}
+
 @media (max-width: 979px) {
   body {
     padding-top: 0px;

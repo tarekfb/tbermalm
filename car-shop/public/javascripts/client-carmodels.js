@@ -33,6 +33,13 @@ $(document).ready(function() {
     getAllCarModels();
   });
 
+  function handleModal(message) {
+    // $('.modal').modal('toggle');
+    let modal = $("#response-modal");
+    modal.find(".modal-body").text(message);
+    modal.modal('toggle'); // object.Modal is Bootstrap js namespace for accessing modal functions
+  }
+
 
   /***************************************
    * HTTP requests and related functions
@@ -43,21 +50,39 @@ $(document).ready(function() {
       url: "http://" + window.location.host + "/carmodels", // In prod env, change url
       type: 'GET',
       success: (response) => populateCarModelsTable(response),
-      error: function (xhr, status, error) {
-        console.log(`Error getallcar: ${error}`);
-        $('#response').html('Error');
+      error: (jqXHR, textStatus, errorThrown) => {
+        if (jqXHR.responseText != null){
+          try {
+            console.log(jqXHR.responseText);
+            handleModal(JSON.parse(jqXHR.responseText));
+          } catch(e){
+            handleModal("Unexpected error. Try again");
+          }
+
+        } else {
+          handleModal("Unexpected error. Try again");
+        }
       }});
   }
 
   function deleteCarModel(carModelID){
     $.ajax({
-      url: "http://" + window.location.host + "/carmodels/" + carModelID, // In prod env, change url
+      url: "http://" + window.location.host + "/carmodels/" + carModelID,
       type: "DELETE",
+      dataType: "json",
       success: response => getAllCarModels(),
-      error: function (xhr, status, error) {
-        console.log("http://" + window.location.host + "/carmodels/" + carModelID);
-        console.log(`Error delcar: ${xhr.status} : ${xhr.statusText}`);
-        $('#response').html('Error');
+      error: (jqXHR, textStatus, errorThrown) => {
+        if (jqXHR.responseText != null){
+          try {
+            console.log(jqXHR.responseText);
+            handleModal(JSON.parse(jqXHR.responseText));
+          } catch(e){
+            handleModal("Unexpected error. Try again");
+          }
+
+        } else {
+          handleModal("Unexpected error. Try again");
+        }
       }});
   }
 
@@ -68,9 +93,18 @@ $(document).ready(function() {
       success: response => getAllCarModels(),
       contentType:"application/json",
       data: JSON.stringify(carModelParameters),
-      error: function (xhr, status, error) {
-        console.log(`Error addcar: ${error}`);
-        $('#response').html('Error');
+      error: (jqXHR, textStatus, errorThrown) => {
+        if (jqXHR.responseText != null){
+          try {
+            console.log(jqXHR.responseText);
+            handleModal(JSON.parse(jqXHR.responseText));
+          } catch(e){
+            handleModal("Unexpected error. Try again");
+          }
+
+        } else {
+          handleModal("Unexpected error. Try again");
+        }
       }});
   }
 

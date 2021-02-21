@@ -22,6 +22,9 @@ router
         childDataArray.push(childData);
       });
       res.send(childDataArray);
+    }).catch((error) => {
+      res.status(400);
+      res.send(JSON.stringify(error.message));
     });
   });
 

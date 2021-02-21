@@ -43,6 +43,9 @@ router
           res.status(200)
           res.send(childDataArray);
         });
+    }).catch((error) => {
+      res.status(400);
+      res.send(JSON.stringify(error.message));
     });
 
   });

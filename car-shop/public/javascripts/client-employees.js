@@ -16,19 +16,11 @@ $(document).ready(function() {
     getAllEmployees();
   });
 
-  /***************************************
-   * HTTP requests and related functions
-   ****************************************/
-
-  function getAllEmployees(){
-    $.ajax({
-      url: "http://" + window.location.host + "/employees", // In prod env, change url
-      type: 'GET',
-      success: (response) => populateTable(response),
-      error: function (xhr, status, error) {
-        console.log(`Error getallemp: ${error}`);
-        $('#response').html('Error');
-      }});
+  function handleModal(message) {
+    // $('.modal').modal('toggle');
+    let modal = $("#response-modal");
+    modal.find(".modal-body").text(message);
+    modal.modal('toggle'); // object.Modal is Bootstrap js namespace for accessing modal functions
   }
 
   function populateTable(response) {
@@ -43,6 +35,30 @@ $(document).ready(function() {
       tableBody.append(row);
     }
 
+  }
+
+  /***************************************
+   * HTTP requests and related functions
+   ****************************************/
+
+  function getAllEmployees(){
+    $.ajax({
+      url: "http://" + window.location.host + "/employees", // In prod env, change url
+      type: 'GET',
+      success: (response) => populateTable(response),
+      error: (jqXHR, textStatus, errorThrown) => {
+        if (jqXHR.responseText != null){
+          try {
+            console.log(jqXHR.responseText);
+            handleModal(JSON.parse(jqXHR.responseText));
+          } catch(e){
+            handleModal("Unexpected error. Try again");
+          }
+        } else {
+          handleModal("Unexpected error. Try again");
+        }
+      }
+    });
   }
 
 });
