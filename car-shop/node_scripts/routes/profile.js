@@ -151,14 +151,6 @@ router.post("/sales-for-employee", (req, res) => {
       allSales.push(jsonSale);
     }
 
-    // result.val().forEach(sale => {
-    //   let jsonSale = {
-    //     carmodel_id: sale.carmodel_id,
-    //     sale_id: sale.id
-    //   };
-    //   allSales.push(jsonSale);
-    // });
-
     res.send(allSales);
 
   }).catch((error) => {
