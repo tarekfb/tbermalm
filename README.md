@@ -6,6 +6,8 @@ Primarily, I wanted to teach myself web technologies through starting _and finis
 
 Additionally, I wanted to build something I have use for and can enjoy. Therefore, it's meant to adress that specific moment (which I very often find myself in) when you're trying to find a movie with a decent rating to watch with a group of people. You liked one of the titles, but the rest  didn't? Save to favourites, move on.
 
+Finally, I wanted to build solid foundational knowledge of the standard we bdevelopment languages, without any frameworks. I imagine this will serve as a more sustainable and long-term approach to web development, rather than jumping from framework to framework, without having learned the "basics".
+
 ## Tech
 This project used the following technologies:
 
