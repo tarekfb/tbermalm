@@ -1,5 +1,5 @@
 # Quix - https://tbermalm.tech/quix/
-This is a tool for indexing IMDB ratings by movie titles. There is also support for storing selected movies in a database, which is accessed through a personal account.
+This is a tool for indexing IMDB ratings by movie titles. There is also support for storing selected movies in a database, which is accessed through a personal account. Google Chrome Lighthouse: [97-100-93-100](https://prnt.sc/105l7wv)
 
 ## Why
 Primarily, I wanted to teach myself web technologies through starting _and finishing_ a personal project involving api technology, css, html, js and database functionality.
@@ -21,7 +21,7 @@ I purposefully decided to avoid any frameworks or libraries as learning the foun
 This database service worked perfectly. It was also my first interaction with the JSON format, which was nice to get familiar with since it's so commonly used. I've previously worked with relational databases (MSSQL, mainly). Therefore, working with a NoSQL database served as a rewarding oppurtunity to explore another approach to databases and its functionalities. Firebase Realtime Databases is also accessible from client devices which of course is a must, given that the user will read the database from their own device.
 
 #### Other
-Version control is Git & Github Desktop. Developed from IntelliJ IDEA and Firefox Developer Edition, but it's built to work on all modern browsers and devices. Lighthouse: [97-100-93-100](https://prnt.sc/105l7wv)
+Version control is Git & Github Desktop. Developed from IntelliJ IDEA and Firefox Developer Edition, but it's built to work on all modern browsers and devices. 
 
 ## Lessons learned
 #### Throroughly reasearch and plan the project
