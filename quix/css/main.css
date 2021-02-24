@@ -12,7 +12,7 @@
   --color-accent-whiteblack: black;
 
   --accept-green: #00e500;
-  --gold: #FFD700;
+  --gold: #ffd700;
 
   --icon-distance: 0.5em;
   --icon-distance-secondary: 0.2em;
@@ -214,8 +214,10 @@ todo: reutrn top visiblity fade when not at top
   font-family: "Font Awesome 5 Free", serif;
   content: "\f186";
   font-style: normal;
-  font-weight: normal;
+  font-weight: bold;
   font-size: 40px;
+  color: #001B4C;
+  text-shadow: 0 0 5px #001B4C;
 
   margin-right: auto;
   margin-left: .5em;
@@ -223,7 +225,10 @@ todo: reutrn top visiblity fade when not at top
 
 #dark-mode-toggle-container.light-mode::before{
   /*change moon to sun*/
-  content: "\f0e7";
+  content: "\f185";
+  color: var(--gold);
+  font-weight: bold;
+  text-shadow: 0 0 5px #ffc800;
 }
 
 #scroll-to-top-container:before {
