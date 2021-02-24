@@ -223,7 +223,7 @@ todo: reutrn top visiblity fade when not at top
 
 #dark-mode-toggle-container.light-mode::before{
   /*change moon to sun*/
-  content: "\f185";
+  content: "\f0e7";
 }
 
 #scroll-to-top-container:before {
