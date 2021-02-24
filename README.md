@@ -21,7 +21,7 @@ I purposefully decided to avoid any frameworks or libraries as learning the foun
 This database service worked perfectly. It was also my first interaction with the JSON format, which was nice to get familiar with since it's so commonly used. I've previously worked with relational databases (MSSQL, mainly). Therefore, working with a NoSQL database served as a rewarding oppurtunity to explore another approach to databases and its functionalities. Firebase Realtime Databases is also accessible from client devices which of course is a must, given that the user will read the database from their own device.
 
 #### Other
-Version control is Git & Github Desktop. Developed from IntelliJ IDEA and Firefox Developer Edition, but it's built to work on all modern browsers and devices.
+Version control is Git & Github Desktop. Developed from IntelliJ IDEA and Firefox Developer Edition, but it's built to work on all modern browsers and devices. Lighthouse: [97-100-93-100](https://prnt.sc/105l7wv)
 
 ## Lessons learned
 #### Throroughly reasearch and plan the project
