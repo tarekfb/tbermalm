@@ -1,7 +1,7 @@
 # Quix - https://tbermalm.tech/quix/
 This is a tool for indexing IMDB ratings by movie titles. There is also support for storing selected movies in a database, which is accessed through a personal account. Google Chrome Lighthouse: [97-100-93-100](https://prnt.sc/105l7wv)
 
-![Contribution guidelines for this project](chrome-lighthouse.md)
+![Contribution guidelines for this project](chrome-lighthouse.png)
 
 ## Why
 Primarily, I wanted to teach myself web technologies through starting _and finishing_ a personal project involving api technology, css, html, js and database functionality.
