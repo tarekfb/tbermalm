@@ -22,7 +22,10 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="be6b14f1-f67a-46dc-9f30-fbd49ccd43d8" name="Default Changelist" comment="" />
+    <list default="true" id="be6b14f1-f67a-46dc-9f30-fbd49ccd43d8" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -41,7 +44,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/.." />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
@@ -54,6 +57,19 @@
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\deduu\IdeaProjects\tbermalm\quix" />
     </key>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -84,7 +100,10 @@
       <workItem from="1613729936512" duration="1661000" />
       <workItem from="1613742893310" duration="1191000" />
       <workItem from="1613818489632" duration="716000" />
-      <workItem from="1614180639103" duration="693000" />
+      <workItem from="1614180639103" duration="947000" />
+      <workItem from="1614256316861" duration="18000" />
+      <workItem from="1614270555059" duration="354000" />
+      <workItem from="1615723418641" duration="71000" />
     </task>
     <servers />
   </component>
@@ -104,11 +123,11 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="686" y="224" key="FileChooserDialogImpl" timestamp="1613641067509">
-      <screen x="0" y="0" width="1920" height="1080" />
+    <state x="-1371" y="179" key="FileChooserDialogImpl" timestamp="1615723488465">
+      <screen x="-1920" y="0" width="1536" height="864" />
     </state>
     <state x="686" y="217" key="FileChooserDialogImpl/-1920.0.1536.840/0.0.1920.1050@0.0.1920.1050" timestamp="1610967552332" />
-    <state x="-1371" y="179" key="FileChooserDialogImpl/-1920.0.1536.864/0.0.1920.1080@-1920.0.1536.864" timestamp="1613559329433" />
+    <state x="-1371" y="179" key="FileChooserDialogImpl/-1920.0.1536.864/0.0.1920.1080@-1920.0.1536.864" timestamp="1615723488465" />
     <state x="686" y="224" key="FileChooserDialogImpl/-1920.0.1536.864/0.0.1920.1080@0.0.1920.1080" timestamp="1613641067509" />
     <state x="549" y="172" key="FileChooserDialogImpl/0.0.1536.834@0.0.1536.834" timestamp="1610103030444" />
     <state x="249" y="0" key="SettingsEditor" timestamp="1609594288039">
@@ -123,10 +142,10 @@
       <screen x="-1920" y="0" width="1536" height="864" />
     </state>
     <state x="-1334" y="331" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/-1920.0.1536.864/0.0.1920.1080@-1920.0.1536.864" timestamp="1613655182032" />
-    <state x="261" y="131" key="new project wizard" timestamp="1613229480539">
+    <state x="261" y="131" key="new project wizard" timestamp="1614270910587">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state x="261" y="131" key="new project wizard/-1920.0.1536.864/0.0.1920.1080@0.0.1920.1080" timestamp="1613229480539" />
+    <state x="261" y="131" key="new project wizard/-1920.0.1536.864/0.0.1920.1080@0.0.1920.1080" timestamp="1614270910587" />
     <state x="209" y="101" key="new project wizard/0.0.1536.834@0.0.1536.834" timestamp="1610715193352" />
     <state x="425" y="189" key="run.anything.popup" timestamp="1609760380092">
       <screen x="0" y="0" width="1536" height="834" />
