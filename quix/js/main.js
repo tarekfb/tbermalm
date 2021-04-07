@@ -1,6 +1,6 @@
 "use strict";
 
-const API_KEY = process.env.OMDB_API_KEY;
+import OMDB_API_KEY from "./apiKeys.js";
 
 /*******************************************
  * Listeners and functions to init page
@@ -202,7 +202,7 @@ function apiHandlerByTitle(queryText) {
 
   //define api request variables
   const omdbAPI = new XMLHttpRequest();
-  const omdbURL = `https://www.omdbapi.com/?&apikey=${API_KEY}&s=${queryText}`;
+  const omdbURL = `https://www.omdbapi.com/?&apikey=${OMDB_API_KEY}&s=${queryText}`;
 
   //adding listener to request
   omdbAPI.addEventListener("load", function() {
@@ -243,7 +243,7 @@ function apiHandlerByImdbID(imdbID) {
 
   //define api request variables
   const omdbAPI = new XMLHttpRequest();
-  const omdbURL = `https://www.omdbapi.com/?&apikey=${API_KEY}&s=&i=${imdbID}`;
+  const omdbURL = `https://www.omdbapi.com/?&apikey=${OMDB_API_KEY}&s=&i=${imdbID}`;
 
   //adding listener to request
   omdbAPI.addEventListener("load", function() {
@@ -930,7 +930,7 @@ function requestNewPage(queryText) {
 
   //define api request variables
   const omdbAPI = new XMLHttpRequest();
-  const omdbURL = `https://www.omdbapi.com/?&apikey=${API_KEY}&s=${queryText}&page=${currentPage}`;
+  const omdbURL = `https://www.omdbapi.com/?&apikey=${OMDB_API_KEY}&s=${queryText}&page=${currentPage}`;
 
   //adding listener to request
   omdbAPI.addEventListener("load", function() {

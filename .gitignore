@@ -845,3 +845,6 @@ WebApplication1/WebApplication1/Web.config
 WebApplication1/WebApplication1/Web.Debug.config
 WebApplication1/WebApplication1/Web.Release.config
 WebApplication1/WebApplication1/WebApplication1.vbproj
+.vscode/tasks.json
+
+quix/js/apiKeys.js
