@@ -1,7 +1,6 @@
 "use strict";
 
 import OMDB_API_KEY from "./apiKeys.js";
-console.log(OMDB_API_KEY);
 
 /*******************************************
  * Listeners and functions to init page
