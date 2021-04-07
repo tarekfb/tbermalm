@@ -1,6 +1,6 @@
 "use strict";
 
-const API_KEY = '5e65d4a0&s';
+const API_KEY = OMDB_API_KEY;
 
 /*******************************************
  * Listeners and functions to init page
