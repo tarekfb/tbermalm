@@ -1,6 +1,7 @@
 "use strict";
 
 import OMDB_API_KEY from "./apiKeys.js";
+console.log(OMDB_API_KEY);
 
 /*******************************************
  * Listeners and functions to init page
@@ -888,9 +889,7 @@ let currentPage = 1;
 // reset this counter
 
 let handleEndlessScroll = debounce(function(queryText) {
-  // What this code does:
-  // Determine if
-
+ 
   /*
   issue: im checking if collectoin of all elements with class "movie-container" === 10
   if have >1 page, it will always true
@@ -986,21 +985,3 @@ function toggleDarkMode() {
   }
 
 }
-
-/********************************************************************
-  END OF CODE
-  below is notes and comments
- ********************************************************************/
-
-/*leaving some notes from programming diary
-
-Event-driven languages, and callbacks
-Imdb ratings lookup tool
-16/06/2020
-
-Bumped into an issue when creating my imdb rating lookup tool.
-Javascript is apparently an event-driven language, which means the compiler doesn't wait for responses when executing code, but instead continues with the next operation.
-This can be tricky, when you want to wait for a function to finish executing, for example in-order to update a variable value.
-In my case my return statement returns the initial variable declaration, 0, instead of the updated value.
-Because the value, updated by an event listener, has been updated after the return statement is executed.
-*/
