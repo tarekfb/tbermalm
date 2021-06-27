@@ -1,0 +1,87 @@
+
+
+@font-face {
+  font-family: "Product Sans1";
+  src: url("fonts/Product Sans Regular.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Product Sans2";
+  src: url("fonts/Product Sans Bold.ttf") format("truetype");
+}
+
+body {
+  font-family: "Product Sans1", sans-serif;
+  background: #1c1c1c;
+  color: white;
+  font-size: 20px;
+}
+
+a,
+a:hover,
+a:focus,
+a:active,
+a:visited {
+  text-decoration: none;
+  color: #fff;
+}
+.greeting {
+  margin-top: 150px;
+  margin-bottom: 1.5rem;
+  font-size: 3.2rem;
+}
+
+.date {
+  margin-bottom: 50px;
+  font-size: 1.8rem;
+  font-weight: lighter;
+}
+
+input {
+  border: none;
+  border-bottom: 2px solid #fff;
+  min-width: 750px;
+  max-width: 900px;
+  width: 75%;
+  padding-bottom: 10px;
+  background-color: transparent;
+  color: #fff;
+  outline: 0;
+  margin-bottom: 20px;
+}
+
+.icons {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.icons > div {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.icons span {
+  margin-right: 1.5rem;
+  margin-left: 0.20rem;
+  
+}
+
+.icons img {
+  /* position: relative; */
+  height: 20px;
+  width: auto;
+  /* top: -2px; */
+}
+
+a:hover {
+  color: gray;
+}
+
+canvas {
+  /*display: none;*/
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: -1;
+}
