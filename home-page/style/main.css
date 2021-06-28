@@ -63,15 +63,7 @@ input {
 
 .icons span {
   margin-right: 1.5rem;
-  margin-left: 0.20rem;
-  
-}
-
-.icons img {
-  /* position: relative; */
-  height: 20px;
-  width: auto;
-  /* top: -2px; */
+  margin-left: 0.20rem;  
 }
 
 a:hover {

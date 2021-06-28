@@ -2,6 +2,11 @@ $(function () {
     let date = new Date().toLocaleString('en-GB');
 
     $(".date").text(date);
+
+    let asd = $(".search").find('form').cl
+    $("#submitBtn").click(function(){        
+        $("#myForm").submit(); // Submit the form
+    });
 });
 
 function formatTo24h(date) {
