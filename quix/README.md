@@ -1,5 +1,5 @@
 # Quix - ~~https://tbermalm.tech/quix/~~
-This is a tool for indexing IMDB ratings by movie titles. There is also support for storing selected movies in a database, which is accessed through a personal account. Google Chrome Lighthouse: 97-100-93-100
+This tool was written as a first project using web technologies, back in 2019. It indexes IMDB ratings by movie titles. There is also support for storing selected movies in a database, which is accessed through a personal account. Google Chrome Lighthouse: 97-100-93-100
 
 ![Google Chrome Lighthouse rating](chrome-lighthouse.png)
 
